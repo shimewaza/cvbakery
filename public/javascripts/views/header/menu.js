@@ -11,15 +11,8 @@ define(['text!templates/menu.html'], function(menuTemplate) {
 		// ID on HTML page
 		id: 'menuPanel',
 
-		template: menuTemplate,
+		template: menuTemplate
 
-		onRender: function() {
-
-			// move in the menu
-			this.$el.animate({
-				'top': '0px'
-			});
-		}
 	});
 
 	return MenuView;

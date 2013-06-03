@@ -17,20 +17,21 @@ define([], function(require) {
 
 		var landingRouter = new LandingRouter({
 			controller: landingController
-		})
+		});
 
 		landingController.toLogin();
 	});
 
 	selink.on('initialize:before', function(options) {
 
-		Backbone.Marionette.Region.prototype.open = function(view) {
+		// Backbone.Marionette.Region.prototype.open = function(view) {
+/*		this.mainRegion.open = function(view) {
 			var self = this;
 			this.$el.fadeOut(function() {
 				self.$el.html(view.el);
 				self.$el.fadeIn();
 			});
-		}
+		};*/
 
 		Backbone.Marionette.TemplateCache.prototype.loadTemplate = function(templateId) {
 
@@ -65,8 +66,7 @@ define([], function(require) {
 
 		var mainController = new MainController({
 			app: this,
-			account: data.account,
-			menu: data.menu
+			account: data
 		});
 
 		var mainRouter = new MainRouter({

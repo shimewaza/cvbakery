@@ -1,4 +1,8 @@
-define(['text!templates/page.html', 'views/header/menu'], function(pageTemplate, MenuView) {
+define([
+		'text!templates/page.html',
+		'views/header/menu',
+		'views/navigator/account'
+], function(pageTemplate, MenuView, AccountView) {
 
 	var PageView = Backbone.Marionette.Layout.extend({
 
@@ -12,11 +16,17 @@ define(['text!templates/page.html', 'views/header/menu'], function(pageTemplate,
 		},
 
 		initialize: function() {
-			console.log(this.header);
+			this.menuView = new MenuView({
+				model: this.model
+			});
+			this.accountView = new AccountView({
+				model: this.model
+			});
 		},
 
 		onRender: function() {
-			this.header.show(new MenuView({model: this.model}));
+			this.header.show(this.menuView);
+			this.navigator.show(this.accountView);
 			this.onPartScreen();
 		},
 
@@ -59,13 +69,20 @@ define(['text!templates/page.html', 'views/header/menu'], function(pageTemplate,
 
 		onPartScreen: function() {
 
+			var self = this;
+
 			// make space for menu panel
 			$('body').animate({
 				'padding-top': '45px'
 			}, function() {
-				
+
+				// move in the menu
+				self.menuView.$el.animate({
+					'top': '0px'
+				});
+
 				// make space for navigator panel
-				$('#main').animate({
+				$('#body').animate({
 					'padding-left': '265px'
 				}, function() {
 

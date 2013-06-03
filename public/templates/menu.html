@@ -1,6 +1,6 @@
     <div class="navbar-inner">
     	<ul class="nav">
-    		<% _.each(obj, function(menu) { %>
+    		<% _.each(obj.menu, function(menu) { %>
     		<li><a href="<%- menu.url %>"><i class="<%- menu.icon %>"></i> <%- menu.name %></a></li>
     		<% }); %>
     	</ul>
