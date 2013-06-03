@@ -1,0 +1,16 @@
+<div class="sl-icon span1">
+    <i class="icon-ok"></i>
+</div>
+<div class="sl-value span11">
+    <% if(obj.language) print(obj.language + obj.background); %>
+</div>
+<div class="sl-input">
+    <select class="input-small" name="languageBackground.language" data-title="ホームページ" data-content="ホームページを入力してください" data-trigger="focus" data-placement="top">
+        <option value="">--</option>
+        <option value="英語" <% if(obj.language == "英語") print('selected'); %>>英語</option>
+        <option value="日本語" <% if(obj.language == "日本語") print('selected'); %>>日本語</option>
+        <option value="中国語" <% if(obj.language == "中国語") print('selected'); %>>中国語</option>
+    </select>
+    <input type="text" class="input-large" name="languageBackground.background" value="<%= obj.background %>" data-title="ホームページ" data-content="ホームページを入力してください" data-trigger="focus" data-placement="top">
+    <button class="btn btn-info btn-small"><i class="icon-minus icon-white"></i></button>
+</div>

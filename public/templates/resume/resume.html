@@ -1,0 +1,36 @@
+<div class="row-fluid">
+
+    <div class="span3">
+        <img src="images/resume.png" class="img-polaroid sl-photo">
+    </div>
+
+    <div id="basicInfo" class="span9 row-fluid">
+        <div class="sl-editor span12" style="display: none;"></div>
+    </div>
+
+</div>
+<hr>
+
+<div class="row-fluid">
+    <h4>自己紹介</h4>
+    <div class="sl-editor span12">
+        <div class="sl-value">
+            <p><% if(obj.selfIntroduction) print(obj.selfIntroduction); else print("Your selfIntroduction"); %></p>
+        </div>
+        <div class="sl-input">
+            <textarea class="input-xxlarge" rows="10" name="selfIntroduction" data-title="自己紹介" data-content="自己紹介を入力してください" data-trigger="focus"><%= obj.selfIntroduction %></textarea>
+        </div>
+    </div>
+</div>
+<hr>
+
+<div id="sl-languangeBackground" class="row-fluid">
+    <div class="span12">
+        <h4 class="span10">語学能力</h4>
+        <div class="span2 btn-group">
+            <a class="btn btn-info btn-mini"><i class="icon-chevron-up icon-white"></i></a>
+            <a class="btn btn-info btn-mini"><i class="icon-chevron-down icon-white"></i></a>
+            <a id="addLanguageBtn" class="btn btn-info btn-mini"><i class="icon-plus icon-white"></i></a>
+        </div>
+    </div>
+</div>
