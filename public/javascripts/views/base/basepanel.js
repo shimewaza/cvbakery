@@ -1,6 +1,4 @@
-define([
-		'mediator-js'
-], function(mediator) {
+define([], function() {
 
 	var BasePanel = Backbone.View.extend({
 
@@ -59,7 +57,7 @@ define([
 		},
 
 		subscribe: function(channel, callback, options, context) {
-			var sub = mediator.subscribe(channel, callback, options, context);
+			// var sub = mediator.subscribe(channel, callback, options, context);
 			this.subscriptions.push(sub);
 		}
 

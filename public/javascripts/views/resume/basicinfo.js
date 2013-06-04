@@ -1,7 +1,6 @@
 define([
-        'text!templates/resume/basicinfo.html',
-        'mediator-js'
-], function(baseinfoTemplate, mediator) {
+        'text!templates/resume/basicinfo.html'
+], function(baseinfoTemplate) {
 
     var TextEditor = Backbone.View.extend({
 
@@ -186,7 +185,7 @@ define([
             parentModel.save({}, {
                 success: function() {
                     self.$el.slideUp(function() {
-                        mediator.publish('resume:removeItem', self.model);
+                        // mediator.publish('resume:removeItem', self.model);
                         self.off();
                         self.remove();
                     });

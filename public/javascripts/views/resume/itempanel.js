@@ -1,7 +1,6 @@
 define([
-        'text!templates/resume/itempanel.html',
-        'mediator-js'
-], function(itemPanelTemplate, mediator) {
+        'text!templates/resume/itempanel.html'
+], function(itemPanelTemplate) {
 
     var ItemPanelView = Backbone.View.extend({
 
@@ -28,8 +27,8 @@ define([
         },
 
         initialize: function() {
-            mediator.subscribe('resume:missItem', this.missItem, {}, this);
-            mediator.subscribe('resume:removeItem', this.removeItem, {}, this);
+            // mediator.subscribe('resume:missItem', this.missItem, {}, this);
+            // mediator.subscribe('resume:removeItem', this.removeItem, {}, this);
         },
 
         render: function() {
@@ -64,7 +63,7 @@ define([
                 content: $target.data('content')
             };
 
-            mediator.publish('resume:addItem', model);
+            // mediator.publish('resume:addItem', model);
             $target.closest('button').fadeOut();
         },
 

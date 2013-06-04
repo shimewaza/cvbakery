@@ -1,12 +1,18 @@
 define([
 		'text!templates/page.html',
-		'views/header/menu',
-		'views/navigator/account'
+		'views/menu',
+		'views/account'
 ], function(pageTemplate, MenuView, AccountView) {
 
 	var PageView = Backbone.Marionette.Layout.extend({
 
 		template: pageTemplate,
+
+		events: {
+			'click #fullScreenBtn': 'onFullScreen',
+			'click #partScreenBtn': 'onPartScreen',
+			'click #logoutBtn': 'onLogout'
+		},
 
 		regions: {
 			header: '#header',
@@ -30,51 +36,51 @@ define([
 			this.onPartScreen();
 		},
 
-		// Login action
-		// Set up application main frame
-		// Show menu and navigator panel
-		onLogin: function() {
-
-			this.onPartScreen();
-
-			this.add(function(next) {
-
-				// move in tool button with animation
-				$('#fullScreenBtn').show('drop', function() {
-					$('#logoutBtn').show('drop');
-				});
-
-				next();
-			});
-		},
-
 		// Logout action
 		// Hide menu and navigator panel
 		onLogout: function() {
 
-			this.add(function(next) {
+			var self = this;
 
-				// hide tool button with animation
-				$('#logoutBtn').hide('drop', function() {
-					$('#fullScreenBtn').hide('drop', function() {
-						$('#partScreenBtn').hide('drop');
+			$.ajax({
+
+				url: '/logout',
+
+				type: 'GET',
+
+				dataType: 'json',
+
+				success: function(data) {
+					self.onFullScreen(function() {
+						vent.trigger('logout:success');
 					});
-				});
 
-				next();
-			});
-
-			this.onFullScreen();
+					// hide tool button with animation
+					$('#logoutBtn').hide('drop', function() {
+						$('#fullScreenBtn').hide('drop', function() {
+							$('#partScreenBtn').hide('drop');
+						});
+					});
+				}
+			});		
 		},
 
 		onPartScreen: function() {
 
 			var self = this;
 
+			this.$el.find('#fullScreenBtn').show();
+			this.$el.find('#partScreenBtn').hide();
+
 			// make space for menu panel
 			$('body').animate({
 				'padding-top': '45px'
 			}, function() {
+
+				// move in tool button with animation
+				$('#fullScreenBtn').show('drop', function() {
+					$('#logoutBtn').show('drop');
+				});
 
 				// move in the menu
 				self.menuView.$el.animate({
@@ -94,7 +100,10 @@ define([
 			});
 		},
 
-		onFullScreen: function() {
+		onFullScreen: function(callback) {
+
+			this.$el.find('#fullScreenBtn').hide();
+			this.$el.find('#partScreenBtn').show();
 
 			// move the navigator out of screen
 			$('#navigator').animate({
@@ -112,8 +121,11 @@ define([
 					$('body').animate({
 						'padding-top': '5px'
 					});
+					
+					if(typeof callback === "function") callback();
 				});
 			});
+
 		}
 
 	});

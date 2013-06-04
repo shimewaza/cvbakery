@@ -8,30 +8,41 @@ define([], function(require) {
 
 	selink.addInitializer(function(options) {
 
-		var LandingRouter = require('routers/landing');
-		var LandingController = require('controllers/landing');
+		// Require home page from server
+		$.ajax({
 
-		var landingController = new LandingController({
-			app: this
+			// page url
+			url: '/home',
+
+			// method is get
+			type: 'GET',
+
+			// use json format
+			dataType: 'json',
+
+			// success handler
+			success: function(data) {
+				// Start history
+				vent.trigger('login:success', data);
+			},
+
+			// error handler
+			error: function(xhr, status) {
+				// Unauthed user move to login page
+				vent.trigger('logout:success');
+			}
 		});
-
-		var landingRouter = new LandingRouter({
-			controller: landingController
-		});
-
-		landingController.toLogin();
 	});
 
 	selink.on('initialize:before', function(options) {
 
 		// Backbone.Marionette.Region.prototype.open = function(view) {
-/*		this.mainRegion.open = function(view) {
-			var self = this;
-			this.$el.fadeOut(function() {
-				self.$el.html(view.el);
-				self.$el.fadeIn();
-			});
-		};*/
+		// 	var self = this;
+		// 	this.$el.fadeOut(function() {
+		// 		self.$el.html(view.el);
+		// 		self.$el.fadeIn();
+		// 	});
+		// };
 
 		Backbone.Marionette.TemplateCache.prototype.loadTemplate = function(templateId) {
 
@@ -59,6 +70,22 @@ define([], function(require) {
 		console.log('SELink has started.');
 	});
 
+	selink.listenTo(vent, 'logout:success', function() {
+
+		var LandingRouter = require('routers/landing');
+		var LandingController = require('controllers/landing');
+
+		var landingController = new LandingController({
+			app: this
+		});
+
+		var landingRouter = new LandingRouter({
+			controller: landingController
+		});
+
+		landingController.toLogin();
+	});
+
 	selink.listenTo(vent, 'login:success', function(data) {
 
 		var MainRouter = require('routers/main');
@@ -73,40 +100,8 @@ define([], function(require) {
 			controller: mainController
 		});
 
-		mainController.toHome();
+		// mainController.toHome();
 	});
 
 	return selink;
-
-	/*	var initialize = function() {
-
-		// Require home page from server
-		$.ajax({
-
-			// page url
-			url: '/home',
-
-			// method is get
-			type: 'GET',
-
-			// use json format
-			dataType: 'json',
-
-			// success handler
-			success: function(data) {
-				// Start history
-				mediator.publish('user:login', data);
-			},
-
-			// error handler
-			error: function(xhr, status) {
-				// Unauthed user move to login page
-				mediator.publish('user:logout');
-			}
-		});
-	};
-
-	return {
-		initialize: initialize
-	};*/
 });

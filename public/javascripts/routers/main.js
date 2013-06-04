@@ -3,7 +3,8 @@ define([], function() {
 	var Router = Backbone.Marionette.AppRouter.extend({
 
 		appRoutes: {
-			'home': 'toHome'
+			'home': 'toHome',
+            'resume': 'toResume'
 		}
 	});
 

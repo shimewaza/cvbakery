@@ -1,23 +1,15 @@
 define([
 		'text!templates/resume/resume.html',
-		'views/base/basepanel',
-		'views/content/resume/basicinfo',
-		'views/content/resume/itempanel',
-		'views/content/resume/languagebackground',
-		'models/engineer',
-		'models/account',
-		'mediator-js'
+		'views/resume/basicinfo',
+		'views/resume/itempanel',
+		'views/resume/languagebackground'
 ], function(
 	resumeTemplate,
-	BaseView,
 	BasicInfoView,
 	ItemPanelView,
-	LanguageBackgroundView,
-	engineerModel,
-	accountModel,
-	mediator) {
+	LanguageBackgroundView) {
 
-	var ResumeView = BaseView.extend({
+	var ResumeView = Backbone.Marionette.ItemView.extend({
 
 		// This view is a div
 		tagName: 'div',
@@ -29,10 +21,11 @@ define([
 		id: 'resumePanel',
 
 		// Model
-		model: engineerModel,
+		// model: engineerModel,
 
 		// Template
-		template: _.template(resumeTemplate),
+		// template: _.template(resumeTemplate),
+		template: resumeTemplate,
 
 		subViews: [],
 
@@ -45,21 +38,20 @@ define([
 
 			// Model Event: Listen on model's _id, so this view will be rendered on first load
 			this.listenTo(this.model, 'change:_id', this.render);
-
 			// View Event
-			this.events = _.extend({}, this.genericEvents, {});
+			// this.events = _.extend({}, this.genericEvents, {});
 
 			// Mediator event: Show up this view
-			mediator.subscribe('resume:show', this.show, {}, this);
-			mediator.subscribe('resume:addItem', this.addItem, {}, this);
+			// mediator.subscribe('resume:show', this.show, {}, this);
+			// mediator.subscribe('resume:addItem', this.addItem, {}, this);
 		},
 
 		// Render
-		render: function() {
+		onRender: function() {
 
-			this.$el.html(this.template(this.model.toJSON()))
+			// this.$el.html(this.template(this.model.toJSON()));
 			// .css('display', 'none')
-			.appendTo('#content');
+			// .appendTo('#content');
 
 			_.each(this.subViews, function(subView) {
 				subView.render();
@@ -207,7 +199,7 @@ define([
 				}));
 
 			} else {
-				mediator.publish('resume:missItem', itemModel);
+				// mediator.publish('resume:missItem', itemModel);
 			}
 		},
 
