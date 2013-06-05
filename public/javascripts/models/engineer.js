@@ -8,6 +8,17 @@ define([], function() {
 
         initialize: function() {
 
+        },
+
+        validate: function(attrs, options) {
+
+            console.log(attrs);
+
+            if(attrs.birthDay && "Invalid Date" == new Date(attrs.birthDay)) 
+                return {
+                    item: 'birthDay',
+                    message: 'invalid birthDay'
+                };
         }
     });
 

@@ -44,11 +44,11 @@ li {
 	line-height: 25px !important;
 }
 */
-.sl-input {
+.sl-editor {
 	display: none;
 }
 
-.sl-input button {
+.sl-editor button {
 	margin-bottom: 10px;
 }
 
@@ -132,8 +132,9 @@ li {
 }
 
 /* Main Body*/
-#main {
+#body {
 	padding-left: 0px;
+	position: relative;
 }
 
 /* Main Navigator*/
@@ -152,7 +153,10 @@ li {
 }
 
 #toolArea {
-	float: right;
+	/*float: right;*/
+	position: absolute;
+	top: 0;
+	right: 0;
 }
 
 #toolArea div {
@@ -200,6 +204,11 @@ li {
 	margin-right: 10px;
 }
 
+#resumePanel .radio.inline{
+	padding-top: 0px;
+	vertical-align: top;
+}
+
 #resumeItemPanel {
 	min-width: 140px;
 	max-width: 140px;
@@ -210,3 +219,8 @@ li {
 /*	margin-right: 5px;
 	margin-bottom: 5px;*/
 }
+
+/*.row-fluid [class*="span"] {
+	min-height: 20px;
+	margin-bottom: 10px;
+}*/

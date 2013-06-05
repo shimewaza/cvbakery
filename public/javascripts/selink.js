@@ -58,16 +58,16 @@ define([], function(require) {
 			return template;
 		};
 
-		console.log('SELink initialize started.');
+		// console.log('SELink initialize started.');
 	});
 
 	selink.on('initialize:after', function(options) {
 		Backbone.history.start();
-		console.log('SELink initialize finished.');
+		// console.log('SELink initialize finished.');
 	});
 
 	selink.on('start', function(options) {
-		console.log('SELink has started.');
+		// console.log('SELink has started.');
 	});
 
 	selink.listenTo(vent, 'logout:success', function() {

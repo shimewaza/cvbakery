@@ -1,15 +1,17 @@
 define([
 		'text!templates/resume/resume.html',
-		'views/resume/basicinfo',
+		'views/resume/itembirthday',
+		'views/resume/itemgender',
 		'views/resume/itempanel',
 		'views/resume/languagebackground'
 ], function(
 	resumeTemplate,
-	BasicInfoView,
+	birthDayView,
+	genderView,
 	ItemPanelView,
 	LanguageBackgroundView) {
 
-	var ResumeView = Backbone.Marionette.ItemView.extend({
+	var ResumeView = Backbone.Marionette.Layout.extend({
 
 		// This view is a div
 		tagName: 'div',
@@ -20,24 +22,36 @@ define([
 		// ID on HTML page
 		id: 'resumePanel',
 
-		// Model
-		// model: engineerModel,
-
 		// Template
-		// template: _.template(resumeTemplate),
 		template: resumeTemplate,
 
-		subViews: [],
+		regions: {
+			birthDayArea: '#birthDay',
+			genderArea: '#gender',
+			nationalityArea: '#nationality',
+			marriedArea: '#married',
+			addressArea: '#address',
+			firstArriveArea: '#firstArrive',
+			itExperienceArea: '#itExperience',
+			nearestStationArea: '#nearestStation',
+			dateOfAvailableArea: '#dateOfAvailable',
+			telNoArea: '#telNo',
+			emailArea: '#email',
+			homePageArea: '#homePage',
+		},
 
 		// Initializer
 		initialize: function() {
 
-			this.subViews.push(new ItemPanelView());
+			this.birthDayView = new birthDayView({model: this.model});
+			this.genderView = new genderView({model: this.model});
 
-			this._initializeResume()
+			// this.subViews.push(new ItemPanelView());
+
+			// this._initializeResume()
 
 			// Model Event: Listen on model's _id, so this view will be rendered on first load
-			this.listenTo(this.model, 'change:_id', this.render);
+			// this.listenTo(this.model, 'change:_id', this.render);
 			// View Event
 			// this.events = _.extend({}, this.genericEvents, {});
 
@@ -49,35 +63,38 @@ define([
 		// Render
 		onRender: function() {
 
+			this.birthDayArea.show(this.birthDayView);
+			this.genderArea.show(this.genderView);
+
 			// this.$el.html(this.template(this.model.toJSON()));
 			// .css('display', 'none')
 			// .appendTo('#content');
 
-			_.each(this.subViews, function(subView) {
-				subView.render();
-			});
+			// _.each(this.subViews, function(subView) {
+			// 	subView.render();
+			// });
 
-			_.each(this.model.get('languageBackground'), function(model) {
-				(new LanguageBackgroundView({
-					model: model
-				})).render().show();
-			});
+			// _.each(this.model.get('languageBackground'), function(model) {
+			// 	(new LanguageBackgroundView({
+			// 		model: model
+			// 	})).render().show();
+			// });
 
-			return this;
+			// return this;
 		},
 
 		// Show this view
-		show: function() {
+		// show: function() {
 
-			// Render the view
-			this.render();
+		// 	// Render the view
+		// 	this.render();
 
-			// SlideIn the view
-			this.$el.show('slide', {
-				direction: 'right',
-				easing: 'easeInQuart'
-			});
-		},
+		// 	// SlideIn the view
+		// 	this.$el.show('slide', {
+		// 		direction: 'right',
+		// 		easing: 'easeInQuart'
+		// 	});
+		// },
 
 		addItem: function(data) {
 

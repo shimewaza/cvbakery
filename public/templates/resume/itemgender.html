@@ -1,0 +1,17 @@
+<div class="sl-icon span3">
+    <i class="icon-leaf"></i>　性別：
+</div>
+<div class="sl-value span9">
+    <%= obj.gender %>
+</div>
+<div class="sl-editor">
+    <label class="radio inline">
+        <input type="radio" name="gender" value="男" <% if(obj.gender == "男") print("checked") %>>
+        男
+    </label>
+    <label class="radio inline">
+        <input type="radio" name="gender" value="女" <% if(obj.gender == "女") print("checked") %>>
+        女
+    </label>
+    <button class="btn btn-mini btn-danger btn-delete"><i class="icon-minus icon-white"></i></button>
+</div>

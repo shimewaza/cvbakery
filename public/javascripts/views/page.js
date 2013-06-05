@@ -11,7 +11,8 @@ define([
 		events: {
 			'click #fullScreenBtn': 'onFullScreen',
 			'click #partScreenBtn': 'onPartScreen',
-			'click #logoutBtn': 'onLogout'
+			'click #logoutBtn': 'onLogout',
+			'click': 'onClick'
 		},
 
 		regions: {
@@ -110,7 +111,7 @@ define([
 				'right': '530px'
 			}, function() {
 				// expand the main area
-				$('#main').animate({
+				$('#body').animate({
 					'padding-left': '0px'
 				});
 				// move header out of screen
@@ -126,6 +127,10 @@ define([
 				});
 			});
 
+		},
+
+		onClick: function() {
+			vent.trigger('click:universal');
 		}
 
 	});
