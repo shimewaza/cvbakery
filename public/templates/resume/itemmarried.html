@@ -1,17 +1,17 @@
 <div class="sl-icon span3">
-    <i class="icon-leaf"></i>　性別：
+    <i class="icon-heart"></i>　婚姻状況：
 </div>
 <div class="sl-value span9">
-    <%= obj.gender %>
+    <%= obj.married %>
 </div>
 <div class="sl-editor">
     <label class="radio inline">
-        <input type="radio" name="gender" value="男" <% if(obj.gender == "男") print("checked") %>>
-        男
+        <input type="radio" name="married" value="既婚" <% if(obj.married == "既婚") print("checked") %>>
+        既婚
     </label>
     <label class="radio inline">
-        <input type="radio" name="gender" value="女" <% if(obj.gender == "女") print("checked") %>>
-        女
+        <input type="radio" name="married" value="未婚" <% if(obj.married == "未婚") print("checked") %>>
+        未婚
     </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <button class="btn btn-mini btn-danger btn-delete"><i class="icon-minus icon-white"></i></button>
 </div>

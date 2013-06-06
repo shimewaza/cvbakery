@@ -1,13 +1,13 @@
 define([
         'views/resume/itembase',
-        'text!templates/resume/itembirthday.html'
+        'text!templates/resume/itemitexperience.html'
 ], function(BaseView, template) {
 
-    var BirthDayEditor = BaseView.extend({
+    var ItExperienceEditor = BaseView.extend({
 
-        item: 'birthDay',
+        item: 'itExperience',
 
-        itemName: "生年月日",
+        itemName: "IT経験年数",
 
         /*Template*/
         template: template,
@@ -39,19 +39,6 @@ define([
         /*After Render*/
         onRender: function() {
 
-            var self = this;
-
-            this.ui.datePickerBtn.datepicker({
-                language: 'ja',
-                autoclose: true,
-                startView: 2,
-                todayHighlight: true,
-                format: 'yyyy/mm/dd'
-            }).on('changeDate', function(e) {
-                self.ui.datePickerBtn.datepicker('hide');
-                self.ui.input.val(self._simpleFormatDate(e.date)).trigger('change');
-            });
-
             // Attach popover for input control in edit panel
             this._appendInfoOnInput();
 
@@ -67,7 +54,7 @@ define([
             // Get input value
             var newVal = this.ui.input.val();
             // Set the new value into model
-            this.model.set('birthDay', newVal);
+            this.model.set('itExperience', newVal);
 
             // Save the model
             this.model.save({}, {
@@ -81,7 +68,7 @@ define([
                     // append normal info help on editor
                     self._appendInfoOnInput();
                     // Update the view panel
-                    self.ui.value.text(self._formatDate(newVal));
+                    self.ui.value.text(newVal);
                     // Switch to view panel
                     self.switchToValue();
                 }
@@ -90,5 +77,5 @@ define([
         
     });
 
-    return BirthDayEditor;
+    return ItExperienceEditor;
 });

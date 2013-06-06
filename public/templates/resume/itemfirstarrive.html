@@ -1,19 +1,19 @@
 <% 
-    var date = new Date(obj.birthDay);
+    var date = new Date(obj.firstArrive);
     var curr_date = date.getDate();
     var curr_month = date.getMonth() + 1;
     var curr_year = date.getFullYear();
-    var birthDayFormated = curr_year + "年" + curr_month + "月" + curr_date + "日";
-    var birthDaySimpleFormated = curr_year + "/" + curr_month + "/" + curr_date;
+    var firstArriveFormated = curr_year + "年" + curr_month + "月" + curr_date + "日";
+    var firstArriveSimpleFormated = curr_year + "/" + curr_month + "/" + curr_date;
 %>
 <div class="sl-icon span3">
-    <i class="icon-calendar"></i>　生年月日：
+    <i class="icon-plane"></i>　初回来日：
 </div>
 <div class="sl-value span9">
-    <%= birthDayFormated %>
+    <%= firstArriveFormated %>
 </div>
 <div class="sl-editor">
-    <input type="text" class="input-medium" name="birthDay" value="<%= birthDaySimpleFormated %>">
+    <input type="text" class="input-medium" name="firstArrive" value="<%= firstArriveSimpleFormated %>">
     <button class="btn btn-mini btn-info btn-datepicker"><i class="icon-calendar icon-white"></i></button>
     <button class="btn btn-mini btn-danger btn-delete"><i class="icon-minus icon-white"></i></button>
 </div>

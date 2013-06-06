@@ -2,12 +2,22 @@ define([
 		'text!templates/resume/resume.html',
 		'views/resume/itembirthday',
 		'views/resume/itemgender',
+		'views/resume/itemnationality',
+		'views/resume/itemmarried',
+		'views/resume/itemfirstarrive',
+		'views/resume/itemitexperience',
+		'views/resume/itemavailabledate',
 		'views/resume/itempanel',
 		'views/resume/languagebackground'
 ], function(
 	resumeTemplate,
-	birthDayView,
-	genderView,
+	BirthDayView,
+	GenderView,
+	NationalityView,
+	MarriedView,
+	FirstArriveView,
+	ItExperienceView,
+	AvailableDateView,
 	ItemPanelView,
 	LanguageBackgroundView) {
 
@@ -34,7 +44,7 @@ define([
 			firstArriveArea: '#firstArrive',
 			itExperienceArea: '#itExperience',
 			nearestStationArea: '#nearestStation',
-			dateOfAvailableArea: '#dateOfAvailable',
+			availableDateArea: '#availableDate',
 			telNoArea: '#telNo',
 			emailArea: '#email',
 			homePageArea: '#homePage',
@@ -43,8 +53,13 @@ define([
 		// Initializer
 		initialize: function() {
 
-			this.birthDayView = new birthDayView({model: this.model});
-			this.genderView = new genderView({model: this.model});
+			this.birthDayView = new BirthDayView({model: this.model});
+			this.genderView = new GenderView({model: this.model});
+			this.nationalityView = new NationalityView({model: this.model});
+			this.marriedView = new MarriedView({model: this.model});
+			this.firstArriveView = new FirstArriveView({model: this.model});
+			this.itExperienceView = new ItExperienceView({model: this.model});
+			this.availableDateView = new AvailableDateView({model: this.model});
 
 			// this.subViews.push(new ItemPanelView());
 
@@ -65,6 +80,11 @@ define([
 
 			this.birthDayArea.show(this.birthDayView);
 			this.genderArea.show(this.genderView);
+			this.nationalityArea.show(this.nationalityView);
+			this.marriedArea.show(this.marriedView);
+			this.firstArriveArea.show(this.firstArriveView);
+			this.itExperienceArea.show(this.itExperienceView);
+			this.availableDateArea.show(this.availableDateView);
 
 			// this.$el.html(this.template(this.model.toJSON()));
 			// .css('display', 'none')

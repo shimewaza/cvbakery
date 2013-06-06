@@ -1,19 +1,19 @@
 <% 
-    var date = new Date(obj.birthDay);
+    var date = new Date(obj.availableDate);
     var curr_date = date.getDate();
     var curr_month = date.getMonth() + 1;
     var curr_year = date.getFullYear();
-    var birthDayFormated = curr_year + "年" + curr_month + "月" + curr_date + "日";
-    var birthDaySimpleFormated = curr_year + "/" + curr_month + "/" + curr_date;
+    var availableDateFormated = curr_year + "年" + curr_month + "月" + curr_date + "日";
+    var availableDateSimpleFormated = curr_year + "/" + curr_month + "/" + curr_date;
 %>
 <div class="sl-icon span3">
-    <i class="icon-calendar"></i>　生年月日：
+    <i class="icon-ok"></i>　稼働可能日：
 </div>
 <div class="sl-value span9">
-    <%= birthDayFormated %>
+    <%= availableDateFormated %>
 </div>
 <div class="sl-editor">
-    <input type="text" class="input-medium" name="birthDay" value="<%= birthDaySimpleFormated %>">
+    <input type="text" class="input-medium" name="availableDate" value="<%= availableDateSimpleFormated %>">
     <button class="btn btn-mini btn-info btn-datepicker"><i class="icon-calendar icon-white"></i></button>
     <button class="btn btn-mini btn-danger btn-delete"><i class="icon-minus icon-white"></i></button>
 </div>

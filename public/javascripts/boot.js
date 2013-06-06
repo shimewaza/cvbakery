@@ -1,8 +1,9 @@
 require.config({
 	paths: {
 		jquery: 'lib/jquery-1.9.1',
-		jqueryui: 'lib/jquery-ui-1.10.2.custom',
 		bootstrap: 'lib/bootstrap',
+		datepickerlang: 'lib/locales/bootstrap-datepicker.ja',
+		datepicker: 'lib/bootstrap-datepicker',
 		underscore: 'lib/underscore',
 		backbone: 'lib/backbone',
 		deepmodel: 'lib/deep-model',
@@ -10,7 +11,6 @@ require.config({
 		'backbone.wreqr': 'lib/backbone.wreqr',
 		'backbone.babysitter': 'lib/backbone.babysitter',
 		vent: 'lib/vent',
-		mediator: 'lib/mediator',
 		text: 'lib/text',
 		templates: '../templates'
 	},
@@ -19,8 +19,11 @@ require.config({
 		jquery: {
 			exports: 'jQuery'
 		},
-		jqueryui: {
+		datepicker: {
 			deps: ['jquery']
+		},
+		datepickerlang: {
+			deps: ['datepicker']
 		},
 		bootstrap: {
 			deps: ['jquery']
@@ -39,7 +42,7 @@ require.config({
 			deps: ['backbone.wreqr']
 		},
 		selink: {
-			deps: ['jqueryui', 'bootstrap', 'marionette', 'deepmodel', 'vent']
+			deps: ['bootstrap', 'datepickerlang', 'marionette', 'deepmodel', 'vent']
 		}
 	}
 });

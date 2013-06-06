@@ -1,13 +1,13 @@
 define([
         'views/resume/itembase',
-        'text!templates/resume/itemgender.html'
+        'text!templates/resume/itemmarried.html'
 ], function(BaseView, template) {
 
-    var GenderEditor = BaseView.extend({
+    var MarriedEditor = BaseView.extend({
 
-        item: 'gender',
+        item: 'married',
 
-        itemName: '性別',
+        itemName: '婚姻状況',
 
         /*Template*/
         template: template,
@@ -46,7 +46,7 @@ define([
             // Get input value
             var newVal = event.target.value;
             // Set the new value into model
-            this.model.set('gender', newVal);
+            this.model.set('married', newVal);
 
             // Save the model
             this.model.save({}, {
@@ -60,8 +60,8 @@ define([
                 }
             });
         }
-        
+
     });
 
-    return GenderEditor;
+    return MarriedEditor;
 });

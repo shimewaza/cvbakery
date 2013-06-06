@@ -34,6 +34,9 @@ define([
 		onRender: function() {
 			this.header.show(this.menuView);
 			this.navigator.show(this.accountView);
+		},
+
+		onShow: function() {
 			this.onPartScreen();
 		},
 

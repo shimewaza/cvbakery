@@ -1,13 +1,13 @@
 define([
         'views/resume/itembase',
-        'text!templates/resume/itembirthday.html'
+        'text!templates/resume/itemavailableDate.html'
 ], function(BaseView, template) {
 
-    var BirthDayEditor = BaseView.extend({
+    var AvailableDateEditor = BaseView.extend({
 
-        item: 'birthDay',
+        item: 'availableDate',
 
-        itemName: "生年月日",
+        itemName: "稼働可能日",
 
         /*Template*/
         template: template,
@@ -67,7 +67,7 @@ define([
             // Get input value
             var newVal = this.ui.input.val();
             // Set the new value into model
-            this.model.set('birthDay', newVal);
+            this.model.set('availableDate', newVal);
 
             // Save the model
             this.model.save({}, {
@@ -90,5 +90,5 @@ define([
         
     });
 
-    return BirthDayEditor;
+    return AvailableDateEditor;
 });

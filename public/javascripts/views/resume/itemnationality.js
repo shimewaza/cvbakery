@@ -1,13 +1,13 @@
 define([
         'views/resume/itembase',
-        'text!templates/resume/itemgender.html'
+        'text!templates/resume/itemnationality.html'
 ], function(BaseView, template) {
 
-    var GenderEditor = BaseView.extend({
+    var NationalityEditor = BaseView.extend({
 
-        item: 'gender',
+        item: 'nationality',
 
-        itemName: '性別',
+        itemName: '国籍',
 
         /*Template*/
         template: template,
@@ -16,6 +16,7 @@ define([
         ui: {
             value: '.sl-value',
             editor: '.sl-editor',
+            input: 'select',
             deleteBtn: '.btn-delete'
         },
 
@@ -24,7 +25,7 @@ define([
 
             this.events = _.extend({}, this.commonEvents, {
                 // Update model when input's value was chenaged
-                'click input:radio': 'updateModel',
+                'change select': 'updateModel',
             });
 
             // Listen to the universal-click, switch to view-mode when input lost focus
@@ -39,14 +40,14 @@ define([
         },
 
         /*Update model when edit finished*/
-        updateModel: function(event) {
+        updateModel: function() {
 
             var self = this;
 
             // Get input value
-            var newVal = event.target.value;
+            var newVal = this.ui.input.find(':selected').val();
             // Set the new value into model
-            this.model.set('gender', newVal);
+            this.model.set('nationality', newVal);
 
             // Save the model
             this.model.save({}, {
@@ -60,8 +61,8 @@ define([
                 }
             });
         }
-        
+
     });
 
-    return GenderEditor;
+    return NationalityEditor;
 });

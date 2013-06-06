@@ -72,7 +72,7 @@ var Engineer = new Schema({
 		trim: true
 	},
 	// 稼働可能日
-	dateOfAvailable: {
+	availableDate: {
 		type: Date
 	},
 	// 電話番号
