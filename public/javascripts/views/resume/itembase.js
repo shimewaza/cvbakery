@@ -181,7 +181,7 @@ define([], function(baseinfoTemplate) {
 
         _simpleFormatDate: function(date) {
 
-            if(typeof date !== "object")
+            if (typeof date !== "object")
                 date = new Date(date);
 
             var curr_date = date.getDate();
@@ -193,7 +193,7 @@ define([], function(baseinfoTemplate) {
 
         _formatDate: function(date) {
 
-            if(typeof date !== "object")
+            if (typeof date !== "object")
                 date = new Date(date);
 
             var curr_date = date.getDate();
