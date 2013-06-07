@@ -54,7 +54,7 @@ define([
             // Get input value
             var newVal = this.ui.input.val();
             // Set the new value into model
-            this.model.set('itExperience', newVal);
+            this.model.set(this.item, newVal);
 
             // Save the model
             this.model.save({}, {
@@ -68,7 +68,7 @@ define([
                     // append normal info help on editor
                     self._appendInfoOnInput();
                     // Update the view panel
-                    self.ui.value.text(newVal);
+                    self.ui.value.text(newVal + '年');
                     // Switch to view panel
                     self.switchToValue();
                 }

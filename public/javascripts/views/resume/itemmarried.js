@@ -46,7 +46,7 @@ define([
             // Get input value
             var newVal = event.target.value;
             // Set the new value into model
-            this.model.set('married', newVal);
+            this.model.set(this.item, newVal);
 
             // Save the model
             this.model.save({}, {

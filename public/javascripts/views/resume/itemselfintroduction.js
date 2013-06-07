@@ -1,13 +1,13 @@
 define([
         'views/resume/itembase',
-        'text!templates/resume/itemneareststation.html'
+        'text!templates/resume/itemselfintroduction.html'
 ], function(BaseView, template) {
 
-    var NearestStationEditor = BaseView.extend({
+    var SelfIntroductionEditor = BaseView.extend({
 
-        item: 'nearestStation',
+        item: 'selfIntroduction',
 
-        itemName: "最寄り駅",
+        itemName: "自己紹介",
 
         /*Template*/
         template: template,
@@ -16,7 +16,7 @@ define([
         ui: {
             value: '.sl-value',
             editor: '.sl-editor',
-            input: 'input',
+            input: 'textarea',
             deleteBtn: '.btn-delete'
         },
 
@@ -25,7 +25,7 @@ define([
 
             this.events = _.extend({}, this.commonEvents, {
                 // Update model when input's value was chenaged
-                'change input': 'updateModel',
+                'change textarea': 'updateModel'
             });
 
             // Listen to the universal-click, switch to view-mode when input lost focus
@@ -76,5 +76,5 @@ define([
 
     });
 
-    return NearestStationEditor;
+    return SelfIntroductionEditor;
 });

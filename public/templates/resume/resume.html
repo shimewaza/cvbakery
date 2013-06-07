@@ -2,42 +2,30 @@
 
     <div class="span3">
         <img src="images/resume.png" class="img-polaroid sl-photo">
-        <div class="sl-editor span12" id="name"></div>
+        <!-- <a class="btn btn-info btn-mini"><i class="icon-camera icon-white"></i></a> -->
+        <div class="row-fluid" id="name"></div>
     </div>
 
-    <div id="basicInfo" class="span9 row-fluid">
-        <div class="sl-editor span12" style="display: none;"></div>
-        <div class="sl-editor span12" id="birthDay"></div>
-        <div class="sl-editor span12" id="gender"></div>
-        <div class="sl-editor span12" id="nationality"></div>
-        <div class="sl-editor span12" id="married"></div>
-        <div class="sl-editor span12" id="firstArrive"></div>
-        <div class="sl-editor span12" id="itExperience"></div>
-        <div class="sl-editor span12" id="availableDate"></div>
-        <div class="sl-editor span12" id="address"></div>
-        <div class="sl-editor span12" id="nearestStation"></div>
-        <div class="sl-editor span12" id="telNo"></div>
-        <div class="sl-editor span12" id="email"></div>
-        <div class="sl-editor span12" id="homePage"></div>
+    <div class="span9">
+        <div class="row-fluid" id="birthDay"></div>
+        <div class="row-fluid" id="gender"></div>
+        <div class="row-fluid" id="nationality"></div>
+        <div class="row-fluid" id="married"></div>
+        <div class="row-fluid" id="firstArrive"></div>
+        <div class="row-fluid" id="itExperience"></div>
+        <div class="row-fluid" id="availableDate"></div>
+        <div class="row-fluid" id="address"></div>
+        <div class="row-fluid" id="nearestStation"></div>
+        <div class="row-fluid" id="telNo"></div>
+        <div class="row-fluid" id="email"></div>
+        <div class="row-fluid" id="homePage"></div>
     </div>
 
 </div>
-<hr>
 
-<div class="row-fluid">
-    <h4>自己紹介</h4>
-    <div class="sl-editor span12">
-        <div class="sl-value">
-            <p><% if(obj.selfIntroduction) print(obj.selfIntroduction); else print("Your selfIntroduction"); %></p>
-        </div>
-        <div class="sl-input">
-            <textarea class="input-xxlarge" rows="10" name="selfIntroduction" data-title="自己紹介" data-content="自己紹介を入力してください" data-trigger="focus"><%= obj.selfIntroduction %></textarea>
-        </div>
-    </div>
-</div>
-<hr>
+<div class="row-fluid" id="selfIntroduction"></div>
 
-<div id="sl-languangeBackground" class="row-fluid">
+<div class="row-fluid" id="languange">
     <div class="span12">
         <h4 class="span10">語学能力</h4>
         <div class="span2 btn-group">

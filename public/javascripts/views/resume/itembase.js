@@ -124,7 +124,7 @@ define([], function(baseinfoTemplate) {
             this.ui.input.popover({
                 title: this.itemName,
                 content: this.itemName + "をここで編集できます。",
-                placement: 'bottom',
+                placement: 'right',
                 trigger: 'hover',
                 // container: 'body'
             });
@@ -140,7 +140,7 @@ define([], function(baseinfoTemplate) {
             this.ui.deleteBtn.popover({
                 title: "「" + this.itemName + "」を削除します",
                 content: "「" + this.itemName + "」を履歴書から取り除きます。",
-                placement: 'bottom',
+                placement: 'right',
                 trigger: 'hover',
                 // container: 'body'
             });
@@ -156,7 +156,7 @@ define([], function(baseinfoTemplate) {
             this.ui.deleteBtn.popover({
                 title: "本当ですか？",
                 content: '<button class="btn btn-small btn-danger btn-confirm">はい</button>  <button class="btn btn-small btn-warning btn-cancel">いいえ</button>',
-                placement: 'bottom',
+                placement: 'right',
                 html: true,
                 // container: 'body'
             });
@@ -171,8 +171,8 @@ define([], function(baseinfoTemplate) {
             // Attach a new popover 
             this.ui.input.popover({
                 title: '<div class="text-error">「' + this.itemName + '」は不正です</div>',
-                content: message + '<p class="text-error">この項目は保存されていません。</p>',
-                placement: 'bottom',
+                content: message + '<br/><small class="text-error">この項目は保存されていません。</small>',
+                placement: 'right',
                 html: true,
                 trigger: 'hover',
                 // container: 'body'

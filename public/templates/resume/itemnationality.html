@@ -1,16 +1,18 @@
 <% var options = ["中国", "日本", "韓国", "インド", "シンガポール", "ベトナム", "アメリカ合衆国", "イギリス", "フランス", "ドイツ", "カナダ", "オーストラリア", "ブラジル"];%>
-<div class="sl-icon span3">
+<div class="span3">
     <i class="icon-flag"></i>　国籍：
 </div>
-<div class="sl-value span9">
-    <%= obj.nationality %>
-</div>
-<div class="sl-editor">
-    <select name="nationality" class="input-medium">
-        <% _.each(options, function(option) {
-            var selected = (option == obj.nationality) ? 'selected' : '';
-            print('<option value="' + option + '" ' + selected + '>' + option + '</option>' );
-        }) %>
-    </select>
-    <button class="btn btn-mini btn-danger btn-delete"><i class="icon-minus icon-white"></i></button>
+<div class="span9">
+    <div class="sl-value">
+        <%= obj.nationality %>
+    </div>
+    <div class="sl-editor">
+        <select name="nationality" class="input-medium">
+            <% _.each(options, function(option) {
+                var selected = (option == obj.nationality) ? 'selected' : '';
+                print('<option value="' + option + '" ' + selected + '>' + option + '</option>' );
+            }) %>
+        </select>
+        <button class="btn btn-mini btn-danger btn-delete"><i class="icon-minus icon-white"></i></button>
+    </div>
 </div>

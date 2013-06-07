@@ -43,7 +43,8 @@ define([
 
             this.ui.datePickerBtn.datepicker({
                 language: 'ja',
-                autoclose: true,
+                startDate: new Date('1970/01/01'),
+                endDate: new Date(),
                 startView: 2,
                 todayHighlight: true,
                 format: 'yyyy/mm/dd'
@@ -67,7 +68,7 @@ define([
             // Get input value
             var newVal = this.ui.input.val();
             // Set the new value into model
-            this.model.set('birthDay', newVal);
+            this.model.set(this.item, newVal);
 
             // Save the model
             this.model.save({}, {

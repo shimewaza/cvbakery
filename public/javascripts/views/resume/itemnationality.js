@@ -47,7 +47,7 @@ define([
             // Get input value
             var newVal = this.ui.input.find(':selected').val();
             // Set the new value into model
-            this.model.set('nationality', newVal);
+            this.model.set(this.item, newVal);
 
             // Save the model
             this.model.save({}, {

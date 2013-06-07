@@ -67,7 +67,7 @@ define([
             // Get input value
             var newVal = this.ui.input.val();
             // Set the new value into model
-            this.model.set('firstArrive', newVal);
+            this.model.set(this.item, newVal);
 
             // Save the model
             this.model.save({}, {

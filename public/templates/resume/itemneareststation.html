@@ -1,10 +1,12 @@
-<div class="sl-icon span3">
+<div class="span3">
     <i class="icon-road"></i>　最寄り駅：
 </div>
-<div class="sl-value span9">
-    <%= obj.nearestStation %>
-</div>
-<div class="sl-editor">
-    <input type="text" class="input-medium" name="nearestStation" value="<%= obj.nearestStation %>">
-    <button class="btn btn-mini btn-danger btn-delete"><i class="icon-minus icon-white"></i></button>
+<div class="span9">
+    <div class="sl-value">
+        <%= obj.nearestStation %>
+    </div>
+    <div class="sl-editor">
+        <input type="text" class="input-medium" name="nearestStation" value="<%= obj.nearestStation %>">
+        <button class="btn btn-mini btn-danger btn-delete"><i class="icon-minus icon-white"></i></button>
+    </div>
 </div>

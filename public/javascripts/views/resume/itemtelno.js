@@ -17,6 +17,7 @@ define([
             value: '.sl-value',
             editor: '.sl-editor',
             input: 'input',
+            addBtn: '.btn-add',
             deleteBtn: '.btn-delete'
         },
 
@@ -24,6 +25,8 @@ define([
         initialize: function() {
 
             this.events = _.extend({}, this.commonEvents, {
+                // Update model when input's value was chenaged
+                'click .btn-add': 'addInput',
                 // Update model when input's value was chenaged
                 'change input': 'updateModel'
             });
@@ -41,19 +44,45 @@ define([
             // Attach popover for input control in edit panel
             this._appendInfoOnInput();
 
+            // Attach popover for add button in edit panel
+            this._appendInfoOnAddBtn();
+
             // Attach popover for delete button in edit panel
             this._appendInfoOnDeleteBtn();
+        },
+
+        addInput: function() {
+            $('<input>').attr({
+                'type': 'text',
+                'class': 'input-medium',
+                'name': 'telNo'
+            })
+                .css('display', 'none')
+                .popover({
+                title: this.itemName,
+                content: this.itemName + "をここで編集できます。",
+                placement: 'right',
+                trigger: 'hover',
+                // container: 'body'
+            })
+                .insertBefore(this.$el.find('input').first())
+                .slideDown();
         },
 
         /*Update model when edit finished*/
         updateModel: function() {
 
             var self = this;
+            var newVal = [];
+            this.$el.find('input').each(function() {
+                newVal.push($(this).val());
+                self.model.set('telNo', newVal);
+            })
 
             // Get input value
-            var newVal = this.ui.input.val();
+            // var newVal = this.ui.input.val();
             // Set the new value into model
-            this.model.set('telNo', newVal);
+            // this.model.set('telNo', newVal);
 
             // Save the model
             this.model.save({}, {
@@ -72,7 +101,23 @@ define([
                     self.switchToValue();
                 }
             });
-        }
+        },
+
+        /**/
+        _appendInfoOnAddBtn: function() {
+
+            // Destroy previous popover
+            this.ui.addBtn.popover('destroy');
+
+            // Attach a new popover 
+            this.ui.addBtn.popover({
+                title: "「" + this.itemName + "」を追加します",
+                content: "「" + this.itemName + "」をもう一個を追加します。",
+                placement: 'right',
+                trigger: 'hover',
+                // container: 'body'
+            });
+        },
 
     });
 

@@ -6,14 +6,16 @@
     var firstArriveFormated = curr_year + "年" + curr_month + "月" + curr_date + "日";
     var firstArriveSimpleFormated = curr_year + "/" + curr_month + "/" + curr_date;
 %>
-<div class="sl-icon span3">
+<div class="span3">
     <i class="icon-plane"></i>　初回来日：
 </div>
-<div class="sl-value span9">
-    <%= firstArriveFormated %>
-</div>
-<div class="sl-editor">
-    <input type="text" class="input-medium" name="firstArrive" value="<%= firstArriveSimpleFormated %>">
-    <button class="btn btn-mini btn-info btn-datepicker"><i class="icon-calendar icon-white"></i></button>
-    <button class="btn btn-mini btn-danger btn-delete"><i class="icon-minus icon-white"></i></button>
+<div class="span9">
+    <div class="sl-value">
+        <%= firstArriveFormated %>
+    </div>
+    <div class="sl-editor">
+        <input type="text" class="input-medium" name="firstArrive" value="<%= firstArriveSimpleFormated %>">
+        <button class="btn btn-mini btn-info btn-datepicker"><i class="icon-calendar icon-white"></i></button>
+        <button class="btn btn-mini btn-danger btn-delete"><i class="icon-minus icon-white"></i></button>
+    </div>
 </div>
