@@ -6,6 +6,10 @@ define([], function() {
 
         urlRoot: '/engineer',
 
+        pattern: {
+            telNo: /^\d{2,3}-\d{4}-\d{4}$/
+        },
+
         initialize: function() {
 
         },
@@ -82,7 +86,7 @@ define([], function() {
 
             if (attrs.address) {
                 if (attrs.address.length > 50)
-                return {
+                    return {
                         item: 'address',
                         message: '50文字以内をご入力ください。'
                 };
@@ -90,9 +94,27 @@ define([], function() {
 
             if (attrs.nearestStation) {
                 if (attrs.nearestStation.length > 50)
-                return {
+                    return {
                         item: 'nearestStation',
                         message: '50文字以内をご入力ください。'
+                };
+            }
+
+            if (attrs.telNo && attrs.telNo.length) {
+
+                var self = this;
+                var position = [];
+
+                _.each(attrs.telNo, function(tel, index) {
+                    if (tel.search(self.pattern.telNo))
+                        position.push(index);
+                });
+
+                if (position.length)
+                    return {
+                        item: 'telNo',
+                        message: '有効な電話番号をご入力ください。',
+                        position: position
                 };
             }
         }

@@ -22,6 +22,9 @@ exports.mapModelRoute = function(app, prefix) {
 	// 編集
 	app.put(prefix + '/:id', obj.update);
 
+	// patch
+	app.patch(prefix + '/:id', obj.update);
+
 	// 削除
 	app.del(prefix + '/:id', obj.destroy);
 };

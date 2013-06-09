@@ -1,16 +1,18 @@
-<div class="span3">
+<div class="span4">
     <i class="icon-signal"></i>　電話番号：
 </div>
-<div class="span9">
+<div class="span8">
     <div class="sl-value">
         <% _.each(obj.telNo, function(telNo) {
             print(telNo + "<br/>")
         }) %>
     </div>
     <div class="sl-editor">
-        <% _.each(obj.telNo, function(telNo) { %>
+        <% if(obj.telNo.length) _.each(obj.telNo, function(telNo) { %>
             <input type="text" class="input-medium" name="telNo" value="<%= telNo %>">
-        <% }) %>
+        <% }); else { %>
+            <input type="text" class="input-medium" name="telNo" value="<%= telNo %>">
+        <% } %>
         <button class="btn btn-mini btn-success btn-add"><i class="icon-plus icon-white"></i></button>
         <button class="btn btn-mini btn-danger btn-delete"><i class="icon-minus icon-white"></i></button>
     </div>

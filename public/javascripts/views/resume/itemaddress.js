@@ -57,12 +57,15 @@ define([
             // Get input value
             var newZipCode = this.ui.inputZipCode.val();
             var newAddress = this.ui.inputAddress.val();
-            // Set the new value into model
-            this.model.set('zipCode', newZipCode);
-            this.model.set('address', newAddress);
+
+            // Prepare the date for model update
+            var data = {
+                'zipCode': newZipCode,
+                'address': newAddress
+            };
 
             // Save the model
-            this.model.save({}, {
+            this.model.save(data, {
 
                 // If save success
                 success: function() {
@@ -78,7 +81,35 @@ define([
                     self.ui.value.text(newAddress + "（〒" + newZipCode + "）");
                     // Switch to view panel
                     self.switchToValue();
-                }
+                },
+                // use patch
+                patch: true
+            });
+        },
+
+        /*Delete item when user click OK*/
+        deleteItem: function() {
+
+            var self = this;
+
+            // Prepare the date for model update
+            var data = {
+                'zipCode': null,
+                'address': null
+            };
+
+            // save model
+            this.model.save(data, {
+                // if save success
+                success: function() {
+                    // slide up editor
+                    self.$el.slideUp(function() {
+                        // dispose the view
+                        self.close();
+                    });
+                },
+                // use patch
+                patch: true
             });
         },
 

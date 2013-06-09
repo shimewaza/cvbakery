@@ -1,13 +1,11 @@
 <hr>
 <h4>自己紹介</h4>
 <!-- <button class="btn btn-mini btn-danger btn-delete"><i class="icon-minus icon-white"></i></button> -->
-<div class="span12">
-    <div class="sl-value">
-        <p><% if(obj.selfIntroduction) print(obj.selfIntroduction); %></p>
-    </div>
-    <div class="sl-editor">
-        <textarea class="input-xxlarge" rows="10" name="selfIntroduction" data-title="自己紹介" data-content="自己紹介を入力してください" data-trigger="focus"><%= obj.selfIntroduction %></textarea>
-        <br/>
-        <button class="btn btn-mini btn-danger btn-delete"><i class="icon-minus icon-white"></i></button>
-    </div>
+<div class="sl-value">
+    <p><% if(obj.selfIntroduction) print(obj.selfIntroduction); %></p>
+</div>
+<div class="sl-editor">
+    <textarea style="width: 97%" rows="10" name="selfIntroduction"><%= obj.selfIntroduction %></textarea>
+    <br/>
+    <button class="btn btn-mini btn-danger btn-delete pull-right"><i class="icon-minus icon-white"></i></button>
 </div>

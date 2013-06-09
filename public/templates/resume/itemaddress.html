@@ -1,7 +1,7 @@
-<div class="span3">
+<div class="span4">
     <i class="icon-home"></i>　住所：
 </div>
-<div class="span9">
+<div class="span8">
     <div class="sl-value">
         <% print(obj.address　+ "（〒" + obj.zipCode + "）") %>
     </div>
@@ -10,10 +10,10 @@
             <span class="add-on">〒</span>
             <input type="text" class="input-small" name="zipCode" value="<%= obj.zipCode %>">
         </div>
+            <button class="btn btn-mini btn-danger btn-delete"><i class="icon-minus icon-white"></i></button>
         <br/>
         <div id="addressSubArea">
-            <input type="text" class="input-xlarge" name="address" value="<%= obj.address %>">
-            <button class="btn btn-mini btn-danger btn-delete"><i class="icon-minus icon-white"></i></button>
+            <input type="text" class="input-large" name="address" value="<%= obj.address %>">
         </div>
     </div>
 </div>

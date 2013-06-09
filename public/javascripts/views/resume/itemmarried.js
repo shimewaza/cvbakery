@@ -45,11 +45,13 @@ define([
 
             // Get input value
             var newVal = event.target.value;
-            // Set the new value into model
-            this.model.set(this.item, newVal);
+
+            // Prepare the date for model update
+            var data = {};
+            data[this.item] = newVal;
 
             // Save the model
-            this.model.save({}, {
+            this.model.save(data, {
 
                 // If save success
                 success: function() {
@@ -57,7 +59,9 @@ define([
                     self.ui.value.text(newVal);
                     // Switch to view panel
                     self.switchToValue();
-                }
+                },
+                // use patch
+                patch: true
             });
         }
 

@@ -1,5 +1,6 @@
 define([
 		'text!templates/resume/resume.html',
+		'views/resume/itemname',
 		'views/resume/itembirthday',
 		'views/resume/itemgender',
 		'views/resume/itemnationality',
@@ -13,10 +14,11 @@ define([
 		'views/resume/itememail',
 		'views/resume/itemhomepage',
 		'views/resume/itemselfintroduction',
-		'views/resume/itempanel',
-		'views/resume/languagebackground'
+		'views/resume/itemlanguage',
+		'views/resume/itempanel'
 ], function(
 	resumeTemplate,
+	NameView,
 	BirthDayView,
 	GenderView,
 	NationalityView,
@@ -30,8 +32,8 @@ define([
 	EMailView,
 	HomePageView,
 	SelfIntroductionView,
-	ItemPanelView,
-	LanguageBackgroundView) {
+	LanguageView,
+	ItemPanelView) {
 
 	var ResumeView = Backbone.Marionette.Layout.extend({
 
@@ -48,6 +50,7 @@ define([
 		template: resumeTemplate,
 
 		regions: {
+			nameArea: '#name',
 			birthDayArea: '#birthDay',
 			genderArea: '#gender',
 			nationalityArea: '#nationality',
@@ -60,12 +63,14 @@ define([
 			telNoArea: '#telNo',
 			emailArea: '#email',
 			homePageArea: '#homePage',
-			selfIntroductionArea: '#selfIntroduction'
+			selfIntroductionArea: '#selfIntroduction',
+			languageArea: '#language'
 		},
 
 		// Initializer
 		initialize: function() {
 
+			this.nameView = new NameView({model: this.model});
 			this.birthDayView = new BirthDayView({model: this.model});
 			this.genderView = new GenderView({model: this.model});
 			this.nationalityView = new NationalityView({model: this.model});
@@ -79,11 +84,13 @@ define([
 			this.emailView = new EMailView({model: this.model});
 			this.homePageView = new HomePageView({model: this.model});
 			this.selfIntroductionView = new SelfIntroductionView({model: this.model});
+			this.languageView = new LanguageView({model: this.model});
 		},
 
 		// Render
 		onRender: function() {
 
+			this.nameArea.show(this.nameView);
 			this.birthDayArea.show(this.birthDayView);
 			this.genderArea.show(this.genderView);
 			this.nationalityArea.show(this.nationalityView);
@@ -97,6 +104,7 @@ define([
 			this.emailArea.show(this.emailView);
 			this.homePageArea.show(this.homePageView);
 			this.selfIntroductionArea.show(this.selfIntroductionView);
+			this.languageArea.show(this.languageView);
 		}
 	});
 

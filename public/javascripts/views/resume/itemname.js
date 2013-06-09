@@ -1,13 +1,13 @@
 define([
         'views/resume/itembase',
-        'text!templates/resume/itemselfintroduction.html'
+        'text!templates/resume/itemname.html'
 ], function(BaseView, template) {
 
-    var SelfIntroductionEditor = BaseView.extend({
+    var NameEditor = BaseView.extend({
 
-        item: 'selfIntroduction',
+        item: 'name',
 
-        itemName: "自己紹介",
+        itemName: "氏名",
 
         /*Template*/
         template: template,
@@ -16,7 +16,7 @@ define([
         ui: {
             value: '.sl-value',
             editor: '.sl-editor',
-            input: 'textarea',
+            input: 'input',
             deleteBtn: '.btn-delete'
         },
 
@@ -25,7 +25,7 @@ define([
 
             this.events = _.extend({}, this.commonEvents, {
                 // Update model when input's value was chenaged
-                'change textarea': 'updateModel'
+                'change input': 'updateModel',
             });
 
             // Listen to the universal-click, switch to view-mode when input lost focus
@@ -80,5 +80,5 @@ define([
 
     });
 
-    return SelfIntroductionEditor;
+    return NameEditor;
 });

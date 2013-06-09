@@ -1,0 +1,20 @@
+<hr>
+<h4>語学能力</h4>
+<div class="sl-value">
+    <% _.each(obj.languageBackground, function(languageBackground) { %>
+        <p><%= languageBackground.language %> ：<%= languageBackground.background %></p>
+    <% }) %>
+</div>
+<div class="sl-editor">
+    <% _.each(obj.languageBackground, function(languageBackground) { %>
+        <select class="input-small" name="languageBackground.language">
+            <option value="">--</option>
+            <option value="英語" <% if(languageBackground.language == "英語") print('selected'); %>>英語</option>
+            <option value="日本語" <% if(languageBackground.language == "日本語") print('selected'); %>>日本語</option>
+            <option value="中国語" <% if(languageBackground.language == "中国語") print('selected'); %>>中国語</option>
+        </select>
+        <input type="text" class="input-medium" name="background" value="<%= languageBackground.background %>">
+        <button class="btn btn-mini btn-success btn-add"><i class="icon-plus icon-white"></i></button>
+    <% }) %>
+    <button class="btn btn-mini btn-danger btn-delete"><i class="icon-minus icon-white"></i></button>
+</div>

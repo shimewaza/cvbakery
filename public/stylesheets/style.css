@@ -29,8 +29,8 @@ li {
 }*/
 
 .sl-photo {
-	max-width: 3.5cm;
-	max-height: 4.5cm;
+	max-width: 150px;
+	max-height: 210px;
 }
 
 /*.sl-editor input{
@@ -64,8 +64,8 @@ li {
 
 /*div [class*="span"] {
 	border: 1px dashed green;
-}
-*/
+}*/
+
 /*.row-fluid [class*="span"] {
 	min-height: 40px;
 	line-height: 30px;

@@ -1,9 +1,9 @@
 define([
         'views/resume/itembase',
-        'text!templates/resume/itemtelno.html'
+        'text!templates/resume/itemlanguage.html'
 ], function(BaseView, template) {
 
-    var TelNoEditor = BaseView.extend({
+    var LanguageView = BaseView.extend({
 
         item: 'telNo',
 
@@ -76,7 +76,7 @@ define([
             var newVal = [];
 
             this.$el.find('input').each(function() {
-                if($(this).val())
+                if ($(this).val())
                     newVal.push($(this).val());
             });
 
@@ -137,5 +137,5 @@ define([
 
     });
 
-    return TelNoEditor;
+    return LanguageView;
 });

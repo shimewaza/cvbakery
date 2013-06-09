@@ -80,9 +80,14 @@ define([], function(baseinfoTemplate) {
             var self = this;
 
             // set the value to null (this feel unright)
-            this.model.set(this.item, null);
+            // this.model.set(this.item, null);
+
+            // Prepare the date for model update
+            var data = {};
+            data[this.item] = null;
+
             // save model
-            this.model.save({}, {
+            this.model.save(data, {
                 // if save success
                 success: function() {
                     // slide up editor
@@ -90,7 +95,9 @@ define([], function(baseinfoTemplate) {
                         // dispose the view
                         self.close();
                     });
-                }
+                },
+                // use patch
+                patch: true
             });
         },
 
