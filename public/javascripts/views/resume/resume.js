@@ -86,7 +86,6 @@ define([
 			this.selfIntroductionView = new SelfIntroductionView({model: this.model});
 
 			var langs = new Backbone.Collection(this.model.get('languageBackground'));
-
 			this.languageLayout = new LanguageLayout({collection: langs});
 		},
 

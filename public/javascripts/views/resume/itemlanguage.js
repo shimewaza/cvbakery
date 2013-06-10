@@ -22,12 +22,12 @@ define([
             this.events = _.extend({}, this.commonEvents, {
                 // Update model when input's value was chenaged
                 'change input[name="zipCode"]': 'getAddress',
-                'change input[name="address"]': 'updateModel',
+                'change input[name="address"]': 'updateModel'
             });
 
             // Listen to the universal-click, switch to view-mode when input lost focus
             this.listenTo(vent, 'click:universal', this.switchToValue);
-        },
+        }
 
     });
 
