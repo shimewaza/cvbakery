@@ -62,10 +62,6 @@ li {
 	/*float: left;*/
 }
 
-/*div [class*="span"] {
-	border: 1px dashed green;
-}*/
-
 /*.row-fluid [class*="span"] {
 	min-height: 40px;
 	line-height: 30px;
@@ -215,6 +211,11 @@ li {
 
 #resumePanel hr {
 	margin: 10px 0;
+}
+
+#resumePanel [class*="span"] {
+	/*border: 1px dashed green;*/
+	margin-left: 0px !important;
 }
 
 #resumeItemPanel {

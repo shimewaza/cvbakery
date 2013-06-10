@@ -14,8 +14,12 @@
         <%= availableDateFormated %>
     </div>
     <div class="sl-editor">
-        <input type="text" class="input-medium" name="availableDate" value="<%= availableDateSimpleFormated %>">
-        <button class="btn btn-mini btn-info btn-datepicker"><i class="icon-calendar icon-white"></i></button>
-        <button class="btn btn-mini btn-danger btn-delete"><i class="icon-minus icon-white"></i></button>
+        <input type="text" class="input-small" name="availableDate" value="<%= availableDateSimpleFormated %>">
+        <button class="btn btn-mini btn-info btn-datepicker" data-date="<%= availableDateSimpleFormated %>">
+            <i class="icon-calendar icon-white"></i>
+        </button>
+        <button class="btn btn-mini btn-danger btn-delete">
+            <i class="icon-share-alt icon-white"></i>
+        </button>
     </div>
 </div>

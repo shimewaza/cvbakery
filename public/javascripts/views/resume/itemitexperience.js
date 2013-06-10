@@ -9,6 +9,8 @@ define([
 
         itemName: "IT経験年数",
 
+        itemHelp: "IT業界で勤めていた年数を入力してください。",
+
         /*Template*/
         template: template,
 
@@ -25,25 +27,35 @@ define([
         initialize: function() {
 
             this.events = _.extend({}, this.commonEvents, {
-                // Update model when input's value was chenaged
+                // update model when input's value was chenaged
                 'change input': 'updateModel',
             });
 
-            // Listen to the universal-click, switch to view-mode when input lost focus
+            // listen to the universal-click, switch to view-mode when input lost focus
             this.listenTo(vent, 'click:universal', this.switchToValue);
-
-            // Listen to the model, show validation error
-            this.listenTo(this.model, 'invalid', this.showError);
         },
 
         /*After Render*/
         onRender: function() {
 
-            // Attach popover for input control in edit panel
+            // attach popover for input control in edit panel
             this._appendInfoOnInput();
 
-            // Attach popover for delete button in edit panel
+            // attach popover for delete button in edit panel
             this._appendInfoOnDeleteBtn();
+        },
+
+        /*Validate user input value*/
+        validate: function(value) {
+
+            // if user input nothing, just return
+            if (!value) return;
+
+            // must be a number less than 99
+            if (value.search(/^\d{1,2}$/) || Number(value) > 99 || Number(value) == 0)
+                return {
+                    message: '年単位で有効な数字ををご入力ください。'
+            };
         },
 
         /*Update model when edit finished*/
@@ -53,6 +65,13 @@ define([
 
             // Get input value
             var newVal = this.ui.input.val();
+
+            // check input value
+            var error = this.validate(newVal);
+            if (error) {
+                this.showError(error);
+                return;
+            }
 
             // Prepare the date for model update
             var data = {};
@@ -70,7 +89,7 @@ define([
                     // append normal info help on editor
                     self._appendInfoOnInput();
                     // Update the view panel
-                    self.ui.value.text(newVal + '年');
+                    self.ui.value.text(!newVal ? newVal : newVal + '年');
                     // Switch to view panel
                     self.switchToValue();
                 },
@@ -78,7 +97,7 @@ define([
                 patch: true
             });
         }
-        
+
     });
 
     return ItExperienceEditor;

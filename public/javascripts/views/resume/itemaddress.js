@@ -28,14 +28,12 @@ define([
 
             this.events = _.extend({}, this.commonEvents, {
                 // Update model when input's value was chenaged
-                'change input': 'updateModel',
+                'change input[name="zipCode"]': 'getAddress',
+                'change input[name="address"]': 'updateModel',
             });
 
             // Listen to the universal-click, switch to view-mode when input lost focus
             this.listenTo(vent, 'click:universal', this.switchToValue);
-
-            // Listen to the model, show validation error
-            this.listenTo(this.model, 'invalid', this.showError);
         },
 
         /*After Render*/
@@ -47,6 +45,53 @@ define([
 
             // Attach popover for delete button in edit panel
             this._appendInfoOnDeleteBtn();
+        },
+
+        getAddress: function() {
+
+            var self = this;
+
+            // Require home page from server
+            $.ajax({
+
+                // page url
+                url: '/address/' + this.ui.inputZipCode.val(),
+
+                // method is get
+                type: 'GET',
+
+                // use json format
+                dataType: 'json',
+
+                // wait for 3 seconds
+                timeout: 3000,
+
+                // complete: function() {
+                //     self.$el.append($('<img>').attr({
+                //        src: '../images/loading.gif',
+                //        width: '100px'
+                //     }));
+                // },
+
+                // success handler
+                success: function(data) {
+                    self.ui.inputAddress.val(data.state + data.city + data.street);
+                    self.ui.inputAddress.trigger("change");
+                }
+            });
+        },
+
+        /*Validate user input value*/
+        validate: function(value) {
+
+            // if user input nothing, just return
+            if (!value) return;
+
+            // no more than 20 characters
+            if (value.length > 20)
+                return {
+                    message: '20文字以内でご入力ください。'
+            };
         },
 
         /*Update model when edit finished*/
@@ -144,9 +189,10 @@ define([
             // Attach a new popover 
             this.ui.inputZipCode.popover({
                 title: '郵便番号',
-                content: "郵便番号をここで編集できます。",
+                content: '<div style="font-size: 12px">数字7桁で入力してください。ご住所は該当郵便番号で自動に埋め込みます。</div>',
                 placement: 'right',
                 trigger: 'hover',
+                html: true
                 // container: 'body'
             });
         },
@@ -160,7 +206,7 @@ define([
             // Attach a new popover 
             this.ui.inputAddress.popover({
                 title: '住所',
-                content: "住所をここで編集できます。",
+                content: "50文字以内で入力してください。",
                 placement: 'right',
                 trigger: 'hover',
                 // container: 'body'

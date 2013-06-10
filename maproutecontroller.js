@@ -32,9 +32,12 @@ exports.mapModelRoute = function(app, prefix) {
 exports.mapRoute = function(app) {
 
 	var account = require('./controllers/account');
+	var address = require('./controllers/address');
 
 	app.post('/login', account.login);
 
 	app.get('/logout', account.logout);
+
+	app.get('/address/:zipCode', address.show);
 
 };

@@ -8,11 +8,12 @@
     </div>
     <div class="sl-editor">
         <select name="nationality" class="input-medium">
+            <option value=""> -- </option>
             <% _.each(options, function(option) {
                 var selected = (option == obj.nationality) ? 'selected' : '';
                 print('<option value="' + option + '" ' + selected + '>' + option + '</option>' );
             }) %>
         </select>
-        <button class="btn btn-mini btn-danger btn-delete"><i class="icon-minus icon-white"></i></button>
+        <button class="btn btn-mini btn-danger btn-delete"><i class="icon-share-alt icon-white"></i></button>
     </div>
 </div>

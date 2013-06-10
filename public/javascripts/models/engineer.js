@@ -16,7 +16,7 @@ define([], function() {
 
         validate: function(attrs, options) {
 
-            // Check birth day
+        /*    // Check birth day
             if (attrs.birthDay) {
                 // must be a date
                 if ("Invalid Date" == new Date(attrs.birthDay))
@@ -77,12 +77,12 @@ define([], function() {
                 };
             }
 
-            // if (attrs.zipCode) {
-            //     return {
-            //             item: 'zipCode',
-            //             message: '有効な郵便番号をご入力ください。'
-            //     };
-            // }
+            if (attrs.zipCode) {
+                return {
+                        item: 'zipCode',
+                        message: '有効な郵便番号をご入力ください。'
+                };
+            }
 
             if (attrs.address) {
                 if (attrs.address.length > 50)
@@ -116,7 +116,7 @@ define([], function() {
                         message: '有効な電話番号をご入力ください。',
                         position: position
                 };
-            }
+            }*/
         }
     });
 

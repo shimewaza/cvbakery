@@ -9,6 +9,8 @@ define([
 
         itemName: "最寄り駅",
 
+        itemHelp: "20文字以内で入力してください。",
+
         /*Template*/
         template: template,
 
@@ -45,6 +47,19 @@ define([
             this._appendInfoOnDeleteBtn();
         },
 
+        /*Validate user input value*/
+        validate: function(value) {
+
+            // if user input nothing, just return
+            if (!value) return;
+
+            // no more than 20 characters
+            if (value.length > 20)
+                return {
+                    message: '20文字以内でご入力ください。'
+            };
+        },
+
         /*Update model when edit finished*/
         updateModel: function() {
 
@@ -52,6 +67,13 @@ define([
 
             // Get input value
             var newVal = this.ui.input.val();
+            
+            // check input value
+            var error = this.validate(newVal);
+            if (error) {
+                this.showError(error);
+                return;
+            }
 
             // Prepare the date for model update
             var data = {};

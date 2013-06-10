@@ -9,6 +9,8 @@ define([
 
         itemName: "生年月日",
 
+        itemHelp: "「YYYY/MM/DD」のフォーマットで入力してください。ご年齢を該当情報によって計算します。",
+
         /*Template*/
         template: template,
 
@@ -25,39 +27,47 @@ define([
         initialize: function() {
 
             this.events = _.extend({}, this.commonEvents, {
-                // Update model when input's value was chenaged
+                // update model when input's value was chenaged
                 'change input': 'updateModel',
             });
 
-            // Listen to the universal-click, switch to view-mode when input lost focus
+            // listen to the universal-click, switch to view-mode when input lost focus
             this.listenTo(vent, 'click:universal', this.switchToValue);
-
-            // Listen to the model, show validation error
-            this.listenTo(this.model, 'invalid', this.showError);
         },
 
         /*After Render*/
         onRender: function() {
 
-            var self = this;
-
-            this.ui.datePickerBtn.datepicker({
-                language: 'ja',
+            // attach datapicker on calendar button
+            this._appendDatePicker(this.ui.datePickerBtn, this.ui.input, {
                 startDate: new Date('1970/01/01'),
                 endDate: new Date(),
-                startView: 2,
-                todayHighlight: true,
-                format: 'yyyy/mm/dd'
-            }).on('changeDate', function(e) {
-                self.ui.datePickerBtn.datepicker('hide');
-                self.ui.input.val(self._simpleFormatDate(e.date)).trigger('change');
             });
 
-            // Attach popover for input control in edit panel
+            // attach popover for input control in edit panel
             this._appendInfoOnInput();
 
-            // Attach popover for delete button in edit panel
+            // attach popover for delete button in edit panel
             this._appendInfoOnDeleteBtn();
+        },
+
+        /*Validate user input value*/
+        validate: function(value) {
+
+            // if user input nothing, just return
+            if (!value) return;
+
+            // must be a date
+            if ("Invalid Date" == new Date(value))
+                return {
+                    message: '「yyyy/mm/dd」のフォーマットで有効な日付をご入力ください。'
+            };
+
+            // can't be late than today
+            if (new Date(value) > new Date())
+                return {
+                    message: '本日より前の日付をご入力ください。'
+            };
         },
 
         /*Update model when edit finished*/
@@ -65,17 +75,24 @@ define([
 
             var self = this;
 
-            // Get input value
+            // get input value
             var newVal = this.ui.input.val();
 
-            // Prepare the date for model update
+            // check input value
+            var error = this.validate(newVal);
+            if (error) {
+                this.showError(error);
+                return;
+            }
+
+            // prepare the date for model update
             var data = {};
             data[this.item] = newVal;
 
-            // Save the model
+            // save the model
             this.model.save(data, {
 
-                // If save success
+                // if save success
                 success: function() {
                     // clear the error flag
                     self.err = false;
@@ -83,16 +100,16 @@ define([
                     self.$el.removeClass('control-group error');
                     // append normal info help on editor
                     self._appendInfoOnInput();
-                    // Update the view panel
+                    // update the view panel
                     self.ui.value.text(self._formatDate(newVal));
-                    // Switch to view panel
+                    // switch to view panel
                     self.switchToValue();
                 },
                 // use patch
                 patch: true
             });
         }
-        
+
     });
 
     return BirthDayEditor;

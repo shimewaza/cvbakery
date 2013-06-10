@@ -14,7 +14,7 @@ define([
 		'views/resume/itememail',
 		'views/resume/itemhomepage',
 		'views/resume/itemselfintroduction',
-		'views/resume/itemlanguage',
+		'views/resume/layoutlanguage',
 		'views/resume/itempanel'
 ], function(
 	resumeTemplate,
@@ -32,7 +32,7 @@ define([
 	EMailView,
 	HomePageView,
 	SelfIntroductionView,
-	LanguageView,
+	LanguageLayout,
 	ItemPanelView) {
 
 	var ResumeView = Backbone.Marionette.Layout.extend({
@@ -84,7 +84,10 @@ define([
 			this.emailView = new EMailView({model: this.model});
 			this.homePageView = new HomePageView({model: this.model});
 			this.selfIntroductionView = new SelfIntroductionView({model: this.model});
-			this.languageView = new LanguageView({model: this.model});
+
+			var langs = new Backbone.Collection(this.model.get('languageBackground'));
+
+			this.languageLayout = new LanguageLayout({collection: langs});
 		},
 
 		// Render
@@ -104,7 +107,7 @@ define([
 			this.emailArea.show(this.emailView);
 			this.homePageArea.show(this.homePageView);
 			this.selfIntroductionArea.show(this.selfIntroductionView);
-			this.languageArea.show(this.languageView);
+			this.languageArea.show(this.languageLayout);
 		}
 	});
 

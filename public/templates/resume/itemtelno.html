@@ -8,12 +8,19 @@
         }) %>
     </div>
     <div class="sl-editor">
-        <% if(obj.telNo.length) _.each(obj.telNo, function(telNo) { %>
-            <input type="text" class="input-medium" name="telNo" value="<%= telNo %>">
-        <% }); else { %>
-            <input type="text" class="input-medium" name="telNo" value="<%= telNo %>">
-        <% } %>
-        <button class="btn btn-mini btn-success btn-add"><i class="icon-plus icon-white"></i></button>
-        <button class="btn btn-mini btn-danger btn-delete"><i class="icon-minus icon-white"></i></button>
+        <% 
+            if(obj.telNo.length)
+                _.each(obj.telNo, function(telNo, index, telNos) {
+ 
+                    print('<input type="text" class="input-medium" name="telNo" value="' + telNo + '">');
+
+                    if(index + 1 == telNos.length) {
+                        print('<button class="btn btn-mini btn-info btn-add"><i class="icon-plus icon-white"></i></button>');
+                        print('<button class="btn btn-mini btn-danger btn-delete"><i class="icon-share-alt icon-white"></i></button>');
+                    } else {
+                        print('<button class="btn btn-mini btn-warning btn-remove"><i class="icon-minus icon-white"></i></button>');
+                    }
+                });
+        %>
     </div>
 </div>

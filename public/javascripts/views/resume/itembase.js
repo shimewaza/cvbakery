@@ -108,17 +108,17 @@ define([], function(baseinfoTemplate) {
         },
 
         /*Display error info for editor*/
-        showError: function(model, error) {
+        showError: function(error, model) {
 
             // if the error is about this view
-            if (error.item == this.item) {
-                // setup error flag
-                this.err = true;
-                // highlight the editor
-                this.$el.addClass('control-group error');
-                // Attach popover for delete button in edit panel
-                this._appendErrOnInput(error.message);
-            }
+            // if (error.item == this.item) {
+            // setup error flag
+            this.err = true;
+            // highlight the editor
+            this.$el.addClass('control-group error');
+            // Attach popover for delete button in edit panel
+            this._appendErrOnInput(error.message);
+            // }
         },
 
         /**/
@@ -130,7 +130,7 @@ define([], function(baseinfoTemplate) {
             // Attach a new popover 
             this.ui.input.popover({
                 title: this.itemName,
-                content: this.itemName + "をここで編集できます。",
+                content: this.itemHelp,
                 placement: 'right',
                 trigger: 'hover',
                 // container: 'body'
@@ -183,6 +183,24 @@ define([], function(baseinfoTemplate) {
                 html: true,
                 trigger: 'hover',
                 // container: 'body'
+            });
+        },
+
+        _appendDatePicker: function(dispOn, valueOn, options) {
+
+            var self = this;
+
+            var defaultOpt = {
+                language: 'ja',
+                startView: 2,
+                todayHighlight: true,
+                format: 'yyyy/mm/dd'
+            };
+
+            dispOn.datepicker(_.extend(defaultOpt, options))
+            .on('changeDate', function(e) {
+                dispOn.datepicker('hide');
+                valueOn.val(self._simpleFormatDate(e.date)).trigger('change');
             });
         },
 
