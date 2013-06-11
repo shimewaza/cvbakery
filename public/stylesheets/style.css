@@ -214,7 +214,8 @@ li {
 }
 
 #resumePanel [class*="span"] {
-	border: 1px dashed green;
+	border: 1px none green;
+	min-height: 30px;
 	margin-left: 0px !important;
 }
 
