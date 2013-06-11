@@ -28,7 +28,6 @@ exports.show = function(req, res) {
 	Engineer.findOne({
 		_id: req.params.id
 	}, function(err, profile) {
-
 		if (err) res.send("error happend: " + err);
 		console.log(profile);
 		if (profile) res.json(profile);

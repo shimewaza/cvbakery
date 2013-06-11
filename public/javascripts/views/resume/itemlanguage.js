@@ -12,7 +12,8 @@ define([
         ui: {
             value: '.sl-value',
             editor: '.sl-editor',
-            input: 'input',
+            inputLanguage: 'input[name="language"]',
+            inputBackground: 'input[name="background"]',
             deleteBtn: '.btn-delete'
         },
 
@@ -21,12 +22,22 @@ define([
 
             this.events = _.extend({}, this.commonEvents, {
                 // Update model when input's value was chenaged
-                'change input[name="zipCode"]': 'getAddress',
-                'change input[name="address"]': 'updateModel'
+                'change input[name="language"]': 'changeBackground',
+                'change input[name="background"]': 'updateModel'
             });
 
             // Listen to the universal-click, switch to view-mode when input lost focus
             this.listenTo(vent, 'click:universal', this.switchToValue);
+        },
+
+        changeBackground: function() {
+
+            var lang = this.ui.inputLanguage.val();
+
+            if(lang == "英語") {
+                this.ui.inputBackground.empty()
+            }
+
         }
 
     });

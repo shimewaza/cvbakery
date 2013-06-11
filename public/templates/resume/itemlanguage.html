@@ -1,13 +1,16 @@
 <div class="sl-value">
-    <p><%= obj.language %> ：<%= obj.background %></p>
+    <p><%- obj.language %> ：<%- obj.background %></p>
 </div>
 <div class="sl-editor">
-    <select class="input-small" name="obj.language">
+    <select class="input-small" name="language">
         <option value="">--</option>
         <option value="英語" <% if(obj.language == "英語") print('selected'); %>>英語</option>
         <option value="日本語" <% if(obj.language == "日本語") print('selected'); %>>日本語</option>
         <option value="中国語" <% if(obj.language == "中国語") print('selected'); %>>中国語</option>
     </select>
-    <input type="text" class="input-medium" name="background" value="<%= obj.background %>">
+    <select class="input-medium" name="background">
+        <option value="">--</option>
+    </select>
+    <!-- <input type="text" class="input-medium" name="background" value="<%- obj.background %>"> -->
     <button class="btn btn-mini btn-warning btn-delete"><i class="icon-minus icon-white"></i></button><br/>
 </div>

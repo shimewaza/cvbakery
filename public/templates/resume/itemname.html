@@ -1,29 +1,29 @@
 <div class="sl-value">
-    <%= obj.firstName %><%= obj.lastName %>
+    <%- obj.firstName %><%- obj.lastName %>
 </div>
 <div class="sl-editor">
     <div class="row-fluid">
         <div class="span6">
-            <input type="text" class="input-mini" name="firstNameEN" value="<%= obj.firstNameEN %>">
+            <input type="text" class="input-mini" name="firstNameEN" value="<%- obj.firstNameEN %>">
         </div>
         <div class="span6">
-            <input type="text" class="input-mini" name="lastNameEn" value="<%= obj.lastNameEn %>">
-        </div>
-    </div>
-    <div class="row-fluid">
-        <div class="span6">
-            <input type="text" class="input-mini" name="firstNameKana" value="<%= obj.firstNameKana %>">
-        </div>
-        <div class="span6">
-            <input type="text" class="input-mini" name="lastNameKana" value="<%= obj.lastNameKana %>">
+            <input type="text" class="input-mini" name="lastNameEn" value="<%- obj.lastNameEn %>">
         </div>
     </div>
     <div class="row-fluid">
         <div class="span6">
-            <input type="text" class="input-mini" name="firstName" value="<%= obj.firstName %>">
+            <input type="text" class="input-mini" name="firstNameKana" value="<%- obj.firstNameKana %>">
         </div>
         <div class="span6">
-            <input type="text" class="input-mini" name="lastName" value="<%= obj.lastName %>">
+            <input type="text" class="input-mini" name="lastNameKana" value="<%- obj.lastNameKana %>">
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span6">
+            <input type="text" class="input-mini" name="firstName" value="<%- obj.firstName %>">
+        </div>
+        <div class="span6">
+            <input type="text" class="input-mini" name="lastName" value="<%- obj.lastName %>">
         </div>
     </div>
 </div>

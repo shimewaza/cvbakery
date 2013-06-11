@@ -5,7 +5,7 @@
     <p><% if(obj.selfIntroduction) print(obj.selfIntroduction); %></p>
 </div>
 <div class="sl-editor">
-    <textarea style="width: 97%" rows="10" name="selfIntroduction"><%= obj.selfIntroduction %></textarea>
+    <textarea style="width: 97%" rows="10" name="selfIntroduction"><%- obj.selfIntroduction %></textarea>
     <br/>
     <button class="btn btn-mini btn-danger btn-delete pull-right"><i class="icon-share-alt icon-white"></i></button>
 </div>

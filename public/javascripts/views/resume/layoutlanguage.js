@@ -11,6 +11,13 @@ define([
         itemViewContainer: '.item-container',
 
         itemView: itemView,
+
+        onRender: function() {
+
+            if(this.collection.length == 0) {
+                this.collection.add(new Backbone.Model());
+            }
+        }
     });
 
     return LanguageView;
