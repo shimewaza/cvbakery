@@ -140,6 +140,8 @@ define([], function() {
         /**/
         _appendInfoOnDeleteBtn: function() {
 
+            if(!this.ui.deleteBtn) return;
+
             // Destroy previous popover
             this.ui.deleteBtn.popover('destroy');
 

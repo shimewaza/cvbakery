@@ -14,7 +14,10 @@ define([
 		'views/resume/itememail',
 		'views/resume/itemhomepage',
 		'views/resume/itemselfintroduction',
-		'views/resume/layoutlanguage',
+		'views/resume/compositeeducation',
+		'views/resume/compositecareer',
+		'views/resume/compositelanguage',
+		'views/resume/compositequalification',
 		'views/resume/itempanel'
 ], function(
 	resumeTemplate,
@@ -32,7 +35,10 @@ define([
 	EMailView,
 	HomePageView,
 	SelfIntroductionView,
-	LanguageLayout,
+	EducationComposite,
+	CareerComposite,
+	LanguageComposite,
+	QualificationComposite,
 	ItemPanelView) {
 
 	var ResumeView = Backbone.Marionette.Layout.extend({
@@ -64,29 +70,81 @@ define([
 			emailArea: '#email',
 			homePageArea: '#homePage',
 			selfIntroductionArea: '#selfIntroduction',
-			languageArea: '#language'
+			educationArea: '#education',
+			careerArea: '#career',
+			languageArea: '#language',
+			qualificationArea: '#qualification'
 		},
 
 		// Initializer
 		initialize: function() {
 
-			this.nameView = new NameView({model: this.model});
-			this.birthDayView = new BirthDayView({model: this.model});
-			this.genderView = new GenderView({model: this.model});
-			this.nationalityView = new NationalityView({model: this.model});
-			this.marriedView = new MarriedView({model: this.model});
-			this.firstArriveView = new FirstArriveView({model: this.model});
-			this.itExperienceView = new ItExperienceView({model: this.model});
-			this.availableDateView = new AvailableDateView({model: this.model});
-			this.addressView = new AddressView({model: this.model});
-			this.nearestStationView = new NearestStationView({model: this.model});
-			this.telNoView = new TelNoView({model: this.model});
-			this.emailView = new EMailView({model: this.model});
-			this.homePageView = new HomePageView({model: this.model});
-			this.selfIntroductionView = new SelfIntroductionView({model: this.model});
+			this.nameView = new NameView({
+				model: this.model
+			});
+			this.birthDayView = new BirthDayView({
+				model: this.model
+			});
+			this.genderView = new GenderView({
+				model: this.model
+			});
+			this.nationalityView = new NationalityView({
+				model: this.model
+			});
+			this.marriedView = new MarriedView({
+				model: this.model
+			});
+			this.firstArriveView = new FirstArriveView({
+				model: this.model
+			});
+			this.itExperienceView = new ItExperienceView({
+				model: this.model
+			});
+			this.availableDateView = new AvailableDateView({
+				model: this.model
+			});
+			this.addressView = new AddressView({
+				model: this.model
+			});
+			this.nearestStationView = new NearestStationView({
+				model: this.model
+			});
+			this.telNoView = new TelNoView({
+				model: this.model
+			});
+			this.emailView = new EMailView({
+				model: this.model
+			});
+			this.homePageView = new HomePageView({
+				model: this.model
+			});
+			this.selfIntroductionView = new SelfIntroductionView({
+				model: this.model
+			});
 
-			var langs = new Backbone.Collection(this.model.get('languageBackground'));
-			this.languageLayout = new LanguageLayout({collection: langs});
+			var educations = new Backbone.Collection(this.model.get('education'));
+			this.educationComposite = new EducationComposite({
+				model: this.model,
+				collection: educations
+			});
+
+			var careers = new Backbone.Collection(this.model.get('career'));
+			this.careerComposite = new CareerComposite({
+				model: this.model,
+				collection: careers
+			});
+
+			var languages = new Backbone.Collection(this.model.get('languageBackground'));
+			this.languageComposite = new LanguageComposite({
+				model: this.model,
+				collection: languages
+			});
+
+			var qualifications = new Backbone.Collection(this.model.get('qualification'));
+			this.qualificationComposite = new QualificationComposite({
+				model: this.model,
+				collection: qualifications
+			});
 		},
 
 		// Render
@@ -106,7 +164,10 @@ define([
 			this.emailArea.show(this.emailView);
 			this.homePageArea.show(this.homePageView);
 			this.selfIntroductionArea.show(this.selfIntroductionView);
-			this.languageArea.show(this.languageLayout);
+			this.educationArea.show(this.educationComposite);
+			this.careerArea.show(this.careerComposite);
+			this.languageArea.show(this.languageComposite);
+			this.qualificationArea.show(this.qualificationComposite);
 		}
 	});
 

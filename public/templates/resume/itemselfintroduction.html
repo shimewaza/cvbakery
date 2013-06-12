@@ -2,7 +2,7 @@
 <h4>自己紹介</h4>
 <!-- <button class="btn btn-mini btn-danger btn-delete"><i class="icon-share-alt icon-white"></i></button> -->
 <div class="sl-value">
-    <p><% if(obj.selfIntroduction) print(obj.selfIntroduction); %></p>
+    <p><% print(_.escape(obj.selfIntroduction)); %></p>
 </div>
 <div class="sl-editor">
     <textarea style="width: 97%" rows="10" name="selfIntroduction"><%- obj.selfIntroduction %></textarea>

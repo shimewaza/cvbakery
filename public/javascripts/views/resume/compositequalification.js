@@ -1,9 +1,11 @@
 define([
-        'text!templates/resume/layoutlanguage.html',
-        'views/resume/itemlanguage'
+        'text!templates/resume/compositequalification.html',
+        'views/resume/itemqualification'
 ], function(template, itemView) {
 
-    var LanguageView = Backbone.Marionette.CompositeView.extend({
+    var EducationView = Backbone.Marionette.CompositeView.extend({
+
+        item: 'education',
 
         itemName: '語学能力',
 
@@ -17,6 +19,7 @@ define([
         /*UI*/
         ui: {
             editor: '.sl-editor',
+            addBtn: '.btn-add',
             deleteBtn: '.btn-delete'
         },
 
@@ -30,6 +33,9 @@ define([
             // Set this editor gain foucs when mouseover
             'mouseover': 'setFocusIn',
 
+            // 
+            'click .btn-add': 'addItem',
+
             // Popup the confirm dialog when delete button clicked
             'click .btn-delete': 'deleteConfirm',
 
@@ -40,20 +46,67 @@ define([
             'click .btn-cancel': 'deleteCancel'
         },
 
+        collectionEvents: {
+            'add': 'updateModel',
+            'remove': 'updateModel'
+        },
+
         /*Initializer*/
         initialize: function() {
             // Listen to the universal-click, switch to view-mode when input lost focus
             this.listenTo(vent, 'click:universal', this.switchToValue);
         },
 
-        onRender: function() {
+        appendHtml: function(collectionView, itemView, index) {
 
-            if (this.collection.length === 0) {
-                this.collection.add(new Backbone.Model());
+            var model = itemView.model;
+
+            if (model.get('_id')) {
+                this.$el.find(this.itemViewContainer).append(itemView.el);
+                itemView.listenTo(vent, 'click:universal', itemView.switchToValue);
+                this.listenTo(itemView, 'item:remove', this.removeItem);
+            } else {
+                itemView.$el.hide();
+                itemView.ui.value.hide();
+                itemView.ui.editor.show();
+                this.$el.find(this.itemViewContainer).append(itemView.el);
+                itemView.$el.slideDown(function() {
+                    itemView.listenTo(vent, 'click:universal', itemView.switchToValue);
+                });
+                this.listenTo(itemView, 'item:remove', this.removeItem);
             }
+        },
 
+        onRender: function() {
             // Attach popover for delete button in edit panel
             this._appendInfoOnDeleteBtn();
+        },
+
+        // onAfterItemAdded: function(itemView) {
+        //     setTimeout(function() {
+        //         itemView.switchToEditor();   
+        //     }, 3000);
+        // },
+
+        updateModel: function() {
+
+            console.log(this.collection);
+
+            // Prepare the date for model update
+            var data = {};
+            data[this.item] = this.collection.toJSON();
+
+            // Save the model
+            this.model.save(data, {
+
+                // If save success
+                success: function() {
+                    // Switch to view panel
+                    self.switchToValue();
+                },
+                // use patch
+                patch: true
+            });
         },
 
         /*Switch sl-editor from view-mode to edit-mode*/
@@ -66,7 +119,7 @@ define([
         switchToValue: function() {
 
             // Stop execution if mouse still above this item
-            if (this.focus || this.err) return;
+            if (this.focus) return;
 
             // Attach popover for delete button in edit panel
             this._appendInfoOnDeleteBtn();
@@ -84,6 +137,15 @@ define([
         /*Clear the flag when mouse out*/
         setFocusOut: function() {
             this.focus = false;
+        },
+
+        addItem: function() {
+            this.collection.add(new Backbone.Model());
+        },
+
+        removeItem: function(model) {
+            console.log(model);
+            this.collection.remove(model);
         },
 
         /*Show a confirm dialog when user click delete button*/
@@ -104,7 +166,7 @@ define([
 
             // Prepare the date for model update
             var data = {};
-            data[this.item] = null;
+            data[this.item] = [];
 
             // save model
             this.model.save(data, {
@@ -160,5 +222,5 @@ define([
         },
     });
 
-    return LanguageView;
+    return EducationView;
 });

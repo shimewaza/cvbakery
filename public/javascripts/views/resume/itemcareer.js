@@ -1,9 +1,9 @@
 define([
         'views/resume/itembase',
-        'text!templates/resume/itemlanguage.html'
+        'text!templates/resume/itemcareer.html'
 ], function(BaseView, template) {
 
-    var ItemLanguage = BaseView.extend({
+    var ItemEducation = BaseView.extend({
 
         /*Template*/
         template: template,
@@ -12,7 +12,7 @@ define([
         ui: {
             value: '.sl-value',
             editor: '.sl-editor',
-            inputLanguage: 'input[name="language"]',
+            inputEducation: 'input[name="education"]',
             inputBackground: 'input[name="background"]',
             removeBtn: '.btn-remove'
         },
@@ -22,7 +22,7 @@ define([
 
             this.events = _.extend({}, this.commonEvents, {
                 // Update model when input's value was chenaged
-                'change input[name="language"]': 'changeBackground',
+                'change input[name="education"]': 'changeBackground',
                 'change input[name="background"]': 'updateModel',
                 'click .btn-remove': 'removeItem'
             });
@@ -33,7 +33,7 @@ define([
 
         changeBackground: function() {
 
-            var lang = this.ui.inputLanguage.val();
+            var lang = this.ui.inputEducation.val();
 
             if(lang == "英語") {
                 this.ui.inputBackground.empty()
@@ -47,5 +47,5 @@ define([
 
     });
 
-    return ItemLanguage;
+    return ItemEducation;
 });
