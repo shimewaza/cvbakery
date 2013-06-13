@@ -12,14 +12,14 @@ define([], function() {
             // Set this editor gain foucs when mouseover
             'mouseover': 'setFocusIn',
 
-            // Popup the confirm dialog when delete button clicked
-            'click .btn-delete': 'deleteConfirm',
+            // Popup the confirm dialog when remove button clicked
+            'click .btn-remove': 'removeConfirm',
 
-            // Delete the data from model and remove this editor when OK button clicked
-            'click .btn-confirm': 'deleteItem',
+            // Remove editor when OK button clicked
+            'click .btn-confirm': 'removeItem',
 
             // Close the confirm dialog when cancel button clicked
-            'click .btn-cancel': 'deleteCancel'
+            'click .btn-cancel': 'removeCancel'
         },
 
         /*Switch sl-editor from view-mode to edit-mode*/
@@ -27,12 +27,10 @@ define([], function() {
 
             var self = this;
 
-            // FadeOut view panel
+            // fadeOut view panel
             this.ui.value.fadeOut(function() {
-                // SlideDown edit panel
+                // slideDown edit panel
                 self.ui.editor.slideDown();
-                // Let the input control get focus
-                // self.ui.input.focus();
             });
         },
 
@@ -41,16 +39,16 @@ define([], function() {
 
             var self = this;
 
-            // Stop execution if mouse still above this item
+            // stop execution if mouse still above this item
             // or item's editor has error
             if (this.focus || this.err) return;
 
-            // Attach popover for delete button in edit panel
-            this._appendInfoOnDeleteBtn();
+            // attach popover for remove button in edit panel
+            this._appendInfoOnRemoveBtn();
 
-            // Slide up the edit panel
+            // slide up the edit panel
             this.ui.editor.slideUp(function() {
-                // FadeIn view panel
+                // fadeIn view panel
                 self.ui.value.fadeIn();
             });
         },
@@ -66,23 +64,23 @@ define([], function() {
             this.focus = false;
         },
 
-        /*Show a confirm dialog when user click delete button*/
-        deleteConfirm: function() {
-            // append confirm dialog on delete buttom
-            this._appendConfOnDeleteBtn();
+        /*Show a confirm dialog when user click remove button*/
+        removeConfirm: function() {
+            // append confirm dialog on remove buttom
+            this._appendConfOnRemoveBtn();
             // show it up 
-            this.ui.deleteBtn.popover('show');
+            this.ui.removeBtn.popover('show');
         },
 
-        /*Delete item when user click OK*/
-        deleteItem: function() {
+        /*Remove item when user click OK*/
+        removeItem: function() {
 
             var self = this;
 
             // set the value to null (this feel unright)
             // this.model.set(this.item, null);
 
-            // Prepare the date for model update
+            // prepare the date for model update
             var data = {};
             data[this.item] = null;
 
@@ -102,113 +100,141 @@ define([], function() {
         },
 
         /*Do nothing but switch helper info when user click NO*/
-        deleteCancel: function() {
-            // append normal info helper on delete button
-            this._appendInfoOnDeleteBtn();
+        removeCancel: function() {
+            // append normal info helper on remove button
+            this._appendInfoOnRemoveBtn();
         },
 
         /*Display error info for editor*/
-        showError: function(error, model) {
+        showError: function(errors) {
 
-            // if the error is about this view
-            // if (error.item == this.item) {
+            var self = this;
+
             // setup error flag
             this.err = true;
-            // highlight the editor
-            this.$el.addClass('control-group error');
-            // Attach popover for delete button in edit panel
-            this._appendErrOnInput(error.message);
-            // }
+
+            _.each(errors, function(error) {
+                // highlight the input
+                error.target.closest('.sl-input').addClass('control-group error');
+                // attach popover for specified control
+                self._appendErrOn(error.target, {
+                    content: error.message
+                });
+            });
+        },
+
+        clearError: function() {
+            // clear error flag
+            this.err = false;
+            // clear error style on the input
+            this.$el.find('.sl-input').removeClass('control-group error');
+        },
+
+        templateHelpers: function() {
+            return {
+                simpleFormatDate: this._simpleFormatDate,
+                formatDate: this._formatDate
+            }
         },
 
         /**/
-        _appendInfoOnInput: function() {
+        _appendInfoOn: function(target, options) {
 
-            // Destroy previous popover
-            this.ui.input.popover('destroy');
+            // do nothing if target is not exists
+            if (!target) return;
 
-            // Attach a new popover 
-            this.ui.input.popover({
+            // destroy previous popover
+            target.popover('destroy');
+
+            // default option
+            var defaultOpt = {
                 title: this.itemName,
                 content: this.itemHelp,
                 placement: 'right',
                 trigger: 'hover',
-                // container: 'body'
-            });
+                html: true
+            };
+
+            // attach a new popover 
+            target.popover(_.extend(defaultOpt, options));
         },
 
         /**/
-        _appendInfoOnDeleteBtn: function() {
+        _appendErrOn: function(target, options) {
 
-            if(!this.ui.deleteBtn) return;
+            // do nothing if target is not exists
+            if (!target) return;
 
-            // Destroy previous popover
-            this.ui.deleteBtn.popover('destroy');
+            // destroy previous popover
+            target.popover('destroy');
 
-            // Attach a new popover 
-            this.ui.deleteBtn.popover({
-                title: "「" + this.itemName + "」を削除します",
-                content: "「" + this.itemName + "」を履歴書から取り除きます。",
-                placement: 'right',
+            // default option
+            var defaultOpt = {
+                html: true,
+                title: '<div class="text-error">「' + this.itemName + '」は不正です</div>',
+                content: '<br/><small class="text-error">この項目は保存されていません。</small>',
                 trigger: 'hover',
-                // container: 'body'
+                placement: 'right'
+            }
+
+            // attach a new popover 
+            target.popover(_.extend(defaultOpt, options));
+        },
+
+        /**/
+        _appendInfoOnRemoveBtn: function() {
+
+            if (!this.ui.removeBtn) return;
+
+            // Destroy previous popover
+            this.ui.removeBtn.popover('destroy');
+
+            // Attach a new popover 
+            this.ui.removeBtn.popover({
+                title: "「" + this.itemName + "」を非表示にします",
+                content: "「" + this.itemName + "」を履歴書から取り除きます。",
+                trigger: 'hover',
+                placement: 'right'
             });
         },
 
         /**/
-        _appendConfOnDeleteBtn: function() {
+        _appendConfOnRemoveBtn: function() {
 
             // Destroy previous popover
-            this.ui.deleteBtn.popover('destroy');
+            this.ui.removeBtn.popover('destroy');
 
             // Attach a new popover 
-            this.ui.deleteBtn.popover({
+            this.ui.removeBtn.popover({
+                html: true,
                 title: "本当ですか？",
                 content: '<button class="btn btn-small btn-danger btn-confirm">はい</button>  <button class="btn btn-small btn-warning btn-cancel">いいえ</button>',
-                placement: 'right',
-                html: true,
-                // container: 'body'
+                placement: 'right'
             });
         },
 
-        /**/
-        _appendErrOnInput: function(message) {
-
-            // Destroy previous popover
-            this.ui.input.popover('destroy');
-
-            // Attach a new popover 
-            this.ui.input.popover({
-                title: '<div class="text-error">「' + this.itemName + '」は不正です</div>',
-                content: message + '<br/><small class="text-error">この項目は保存されていません。</small>',
-                placement: 'right',
-                html: true,
-                trigger: 'hover',
-                // container: 'body'
-            });
-        },
-
-        _appendDatePicker: function(dispOn, valueOn, options) {
+        _appendDatePicker: function(traget, options) {
 
             var self = this;
 
+            // default option
             var defaultOpt = {
+                format: 'yyyy/mm/dd',
                 language: 'ja',
                 startView: 2,
-                todayHighlight: true,
-                format: 'yyyy/mm/dd'
+                forceParse: false,
+                todayHighlight: true
             };
 
-            dispOn.datepicker(_.extend(defaultOpt, options))
-            .on('changeDate', function(e) {
-                dispOn.datepicker('hide');
-                valueOn.val(self._simpleFormatDate(e.date)).trigger('change');
+            traget.datepicker(_.extend(defaultOpt, options))
+                .on('changeDate', function(e) {
+                traget.datepicker('hide');
             });
         },
 
         _simpleFormatDate: function(date) {
 
-            if (typeof date !== "object")
+            if (!date || typeof date !== "object")
                 date = new Date(date);
 
             var curr_date = date.getDate();
@@ -220,7 +246,7 @@ define([], function() {
 
         _formatDate: function(date) {
 
-            if (typeof date !== "object")
+            if (!date || typeof date !== "object")
                 date = new Date(date);
 
             var curr_date = date.getDate();

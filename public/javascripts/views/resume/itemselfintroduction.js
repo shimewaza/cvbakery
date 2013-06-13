@@ -17,7 +17,7 @@ define([
             value: '.sl-value',
             editor: '.sl-editor',
             input: 'textarea',
-            deleteBtn: '.btn-delete'
+            removeBtn: '.btn-remove'
         },
 
         /*Initializer*/
@@ -30,19 +30,16 @@ define([
 
             // Listen to the universal-click, switch to view-mode when input lost focus
             this.listenTo(vent, 'click:universal', this.switchToValue);
-
-            // Listen to the model, show validation error
-            this.listenTo(this.model, 'invalid', this.showError);
         },
 
         /*After Render*/
         onRender: function() {
 
             // Attach popover for input control in edit panel
-            this._appendInfoOnInput();
+            this._appendInfoOn(this.ui.input);
 
-            // Attach popover for delete button in edit panel
-            this._appendInfoOnDeleteBtn();
+            // Attach popover for remove button in edit panel
+            this._appendInfoOnRemoveBtn();
         },
 
         /*Update model when edit finished*/
@@ -67,7 +64,7 @@ define([
                     // remove the error class from editor
                     self.$el.removeClass('control-group error');
                     // append normal info help on editor
-                    self._appendInfoOnInput();
+                    self._appendInfoOn();
                     // Update the view panel
                     self.ui.value.text(newVal);
                     // Switch to view panel

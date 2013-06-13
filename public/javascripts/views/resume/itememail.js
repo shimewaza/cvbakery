@@ -39,10 +39,10 @@ define([
         onRender: function() {
 
             // Attach popover for input control in edit panel
-            this._appendInfoOnInput();
+            this._appendInfoOn();
 
             // Attach popover for delete button in edit panel
-            this._appendInfoOnDeleteBtn();
+            this._appendInfoOnRemoveBtn();
         },
 
         /*Update model when edit finished*/
@@ -65,7 +65,7 @@ define([
                     // remove the error class from editor
                     self.$el.removeClass('control-group error');
                     // append normal info help on editor
-                    self._appendInfoOnInput();
+                    self._appendInfoOn();
                     // Update the view panel
                     self.ui.value.text(newVal);
                     // Switch to view panel

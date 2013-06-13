@@ -12,9 +12,10 @@ define([
         ui: {
             value: '.sl-value',
             editor: '.sl-editor',
-            inputEducation: 'input[name="education"]',
-            inputBackground: 'input[name="background"]',
-            removeBtn: '.btn-remove'
+            inputGraduate: 'input[name="graduate"]',
+            inputSchool: 'input[name="school"]',
+            inputMajor: 'input[name="major"]',
+            deleteBtn: '.btn-delete'
         },
 
         /*Initializer*/
@@ -22,27 +23,25 @@ define([
 
             this.events = _.extend({}, this.commonEvents, {
                 // Update model when input's value was chenaged
-                'change input[name="education"]': 'changeBackground',
-                'change input[name="background"]': 'updateModel',
-                'click .btn-remove': 'removeItem'
+                'change input': 'updateModel',
+                'click .btn-delete': 'deleteItem'
             });
 
             // Listen to the universal-click, switch to view-mode when input lost focus
             // this.listenTo(vent, 'click:universal', this.switchToValue);
         },
 
-        changeBackground: function() {
+        updateModel: function() {
 
-            var lang = this.ui.inputEducation.val();
+            this.model.set('graduate', this.ui.inputGraduate.val());
+            this.model.set('school', this.ui.inputSchool.val());
+            this.model.set('major', this.ui.inputMajor.val());
 
-            if(lang == "英語") {
-                this.ui.inputBackground.empty()
-            }
-
+            this.trigger('item:modify', this.model);
         },
 
-        removeItem: function() {
-            this.trigger('item:remove', this.model);
+        deleteItem: function() {
+            this.trigger('item:delete', this.model);
         }
 
     });

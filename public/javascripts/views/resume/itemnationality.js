@@ -17,7 +17,7 @@ define([
             value: '.sl-value',
             editor: '.sl-editor',
             input: 'select',
-            deleteBtn: '.btn-delete'
+            removeBtn: '.btn-remove'
         },
 
         /*Initializer*/
@@ -35,8 +35,8 @@ define([
         /*After Render*/
         onRender: function() {
 
-            // Attach popover for delete button in edit panel
-            this._appendInfoOnDeleteBtn();
+            // Attach popover for remove button in edit panel
+            this._appendInfoOnRemoveBtn();
         },
 
         /*Update model when edit finished*/

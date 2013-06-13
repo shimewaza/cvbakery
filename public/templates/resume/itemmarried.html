@@ -6,14 +6,12 @@
         <%- obj.married %>
     </div>
     <div class="sl-editor">
-        <label class="radio inline">
-            <input type="radio" name="married" value="既婚" <% if(obj.married == "既婚") print("checked") %>>
-            既婚
-        </label>
-        <label class="radio inline">
-            <input type="radio" name="married" value="未婚" <% if(obj.married == "未婚") print("checked") %>>
-            未婚
-        </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <button class="btn btn-mini btn-danger btn-delete"><i class="icon-share-alt icon-white"></i></button>
+        <div data-toggle="buttons-radio">
+            <button class="btn btn-small btn-info btn-value">既婚</button>
+            <button class="btn btn-small btn-info btn-value">未婚</button>
+            <button class="btn btn-mini btn-danger btn-remove">
+                <i class="icon-share-alt icon-white"></i>
+            </button>
+        </div>
     </div>
 </div>

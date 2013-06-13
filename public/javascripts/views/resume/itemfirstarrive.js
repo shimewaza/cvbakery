@@ -19,8 +19,7 @@ define([
             value: '.sl-value',
             editor: '.sl-editor',
             input: 'input',
-            datePickerBtn: '.btn-datepicker',
-            deleteBtn: '.btn-delete'
+            removeBtn: '.btn-remove'
         },
 
         /*Initializer*/
@@ -39,15 +38,15 @@ define([
         onRender: function() {
 
             // attach datapicker on calendar button
-            this._appendDatePicker(this.ui.datePickerBtn, this.ui.input, {
+            this._appendDatePicker(this.ui.input, {
                 endDate: new Date(),
             });
 
             // Attach popover for input control in edit panel
-            this._appendInfoOnInput();
+            this._appendInfoOn(this.ui.input);
 
-            // Attach popover for delete button in edit panel
-            this._appendInfoOnDeleteBtn();
+            // Attach popover for remove button in edit panel
+            this._appendInfoOnRemoveBtn();
         },
 
         /*Validate user input value*/
@@ -56,17 +55,23 @@ define([
             // if user inpu nothing, just return
             if (!value) return;
 
+            var errors = [];
+
             // must be a date
             if ("Invalid Date" == new Date(value))
-                return {
+                errors.push({
+                    target: this.ui.input,
                     message: '「yyyy/mm/dd」のフォーマットで有効な日付をご入力ください。'
-            };
+                });
 
             // can't be late than today
             if (new Date(value) > new Date())
-                return {
+                error.push({
+                    target: this.ui.input,
                     message: '本日より前の日付をご入力ください。'
-            };
+                });
+
+            return errors;
         },
 
         /*Update model when edit finished*/
@@ -78,10 +83,14 @@ define([
             var newVal = this.ui.input.val();
 
             // check input value
-            var error = this.validate(newVal);
-            if (error) {
-                this.showError(error);
+            var errors = this.validate(newVal);
+            if (errors.length) {
+                this.showError(errors);
                 return;
+            } else {
+                this.clearError();
+                // append normal info help on editor
+                this._appendInfoOn(this.ui.input);
             }
 
             // Prepare the date for model update
@@ -93,12 +102,6 @@ define([
 
                 // If save success
                 success: function() {
-                    // clear the error flag
-                    self.err = false;
-                    // remove the error class from editor
-                    self.$el.removeClass('control-group error');
-                    // append normal info help on editor
-                    self._appendInfoOnInput();
                     // Update the view panel
                     self.ui.value.text(self._formatDate(newVal));
                     // Switch to view panel
@@ -108,7 +111,7 @@ define([
                 patch: true
             });
         }
-        
+
     });
 
     return FirstArriveEditor;

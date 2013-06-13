@@ -16,7 +16,7 @@ define([
         ui: {
             value: '.sl-value',
             editor: '.sl-editor',
-            deleteBtn: '.btn-delete'
+            removeBtn: '.btn-remove'
         },
 
         /*Initializer*/
@@ -24,7 +24,7 @@ define([
 
             this.events = _.extend({}, this.commonEvents, {
                 // Update model when input's value was chenaged
-                'click input:radio': 'updateModel',
+                'click .btn-value': 'updateModel',
             });
 
             // Listen to the universal-click, switch to view-mode when input lost focus
@@ -34,8 +34,15 @@ define([
         /*After Render*/
         onRender: function() {
 
-            // Attach popover for delete button in edit panel
-            this._appendInfoOnDeleteBtn();
+            var married = this.model.get(this.item);
+
+            this.$el.find(".btn-value").each(function() {
+                if (married == $(this).text())
+                    $(this).button('toggle');
+            });
+
+            // Attach popover for remove button in edit panel
+            this._appendInfoOnRemoveBtn();
         },
 
         /*Update model when edit finished*/
@@ -44,7 +51,7 @@ define([
             var self = this;
 
             // Get input value
-            var newVal = event.target.value;
+            var newVal = $(event.target).text();
 
             // Prepare the date for model update
             var data = {};

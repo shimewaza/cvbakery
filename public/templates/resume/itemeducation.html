@@ -1,27 +1,21 @@
 <div class="sl-value">
-    <p><%- obj.language %> ：<%- obj.background %></p>
+    <dl class="dl-horizontal">
+        <dt><%- formatDate(obj.graduate) %></dt>
+        <dd><%- obj.school %><%- obj.major %></dd>
+    </dl>
 </div>
 <div class="sl-editor">
     <div class="input-prepend">
         <span class="add-on">卒業日</span>
-        <select class="input-small" name="language">
-            <option value="">--</option>
-            <option value="英語" <% if(obj.language == "英語") print('selected'); %>>英語</option>
-            <option value="日本語" <% if(obj.language == "日本語") print('selected'); %>>日本語</option>
-            <option value="中国語" <% if(obj.language == "中国語") print('selected'); %>>中国語</option>
-        </select>
+        <input type="text" class="input-small" name="graduate" value="<%- simpleFormatDate(obj.graduate) %>">
     </div>
     <div class="input-prepend">
         <span class="add-on">学校</span>
-        <select class="input-medium" name="background">
-            <option value="">--</option>
-        </select>
+        <input type="text" class="input-medium" name="school" value="<%- obj.school %>">
     </div>
     <div class="input-prepend">
         <span class="add-on">学部</span>
-        <select class="input-medium" name="background">
-            <option value="">--</option>
-        </select>
+        <input type="text" class="input-medium" name="major" value="<%- obj.major %>">
     </div>
-    <button class="btn btn-mini btn-warning btn-remove"><i class="icon-minus icon-white"></i></button>
+    <button class="btn btn-mini btn-warning btn-delete"><i class="icon-minus icon-white"></i></button>
 </div>

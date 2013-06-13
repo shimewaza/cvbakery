@@ -40,11 +40,11 @@ define([
         onRender: function() {
 
             // Attach popover for input control in edit panel
-            this._appendInfoOnInputZipCode();
-            this._appendInfoOnInputAddress();
+            this._appendInfoOnZipCode();
+            this._appendInfoOnAddress();
 
             // Attach popover for delete button in edit panel
-            this._appendInfoOnDeleteBtn();
+            this._appendInfoOnRemoveBtn();
         },
 
         getAddress: function() {
@@ -120,8 +120,8 @@ define([
                     self.ui.areaZipCode.removeClass('error');
                     self.ui.areaAddress.removeClass('error');
                     // append normal info help on editor
-                    self._appendInfoOnInputZipCode();
-                    self._appendInfoOnInputAddress();
+                    self._appendInfoOnZipCode();
+                    self._appendInfoOnAddress();
                     // Update the view panel
                     self.ui.value.text(newAddress + "（〒" + newZipCode + "）");
                     // Switch to view panel
@@ -168,7 +168,7 @@ define([
                 // highlight the editor
                 this.ui.areaZipCode.addClass('control-group error');
                 // Attach popover for delete button in edit panel
-                this._appendErrOnInputZipCode(error.message);
+                this._appendErrOnZipCode(error.message);
 
             } else if (error.item == 'address') {
                 // setup error flag
@@ -176,12 +176,12 @@ define([
                 // highlight the editor
                 this.ui.areaAddress.addClass('control-group error');
                 // Attach popover for delete button in edit panel
-                this._appendErrOnInputAddress(error.message);
+                this._appendErrOnAddress(error.message);
             }
         },
 
         /**/
-        _appendInfoOnInputZipCode: function() {
+        _appendInfoOnZipCode: function() {
 
             // Destroy previous popover
             this.ui.inputZipCode.popover('destroy');
@@ -198,7 +198,7 @@ define([
         },
 
         /**/
-        _appendInfoOnInputAddress: function() {
+        _appendInfoOnAddress: function() {
 
             // Destroy previous popover
             this.ui.inputAddress.popover('destroy');
@@ -214,7 +214,7 @@ define([
         },
 
         /**/
-        _appendErrOnInputZipCode: function(message) {
+        _appendErrOnZipCode: function(message) {
 
             // Destroy previous popover
             this.ui.inputZipCode.popover('destroy');
@@ -231,7 +231,7 @@ define([
         },
 
         /**/
-        _appendErrOnInputAddress: function(message) {
+        _appendErrOnAddress: function(message) {
 
             // Destroy previous popover
             this.ui.inputAddress.popover('destroy');

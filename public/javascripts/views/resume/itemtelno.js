@@ -42,13 +42,13 @@ define([
         onRender: function() {
 
             // Attach popover for input control in edit panel
-            this._appendInfoOnInput();
+            this._appendInfoOn();
 
             // Attach popover for add button in edit panel
             this._appendInfoOnAddBtn();
 
             // Attach popover for delete button in edit panel
-            this._appendInfoOnDeleteBtn();
+            this._appendInfoOnRemoveBtn();
         },
 
         addInput: function() {
@@ -94,7 +94,7 @@ define([
                     // remove the error class from editor
                     self.$el.removeClass('control-group error');
                     // append normal info help on editor
-                    self._appendInfoOnInput();
+                    self._appendInfoOn();
                     // Update the view panel
                     self.ui.value.text(newVal);
                     // Switch to view panel
@@ -115,7 +115,7 @@ define([
                 // highlight the editor
                 this.$el.addClass('control-group error');
                 // Attach popover for delete button in edit panel
-                this._appendErrOnInput(error.message);
+                this._appendErrOn(error.message);
             }
         },
 

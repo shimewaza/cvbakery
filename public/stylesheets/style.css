@@ -52,6 +52,11 @@ li {
 	margin-bottom: 10px;
 }
 
+.sl-input {
+	display: inline-block;
+	margin: 0px !important;
+}
+
 /* Panel common */
 .sl-panel {
 	-moz-border-radius: 6px;

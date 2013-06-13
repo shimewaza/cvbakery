@@ -125,6 +125,20 @@ var Engineer = new Schema({
 			trim: true
 		}
 	}],
+	// Education
+	education: [{
+		graduate: {
+			type: Date
+		},
+		school: {
+			type: String,
+			trim: true
+		},
+		major: {
+			type: String,
+			trim: true
+		}
+	}],
 	// スキル補足
 	skillRemark: {
 		type: String,

@@ -7,7 +7,7 @@ define([
 
         item: 'education',
 
-        itemName: '語学能力',
+        itemName: '学歴',
 
         /*Template*/
         template: template,
@@ -48,7 +48,8 @@ define([
 
         collectionEvents: {
             'add': 'updateModel',
-            'remove': 'updateModel'
+            'remove': 'updateModel',
+            'change': 'updateModel'
         },
 
         /*Initializer*/
@@ -64,7 +65,7 @@ define([
             if (model.get('_id')) {
                 this.$el.find(this.itemViewContainer).append(itemView.el);
                 itemView.listenTo(vent, 'click:universal', itemView.switchToValue);
-                this.listenTo(itemView, 'item:remove', this.removeItem);
+                this.listenTo(itemView, 'item:delete', this.removeItem);
             } else {
                 itemView.$el.hide();
                 itemView.ui.value.hide();
@@ -73,28 +74,22 @@ define([
                 itemView.$el.slideDown(function() {
                     itemView.listenTo(vent, 'click:universal', itemView.switchToValue);
                 });
-                this.listenTo(itemView, 'item:remove', this.removeItem);
+                this.listenTo(itemView, 'item:delete', this.removeItem);
             }
         },
 
         onRender: function() {
             // Attach popover for delete button in edit panel
-            this._appendInfoOnDeleteBtn();
+            this._appendInfoOnRemoveBtn();
         },
 
-        // onAfterItemAdded: function(itemView) {
-        //     setTimeout(function() {
-        //         itemView.switchToEditor();   
-        //     }, 3000);
-        // },
-
         updateModel: function() {
-
-            console.log(this.collection);
 
             // Prepare the date for model update
             var data = {};
             data[this.item] = this.collection.toJSON();
+
+            console.log(data);
 
             // Save the model
             this.model.save(data, {
@@ -122,7 +117,7 @@ define([
             if (this.focus) return;
 
             // Attach popover for delete button in edit panel
-            this._appendInfoOnDeleteBtn();
+            this._appendInfoOnRemoveBtn();
 
             // Slide up the edit panel
             this.ui.editor.slideUp();
@@ -144,7 +139,6 @@ define([
         },
 
         removeItem: function(model) {
-            console.log(model);
             this.collection.remove(model);
         },
 
@@ -186,11 +180,11 @@ define([
         /*Do nothing but switch helper info when user click NO*/
         deleteCancel: function() {
             // append normal info helper on delete button
-            this._appendInfoOnDeleteBtn();
+            this._appendInfoOnRemoveBtn();
         },
 
         /**/
-        _appendInfoOnDeleteBtn: function() {
+        _appendInfoOnRemoveBtn: function() {
 
             // Destroy previous popover
             this.ui.deleteBtn.popover('destroy');

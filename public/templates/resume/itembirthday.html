@@ -1,24 +1,15 @@
-<% 
-    var date = new Date(obj.birthDay);
-    var curr_date = date.getDate();
-    var curr_month = date.getMonth() + 1;
-    var curr_year = date.getFullYear();
-    var birthDayFormated = curr_year + "年" + curr_month + "月" + curr_date + "日";
-    var birthDaySimpleFormated = curr_year + "/" + curr_month + "/" + curr_date;
-%>
 <div class="span4">
     <i class="icon-calendar"></i>　生年月日：
 </div>
 <div class="span8">
     <div class="sl-value">
-        <%- birthDayFormated %>
+        <%- formatDate(obj.birthDay) %>
     </div>
     <div class="sl-editor">
-        <input type="text" class="input-small" name="birthDay" value="<%- birthDaySimpleFormated %>">
-        <button class="btn btn-mini btn-info btn-datepicker" data-date="<%- birthDaySimpleFormated %>">
-            <i class="icon-calendar icon-white"></i>
-        </button>
-        <button class="btn btn-mini btn-danger btn-delete">
+        <div class="sl-input">
+            <input type="text" class="input-small" name="birthDay" value="<%- simpleFormatDate(obj.birthDay) %>">
+        </div>
+        <button class="btn btn-mini btn-danger btn-remove">
             <i class="icon-share-alt icon-white"></i>
         </button>
     </div>
