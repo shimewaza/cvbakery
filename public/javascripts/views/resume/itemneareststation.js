@@ -38,7 +38,10 @@ define([
         onRender: function() {
 
             // Attach popover for input control in edit panel
-            this._appendInfoOn(this.ui.input);
+            this._appendInfoOn(this.ui.input, {
+                title: this.itemName,
+                content: this.itemHelp
+            });
 
             // Attach popover for remove button in edit panel
             this._appendInfoOnRemoveBtn();
@@ -56,6 +59,7 @@ define([
             if (value.length > 20)
                 errors.push({
                     target: this.ui.input,
+                    title: this.itemName,
                     message: '20文字以内でご入力ください。'
                 });
 
@@ -78,7 +82,10 @@ define([
             } else {
                 this.clearError();
                 // append normal info help on editor
-                this._appendInfoOn(this.ui.input);
+                this._appendInfoOn(this.ui.input, {
+                    title: this.itemName,
+                    content: this.itemHelp
+                });
             }
 
             // Prepare the date for model update
