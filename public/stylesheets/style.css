@@ -17,6 +17,11 @@ li {
 	list-style: none;
 }
 
+.input-append .popover,
+.input-prepend .popover {
+  font-size: 12px;
+}
+
 /* Text input */
 /*.sl-text {
 	font: inherit;
@@ -54,7 +59,7 @@ li {
 
 .sl-input {
 	display: inline-block;
-	margin: 0px !important;
+	/*margin: 0px !important;*/
 }
 
 /* Panel common */
@@ -207,6 +212,7 @@ li {
 	max-width: 580px;
 	min-width: 580px;
 	margin-right: 10px;
+	position: relative;
 }
 
 #resumePanel .radio.inline{

@@ -2,6 +2,9 @@ define([], function() {
 
     var BaseItem = Backbone.Marionette.ItemView.extend({
 
+        /*
+            Common events may happend
+        */
         commonEvents: {
             // Switch to edit-mode when the div was clicked
             'click': 'switchToEditor',
@@ -12,17 +15,22 @@ define([], function() {
             // Set this editor gain foucs when mouseover
             'mouseover': 'setFocusIn',
 
-            // Popup the confirm dialog when remove button clicked
-            'click .btn-remove': 'removeConfirm',
+            // Remove editor when remove button clicked
+            'click .btn-remove': 'removeItem',
 
-            // Remove editor when OK button clicked
-            'click .btn-confirm': 'removeItem',
+            // Popup the confirm dialog when delete button clicked
+            'click .btn-delete': 'deleteConfirm',
+
+            // Delete editor when OK button clicked
+            'click .btn-confirm': 'deleteItem',
 
             // Close the confirm dialog when cancel button clicked
-            'click .btn-cancel': 'removeCancel'
+            'click .btn-cancel': 'deleteCancel'
         },
 
-        /*Switch sl-editor from view-mode to edit-mode*/
+        /*
+            Switch sl-editor from view-mode to edit-mode
+        */
         switchToEditor: function() {
 
             var self = this;
@@ -34,7 +42,9 @@ define([], function() {
             });
         },
 
-        /*Switch sl-editor from edit-mode to view-mode*/
+        /*
+            Switch sl-editor from edit-mode to view-mode
+        */
         switchToValue: function() {
 
             var self = this;
@@ -53,62 +63,68 @@ define([], function() {
             });
         },
 
-        /*Set up a flag indicate mouse on*/
+        /*
+            Set up a flag indicate mouse on
+        */
         setFocusIn: function() {
             this.$el.css('cursor', 'pointer');
             this.focus = true;
         },
 
-        /*Clear the flag when mouse out*/
+        /*
+            Clear the flag when mouse out
+        */
         setFocusOut: function() {
             this.focus = false;
         },
 
-        /*Show a confirm dialog when user click remove button*/
-        removeConfirm: function() {
-            // append confirm dialog on remove buttom
-            this._appendConfOnRemoveBtn();
-            // show it up 
-            this.ui.removeBtn.popover('show');
-        },
-
-        /*Remove item when user click OK*/
+        /*========================= remove button part =================================*/
+        /*
+            Remove item 
+            SubClass should override this method to define how to remove item.
+        */
         removeItem: function() {
-
-            var self = this;
-
-            // set the value to null (this feel unright)
-            // this.model.set(this.item, null);
-
-            // prepare the date for model update
-            var data = {};
-            data[this.item] = null;
-
-            // save model
-            this.model.save(data, {
-                // if save success
-                success: function() {
-                    // slide up editor
-                    self.$el.slideUp(function() {
-                        // dispose the view
-                        self.close();
-                    });
-                },
-                // use patch
-                patch: true
+            // slide up editor
+            this.$el.slideUp(function() {
+                // dispose the view
+                this.close();
             });
         },
 
-        /*Do nothing but switch helper info when user click NO*/
-        removeCancel: function() {
-            // append normal info helper on remove button
-            this._appendInfoOnRemoveBtn();
+        /*========================= delete button part =================================*/
+        /*
+            Show a confirm dialog when user click delete button
+        */
+        deleteConfirm: function() {
+            // append confirm dialog on delete buttom
+            this._appendConfOnDeleteBtn();
+            // show it up 
+            this.ui.deleteBtn.popover('show');
         },
 
-        /*Display error info for editor*/
+        /*
+            Delete item when user click OK
+            SubClass should override this method to define how to delete item.
+        */
+        deleteItem: function() {},
+
+        /*
+            Do nothing but switch helper info when user click NO
+        */
+        deleteCancel: function() {
+            // append normal info helper on delete button
+            this._appendInfoOnDeleteBtn();
+        },
+
+        /*
+            Display error info for editor
+        */
         showError: function(errors) {
 
             var self = this;
+
+            // clear previous errors
+            this.clearError();
 
             // setup error flag
             this.err = true;
@@ -118,11 +134,15 @@ define([], function() {
                 error.target.closest('.sl-input').addClass('control-group error');
                 // attach popover for specified control
                 self._appendErrOn(error.target, {
+                    title: error.title,
                     content: error.message
                 });
             });
         },
 
+        /*
+            Clear error flag and style
+        */
         clearError: function() {
             // clear error flag
             this.err = false;
@@ -130,6 +150,9 @@ define([], function() {
             this.$el.find('.sl-input').removeClass('control-group error');
         },
 
+        /*
+            template helper function
+        */
         templateHelpers: function() {
             return {
                 simpleFormatDate: this._simpleFormatDate,
@@ -137,7 +160,9 @@ define([], function() {
             }
         },
 
-        /**/
+        /*
+            Generic function for append popover on specific element
+        */
         _appendInfoOn: function(target, options) {
 
             // do nothing if target is not exists
@@ -148,8 +173,6 @@ define([], function() {
 
             // default option
             var defaultOpt = {
-                title: this.itemName,
-                content: this.itemHelp,
                 placement: 'right',
                 trigger: 'hover',
                 html: true
@@ -162,54 +185,42 @@ define([], function() {
         /**/
         _appendErrOn: function(target, options) {
 
-            // do nothing if target is not exists
-            if (!target) return;
+            if (options.title)
+                options.title = '<div class="text-error">「' + options.title + '」は不正です</div>';
 
-            // destroy previous popover
-            target.popover('destroy');
+            if (options.content)
+                options.content += '<br/><small class="text-error">この項目は保存されていません。</small>';
 
-            // default option
-            var defaultOpt = {
-                html: true,
-                title: '<div class="text-error">「' + this.itemName + '」は不正です</div>',
-                content: '<br/><small class="text-error">この項目は保存されていません。</small>',
-                trigger: 'hover',
-                placement: 'right'
-            }
-
-            // attach a new popover 
-            target.popover(_.extend(defaultOpt, options));
+            this._appendInfoOn(target, options);
         },
 
         /**/
         _appendInfoOnRemoveBtn: function() {
 
-            if (!this.ui.removeBtn) return;
-
-            // Destroy previous popover
-            this.ui.removeBtn.popover('destroy');
-
-            // Attach a new popover 
-            this.ui.removeBtn.popover({
+            this._appendInfoOn(this.ui.removeBtn, {
                 title: "「" + this.itemName + "」を非表示にします",
-                content: "「" + this.itemName + "」を履歴書から取り除きます。",
-                trigger: 'hover',
-                placement: 'right'
+                content: "「" + this.itemName + "」を履歴書から取り除きます。"
             });
         },
 
         /**/
-        _appendConfOnRemoveBtn: function() {
+        _appendInfoOnDeleteBtn: function() {
 
-            // Destroy previous popover
-            this.ui.removeBtn.popover('destroy');
+            this._appendInfoOn(this.ui.deleteBtn, {
+                title: "「" + this.itemName + "」を削除します",
+                content: "「" + this.itemName + "」を削除します。"
+            });
+        },
 
-            // Attach a new popover 
-            this.ui.removeBtn.popover({
-                html: true,
-                title: "本当ですか？",
-                content: '<button class="btn btn-small btn-danger btn-confirm">はい</button>  <button class="btn btn-small btn-warning btn-cancel">いいえ</button>',
-                placement: 'right'
+        /**/
+        _appendConfOnDeleteBtn: function() {
+
+            this._appendInfoOn(this.ui.deleteBtn, {
+                title: "「" + this.itemName + "」を削除しますか？",
+                content: 'ご入力した内容が無くなりますので、ご注意ください。<br>\
+                        <button class="btn btn-small btn-danger btn-confirm">はい</button>  \
+                        <button class="btn btn-small btn-warning btn-cancel">いいえ</button>',
+                trigger: 'click'
             });
         },
 
@@ -234,7 +245,9 @@ define([], function() {
 
         _simpleFormatDate: function(date) {
 
-            if (!date || typeof date !== "object")
+            if (!date) return;
+
+            if (typeof date !== "object")
                 date = new Date(date);
 
             var curr_date = date.getDate();
@@ -243,10 +256,11 @@ define([], function() {
             return curr_year + "/" + curr_month + "/" + curr_date;
         },
 
-
         _formatDate: function(date) {
 
-            if (!date || typeof date !== "object")
+            if (!date) return;
+
+            if (typeof date !== "object")
                 date = new Date(date);
 
             var curr_date = date.getDate();

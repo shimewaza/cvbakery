@@ -9,6 +9,8 @@ define([
 
         itemName: "自己紹介",
 
+        itemHelp: "なるべくアピールしましょう！",
+
         /*Template*/
         template: template,
 
@@ -36,7 +38,10 @@ define([
         onRender: function() {
 
             // Attach popover for input control in edit panel
-            this._appendInfoOn(this.ui.input);
+            this._appendInfoOn(this.ui.input, {
+                title: this.itemName,
+                content: this.itemHelp
+            });
 
             // Attach popover for remove button in edit panel
             this._appendInfoOnRemoveBtn();

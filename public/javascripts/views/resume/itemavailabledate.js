@@ -44,7 +44,10 @@ define([
             });
 
             // Attach popover for input control in edit panel
-            this._appendInfoOn(this.ui.input);
+            this._appendInfoOn(this.ui.input, {
+                title: this.itemName,
+                content: this.itemHelp
+            });
 
             // Attach popover for remove button in edit panel
             this._appendInfoOnRemoveBtn();
@@ -62,6 +65,7 @@ define([
             if ("Invalid Date" == new Date(value))
                 errors.push({
                     target: this.ui.input,
+                    title: this.itemName,
                     message: '「yyyy/mm/dd」のフォーマットで有効な日付をご入力ください。'
                 });
 
@@ -84,7 +88,10 @@ define([
             } else {
                 this.clearError();
                 // append normal info help on editor
-                this._appendInfoOn(this.ui.input);
+                this._appendInfoOn(this.ui.input, {
+                    title: this.itemName,
+                    content: this.itemHelp
+                });
             }
 
             // Prepare the date for model update

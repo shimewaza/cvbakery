@@ -1,33 +1,30 @@
-<div class="sl-value">
+<div class="row-fluid sl-value">
     <p><%- obj.language %> ：<%- obj.background %></p>
 </div>
-<div class="sl-editor">
-    <div class="input-prepend">
-        <span class="add-on">勤続期間</span>
-        <select class="input-small" name="language">
-            <option value="">--</option>
-            <option value="英語" <% if(obj.language == "英語") print('selected'); %>>英語</option>
-            <option value="日本語" <% if(obj.language == "日本語") print('selected'); %>>日本語</option>
-            <option value="中国語" <% if(obj.language == "中国語") print('selected'); %>>中国語</option>
-        </select>
+<div class="row-fluid sl-editor">
+    <div class="span11">
+        <div class="input-prepend sl-input">
+            <span class="add-on">開始日</span>
+            <input type="text" class="input-medium" name="school" value="<%- obj.school %>">
+        </div><br>
+        <div class="input-prepend sl-input">
+            <span class="add-on">終了日</span>
+            <input type="text" class="input-medium" name="school" value="<%- obj.school %>">
+        </div><br>
+        <div class="input-prepend sl-input">
+            <span class="add-on">会社名</span>
+            <input type="text" class="input-medium" name="school" value="<%- obj.school %>">
+        </div><br>
+        <div class="input-prepend sl-input">
+            <span class="add-on">所在地</span>
+            <input type="text" class="input-medium" name="school" value="<%- obj.school %>">
+        </div><br>
+        <div class="input-prepend sl-input">
+            <span class="add-on">職　務</span>
+            <input type="text" class="input-medium" name="school" value="<%- obj.school %>">
+        </div>
     </div>
-    <div class="input-prepend">
-        <span class="add-on">会社名</span>
-        <select class="input-medium" name="background">
-            <option value="">--</option>
-        </select>
+    <div class="span1">
+        <button class="btn btn-mini btn-warning btn-remove"><i class="icon-minus icon-white"></i></button>
     </div>
-    <div class="input-prepend">
-        <span class="add-on">所在地</span>
-        <select class="input-medium" name="background">
-            <option value="">--</option>
-        </select>
-    </div>
-    <div class="input-prepend">
-        <span class="add-on">職務</span>
-        <select class="input-medium" name="background">
-            <option value="">--</option>
-        </select>
-    </div>
-    <button class="btn btn-mini btn-warning btn-remove"><i class="icon-minus icon-white"></i></button>
 </div>

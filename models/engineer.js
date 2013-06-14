@@ -139,6 +139,41 @@ var Engineer = new Schema({
 			trim: true
 		}
 	}],
+	// Career
+	career: [{
+		startDate: {
+			type: Date
+		},
+		endDate: {
+			type: Date
+		},
+		companyName: {
+			type: String,
+			trim: true
+		},
+		address: {
+			type: String,
+			trim: true
+		},
+		position: {
+			type: String,
+			trim: true
+		}
+	}],
+	// Qualification
+	qualification: [{
+		qualifiedDate: {
+			type: Date
+		},
+		qualificationName: {
+			type: String,
+			trim: true
+		},
+		remark: {
+			type: String,
+			trim: true
+		}
+	}],
 	// スキル補足
 	skillRemark: {
 		type: String,

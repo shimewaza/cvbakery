@@ -1,21 +1,24 @@
-<div class="sl-value">
-    <dl class="dl-horizontal">
-        <dt><%- formatDate(obj.graduate) %></dt>
-        <dd><%- obj.school %><%- obj.major %></dd>
-    </dl>
+<div class="row-fluid sl-value">
+    <div class="span3 graduateArea"><%- formatDate(obj.graduate) %></div>
+    <div class="span4 schoolArea"><%- obj.school %></div>
+    <div class="span5 majorArea"><%- obj.major %></div>
 </div>
-<div class="sl-editor">
-    <div class="input-prepend">
-        <span class="add-on">卒業日</span>
-        <input type="text" class="input-small" name="graduate" value="<%- simpleFormatDate(obj.graduate) %>">
+<div class="row-fluid sl-editor">
+    <div class="span11">
+        <div class="input-prepend sl-input">
+            <span class="add-on">卒業日</span>
+            <input type="text" class="input-small" name="graduate" value="<%- simpleFormatDate(obj.graduate) %>">
+        </div><br>
+        <div class="input-prepend sl-input">
+            <span class="add-on">卒業学校</span>
+            <input type="text" class="input-medium" name="school" value="<%- obj.school %>">
+        </div><br>
+        <div class="input-prepend sl-input">
+            <span class="add-on">学部、学科、専攻</span>
+            <input type="text" class="input-medium" name="major" value="<%- obj.major %>">
+        </div>
     </div>
-    <div class="input-prepend">
-        <span class="add-on">学校</span>
-        <input type="text" class="input-medium" name="school" value="<%- obj.school %>">
+    <div class="span1">
+        <button class="btn btn-mini btn-warning btn-delete"><i class="icon-minus icon-white"></i></button>
     </div>
-    <div class="input-prepend">
-        <span class="add-on">学部</span>
-        <input type="text" class="input-medium" name="major" value="<%- obj.major %>">
-    </div>
-    <button class="btn btn-mini btn-warning btn-delete"><i class="icon-minus icon-white"></i></button>
 </div>

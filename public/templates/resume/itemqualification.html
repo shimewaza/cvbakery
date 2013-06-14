@@ -1,27 +1,22 @@
-<div class="sl-value">
+<div class="row-fluid sl-value">
     <p><%- obj.language %> ：<%- obj.background %></p>
 </div>
-<div class="sl-editor">
-    <div class="input-prepend">
-        <span class="add-on">取得日</span>
-        <select class="input-small" name="language">
-            <option value="">--</option>
-            <option value="英語" <% if(obj.language == "英語") print('selected'); %>>英語</option>
-            <option value="日本語" <% if(obj.language == "日本語") print('selected'); %>>日本語</option>
-            <option value="中国語" <% if(obj.language == "中国語") print('selected'); %>>中国語</option>
-        </select>
+<div class="row-fluid sl-editor">
+    <div class="span11">
+        <div class="input-prepend">
+            <span class="add-on">取得日</span>
+            <input type="text" class="input-medium" name="school" value="<%- obj.school %>">
+        </div>
+        <div class="input-prepend">
+            <span class="add-on">資格名</span>
+            <input type="text" class="input-medium" name="school" value="<%- obj.school %>">
+        </div>
+        <div class="input-prepend">
+            <span class="add-on">備　考</span>
+            <input type="text" class="input-medium" name="school" value="<%- obj.school %>">
+        </div>
     </div>
-    <div class="input-prepend">
-        <span class="add-on">資格名称</span>
-        <select class="input-medium" name="background">
-            <option value="">--</option>
-        </select>
+    <div class="span1">
+        <button class="btn btn-mini btn-warning btn-remove"><i class="icon-minus icon-white"></i></button>
     </div>
-    <div class="input-prepend">
-        <span class="add-on">備考</span>
-        <select class="input-medium" name="background">
-            <option value="">--</option>
-        </select>
-    </div>
-    <button class="btn btn-mini btn-warning btn-remove"><i class="icon-minus icon-white"></i></button>
 </div>

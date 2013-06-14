@@ -9,6 +9,8 @@ define([
 
         itemName: '語学能力',
 
+        itemNumber: 5,
+
         /*Template*/
         template: template,
 
@@ -90,7 +92,7 @@ define([
 
         updateModel: function() {
 
-            console.log(this.collection);
+            ;
 
             // Prepare the date for model update
             var data = {};
@@ -140,11 +142,13 @@ define([
         },
 
         addItem: function() {
-            this.collection.add(new Backbone.Model());
+            if (this.collection.length < this.itemNumber)
+                this.collection.add(new Backbone.Model());
+            else
+                this.ui.addBtn.fadeOut();
         },
 
-        removeItem: function(model) {
-            console.log(model);
+        removeItem: function(model) {;
             this.collection.remove(model);
         },
 

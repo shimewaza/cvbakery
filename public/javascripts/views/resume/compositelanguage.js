@@ -90,7 +90,7 @@ define([
 
         updateModel: function() {
 
-            console.log(this.collection);
+            ;
 
             // Prepare the date for model update
             var data = {};
@@ -144,7 +144,7 @@ define([
         },
 
         removeItem: function(model) {
-            console.log(model);
+            ;
             this.collection.remove(model);
         },
 

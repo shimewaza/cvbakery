@@ -5,6 +5,8 @@ define([
 
     var ItemEducation = BaseView.extend({
 
+        itemName: '社歴',
+        
         /*Template*/
         template: template,
 

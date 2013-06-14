@@ -189,7 +189,7 @@ define([
             // Attach a new popover 
             this.ui.inputZipCode.popover({
                 title: '郵便番号',
-                content: '<div style="font-size: 12px">数字7桁で入力してください。ご住所は該当郵便番号で自動に埋め込みます。</div>',
+                content: '数字7桁で入力してください。ご住所は該当郵便番号で自動に埋め込みます。',
                 placement: 'right',
                 trigger: 'hover',
                 html: true
