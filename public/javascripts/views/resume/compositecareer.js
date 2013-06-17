@@ -23,7 +23,7 @@ define([
         ui: {
             editor: '.sl-editor',
             addBtn: '.btn-add',
-            deleteBtn: '.btn-delete'
+            removeBtn: '.btn-remove'
         },
 
         /*Initializer*/
@@ -40,13 +40,12 @@ define([
             // Attach popover for add button in edit panel
             this._appendInfoOnAddBtn();
 
-            // Attach popover for delete button in edit panel
+            // Attach popover for remove button in edit panel
             this._appendInfoOnRemoveBtn();
-            
+
             if (this.collection.length >= this.itemNumber)
                 this.ui.addBtn.hide();
         }
-
     });
 
     return CareerView;

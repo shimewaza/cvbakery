@@ -1,14 +1,14 @@
 define([
-        'text!templates/resume/compositeeducation.html',
+        'text!templates/resume/compositetelno.html',
         'views/resume/compositebase',
-        'views/resume/itemeducation'
+        'views/resume/itemtelno'
 ], function(template, BaseView, itemView) {
 
-    var EducationView = BaseView.extend({
+    var TelnoView = BaseView.extend({
 
-        item: 'education',
+        item: 'telno',
 
-        itemName: '学歴',
+        itemName: '電話番号',
 
         itemNumber: 5,
 
@@ -48,5 +48,5 @@ define([
         }
     });
 
-    return EducationView;
+    return TelnoView;
 });

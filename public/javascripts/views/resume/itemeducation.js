@@ -143,7 +143,7 @@ define([
             var self = this;
             this.ui.editor.slideUp(function() {
                 self.trigger('item:delete', self.model);
-            })
+            });
         },
 
         _appendInfoOnInput: function() {

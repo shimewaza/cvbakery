@@ -212,7 +212,7 @@ li {
 	max-width: 580px;
 	min-width: 580px;
 	margin-right: 10px;
-	position: relative;
+	/*position: relative;*/
 }
 
 #resumePanel .radio.inline{

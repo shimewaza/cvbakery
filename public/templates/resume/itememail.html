@@ -1,12 +1,9 @@
-<div class="span4">
-    <i class="icon-envelope"></i>　E-mail：
+<div class="sl-value">
+    <%- obj %>
 </div>
-<div class="span8">
-    <div class="sl-value">
-        <%- obj.email %>
-    </div>
-    <div class="sl-editor">
-        <input type="text" class="input-medium" name="email" value="<%- obj.email %>">
-        <button class="btn btn-mini btn-danger btn-delete"><i class="icon-share-alt icon-white"></i></button>
+<div class="sl-editor">
+    <div class="sl-input">
+        <input type="text" class="input-medium" name="email" value="<%- obj %>">
+        <button class="btn btn-mini btn-warning btn-delete"><i class="icon-minus icon-white"></i></button>
     </div>
 </div>

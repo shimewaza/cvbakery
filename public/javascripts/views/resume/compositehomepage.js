@@ -1,14 +1,14 @@
 define([
-        'text!templates/resume/compositeeducation.html',
+        'text!templates/resume/compositehomepage.html',
         'views/resume/compositebase',
-        'views/resume/itemeducation'
+        'views/resume/itemhomepage'
 ], function(template, BaseView, itemView) {
 
-    var EducationView = BaseView.extend({
+    var HomepageView = BaseView.extend({
 
-        item: 'education',
+        item: 'homepage',
 
-        itemName: '学歴',
+        itemName: 'ホームページ',
 
         itemNumber: 5,
 
@@ -48,5 +48,5 @@ define([
         }
     });
 
-    return EducationView;
+    return HomepageView;
 });

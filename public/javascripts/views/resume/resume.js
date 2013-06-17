@@ -10,9 +10,9 @@ define([
 		'views/resume/itemavailabledate',
 		'views/resume/itemaddress',
 		'views/resume/itemneareststation',
-		'views/resume/itemtelno',
-		'views/resume/itememail',
-		'views/resume/itemhomepage',
+		'views/resume/compositetelno',
+		'views/resume/compositeemail',
+		'views/resume/compositehomepage',
 		'views/resume/itemselfintroduction',
 		'views/resume/compositeeducation',
 		'views/resume/compositecareer',
@@ -31,9 +31,9 @@ define([
 	AvailableDateView,
 	AddressView,
 	NearestStationView,
-	TelNoView,
-	EMailView,
-	HomePageView,
+	TelNoComposite,
+	EMailComposite,
+	HomePageComposite,
 	SelfIntroductionView,
 	EducationComposite,
 	CareerComposite,
@@ -109,15 +109,31 @@ define([
 			this.nearestStationView = new NearestStationView({
 				model: this.model
 			});
-			this.telNoView = new TelNoView({
-				model: this.model
+			// this.telNoView = new TelNoView({
+			// 	model: this.model
+			// });
+
+			var telnos = new Backbone.Collection(this.model.get('telNo'));
+			this.telNoComposite = new TelNoComposite({
+				model: this.model,
+				collection: telnos
 			});
-			this.emailView = new EMailView({
-				model: this.model
+			var emails = new Backbone.Collection(this.model.get('email'));
+			this.emailComposite = new EMailComposite({
+				model: this.model,
+				collection: emails
 			});
-			this.homePageView = new HomePageView({
-				model: this.model
+			var homepages = new Backbone.Collection(this.model.get('homePage'));
+			this.homePageComposite = new HomePageComposite({
+				model: this.model,
+				collection: homepages
 			});
+			// this.emailView = new EMailView({
+			// 	model: this.model
+			// });
+			// this.homePageView = new HomePageView({
+			// 	model: this.model
+			// });
 			this.selfIntroductionView = new SelfIntroductionView({
 				model: this.model
 			});
@@ -160,9 +176,9 @@ define([
 			this.availableDateArea.show(this.availableDateView);
 			this.addressArea.show(this.addressView);
 			this.nearestStationArea.show(this.nearestStationView);
-			this.telNoArea.show(this.telNoView);
-			this.emailArea.show(this.emailView);
-			this.homePageArea.show(this.homePageView);
+			this.telNoArea.show(this.telNoComposite);
+			this.emailArea.show(this.emailComposite);
+			this.homePageArea.show(this.homePageComposite);
 			this.selfIntroductionArea.show(this.selfIntroductionView);
 			this.educationArea.show(this.educationComposite);
 			this.careerArea.show(this.careerComposite);

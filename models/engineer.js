@@ -147,7 +147,7 @@ var Engineer = new Schema({
 		endDate: {
 			type: Date
 		},
-		companyName: {
+		company: {
 			type: String,
 			trim: true
 		},
