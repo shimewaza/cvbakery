@@ -17,8 +17,7 @@ define([
 		'views/resume/compositeeducation',
 		'views/resume/compositecareer',
 		'views/resume/compositelanguage',
-		'views/resume/compositequalification',
-		'views/resume/itempanel'
+		'views/resume/compositequalification'
 ], function(
 	resumeTemplate,
 	NameView,
@@ -38,8 +37,7 @@ define([
 	EducationComposite,
 	CareerComposite,
 	LanguageComposite,
-	QualificationComposite,
-	ItemPanelView) {
+	QualificationComposite) {
 
 	var ResumeView = Backbone.Marionette.Layout.extend({
 
@@ -82,30 +80,39 @@ define([
 			this.nameView = new NameView({
 				model: this.model
 			});
+
 			this.birthDayView = new BirthDayView({
 				model: this.model
 			});
+
 			this.genderView = new GenderView({
 				model: this.model
 			});
+
 			this.nationalityView = new NationalityView({
 				model: this.model
 			});
+
 			this.marriedView = new MarriedView({
 				model: this.model
 			});
+
 			this.firstArriveView = new FirstArriveView({
 				model: this.model
 			});
+
 			this.itExperienceView = new ItExperienceView({
 				model: this.model
 			});
+
 			this.availableDateView = new AvailableDateView({
 				model: this.model
 			});
+
 			this.addressView = new AddressView({
 				model: this.model
 			});
+
 			this.nearestStationView = new NearestStationView({
 				model: this.model
 			});
@@ -113,17 +120,19 @@ define([
 			// 	model: this.model
 			// });
 
-			var telnos = new Backbone.Collection(this.model.get('telNo'));
+			var telnos = new Backbone.Collection(this.model.get('telNos'));
 			this.telNoComposite = new TelNoComposite({
 				model: this.model,
 				collection: telnos
 			});
-			var emails = new Backbone.Collection(this.model.get('email'));
+
+			var emails = new Backbone.Collection(this.model.get('emails'));
 			this.emailComposite = new EMailComposite({
 				model: this.model,
 				collection: emails
 			});
-			var homepages = new Backbone.Collection(this.model.get('homePage'));
+
+			var homepages = new Backbone.Collection(this.model.get('homePages'));
 			this.homePageComposite = new HomePageComposite({
 				model: this.model,
 				collection: homepages
@@ -161,10 +170,14 @@ define([
 				model: this.model,
 				collection: qualifications
 			});
+
+			this.listenTo(vent, 'resume:itemAdded', this.onItemAdded);
 		},
 
 		// Render
 		onRender: function() {
+
+			var self = this;
 
 			this.nameArea.show(this.nameView);
 			this.birthDayArea.show(this.birthDayView);
@@ -184,6 +197,170 @@ define([
 			this.careerArea.show(this.careerComposite);
 			this.languageArea.show(this.languageComposite);
 			this.qualificationArea.show(this.qualificationComposite);
+
+			this.$el.find('#fileupload').fileupload({
+				type: 'PUT',
+				dataType: 'json',
+				done: function(e, data) {
+					$.each(data.result.files, function(index, file) {
+						$('<p/>').text(file.name).appendTo(self.$el);
+					});
+				}
+			});
+		},
+
+		onItemAdded: function(data) {
+
+			if (data.item == "birthDay") {
+				this.birthDayView = new BirthDayView({
+					model: this.model
+				});
+				this.birthDayArea.show(this.birthDayView);
+				return;
+			}
+
+			if (data.item == "gender") {
+				this.genderView = new GenderView({
+					model: this.model
+				});
+				this.genderArea.show(this.genderView);
+				return;
+			}
+
+			if (data.item == "nationality") {
+				this.nationalityView = new NationalityView({
+					model: this.model
+				});
+				this.nationalityArea.show(this.nationalityView);
+				return;
+			}
+
+			if (data.item == "married") {
+				this.marriedView = new MarriedView({
+					model: this.model
+				});
+				this.marriedArea.show(this.marriedView);
+				return;
+			}
+
+			if (data.item == "firstArrive") {
+				this.firstArriveView = new FirstArriveView({
+					model: this.model
+				});
+				this.firstArriveArea.show(this.firstArriveView);
+				return;
+			}
+
+			if (data.item == "itExperience") {
+				this.itExperienceView = new ItExperienceView({
+					model: this.model
+				});
+				this.itExperienceArea.show(this.itExperienceView);
+				return;
+			}
+
+			if (data.item == "availableDate") {
+				this.availableDateView = new AvailableDateView({
+					model: this.model
+				});
+				this.availableDateArea.show(this.availableDateView);
+				return;
+			}
+
+			if (data.item == "address") {
+				this.addressView = new AddressView({
+					model: this.model
+				});
+				this.addressArea.show(this.addressView);
+				return;
+			}
+
+			if (data.item == "nearestStation") {
+				this.nearestStationView = new NearestStationView({
+					model: this.model
+				});
+				this.nearestStationArea.show(this.nearestStationView);
+				return;
+			}
+
+			if (data.item == "telNos") {
+				var telnos = new Backbone.Collection(this.model.get('telNos'));
+				this.telNoComposite = new TelNoComposite({
+					model: this.model,
+					collection: telnos
+				});
+				this.telNoArea.show(this.telNoComposite);
+				return;
+			}
+
+			if (data.item == "emails") {
+				var emails = new Backbone.Collection(this.model.get('emails'));
+				this.emailComposite = new EMailComposite({
+					model: this.model,
+					collection: emails
+				});
+				this.emailArea.show(this.emailComposite);
+				return;
+			}
+
+			if (data.item == "homePages") {
+				var homepages = new Backbone.Collection(this.model.get('homePages'));
+				this.homePageComposite = new HomePageComposite({
+					model: this.model,
+					collection: homepages
+				});
+				this.homePageArea.show(this.homePageComposite);
+				return;
+			}
+
+			if (data.item == "selfIntroduction") {
+				this.selfIntroductionView = new SelfIntroductionView({
+					model: this.model
+				});
+				this.selfIntroductionArea.show(this.selfIntroductionView);
+				return;
+			}
+
+			if (data.item == "education") {
+				var educations = new Backbone.Collection(this.model.get('education'));
+				this.educationComposite = new EducationComposite({
+					model: this.model,
+					collection: educations
+				});
+				this.educationArea.show(this.educationComposite);
+				return;
+			}
+
+			if (data.item == "career") {
+				var careers = new Backbone.Collection(this.model.get('career'));
+				this.careerComposite = new CareerComposite({
+					model: this.model,
+					collection: careers
+				});
+				this.careerArea.show(this.careerComposite);
+				return;
+			}
+
+			if (data.item == "languageBackground") {
+				var languages = new Backbone.Collection(this.model.get('languageBackground'));
+				this.languageComposite = new LanguageComposite({
+					model: this.model,
+					collection: languages
+				});
+				this.languageArea.show(this.languageComposite);
+				return;
+			}
+
+			if (data.item == "qualification") {
+				var qualifications = new Backbone.Collection(this.model.get('qualification'));
+				this.qualificationComposite = new QualificationComposite({
+					model: this.model,
+					collection: qualifications
+				});
+				this.qualificationArea.show(this.qualificationComposite);
+				return;
+			}
+
 		}
 	});
 

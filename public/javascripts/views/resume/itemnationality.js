@@ -9,6 +9,8 @@ define([
 
         itemName: '国籍',
 
+        itemIcon: 'icon-flag',
+
         /*Template*/
         template: template,
 

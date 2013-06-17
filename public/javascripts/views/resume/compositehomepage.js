@@ -6,9 +6,11 @@ define([
 
     var HomepageView = BaseView.extend({
 
-        item: 'homepage',
+        item: 'homePages',
 
         itemName: 'ホームページ',
+
+        itemIcon: 'icon-globe',
 
         itemNumber: 5,
 

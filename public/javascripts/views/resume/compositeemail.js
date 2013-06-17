@@ -6,9 +6,11 @@ define([
 
     var EmailView = BaseView.extend({
 
-        item: 'email',
+        item: 'emails',
 
         itemName: 'E-mail',
+
+        itemIcon: 'icon-envelope',
 
         itemNumber: 5,
 

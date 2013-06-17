@@ -10,6 +10,8 @@ define([
 
         itemName: '語学能力',
 
+        itemIcon: 'icon-comment',
+
         itemNumber: 5,
 
         /*Template*/

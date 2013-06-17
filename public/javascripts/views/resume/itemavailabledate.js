@@ -9,6 +9,8 @@ define([
 
         itemName: "稼働可能日",
 
+        itemIcon: 'icon-ok',
+
         itemHelp: "次の仕事を始められる日期を「YYYY/MM/DD」のフォーマットで入力してください。",
 
         /*Template*/

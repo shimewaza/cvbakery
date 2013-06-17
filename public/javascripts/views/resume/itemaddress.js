@@ -9,6 +9,8 @@ define([
 
         itemName: "住所",
 
+        itemIcon: 'icon-home',
+
         /*Template*/
         template: template,
 

@@ -10,6 +10,8 @@ define([
 
         itemName: '学歴',
 
+        itemIcon: 'icon-pencil',
+
         itemNumber: 5,
 
         /*Template*/

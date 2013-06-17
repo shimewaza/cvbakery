@@ -68,6 +68,7 @@ define([], function() {
         */
         setFocusIn: function() {
             this.$el.css('cursor', 'pointer');
+            this.$el.find('.sl-value').css('border', '1px solid #e3e3e3').addClass('sl-panel');
             this.focus = true;
         },
 
@@ -75,6 +76,7 @@ define([], function() {
             Clear the flag when mouse out
         */
         setFocusOut: function() {
+            this.$el.find('.sl-value').css('border', '1px none #e3e3e3').removeClass('sl-panel');
             this.focus = false;
         },
 
@@ -84,10 +86,31 @@ define([], function() {
             SubClass should override this method to define how to remove item.
         */
         removeItem: function() {
-            // slide up editor
-            this.$el.slideUp(function() {
-                // dispose the view
-                this.close();
+
+            var self = this;
+            
+            vent.trigger('resume:itemRemoved', {
+                item: this.item,
+                itemName: this.itemName,
+                itemIcon: this.itemIcon
+            });
+
+            var data = this.model.get('setting');
+            data[this.item] = false;
+
+            // save the model
+            this.model.save({setting: data}, {
+
+                // if save success
+                success: function() {
+                    // slide up editor
+                    self.$el.slideUp(function() {
+                        // dispose the view
+                        self.close();
+                    });
+                },
+                // use patch
+                patch: true
             });
         },
 

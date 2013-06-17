@@ -95,6 +95,13 @@ define([], function() {
         /*Remove item*/
         removeItem: function() {
             var self = this;
+
+            vent.trigger('resume:itemRemoved', {
+                item: this.item,
+                itemName: this.itemName,
+                itemIcon: this.itemIcon
+            });
+            
             this.$el.slideUp(function() {
                 // dispose the view
                 self.close();

@@ -9,6 +9,8 @@ define([
 
         itemName: "最寄り駅",
 
+        itemIcon: 'icon-road',
+
         itemHelp: "20文字以内で入力してください。",
 
         /*Template*/

@@ -22,7 +22,10 @@ app.configure(function() {
   app.use(express.session({
     secret: 'selink'
   }));
-  app.use(express.bodyParser());
+  app.use(express.bodyParser({
+    keepExtensions: true,
+    uploadDir: path.join(__dirname, 'public/upload')
+  }));
   app.use(express.methodOverride());
   // app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));
@@ -31,7 +34,7 @@ app.configure(function() {
     var excludePath = ['/', '/login', '/account/create'];
 
     if (excludePath.indexOf(req.path) != -1) {
-      next();      
+      next();
     } else if (!req.session.accountId) {
       res.status(401).send("ログインしてください。");
     } else {
@@ -51,7 +54,7 @@ mongoose.set('debug', true);
 // データベース接続初期化
 mongoose.connect('mongodb://localhost/test');
 mongoose.connection.on('open', function() {
-  console.log("db connected."); 
+  console.log("db connected.");
 });
 
 app.get('/', function(req, res) {

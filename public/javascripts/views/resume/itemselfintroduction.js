@@ -9,6 +9,8 @@ define([
 
         itemName: "自己紹介",
 
+        itemIcon: 'icon-user',
+
         itemHelp: "なるべくアピールしましょう！",
 
         /*Template*/

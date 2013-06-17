@@ -9,6 +9,8 @@ define([
 
         itemName: "生年月日",
 
+        itemIcon: 'icon-calendar',
+
         itemHelp: "「YYYY/MM/DD」のフォーマットで入力してください。ご年齢を該当情報によって計算します。",
 
         /*Template*/

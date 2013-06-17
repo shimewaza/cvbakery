@@ -9,6 +9,8 @@ define([
 
         itemName: '婚姻状況',
 
+        itemIcon: 'icon-heart',
+
         /*Template*/
         template: template,
 

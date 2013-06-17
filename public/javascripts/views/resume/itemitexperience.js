@@ -9,6 +9,8 @@ define([
 
         itemName: "IT経験年数",
 
+        itemIcon: 'icon-briefcase',
+
         itemHelp: "IT業界で勤めていた年数を入力してください。",
 
         /*Template*/

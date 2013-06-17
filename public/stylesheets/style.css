@@ -36,6 +36,7 @@ li {
 .sl-photo {
 	max-width: 150px;
 	max-height: 210px;
+	margin-bottom: 5px;
 }
 
 /*.sl-editor input{
@@ -230,12 +231,12 @@ li {
 	margin-left: 0px !important;
 }
 
-#resumeItemPanel {
+#resumeToolPanel {
 	min-width: 140px;
 	max-width: 140px;
 }
 
-#resumeItemPanel button {
+#resumeToolPanel button {
 	margin: 3px;
 /*	margin-right: 5px;
 	margin-bottom: 5px;*/

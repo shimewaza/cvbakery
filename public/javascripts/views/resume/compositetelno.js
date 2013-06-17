@@ -6,9 +6,11 @@ define([
 
     var TelnoView = BaseView.extend({
 
-        item: 'telno',
+        item: 'telNos',
 
         itemName: '電話番号',
+
+        itemIcon: 'icon-signal',
 
         itemNumber: 5,
 

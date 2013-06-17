@@ -34,6 +34,11 @@ var Engineer = new Schema({
 		type: String,
 		trim: true
 	},
+	// Photo
+	photo: {
+		type: String,
+		trim: true
+	},
 	// 生年月日
 	birthDay: {
 		type: Date
@@ -76,18 +81,26 @@ var Engineer = new Schema({
 		type: Date
 	},
 	// 電話番号
-	telNo: {
-		type: [String]
-	},
+	telNos: [{
+		telNo: {
+			type: String,
+			trim: true
+		}
+	}],
 	// E-mail
-	email: {
-		type: [String]
-	},
+	emails: [{
+		email: {
+			type: String,
+			trim: true
+		}
+	}],
 	// ホームページ
-	homePage: {
-		type: String,
-		trim: true
-	},
+	homePages: [{
+		homePage: {
+			type: String,
+			trim: true
+		}
+	}],
 	// 郵便番号
 	zipCode: {
 		type: String,
@@ -180,9 +193,83 @@ var Engineer = new Schema({
 		trim: true
 	},
 	// 公開フラグ
-	publish: {
-		type: Boolean,
-		default: true
+	setting: {
+		name: {
+			type: Boolean,
+			default: false
+		},
+		photo: {
+			type: Boolean,
+			default: false
+		},
+		birthDay: {
+			type: Boolean,
+			default: false
+		},
+		gender: {
+			type: Boolean,
+			default: false
+		},
+		nationality: {
+			type: Boolean,
+			default: false
+		},
+		married: {
+			type: Boolean,
+			default: false
+		},
+		firstArrive: {
+			type: Boolean,
+			default: false
+		},
+		itExperience: {
+			type: Boolean,
+			default: false
+		},
+		nearestStation: {
+			type: Boolean,
+			default: false
+		},
+		availableDate: {
+			type: Boolean,
+			default: false
+		},
+		telNos: {
+			type: Boolean,
+			default: false
+		},
+		emails: {
+			type: Boolean,
+			default: false
+		},
+		homePages: {
+			type: Boolean,
+			default: false
+		},
+		address: {
+			type: Boolean,
+			default: false
+		},
+		selfIntroduction: {
+			type: Boolean,
+			default: false
+		},
+		languageBackground: {
+			type: Boolean,
+			default: false
+		},
+		education: {
+			type: Boolean,
+			default: false
+		},
+		career: {
+			type: Boolean,
+			default: false
+		},
+		qualification: {
+			type: Boolean,
+			default: false
+		},
 	},
 	// 論理削除フラグ
 	logicDelete: {

@@ -9,6 +9,8 @@ define([
 
         itemName: "初回来日",
 
+        itemIcon: 'icon-plane',
+
         itemHelp: "初めて日本へ来た日期を「YYYY/MM/DD」のフォーマットで入力してください。",
 
         /*Template*/

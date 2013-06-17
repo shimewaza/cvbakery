@@ -10,6 +10,8 @@ define([
 
         itemName: '資格',
 
+        itemIcon: 'icon-bookmark',
+
         itemNumber: 5,
 
         /*Template*/

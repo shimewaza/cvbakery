@@ -1,8 +1,9 @@
 define([
         'views/page',
         'views/resume/resume',
+        'views/resume/toolPanel',
         'models/engineer'
-], function(PageView, ResumeView, EngineerModel) {
+], function(PageView, ResumeView, ToolPanelView, EngineerModel) {
 
     var Controller = Backbone.Marionette.Controller.extend({
 
@@ -33,7 +34,9 @@ define([
                     var resumeView = new ResumeView({
                         model: engineerModel
                     });
+                    var toolPanelView = new ToolPanelView();
                     self.pageView.content.show(resumeView);
+                    self.pageView.navigator.show(toolPanelView);
                 }
             });
         }

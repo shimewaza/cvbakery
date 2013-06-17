@@ -36,7 +36,7 @@ define([
 
         updateTelNo: function() {
             this.ui.value.text(this.ui.input.val());
-            this.model.set('telno', this.ui.input.val());
+            this.model.set('telNo', this.ui.input.val());
         },
 
         deleteItem: function() {

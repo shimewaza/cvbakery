@@ -9,6 +9,8 @@ define([
 
         itemName: '性別',
 
+        itemIcon: 'icon-leaf',
+
         /*Template*/
         template: template,
 

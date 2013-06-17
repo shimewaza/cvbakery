@@ -83,6 +83,12 @@ exports.update = function(req, res) {
 
 	delete req.body._id;
 	console.log(req.body);
+	console.log(req.files);
+
+	if(req.files && req.files.photo) {
+		var photoPath = req.files.photo.path;
+		req.body.photo = photoPath.substring(photoPath.lastIndexOf("\\"));
+	}
 
 	Engineer.findByIdAndUpdate(req.params.id, req.body, function(err, newProfile) {
 

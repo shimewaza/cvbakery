@@ -10,6 +10,8 @@ define([
 
         itemName: '社歴',
 
+        itemIcon: 'icon-briefcase',
+
         itemNumber: 5,
 
         /*Template*/

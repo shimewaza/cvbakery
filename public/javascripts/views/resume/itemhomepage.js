@@ -36,7 +36,7 @@ define([
 
         updateHomePage: function() {
             this.ui.value.text(this.ui.input.val());
-            this.model.set('homepage', this.ui.input.val());
+            this.model.set('homePage', this.ui.input.val());
         },
 
         deleteItem: function() {

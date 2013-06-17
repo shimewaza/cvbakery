@@ -4,6 +4,9 @@ require.config({
 		bootstrap: 'lib/bootstrap',
 		datepickerlang: 'lib/locales/bootstrap-datepicker.ja',
 		datepicker: 'lib/bootstrap-datepicker',
+		'jquery.ui.widget': 'lib/jquery.ui.widget',
+		iframetransport: 'lib/jquery.iframe-transport',
+		fileupload: 'lib/jquery.fileupload',
 		underscore: 'lib/underscore',
 		backbone: 'lib/backbone',
 		deepmodel: 'lib/deep-model',
@@ -25,6 +28,9 @@ require.config({
 		datepickerlang: {
 			deps: ['datepicker']
 		},
+		fileupload: {
+			deps: ['jquery', 'jquery.ui.widget', 'iframetransport']
+		}, 
 		bootstrap: {
 			deps: ['jquery']
 		},
@@ -42,7 +48,7 @@ require.config({
 			deps: ['backbone.wreqr']
 		},
 		selink: {
-			deps: ['bootstrap', 'datepickerlang', 'marionette', 'deepmodel', 'vent']
+			deps: ['bootstrap', 'datepickerlang', 'fileupload', 'marionette', 'deepmodel', 'vent']
 		}
 	}
 });
