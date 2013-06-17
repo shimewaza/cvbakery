@@ -116,9 +116,6 @@ define([
 			this.nearestStationView = new NearestStationView({
 				model: this.model
 			});
-			// this.telNoView = new TelNoView({
-			// 	model: this.model
-			// });
 
 			var telnos = new Backbone.Collection(this.model.get('telNos'));
 			this.telNoComposite = new TelNoComposite({
@@ -137,12 +134,7 @@ define([
 				model: this.model,
 				collection: homepages
 			});
-			// this.emailView = new EMailView({
-			// 	model: this.model
-			// });
-			// this.homePageView = new HomePageView({
-			// 	model: this.model
-			// });
+
 			this.selfIntroductionView = new SelfIntroductionView({
 				model: this.model
 			});
@@ -178,25 +170,94 @@ define([
 		onRender: function() {
 
 			var self = this;
+			var setting = this.model.get('setting');
 
 			this.nameArea.show(this.nameView);
-			this.birthDayArea.show(this.birthDayView);
-			this.genderArea.show(this.genderView);
-			this.nationalityArea.show(this.nationalityView);
-			this.marriedArea.show(this.marriedView);
-			this.firstArriveArea.show(this.firstArriveView);
-			this.itExperienceArea.show(this.itExperienceView);
-			this.availableDateArea.show(this.availableDateView);
-			this.addressArea.show(this.addressView);
-			this.nearestStationArea.show(this.nearestStationView);
-			this.telNoArea.show(this.telNoComposite);
-			this.emailArea.show(this.emailComposite);
-			this.homePageArea.show(this.homePageComposite);
-			this.selfIntroductionArea.show(this.selfIntroductionView);
-			this.educationArea.show(this.educationComposite);
-			this.careerArea.show(this.careerComposite);
-			this.languageArea.show(this.languageComposite);
-			this.qualificationArea.show(this.qualificationComposite);
+
+			if (setting.birthDay)
+				this.birthDayArea.show(this.birthDayView);
+			else
+				this.birthDayView.removeItem(true);
+
+			if (setting.gender)
+				this.genderArea.show(this.genderView);
+			else
+				this.genderView.removeItem(true);
+
+			if (setting.nationality)
+				this.nationalityArea.show(this.nationalityView);
+			else
+				this.nationalityView.removeItem(true);
+
+			if (setting.married)
+				this.marriedArea.show(this.marriedView);
+			else
+				this.marriedView.removeItem(true);
+
+			if (setting.firstArrive)
+				this.firstArriveArea.show(this.firstArriveView);
+			else
+				this.firstArriveView.removeItem(true);
+
+			if (setting.itExperience)
+				this.itExperienceArea.show(this.itExperienceView);
+			else
+				this.itExperienceView.removeItem(true);
+
+			if (setting.available)
+				this.availableDateArea.show(this.availableDateView);
+			else
+				this.availableDateView.removeItem(true);
+
+			if (setting.address)
+				this.addressArea.show(this.addressView);
+			else
+				this.addressView.removeItem(true);
+
+			if (setting.nearestStation)
+				this.nearestStationArea.show(this.nearestStationView);
+			else
+				this.nearestStationView.removeItem(true);
+
+			if (setting.telNos)
+				this.telNoArea.show(this.telNoComposite);
+			else
+				this.telNoComposite.removeItem(true);
+
+			if (setting.emails)
+				this.emailArea.show(this.emailComposite);
+			else
+				this.emailComposite.removeItem(true);
+
+			if (setting.homePages)
+				this.homePageArea.show(this.homePageComposite);
+			else
+				this.homePageComposite.removeItem(true);
+
+			if (setting.selfIntroduction)
+				this.selfIntroductionArea.show(this.selfIntroductionView);
+			else
+				this.selfIntroductionView.removeItem(true);
+
+			if (setting.education)
+				this.educationArea.show(this.educationComposite);
+			else
+				this.educationComposite.removeItem(true);
+
+			if (setting.career)
+				this.careerArea.show(this.careerComposite);
+			else
+				this.careerComposite.removeItem(true);
+
+			if (setting.languageBackground)
+				this.languageArea.show(this.languageComposite);
+			else
+				this.languageComposite.removeItem(true);
+
+			if (setting.qualification)
+				this.qualificationArea.show(this.qualificationComposite);
+			else
+				this.qualificationComposite.removeItem(true);
 
 			this.$el.find('#fileupload').fileupload({
 				type: 'PUT',

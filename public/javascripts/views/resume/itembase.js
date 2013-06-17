@@ -85,21 +85,25 @@ define([], function() {
             Remove item 
             SubClass should override this method to define how to remove item.
         */
-        removeItem: function() {
+        removeItem: function(silence) {
 
             var self = this;
-            
+
             vent.trigger('resume:itemRemoved', {
                 item: this.item,
                 itemName: this.itemName,
                 itemIcon: this.itemIcon
             });
 
+            if (silence) return;
+
             var data = this.model.get('setting');
             data[this.item] = false;
 
             // save the model
-            this.model.save({setting: data}, {
+            this.model.save({
+                setting: data
+            }, {
 
                 // if save success
                 success: function() {
@@ -190,7 +194,7 @@ define([], function() {
 
             // do nothing if target is not exists
             if (!target) return;
-
+            console.log(target);
             // destroy previous popover
             target.popover('destroy');
 

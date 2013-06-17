@@ -19,7 +19,7 @@ define([], function() {
             'click .btn-add': 'addItem',
 
             // Remove the item when remove button clicked
-            'click .btn-remove': 'removeItem',
+            'click .btn-remove': 'removeItem'
         },
 
         /*
@@ -88,12 +88,12 @@ define([], function() {
 
         deleteItem: function(model) {
             this.collection.remove(model);
-            if(this.collection.length < this.itemNumber)
+            if (this.collection.length < this.itemNumber)
                 this.ui.addBtn.fadeIn();
         },
 
         /*Remove item*/
-        removeItem: function() {
+        removeItem: function(silence) {
             var self = this;
 
             vent.trigger('resume:itemRemoved', {
@@ -101,10 +101,27 @@ define([], function() {
                 itemName: this.itemName,
                 itemIcon: this.itemIcon
             });
-            
-            this.$el.slideUp(function() {
-                // dispose the view
-                self.close();
+
+            if (silence) return;
+
+            var data = this.model.get('setting');
+            data[this.item] = false;
+
+            // save the model
+            this.model.save({
+                setting: data
+            }, {
+
+                // if save success
+                success: function() {
+                    // slide up editor
+                    self.$el.slideUp(function() {
+                        // dispose the view
+                        self.close();
+                    });
+                },
+                // use patch
+                patch: true
             });
         },
 

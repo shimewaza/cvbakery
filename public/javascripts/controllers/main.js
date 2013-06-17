@@ -29,14 +29,15 @@ define([
                 _id: this.account.userInfo.profileId
             });
 
+            var toolPanelView = new ToolPanelView();
+            self.pageView.navigator.show(toolPanelView);
+
             engineerModel.fetch({
                 success: function() {
                     var resumeView = new ResumeView({
                         model: engineerModel
                     });
-                    var toolPanelView = new ToolPanelView();
                     self.pageView.content.show(resumeView);
-                    self.pageView.navigator.show(toolPanelView);
                 }
             });
         }

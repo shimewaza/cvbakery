@@ -82,25 +82,28 @@ var Engineer = new Schema({
 	},
 	// 電話番号
 	telNos: [{
-		telNo: {
-			type: String,
-			trim: true
+			telNo: {
+				type: String,
+				trim: true
+			}
 		}
-	}],
+	],
 	// E-mail
 	emails: [{
-		email: {
-			type: String,
-			trim: true
+			email: {
+				type: String,
+				trim: true
+			}
 		}
-	}],
+	],
 	// ホームページ
 	homePages: [{
-		homePage: {
-			type: String,
-			trim: true
+			homePage: {
+				type: String,
+				trim: true
+			}
 		}
-	}],
+	],
 	// 郵便番号
 	zipCode: {
 		type: String,
@@ -129,64 +132,68 @@ var Engineer = new Schema({
 	},
 	// 言語背景
 	languageBackground: [{
-		language: {
-			type: String,
-			trim: true
-		},
-		background: {
-			type: String,
-			trim: true
+			language: {
+				type: String,
+				trim: true
+			},
+			background: {
+				type: String,
+				trim: true
+			}
 		}
-	}],
+	],
 	// Education
 	education: [{
-		graduate: {
-			type: Date
-		},
-		school: {
-			type: String,
-			trim: true
-		},
-		major: {
-			type: String,
-			trim: true
+			graduate: {
+				type: Date
+			},
+			school: {
+				type: String,
+				trim: true
+			},
+			major: {
+				type: String,
+				trim: true
+			}
 		}
-	}],
+	],
 	// Career
 	career: [{
-		startDate: {
-			type: Date
-		},
-		endDate: {
-			type: Date
-		},
-		company: {
-			type: String,
-			trim: true
-		},
-		address: {
-			type: String,
-			trim: true
-		},
-		position: {
-			type: String,
-			trim: true
+			startDate: {
+				type: Date
+			},
+			endDate: {
+				type: Date
+			},
+			company: {
+				type: String,
+				trim: true
+			},
+			address: {
+				type: String,
+				trim: true
+			},
+			position: {
+				type: String,
+				trim: true
+			}
 		}
-	}],
+	],
 	// Qualification
 	qualification: [{
-		qualifiedDate: {
-			type: Date
-		},
-		qualificationName: {
-			type: String,
-			trim: true
-		},
-		remark: {
-			type: String,
-			trim: true
+			qualifiedDate: {
+				type: Date
+			},
+			qualificationName: {
+				type: String,
+				trim: true
+			},
+			remark: {
+				type: String,
+				trim: true
+			}
 		}
-	}],
+	],
 	// スキル補足
 	skillRemark: {
 		type: String,
@@ -196,79 +203,79 @@ var Engineer = new Schema({
 	setting: {
 		name: {
 			type: Boolean,
-			default: false
+			default: true
 		},
 		photo: {
 			type: Boolean,
-			default: false
+			default: true
 		},
 		birthDay: {
 			type: Boolean,
-			default: false
+			default: true
 		},
 		gender: {
 			type: Boolean,
-			default: false
+			default: true
 		},
 		nationality: {
 			type: Boolean,
-			default: false
+			default: true
 		},
 		married: {
 			type: Boolean,
-			default: false
+			default: true
 		},
 		firstArrive: {
 			type: Boolean,
-			default: false
+			default: true
 		},
 		itExperience: {
 			type: Boolean,
-			default: false
+			default: true
 		},
 		nearestStation: {
 			type: Boolean,
-			default: false
+			default: true
 		},
 		availableDate: {
 			type: Boolean,
-			default: false
+			default: true
 		},
 		telNos: {
 			type: Boolean,
-			default: false
+			default: true
 		},
 		emails: {
 			type: Boolean,
-			default: false
+			default: true
 		},
 		homePages: {
 			type: Boolean,
-			default: false
+			default: true
 		},
 		address: {
 			type: Boolean,
-			default: false
+			default: true
 		},
 		selfIntroduction: {
 			type: Boolean,
-			default: false
+			default: true
 		},
 		languageBackground: {
 			type: Boolean,
-			default: false
+			default: true
 		},
 		education: {
 			type: Boolean,
-			default: false
+			default: true
 		},
 		career: {
 			type: Boolean,
-			default: false
+			default: true
 		},
 		qualification: {
 			type: Boolean,
-			default: false
+			default: true
 		},
 	},
 	// 論理削除フラグ
