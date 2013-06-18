@@ -28,6 +28,13 @@ define([], function() {
             'click .btn-cancel': 'deleteCancel'
         },
 
+        commonUI: {
+            value: '.sl-value',
+            editor: '.sl-editor',
+            removeBtn: '.btn-remove',
+            deleteBtn: '.btn-delete'
+        },
+
         /*
             Switch sl-editor from view-mode to edit-mode
         */
@@ -68,7 +75,7 @@ define([], function() {
         */
         setFocusIn: function() {
             this.$el.css('cursor', 'pointer');
-            this.$el.find('.sl-value').css('border', '1px solid #e3e3e3').addClass('sl-panel');
+            this.$el.find('.sl-value').css('border', '1px solid #e3e3e3')/*.addClass('sl-panel')*/;
             this.focus = true;
         },
 
@@ -76,7 +83,7 @@ define([], function() {
             Clear the flag when mouse out
         */
         setFocusOut: function() {
-            this.$el.find('.sl-value').css('border', '1px none #e3e3e3').removeClass('sl-panel');
+            this.$el.find('.sl-value').css('border', '1px none #e3e3e3')/*.removeClass('sl-panel')*/;
             this.focus = false;
         },
 
@@ -85,17 +92,20 @@ define([], function() {
             Remove item 
             SubClass should override this method to define how to remove item.
         */
-        removeItem: function(silence) {
+        removeItem: function(option) {
 
             var self = this;
 
-            vent.trigger('resume:itemRemoved', {
-                item: this.item,
-                itemName: this.itemName,
-                itemIcon: this.itemIcon
-            });
+            // console.log(silence);
 
-            if (silence) return;
+            if (option && option.silence === true) {
+                vent.trigger('resume:itemRemoved', {
+                    item: self.item,
+                    itemName: self.itemName,
+                    itemIcon: self.itemIcon
+                });
+                return;
+            }
 
             var data = this.model.get('setting');
             data[this.item] = false;
@@ -109,6 +119,13 @@ define([], function() {
                 success: function() {
                     // slide up editor
                     self.$el.slideUp(function() {
+
+                        vent.trigger('resume:itemRemoved', {
+                            item: self.item,
+                            itemName: self.itemName,
+                            itemIcon: self.itemIcon
+                        });
+
                         // dispose the view
                         self.close();
                     });
@@ -194,7 +211,7 @@ define([], function() {
 
             // do nothing if target is not exists
             if (!target) return;
-            console.log(target);
+
             // destroy previous popover
             target.popover('destroy');
 

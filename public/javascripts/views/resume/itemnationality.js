@@ -14,28 +14,24 @@ define([
         /*Template*/
         template: template,
 
-        /*UI*/
-        ui: {
-            value: '.sl-value',
-            editor: '.sl-editor',
-            input: 'select',
-            removeBtn: '.btn-remove'
-        },
-
         /*Initializer*/
         initialize: function() {
+            
+            this.ui = _.extend({}, this.commonUI, {
+                input: 'select',
+            });
 
             this.events = _.extend({}, this.commonEvents, {
                 // Update model when input's value was chenaged
                 'change select': 'updateModel',
             });
-
-            // Listen to the universal-click, switch to view-mode when input lost focus
-            this.listenTo(vent, 'click:universal', this.switchToValue);
         },
 
         /*After Render*/
         onRender: function() {
+
+            // Listen to the universal-click, switch to view-mode when input lost focus
+            this.listenTo(vent, 'click:universal', this.switchToValue);
 
             // Attach popover for remove button in edit panel
             this._appendInfoOnRemoveBtn();

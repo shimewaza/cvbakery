@@ -22,6 +22,12 @@ define([], function() {
             'click .btn-remove': 'removeItem'
         },
 
+        commonUI: {
+            editor: '.sl-editor',
+            addBtn: '.btn-add',
+            removeBtn: '.btn-remove'
+        },
+
         /*
             Common events may happend on Collection
         */
@@ -93,16 +99,19 @@ define([], function() {
         },
 
         /*Remove item*/
-        removeItem: function(silence) {
+        removeItem: function(option) {
             var self = this;
 
-            vent.trigger('resume:itemRemoved', {
-                item: this.item,
-                itemName: this.itemName,
-                itemIcon: this.itemIcon
-            });
+            if (option && option.silence === true) {
+                vent.trigger('resume:itemRemoved', {
+                    item: self.item,
+                    itemName: self.itemName,
+                    itemIcon: self.itemIcon
+                });
+                return;
+            }
 
-            if (silence) return;
+            // if (silence) return;
 
             var data = this.model.get('setting');
             data[this.item] = false;
@@ -114,6 +123,12 @@ define([], function() {
 
                 // if save success
                 success: function() {
+
+                    vent.trigger('resume:itemRemoved', {
+                        item: self.item,
+                        itemName: self.itemName,
+                        itemIcon: self.itemIcon
+                    });
                     // slide up editor
                     self.$el.slideUp(function() {
                         // dispose the view
@@ -172,7 +187,7 @@ define([], function() {
         _appendInfoOnAddBtn: function() {
             this._appendInfoOn(this.ui.addBtn, {
                 title: "「" + this.itemName + "」を追加します",
-                content: "「" + this.itemName + '」を1件追加します。<br/><small class="text-info">' + this.itemNumber + '件まで追加できます。</small>'
+                content: "「" + this.itemName + '」を1件追加します。<br/><p class="text-info">' + this.itemNumber + '件まで追加できます。</p>'
             })
         },
 

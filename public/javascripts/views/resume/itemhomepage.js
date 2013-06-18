@@ -10,16 +10,13 @@ define([
         /*Template*/
         template: template,
 
-        /*UI*/
-        ui: {
-            value: '.sl-value',
-            editor: '.sl-editor',
-            input: 'input',
-            deleteBtn: '.btn-delete'
-        },
-
         /*Initializer*/
         initialize: function() {
+
+            this.ui = _.extend({}, this.commonUI, {
+                input: 'input',
+            });
+
             this.events = _.extend({}, this.commonEvents, {
                 // Update model when input's value was chenaged
                 'change input': 'updateHomePage'

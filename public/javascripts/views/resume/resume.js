@@ -1,5 +1,6 @@
 define([
 		'text!templates/resume/resume.html',
+		'views/resume/itemphoto',
 		'views/resume/itemname',
 		'views/resume/itembirthday',
 		'views/resume/itemgender',
@@ -20,6 +21,7 @@ define([
 		'views/resume/compositequalification'
 ], function(
 	resumeTemplate,
+	PhotoView,
 	NameView,
 	BirthDayView,
 	GenderView,
@@ -54,6 +56,7 @@ define([
 		template: resumeTemplate,
 
 		regions: {
+			photoArea: '#photo',
 			nameArea: '#name',
 			birthDayArea: '#birthDay',
 			genderArea: '#gender',
@@ -76,6 +79,18 @@ define([
 
 		// Initializer
 		initialize: function() {
+
+			this.regionManager.each(function(region) {
+				region.open = function(view) {
+					this.$el.hide();
+					this.$el.html(view.el);
+					this.$el.slideDown("fast");
+				};
+			});
+
+			this.photoView = new PhotoView({
+				model: this.model
+			});
 
 			this.nameView = new NameView({
 				model: this.model
@@ -172,102 +187,127 @@ define([
 			var self = this;
 			var setting = this.model.get('setting');
 
+			this.photoArea.show(this.photoView);
 			this.nameArea.show(this.nameView);
 
 			if (setting.birthDay)
 				this.birthDayArea.show(this.birthDayView);
 			else
-				this.birthDayView.removeItem(true);
+				this.birthDayView.removeItem({
+					silence: true
+				});
 
 			if (setting.gender)
 				this.genderArea.show(this.genderView);
 			else
-				this.genderView.removeItem(true);
+				this.genderView.removeItem({
+					silence: true
+				});
 
 			if (setting.nationality)
 				this.nationalityArea.show(this.nationalityView);
 			else
-				this.nationalityView.removeItem(true);
+				this.nationalityView.removeItem({
+					silence: true
+				});
 
 			if (setting.married)
 				this.marriedArea.show(this.marriedView);
 			else
-				this.marriedView.removeItem(true);
+				this.marriedView.removeItem({
+					silence: true
+				});
 
 			if (setting.firstArrive)
 				this.firstArriveArea.show(this.firstArriveView);
 			else
-				this.firstArriveView.removeItem(true);
+				this.firstArriveView.removeItem({
+					silence: true
+				});
 
 			if (setting.itExperience)
 				this.itExperienceArea.show(this.itExperienceView);
 			else
-				this.itExperienceView.removeItem(true);
+				this.itExperienceView.removeItem({
+					silence: true
+				});
 
-			if (setting.available)
+			if (setting.availableDate)
 				this.availableDateArea.show(this.availableDateView);
 			else
-				this.availableDateView.removeItem(true);
+				this.availableDateView.removeItem({
+					silence: true
+				});
 
 			if (setting.address)
 				this.addressArea.show(this.addressView);
 			else
-				this.addressView.removeItem(true);
+				this.addressView.removeItem({
+					silence: true
+				});
 
 			if (setting.nearestStation)
 				this.nearestStationArea.show(this.nearestStationView);
 			else
-				this.nearestStationView.removeItem(true);
+				this.nearestStationView.removeItem({
+					silence: true
+				});
 
 			if (setting.telNos)
 				this.telNoArea.show(this.telNoComposite);
 			else
-				this.telNoComposite.removeItem(true);
+				this.telNoComposite.removeItem({
+					silence: true
+				});
 
 			if (setting.emails)
 				this.emailArea.show(this.emailComposite);
 			else
-				this.emailComposite.removeItem(true);
+				this.emailComposite.removeItem({
+					silence: true
+				});
 
 			if (setting.homePages)
 				this.homePageArea.show(this.homePageComposite);
 			else
-				this.homePageComposite.removeItem(true);
+				this.homePageComposite.removeItem({
+					silence: true
+				});
 
 			if (setting.selfIntroduction)
 				this.selfIntroductionArea.show(this.selfIntroductionView);
 			else
-				this.selfIntroductionView.removeItem(true);
+				this.selfIntroductionView.removeItem({
+					silence: true
+				});
 
 			if (setting.education)
 				this.educationArea.show(this.educationComposite);
 			else
-				this.educationComposite.removeItem(true);
+				this.educationComposite.removeItem({
+					silence: true
+				});
 
 			if (setting.career)
 				this.careerArea.show(this.careerComposite);
 			else
-				this.careerComposite.removeItem(true);
+				this.careerComposite.removeItem({
+					silence: true
+				});
 
 			if (setting.languageBackground)
 				this.languageArea.show(this.languageComposite);
 			else
-				this.languageComposite.removeItem(true);
+				this.languageComposite.removeItem({
+					silence: true
+				});
 
 			if (setting.qualification)
 				this.qualificationArea.show(this.qualificationComposite);
 			else
-				this.qualificationComposite.removeItem(true);
-
-			this.$el.find('#fileupload').fileupload({
-				type: 'PUT',
-				dataType: 'json',
-				done: function(e, data) {
-					$.each(data.result.files, function(index, file) {
-						$('<p/>').text(file.name).appendTo(self.$el);
-					});
-				}
-			});
+				this.qualificationComposite.removeItem({
+					silence: true
+				});
 		},
 
 		onItemAdded: function(data) {
@@ -423,6 +463,7 @@ define([
 			}
 
 		}
+
 	});
 
 	return ResumeView;

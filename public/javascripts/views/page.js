@@ -23,6 +23,7 @@ define([
 		},
 
 		initialize: function() {
+
 			this.menuView = new MenuView({
 				model: this.model
 			});

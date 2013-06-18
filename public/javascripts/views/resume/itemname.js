@@ -27,16 +27,13 @@ define([
                 // Update model when input's value was chenaged
                 'change input': 'updateModel',
             });
-
-            // Listen to the universal-click, switch to view-mode when input lost focus
-            this.listenTo(vent, 'click:universal', this.switchToValue);
-
-            // Listen to the model, show validation error
-            this.listenTo(this.model, 'invalid', this.showError);
         },
 
         /*After Render*/
         onRender: function() {
+
+            // Listen to the universal-click, switch to view-mode when input lost focus
+            this.listenTo(vent, 'click:universal', this.switchToValue);
 
             // Attach popover for input control in edit panel
             this._appendInfoOn();

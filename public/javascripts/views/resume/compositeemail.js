@@ -21,23 +21,16 @@ define([
 
         itemView: itemView,
 
-        /*UI*/
-        ui: {
-            editor: '.sl-editor',
-            addBtn: '.btn-add',
-            removeBtn: '.btn-remove'
-        },
-
         /*Initializer*/
         initialize: function() {
-
+            this.ui = _.extend({}, this.commonUI);
             this.events = _.extend({}, this.commonEvents);
-
-            // Listen to the universal-click, switch to view-mode when input lost focus
-            this.listenTo(vent, 'click:universal', this.switchToValue);
         },
 
         onRender: function() {
+
+            // Listen to the universal-click, switch to view-mode when input lost focus
+            this.listenTo(vent, 'click:universal', this.switchToValue);
 
             // Attach popover for add button in edit panel
             this._appendInfoOnAddBtn();

@@ -1,15 +1,15 @@
 define([
         'views/resume/itembase',
-        'text!templates/resume/itemmarried.html'
+        'text!templates/resume/itemphoto.html'
 ], function(BaseView, template) {
 
-    var MarriedEditor = BaseView.extend({
+    var PhotoEditor = BaseView.extend({
 
-        item: 'married',
+        item: 'photo',
 
-        itemName: '婚姻状況',
+        itemName: '性別',
 
-        itemIcon: 'icon-heart',
+        itemIcon: 'icon-leaf',
 
         /*Template*/
         template: template,
@@ -17,7 +17,11 @@ define([
         /*Initializer*/
         initialize: function() {
 
-            this.ui = _.extend({}, this.commonUI);
+            this.ui = _.extend({}, this.commonUI, {
+                photo: 'img',
+                inputFile: 'input[type="file"]',
+                hideBtn: '.hideBtn',
+            });
 
             this.events = _.extend({}, this.commonEvents, {
                 // Update model when input's value was chenaged
@@ -28,18 +32,28 @@ define([
         /*After Render*/
         onRender: function() {
 
+            var self = this;
+
             // Listen to the universal-click, switch to view-mode when input lost focus
             this.listenTo(vent, 'click:universal', this.switchToValue);
 
-            var married = this.model.get(this.item);
-
-            this.$el.find(".btn-value").each(function() {
-                if (married == $(this).text())
-                    $(this).button('toggle');
-            });
-
             // Attach popover for remove button in edit panel
             this._appendInfoOnRemoveBtn();
+
+            this.ui.inputFile.fileupload({
+                type: 'PUT',
+                dataType: 'json',
+                done: function(e, data) {
+                    self.ui.photo.fadeOut(function(){
+                        self.ui.photo.attr('src', '/upload/'+data.result.photo);
+                        self.ui.photo.fadeIn();
+                    });
+                    // console.log(data);
+                    // $.each(data.result.files, function(index, file) {
+                    //  $('<p/>').text(file.name).appendTo(self.$el);
+                    // });
+                }
+            });
         },
 
         /*Update model when edit finished*/
@@ -56,7 +70,6 @@ define([
 
             // Save the model
             this.model.save(data, {
-
                 // If save success
                 success: function() {
                     // Update the view panel
@@ -71,5 +84,5 @@ define([
 
     });
 
-    return MarriedEditor;
+    return PhotoEditor;
 });

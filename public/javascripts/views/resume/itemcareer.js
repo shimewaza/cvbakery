@@ -10,24 +10,20 @@ define([
         /*Template*/
         template: template,
 
-        /*UI*/
-        ui: {
-            value: '.sl-value',
-            editor: '.sl-editor',
-            inputStartDate: 'input[name="startDate"]',
-            inputEndDate: 'input[name="endDate"]',
-            inputCompany: 'input[name="company"]',
-            inputAddress: 'input[name="address"]',
-            inputPosition: 'input[name="position"]',
-            areaDate: '.dateArea',
-            areaCompany: '.companyArea',
-            areaAddress: '.addressArea',
-            areaPosition: '.positionArea',
-            deleteBtn: '.btn-delete'
-        },
-
         /*Initializer*/
         initialize: function() {
+            
+            this.ui = _.extend({}, this.commonUI, {
+                inputStartDate: 'input[name="startDate"]',
+                inputEndDate: 'input[name="endDate"]',
+                inputCompany: 'input[name="company"]',
+                inputAddress: 'input[name="address"]',
+                inputPosition: 'input[name="position"]',
+                areaDate: '.dateArea',
+                areaCompany: '.companyArea',
+                areaAddress: '.addressArea',
+                areaPosition: '.positionArea',
+            });
 
             this.events = _.extend({}, this.commonEvents, {
                 // Update model when input's value was chenaged

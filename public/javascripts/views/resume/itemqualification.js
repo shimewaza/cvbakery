@@ -10,21 +10,18 @@ define([
         /*Template*/
         template: template,
 
-        /*UI*/
-        ui: {
-            value: '.sl-value',
-            editor: '.sl-editor',
-            inputQualifiedDate: 'input[name="qualifiedDate"]',
-            inputQualificationName: 'input[name="qualificationName"]',
-            inputRemark: 'input[name="remark"]',
-            areaQualifiedDate: '.qualifiedDateArea',
-            areaQualificationName: '.qualificationNameArea',
-            areaRemark: '.remarkArea',
-            deleteBtn: '.btn-delete'
-        },
-
         /*Initializer*/
         initialize: function() {
+            
+            this.ui = _.extend({}, this.commonUI, {
+                inputQualifiedDate: 'input[name="qualifiedDate"]',
+                inputQualificationName: 'input[name="qualificationName"]',
+                inputRemark: 'input[name="remark"]',
+                areaQualifiedDate: '.qualifiedDateArea',
+                areaQualificationName: '.qualificationNameArea',
+                areaRemark: '.remarkArea',
+                input: 'input',
+            });
 
             this.events = _.extend({}, this.commonEvents, {
                 // Update model when input's value was chenaged

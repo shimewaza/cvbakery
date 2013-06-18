@@ -29,7 +29,9 @@ define([
                 _id: this.account.userInfo.profileId
             });
 
-            var toolPanelView = new ToolPanelView();
+            var toolPanelView = new ToolPanelView({
+                model: engineerModel
+            });
             self.pageView.navigator.show(toolPanelView);
 
             engineerModel.fetch({

@@ -14,32 +14,28 @@ define([
         /*Template*/
         template: template,
 
-        /*UI*/
-        ui: {
-            value: '.sl-value',
-            editor: '.sl-editor',
-            inputZipCode: 'input[name="zipCode"]',
-            inputAddress: 'input[name="address"]',
-            areaZipCode: '#zipCodeSubArea',
-            areaAddress: '#addressSubArea',
-            deleteBtn: '.btn-delete'
-        },
-
         /*Initializer*/
         initialize: function() {
+            
+            this.ui = _.extend({}, this.commonUI, {
+                inputZipCode: 'input[name="zipCode"]',
+                inputAddress: 'input[name="address"]',
+                areaZipCode: '#zipCodeSubArea',
+                areaAddress: '#addressSubArea',
+            });
 
             this.events = _.extend({}, this.commonEvents, {
                 // Update model when input's value was chenaged
                 'change input[name="zipCode"]': 'getAddress',
                 'change input[name="address"]': 'updateModel',
             });
-
-            // Listen to the universal-click, switch to view-mode when input lost focus
-            this.listenTo(vent, 'click:universal', this.switchToValue);
         },
 
         /*After Render*/
         onRender: function() {
+
+            // Listen to the universal-click, switch to view-mode when input lost focus
+            this.listenTo(vent, 'click:universal', this.switchToValue);
 
             // Attach popover for input control in edit panel
             this._appendInfoOnZipCode();

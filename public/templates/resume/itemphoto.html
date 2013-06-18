@@ -1,0 +1,14 @@
+<div class="sl-photo">
+    <img src="/upload/<%- obj.photo %>" class="img-polaroid">
+</div>
+<div class="sl-value"></div>
+<div class="sl-editor">
+    <span class="btn btn-info fileinput-button">
+        <i class="icon-camera icon-white"></i>
+        <span>写真を選択</span>
+        <input id="fileupload" type="file" name="photo" data-url="/engineer/<%- obj._id %>">
+    </span>
+    <span class="btn btn-danger btn-hide">
+        <i class="icon-share-alt icon-white"></i>
+    </span>
+</div>

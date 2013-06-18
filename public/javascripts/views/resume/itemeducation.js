@@ -10,21 +10,17 @@ define([
         /*Template*/
         template: template,
 
-        /*UI*/
-        ui: {
-            value: '.sl-value',
-            editor: '.sl-editor',
-            inputGraduate: 'input[name="graduate"]',
-            inputSchool: 'input[name="school"]',
-            inputMajor: 'input[name="major"]',
-            areaGraduate: '.graduateArea',
-            areaSchool: '.schoolArea',
-            areaMajor: '.majorArea',
-            deleteBtn: '.btn-delete'
-        },
-
         /*Initializer*/
         initialize: function() {
+            
+            this.ui = _.extend({}, this.commonUI, {
+                inputGraduate: 'input[name="graduate"]',
+                inputSchool: 'input[name="school"]',
+                inputMajor: 'input[name="major"]',
+                areaGraduate: '.graduateArea',
+                areaSchool: '.schoolArea',
+                areaMajor: '.majorArea',
+            });
 
             this.events = _.extend({}, this.commonEvents, {
                 // Update model when input's value was chenaged

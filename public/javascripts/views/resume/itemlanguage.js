@@ -10,19 +10,16 @@ define([
         /*Template*/
         template: template,
 
-        /*UI*/
-        ui: {
-            value: '.sl-value',
-            editor: '.sl-editor',
-            inputLanguage: 'select[name="language"]',
-            inputBackground: 'select[name="background"]',
-            areaLanguage: '.languageArea',
-            areaBackground: '.backgroundArea',
-            deleteBtn: '.btn-delete'
-        },
-
         /*Initializer*/
         initialize: function() {
+            
+            this.ui = _.extend({}, this.commonUI, {
+                inputLanguage: 'select[name="language"]',
+                inputBackground: 'select[name="background"]',
+                areaLanguage: '.languageArea',
+                areaBackground: '.backgroundArea',
+                input: 'input',
+            });
 
             this.events = _.extend({}, this.commonEvents, {
                 // Update model when input's value was chenaged

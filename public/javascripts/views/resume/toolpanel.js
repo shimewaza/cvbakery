@@ -28,47 +28,34 @@ define([
         },
 
         initialize: function() {
-            // mediator.subscribe('resume:missItem', this.missItem, {}, this);
-            // mediator.subscribe('resume:removeItem', this.removeItem, {}, this);
             this.listenTo(vent, 'resume:itemRemoved', this.onItemRemoved);
         },
-
-        // render: function() {
-        //     this.$el.html(this.template());
-        //     // this.$el.draggable({
-        //     //     containment: "#content",
-        //     //     scroll: false
-        //     // });
-        //     this.$el.appendTo('#content');
-        //     _.each(this.missedItems, function(item) {
-        //         item.appendTo('#resumeItemPanel');
-        //     })
-        // },
-
-        // show: function() {
-        //     this.$el.appendTo('#content');
-        // },
 
         addItem: function(event) {
 
             var $target = $(event.target);
 
-            // if (event.target.nodeName == "I")
-            //     $target = $(event.target);
-            // else
-            //     $target = $(event.target).find('i');
+            var data = this.model.get('setting');
+            data[$target.data('item')] = true;
 
-            // var model = {
-            //     name: $target.data('name'),
-            //     icon: $target.data('icon'),
-            //     title: $target.data('title'),
-            //     content: $target.data('content')
-            // };
-            // // mediator.publish('resume:addItem', model);
-            vent.trigger('resume:itemAdded', {
-                item: $target.data('item')
+            // save the model
+            this.model.save({
+                setting: data
+            }, {
+
+                // if save success
+                success: function() {
+
+                    vent.trigger('resume:itemAdded', {
+                        item: $target.data('item')
+                    });
+
+                    $target.closest('button').slideUp();
+                },
+                // use patch
+                patch: true
             });
-            $target.closest('button').fadeOut();
+
         },
 
         onItemRemoved: function(data) {
@@ -76,22 +63,8 @@ define([
             $(this.subTemplate(data))
                 .css('display', 'none')
                 .appendTo('#resumeToolPanel')
-                .fadeIn();
+                .slideDown();
         },
-
-        // missItem: function(model) {
-        //     var missedItem = $(this.subTemplate(model.toJSON()))
-        //         .popover({
-        //         title: model.get('title'),
-        //         content: "「" + model.get('title') + "」を履歴書に追加します。",
-        //         placement: 'right',
-        //         trigger: model.get('trigger'),
-        //         container: 'body'
-        //     });
-
-        //     this.missedItems.push(missedItem);
-        // }
-
     });
 
     return ToolPanelView;
