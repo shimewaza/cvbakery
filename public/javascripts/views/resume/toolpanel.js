@@ -17,14 +17,15 @@ define([
 
         missedItems: [],
 
-        subTemplate: _.template('<button class="btn btn-success btn-medium" data-item="<%- obj.item %>">\
-            <i class="<%= obj.itemIcon %> icon-white" data-item="<%- obj.item %>"></i>&nbsp;&nbsp;<%- obj.itemName %>\
+        subTemplate: _.template('<button class="btn btn-success btn-small" data-item="<%- obj.item %>">\
+            <i class="<%= obj.itemIcon %> icon-white" data-item="<%- obj.item %>">\
             </button>\
         '),
 
         events: {
             'click button': 'addItem',
             'click i': 'addItem',
+            'click .img-polaroid': 'changePattern'
         },
 
         initialize: function() {
@@ -62,9 +63,15 @@ define([
 
             $(this.subTemplate(data))
                 .css('display', 'none')
-                .appendTo('#resumeToolPanel')
+                .appendTo('#itemBtnArea')
                 .slideDown();
         },
+
+        changePattern: function(event) {
+            var $target = $(event.target);
+            console.log($target.css('background-image'));
+            vent.trigger('resume:changePattern', $target.css('background-image'));
+        }
     });
 
     return ToolPanelView;

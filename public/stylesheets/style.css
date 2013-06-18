@@ -233,12 +233,19 @@ li {
 }
 
 #resumeToolPanel {
-	min-width: 140px;
-	max-width: 140px;
+	/*min-width: 260px;*/
+	max-width: 220px;
 }
 
 #resumeToolPanel button {
 	margin: 3px;
+/*	margin-right: 5px;
+	margin-bottom: 5px;*/
+}
+
+#resumeToolPanel .img-polaroid {
+	margin: 3px;
+	float: left;
 /*	margin-right: 5px;
 	margin-bottom: 5px;*/
 }

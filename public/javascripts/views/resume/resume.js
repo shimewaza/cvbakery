@@ -179,6 +179,7 @@ define([
 			});
 
 			this.listenTo(vent, 'resume:itemAdded', this.onItemAdded);
+			this.listenTo(vent, 'resume:changePattern', this.onChangePatter);
 		},
 
 		// Render
@@ -462,6 +463,11 @@ define([
 				return;
 			}
 
+		},
+
+		onChangePatter: function(data) {
+			console.log(data);
+			this.$el.css('background', data + ' repeat');
 		}
 
 	});
