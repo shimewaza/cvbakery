@@ -1,4 +1,13 @@
-define([], function(require) {
+define([
+		'routers/landing',
+		'controllers/landing',
+		'routers/main',
+		'controllers/main'
+], function(
+	LandingRouter,
+	LandingController,
+	MainRouter,
+	MainController) {
 
 	var selink = new Backbone.Marionette.Application();
 
@@ -72,8 +81,8 @@ define([], function(require) {
 
 	selink.listenTo(vent, 'logout:success', function() {
 
-		var LandingRouter = require('routers/landing');
-		var LandingController = require('controllers/landing');
+		// var LandingRouter = require('routers/landing');
+		// var LandingController = require('controllers/landing');
 
 		var landingController = new LandingController({
 			app: this
@@ -88,8 +97,8 @@ define([], function(require) {
 
 	selink.listenTo(vent, 'login:success', function(data) {
 
-		var MainRouter = require('routers/main');
-		var MainController = require('controllers/main');
+		// var MainRouter = require('routers/main');
+		// var MainController = require('controllers/main');
 
 		var mainController = new MainController({
 			app: this,
