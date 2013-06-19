@@ -1,4 +1,5 @@
 var util = require('util');
+var PDFDocument = require('pdfkit');
 
 // エンジニア
 var Engineer = require('../models/engineer.js');
@@ -14,13 +15,6 @@ exports.index = function(req, res) {
 		});
 	});
 };
-
-// 作成フォーム
-// exports.new = function(req, res) {
-// 	res.render('engineer/new', {
-// 		title: "new"
-// 	});
-// };
 
 // 取得
 exports.show = function(req, res) {
@@ -65,19 +59,6 @@ exports.create = function(req, res) {
 	});
 };
 
-// 編集フォーム
-// exports.edit = function(req, res) {
-// 	Engineer.findById(req.params.id, function(err, profile) {
-
-// 		if (err) res.send("error happend: " + err);
-
-// 		if (profile) res.render('engineer/edit', {
-// 			profile: profile,
-// 			title: "edit"
-// 		});
-// 	});
-// };
-
 // 編集
 exports.update = function(req, res) {
 
@@ -85,7 +66,7 @@ exports.update = function(req, res) {
 	console.log(req.body);
 	console.log(req.files);
 
-	if(req.files && req.files.photo) {
+	if (req.files && req.files.photo) {
 		var photoPath = req.files.photo.path;
 		req.body.photo = photoPath.substring(photoPath.lastIndexOf("\\"));
 	}
@@ -94,10 +75,26 @@ exports.update = function(req, res) {
 
 		if (err) res.status(500).send("error happend: " + err);
 		else res.send(newProfile);
-	})
+	});
 };
 
 // 削除
 exports.destroy = function(req, res) {
 
+};
+
+exports.pdf = function(req, res) {
+
+	var doc = new PDFDocument();
+	doc.fillColor('black')
+		.text("loremIpsum", {
+		paragraphGap: 10,
+		indent: 20,
+		align: 'justify',
+		columns: 2
+	});
+
+	doc.output(function(pdf) {
+		res.contentType("application/pdf").end(pdf, 'binary');
+	});
 };

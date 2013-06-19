@@ -33,11 +33,15 @@ exports.mapRoute = function(app) {
 
 	var account = require('./controllers/account');
 	var address = require('./controllers/address');
+	var engineer = require('./controllers/engineer');
 
 	app.post('/login', account.login);
 
 	app.get('/logout', account.logout);
 
 	app.get('/address/:zipCode', address.show);
+
+	// pdf download
+	app.get('/engineer/:id/pdf', engineer.pdf);
 
 };
