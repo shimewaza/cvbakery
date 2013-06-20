@@ -17,7 +17,7 @@ define([
 
         missedItems: [],
 
-        subTemplate: _.template('<button class="btn btn-success btn-small btn-item" data-item="<%- obj.item %>">\
+        subTemplate: _.template('<button class="btn btn-success btn-item" data-item="<%- obj.item %>">\
             <i class="<%= obj.itemIcon %> icon-white btn-item" data-item="<%- obj.item %>">\
             </button>\
         '),

@@ -5,6 +5,7 @@ html {
 
 body {
     font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+    background: url('../images/page-bg.png') repeat center top;
 }
 
 ul {
@@ -215,6 +216,7 @@ li {
 	min-width: 580px;
 	margin-right: 10px;
 	font-size: 14px;
+	line-height: 30px;
 	/*position: relative;*/
 }
 
@@ -228,9 +230,10 @@ li {
 }
 
 #resumePanel [class*="span"] {
-	border: 1px dashed green;
+	border: 1px none green;
 	min-height: 40px;
 	margin-left: 0px !important;
+	margin-bottom: 0px !important;
 }
 
 #resumeToolPanel {
