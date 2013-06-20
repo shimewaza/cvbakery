@@ -214,6 +214,7 @@ li {
 	max-width: 580px;
 	min-width: 580px;
 	margin-right: 10px;
+	font-size: 14px;
 	/*position: relative;*/
 }
 
@@ -228,7 +229,7 @@ li {
 
 #resumePanel [class*="span"] {
 	border: 1px dashed green;
-	min-height: 30px;
+	min-height: 40px;
 	margin-left: 0px !important;
 }
 

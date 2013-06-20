@@ -7,27 +7,27 @@
 <div class="row-fluid sl-editor">
     <div class="span11">
         <div class="input-prepend sl-input">
-            <span class="add-on">開始日</span>
-            <input type="text" class="input-small" name="startDate" value="<%- simpleFormatDate(obj.startDate) %>">
+            <span class="add-on"><i class="icon-calendar"></i></span>
+            <input type="text" class="input-small" placeholder="開始日" name="startDate" value="<%- simpleFormatDate(obj.startDate) %>">
         </div>
         <div class="input-prepend sl-input">
-            <span class="add-on">終了日</span>
-            <input type="text" class="input-small" name="endDate" value="<%- simpleFormatDate(obj.endDate) %>">
+            <span class="add-on"><i class="icon-calendar"></i></span>
+            <input type="text" class="input-small" placeholder="終了日" name="endDate" value="<%- simpleFormatDate(obj.endDate) %>">
         </div><br>
         <div class="input-prepend sl-input">
-            <span class="add-on">会社名</span>
-            <input type="text" class="input-medium" name="company" value="<%- obj.company %>">
+            <span class="add-on"><i class="icon-building"></i></span>
+            <input type="text" class="input-medium" placeholder="会社名" name="company" value="<%- obj.company %>">
         </div><br>
         <div class="input-prepend sl-input">
-            <span class="add-on">所在地</span>
-            <input type="text" class="input-medium" name="address" value="<%- obj.address %>">
+            <span class="add-on"><i class="icon-map-marker"></i></span>
+            <input type="text" class="input-medium" placeholder="所在地" name="address" value="<%- obj.address %>">
         </div><br>
         <div class="input-prepend sl-input">
-            <span class="add-on">職　務</span>
-            <input type="text" class="input-medium" name="position" value="<%- obj.position %>">
+            <span class="add-on"><i class="icon-group"></i></span>
+            <input type="text" class="input-medium" placeholder="職務" name="position" value="<%- obj.position %>">
         </div>
     </div>
     <div class="span1">
-        <button class="btn btn-mini btn-warning btn-delete"><i class="icon-minus icon-white"></i></button>
+        <button class="btn btn-small btn-danger btn-delete"><i class="icon-minus icon-white"></i></button>
     </div>
 </div>

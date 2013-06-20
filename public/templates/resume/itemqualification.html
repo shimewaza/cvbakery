@@ -6,19 +6,19 @@
 <div class="row-fluid sl-editor">
     <div class="span11">
         <div class="input-prepend sl-input">
-            <span class="add-on">取得日</span>
-            <input type="text" class="input-medium" name="qualifiedDate" value="<%- simpleFormatDate(obj.qualifiedDate) %>">
+            <span class="add-on"><i class="icon-calendar"></i></span>
+            <input type="text" class="input-medium" placeholder="取得日" name="qualifiedDate" value="<%- simpleFormatDate(obj.qualifiedDate) %>">
         </div>
         <div class="input-prepend sl-input">
-            <span class="add-on">資格名</span>
-            <input type="text" class="input-medium" name="qualificationName" value="<%- obj.qualificationName %>">
+            <span class="add-on"><i class="icon-credit-card"></i></span>
+            <input type="text" class="input-medium" placeholder="資格名" name="qualificationName" value="<%- obj.qualificationName %>">
         </div>
         <div class="input-prepend sl-input">
-            <span class="add-on">備　考</span>
-            <input type="text" class="input-medium" name="remark" value="<%- obj.remark %>">
+            <span class="add-on"><i class="icon-tag"></i></span>
+            <input type="text" class="input-medium" placeholder="備考" name="remark" value="<%- obj.remark %>">
         </div>
     </div>
     <div class="span1">
-        <button class="btn btn-mini btn-warning btn-delete"><i class="icon-minus icon-white"></i></button>
+        <button class="btn btn-small btn-danger btn-delete"><i class="icon-minus icon-white"></i></button>
     </div>
 </div>

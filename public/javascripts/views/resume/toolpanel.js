@@ -17,14 +17,14 @@ define([
 
         missedItems: [],
 
-        subTemplate: _.template('<button class="btn btn-success btn-small" data-item="<%- obj.item %>">\
-            <i class="<%= obj.itemIcon %> icon-white" data-item="<%- obj.item %>">\
+        subTemplate: _.template('<button class="btn btn-success btn-small btn-item" data-item="<%- obj.item %>">\
+            <i class="<%= obj.itemIcon %> icon-white btn-item" data-item="<%- obj.item %>">\
             </button>\
         '),
 
         events: {
-            'click button': 'addItem',
-            'click i': 'addItem',
+            'click .btn-item': 'addItem',
+            'click .btn-pdf': 'outputPDF',
             'click .img-polaroid': 'changePattern'
         },
 
@@ -71,6 +71,33 @@ define([
             var $target = $(event.target);
             console.log($target.css('background-image'));
             vent.trigger('resume:changePattern', $target.css('background-image'));
+        },
+
+        outputPDF: function() {
+
+            $.fileDownload('/engineer/me/pdf');
+
+            // // Login
+            // $.ajax({
+
+            //     // page url
+            //     url: '/engineer/me/pdf',
+
+            //     // method is post
+            //     type: 'GET',
+
+            //     // login success handler
+            //     success: function(result) {
+            //         self.$('.message').text(result.message);
+            //     },
+
+            //     // login error handler
+            //     error: function(xhr, status) {
+            //         self.$('.message').text(xhr.responseText);
+            //     }
+            // }, {
+            //     iframe: true,
+            // });
         }
     });
 

@@ -7,6 +7,7 @@ require.config({
 		'jquery.ui.widget': 'lib/jquery.ui.widget',
 		iframetransport: 'lib/jquery.iframe-transport',
 		fileupload: 'lib/jquery.fileupload',
+		filedownload: 'lib/jquery.fileDownload',
 		underscore: 'lib/underscore',
 		backbone: 'lib/backbone',
 		deepmodel: 'lib/deep-model',
@@ -30,7 +31,10 @@ require.config({
 		},
 		fileupload: {
 			deps: ['jquery', 'jquery.ui.widget', 'iframetransport']
-		}, 
+		},
+		filedownload: {
+			deps: ['jquery']
+		},
 		bootstrap: {
 			deps: ['jquery']
 		},
@@ -48,7 +52,7 @@ require.config({
 			deps: ['backbone.wreqr']
 		},
 		selink: {
-			deps: ['bootstrap', 'datepickerlang', 'fileupload', 'marionette', 'deepmodel', 'vent']
+			deps: ['bootstrap', 'datepickerlang', 'fileupload', 'filedownload', 'marionette', 'deepmodel', 'vent']
 		}
 	}
 });

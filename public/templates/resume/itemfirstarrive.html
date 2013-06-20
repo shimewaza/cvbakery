@@ -5,12 +5,15 @@
     <div class="sl-value">
         <%- formatDate(obj.firstArrive) %>
     </div>
-    <div class="sl-editor">
-        <div class="sl-input">
-            <input type="text" class="input-small" name="firstArrive" value="<%- simpleFormatDate(obj.firstArrive) %>">
+    <div class="sl-editor row-fluid">
+        <div class="input-prepend sl-input span10">
+            <span class="add-on"><i class="icon-plane"></i></span>
+            <input type="text" class="input-small" placeholder="初回来日" name="firstArrive" value="<%- simpleFormatDate(obj.firstArrive) %>">
         </div>
-        <button class="btn btn-mini btn-danger btn-remove">
-            <i class="icon-share-alt icon-white"></i>
-        </button>
+        <div class="span2">
+            <button class="btn btn-small btn-warning btn-remove">
+                <i class="icon-remove icon-white"></i>
+            </button>
+        </div>
     </div>
 </div>

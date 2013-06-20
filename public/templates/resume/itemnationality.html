@@ -6,14 +6,19 @@
     <div class="sl-value">
         <%- obj.nationality %>
     </div>
-    <div class="sl-editor">
-        <select name="nationality" class="input-medium">
-            <option value=""> -- </option>
-            <% _.each(options, function(option) {
-                var selected = (option == obj.nationality) ? 'selected' : '';
-                print('<option value="' + option + '" ' + selected + '>' + option + '</option>' );
-            }) %>
-        </select>
-        <button class="btn btn-mini btn-danger btn-remove"><i class="icon-share-alt icon-white"></i></button>
+    <div class="sl-editor row-fluid">
+        <div class="input-prepend span10">
+            <span class="add-on"><i class="icon-flag"></i></span>
+            <select name="nationality" class="input-medium">
+                <option value=""> -- </option>
+                <% _.each(options, function(option) {
+                    var selected = (option == obj.nationality) ? 'selected' : '';
+                    print('<option value="' + option + '" ' + selected + '>' + option + '</option>' );
+                }) %>
+            </select>
+        </div>
+        <div class="span2">
+            <button class="btn btn-small btn-warning btn-remove"><i class="icon-remove icon-white"></i></button>
+        </div>
     </div>
 </div>

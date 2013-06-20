@@ -85,16 +85,50 @@ exports.destroy = function(req, res) {
 
 exports.pdf = function(req, res) {
 
+	if (req.params.id === 'me') {
+
+		Engineer.findOne({
+			_id: req.session.accountInfo.userInfo.profileId
+		}, function(err, profile) {
+			if (err) res.send("error happend: " + err);
+			console.log(profile);
+			var doc = createPDF(profile);
+
+			doc.output(function(pdf) {
+				res.cookie('fileDownload', true)
+					.set({
+					'Content-Length': pdf.length,
+					'Content-Type': 'application/pdf',
+					'Content-Disposition': 'attachment',
+				})
+					.end(pdf, 'binary');
+			});
+		});
+	} else {
+
+	}
+};
+
+createPDF = function(profile) {
+
 	var doc = new PDFDocument();
+
+	console.log(profile.firstName + " " + profile.lastName);
+
+	doc.info['Title'] = profile.firstName + " " + profile.lastName;
+	doc.info['Author'] = "Joe Hetfield";
+	doc.info['Subject'] = "Resume create test";
+	doc.info['Keywords'] = "resume";
+	doc.info['CreationDate'] = new Date;
+	doc.info['ModDate'] = new Date
+
 	doc.fillColor('black')
-		.text("loremIpsum", {
+		.text(profile.firstName + " " + profile.lastName, {
 		paragraphGap: 10,
 		indent: 20,
 		align: 'justify',
 		columns: 2
 	});
 
-	doc.output(function(pdf) {
-		res.contentType("application/pdf").end(pdf, 'binary');
-	});
-};
+	return doc;
+}
