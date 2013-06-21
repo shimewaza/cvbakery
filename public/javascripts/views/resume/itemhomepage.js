@@ -25,8 +25,8 @@ define([
 
         onRender: function() {
             this._appendInfoOn(this.ui.input, {
-                title: "ホームページ",
-                content: "「YYYY/MM/DD」のフォーマットで入力してください。"
+                title: "個人サイト",
+                content: "ご自分のサイトやブログなどのURLを入力してください。"
             });
             this._appendInfoOnDeleteBtn();
         },

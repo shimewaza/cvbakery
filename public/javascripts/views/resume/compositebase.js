@@ -59,7 +59,7 @@ define([], function() {
         /*Switch sl-editor from view-mode to edit-mode*/
         switchToEditor: function() {
             // SlideDown edit panel
-            this.ui.editor.slideDown();
+            this.ui.editor.slideDown('fast');
         },
 
         /*Switch sl-editor from edit-mode to view-mode*/
@@ -72,7 +72,7 @@ define([], function() {
             this._appendInfoOnRemoveBtn();
 
             // Slide up the edit panel
-            this.ui.editor.slideUp();
+            this.ui.editor.slideUp('fast');
         },
 
         /*Set up a flag indicate mouse on*/
@@ -89,13 +89,13 @@ define([], function() {
         addItem: function() {
             this.collection.add(new Backbone.Model());
             if (this.collection.length >= this.itemNumber)
-                this.ui.addBtn.fadeOut();
+                this.ui.addBtn.fadeOut('fast');
         },
 
         deleteItem: function(model) {
             this.collection.remove(model);
             if (this.collection.length < this.itemNumber)
-                this.ui.addBtn.fadeIn();
+                this.ui.addBtn.fadeIn('fast');
         },
 
         /*Remove item*/
@@ -130,7 +130,7 @@ define([], function() {
                         itemIcon: self.itemIcon
                     });
                     // slide up editor
-                    self.$el.slideUp(function() {
+                    self.$el.slideUp('fast', function() {
                         // dispose the view
                         self.close();
                     });

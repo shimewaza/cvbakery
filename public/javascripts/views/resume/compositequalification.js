@@ -10,7 +10,7 @@ define([
 
         itemName: '資格',
 
-        itemIcon: 'icon-bookmark',
+        itemIcon: 'icon-credit-card',
 
         itemNumber: 5,
 

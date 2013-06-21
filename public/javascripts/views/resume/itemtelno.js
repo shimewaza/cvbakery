@@ -26,7 +26,7 @@ define([
         onRender: function() {
             this._appendInfoOn(this.ui.input, {
                 title: "電話番号",
-                content: "「YYYY/MM/DD」のフォーマットで入力してください。"
+                content: "お電話番号を入力してください。"
             });
             this._appendInfoOnDeleteBtn();
         },

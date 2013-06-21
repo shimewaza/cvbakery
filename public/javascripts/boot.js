@@ -1,6 +1,7 @@
 require.config({
 	paths: {
 		jquery: 'lib/jquery-1.9.1',
+		jqueryui: 'lib/jquery-ui-1.10.3.custom.min',
 		bootstrap: 'lib/bootstrap',
 		datepickerlang: 'lib/locales/bootstrap-datepicker.ja',
 		datepicker: 'lib/bootstrap-datepicker',
@@ -8,6 +9,7 @@ require.config({
 		iframetransport: 'lib/jquery.iframe-transport',
 		fileupload: 'lib/jquery.fileupload',
 		filedownload: 'lib/jquery.fileDownload',
+		isotope: 'lib/jquery.isotope.min',
 		underscore: 'lib/underscore',
 		backbone: 'lib/backbone',
 		deepmodel: 'lib/deep-model',
@@ -23,6 +25,9 @@ require.config({
 		jquery: {
 			exports: 'jQuery'
 		},
+		jqueryui: {
+			deps: ['jquery']
+		},
 		datepicker: {
 			deps: ['jquery']
 		},
@@ -33,6 +38,9 @@ require.config({
 			deps: ['jquery', 'jquery.ui.widget', 'iframetransport']
 		},
 		filedownload: {
+			deps: ['jquery']
+		},
+		isotope: {
 			deps: ['jquery']
 		},
 		bootstrap: {
@@ -52,7 +60,7 @@ require.config({
 			deps: ['backbone.wreqr']
 		},
 		selink: {
-			deps: ['bootstrap', 'datepickerlang', 'fileupload', 'filedownload', 'marionette', 'deepmodel', 'vent']
+			deps: ['jqueryui', 'bootstrap', 'datepickerlang', 'fileupload', 'filedownload', 'isotope', 'marionette', 'deepmodel', 'vent']
 		}
 	}
 });

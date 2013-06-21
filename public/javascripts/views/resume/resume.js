@@ -84,7 +84,7 @@ define([
 				region.open = function(view) {
 					this.$el.hide();
 					this.$el.html(view.el);
-					this.$el.slideDown("fast");
+					this.$el.show('drop');
 				};
 			});
 

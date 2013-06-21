@@ -10,7 +10,7 @@ define([
 
         itemName: '電話番号',
 
-        itemIcon: 'icon-signal',
+        itemIcon: 'icon-phone',
 
         itemNumber: 5,
 

@@ -10,7 +10,7 @@ define([
 
         itemName: '語学能力',
 
-        itemIcon: 'icon-comment',
+        itemIcon: 'icon-comments-alt',
 
         itemNumber: 5,
 

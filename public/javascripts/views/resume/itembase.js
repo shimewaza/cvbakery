@@ -43,9 +43,9 @@ define([], function() {
             var self = this;
 
             // fadeOut view panel
-            this.ui.value.fadeOut(function() {
+            this.ui.value.fadeOut('fast', function() {
                 // slideDown edit panel
-                self.ui.editor.slideDown();
+                self.ui.editor.slideDown('fast');
             });
         },
 
@@ -64,9 +64,9 @@ define([], function() {
             this._appendInfoOnRemoveBtn();
 
             // slide up the edit panel
-            this.ui.editor.slideUp(function() {
+            this.ui.editor.slideUp('fast', function() {
                 // fadeIn view panel
-                self.ui.value.fadeIn();
+                self.ui.value.fadeIn('fast');
             });
         },
 
@@ -74,7 +74,7 @@ define([], function() {
             Set up a flag indicate mouse on
         */
         setFocusIn: function() {
-            this.$el.css('cursor', 'pointer');
+            this.$el.css('cursor', 'pointer')
             // this.$el.find('.sl-value').css('border', '1px solid #e3e3e3') /*.addClass('sl-panel')*/ ;
             this.focus = true;
         },
@@ -83,6 +83,7 @@ define([], function() {
             Clear the flag when mouse out
         */
         setFocusOut: function() {
+            this.$el.css('cursor', 'pointer');
             // this.$el.find('.sl-value').css('border', '1px none #e3e3e3') /*.removeClass('sl-panel')*/ ;
             this.focus = false;
         },
@@ -118,7 +119,7 @@ define([], function() {
                 // if save success
                 success: function() {
                     // slide up editor
-                    self.$el.slideUp(function() {
+                    self.$el.slideUp('fast', function() {
 
                         vent.trigger('resume:itemRemoved', {
                             item: self.item,

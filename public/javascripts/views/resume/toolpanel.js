@@ -30,6 +30,7 @@ define([
 
         initialize: function() {
             this.listenTo(vent, 'resume:itemRemoved', this.onItemRemoved);
+            this.$el.draggable();
         },
 
         addItem: function(event) {
@@ -64,6 +65,14 @@ define([
             $(this.subTemplate(data))
                 .css('display', 'none')
                 .appendTo('#itemBtnArea')
+                .popover({
+                    title: data.itemName,
+                    content: data.itemName + "履歴書に追加します。",
+                    placement: 'right',
+                    trigger: 'hover',
+                    html: true,
+                    container: 'body'
+                })
                 .slideDown();
         },
 

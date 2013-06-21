@@ -26,7 +26,7 @@ define([
         onRender: function() {
             this._appendInfoOn(this.ui.input, {
                 title: "E-mail",
-                content: "「YYYY/MM/DD」のフォーマットで入力してください。"
+                content: "メールアドレスを入力してください。"
             });
             this._appendInfoOnDeleteBtn();
         },

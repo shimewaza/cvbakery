@@ -19,20 +19,21 @@ define([
 		// View's HTML template
 		template: _.template(accountTemplate),
 
-		// // Initializer
-		// initialize: function() {
+		// Initializer
+		initialize: function() {
+			
 
-		// 	// bind model's change evnet
-		// 	this.listenTo(this.model, 'change', this.render);
+			// // bind model's change evnet
+			// this.listenTo(this.model, 'change', this.render);
 
-		// 	// enable default user event
-		// 	this.events = _.extend({}, this.genericEvents);
+			// // enable default user event
+			// this.events = _.extend({}, this.genericEvents);
 
-		// 	// bind mediator event
-		// 	// this.subscriptions = _.extend({}, this.genericSubscriptions);
-		// 	mediator.subscribe('user:login', this.onLogin, {}, this);
-		// 	mediator.subscribe('user:logout', this.onLogout, {}, this);
-		// },
+			// // bind mediator event
+			// // this.subscriptions = _.extend({}, this.genericSubscriptions);
+			// mediator.subscribe('user:login', this.onLogin, {}, this);
+			// mediator.subscribe('user:logout', this.onLogout, {}, this);
+		},
 
 		// // Render template with model
 		// render: function() {
