@@ -74,7 +74,7 @@ define([], function() {
             Set up a flag indicate mouse on
         */
         setFocusIn: function() {
-            this.$el.css('cursor', 'pointer')
+            this.$el.css('cursor', 'pointer');
             // this.$el.find('.sl-value').css('border', '1px solid #e3e3e3') /*.addClass('sl-panel')*/ ;
             this.focus = true;
         },
@@ -218,7 +218,7 @@ define([], function() {
 
             // default option
             var defaultOpt = {
-                placement: 'right',
+                placement: 'bottom',
                 trigger: 'hover',
                 html: true
             };

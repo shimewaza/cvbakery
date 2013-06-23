@@ -1,5 +1,6 @@
 define([
 		'text!templates/resume/resume.html',
+		'text!templates/resume/resume-two-columns.html',
 		'views/resume/itemphoto',
 		'views/resume/itemname',
 		'views/resume/itembirthday',
@@ -21,6 +22,7 @@ define([
 		'views/resume/compositequalification'
 ], function(
 	resumeTemplate,
+	resumeTemplateTwoCols,
 	PhotoView,
 	NameView,
 	BirthDayView,
@@ -180,6 +182,7 @@ define([
 
 			this.listenTo(vent, 'resume:itemAdded', this.onItemAdded);
 			this.listenTo(vent, 'resume:changePattern', this.onChangePatter);
+			this.listenTo(vent, 'resume:changeTemplate', this.onChangeTemplate);
 		},
 
 		// Render
@@ -468,6 +471,16 @@ define([
 		onChangePatter: function(data) {
 			console.log(data);
 			this.$el.css('background', data + ' repeat');
+		},
+
+		onChangeTemplate: function(data) {
+			var self = this;
+			this.$el.hide('drop', function() {
+				self.$el.css('min-width', '1200px').addClass('row-fluid');
+				self.template = resumeTemplateTwoCols;
+				self.render();
+				self.$el.show('drop');
+			});
 		}
 
 	});

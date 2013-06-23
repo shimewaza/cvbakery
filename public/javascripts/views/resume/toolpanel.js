@@ -24,8 +24,9 @@ define([
 
         events: {
             'click .btn-item': 'addItem',
-            'click .btn-pdf': 'outputPDF',
-            'click .img-polaroid': 'changePattern'
+            'click .img-polaroid': 'changePattern',
+            'click #pdfBtn': 'outputPDF',
+            'click #twoColsBtn': 'changeTemplate2Cols',
         },
 
         initialize: function() {
@@ -85,28 +86,10 @@ define([
         outputPDF: function() {
 
             $.fileDownload('/engineer/me/pdf');
+        },
 
-            // // Login
-            // $.ajax({
-
-            //     // page url
-            //     url: '/engineer/me/pdf',
-
-            //     // method is post
-            //     type: 'GET',
-
-            //     // login success handler
-            //     success: function(result) {
-            //         self.$('.message').text(result.message);
-            //     },
-
-            //     // login error handler
-            //     error: function(xhr, status) {
-            //         self.$('.message').text(xhr.responseText);
-            //     }
-            // }, {
-            //     iframe: true,
-            // });
+        changeTemplate2Cols: function() {
+            vent.trigger('resume:changeTemplate', 'resume-tow-cloumns');
         }
     });
 
