@@ -236,11 +236,6 @@ li {
 	margin-bottom: 0px !important;
 }
 
-#resumePanel .row-fluid:hover {
-	background-color: #ddd;
-}
-
-
 #resumeToolPanel {
 	/*min-width: 260px;*/
 	max-width: 220px;

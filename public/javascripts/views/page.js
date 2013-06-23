@@ -30,6 +30,20 @@ define([
 			this.accountView = new AccountView({
 				model: this.model
 			});
+
+			this.content.open = function(view) {
+				this.$el.hide('slide');
+				this.$el.html(view.el);
+				this.$el.show('slide', {
+					direction: 'right'
+				});
+			};
+
+			this.navigator.open = function(view) {
+				this.$el.hide('slide');
+				this.$el.html(view.el);
+				this.$el.show('slide');
+			};
 		},
 
 		onRender: function() {

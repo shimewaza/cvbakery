@@ -17,6 +17,15 @@ define([
 
 	selink.addInitializer(function(options) {
 
+		$.ajaxSetup({
+			timeout:3000,
+			error: function(xhr, errorType, exceptionThrown) {
+				console.log(xhr);
+				console.log(errorType);
+				console.log(exceptionThrown);
+			}
+		});
+
 		// Require home page from server
 		$.ajax({
 
@@ -109,7 +118,7 @@ define([
 			controller: mainController
 		});
 
-		// mainController.toHome();
+		// mainController.toResume();
 	});
 
 	return selink;

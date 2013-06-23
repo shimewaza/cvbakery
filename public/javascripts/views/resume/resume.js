@@ -475,11 +475,13 @@ define([
 
 		onChangeTemplate: function(data) {
 			var self = this;
-			this.$el.hide('drop', function() {
+			this.$el.hide('slide', function() {
 				self.$el.css('min-width', '1200px').addClass('row-fluid');
 				self.template = resumeTemplateTwoCols;
 				self.render();
-				self.$el.show('drop');
+				self.$el.show('slide', {
+					direction: 'right'
+				});
 			});
 		}
 

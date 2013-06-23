@@ -34,7 +34,7 @@ define([
             var gender = this.model.get(this.item);
 
             this.$el.find(".btn-value").each(function() {
-                if (gender == $(this).text())
+                if (gender == $.trim($(this).text()))
                     $(this).button('toggle');
             });
 
@@ -48,7 +48,7 @@ define([
             var self = this;
 
             // Get input value
-            var newVal = $(event.target).text();
+            var newVal = $.trim($(event.target).text());
 
             // Prepare the date for model update
             var data = {};

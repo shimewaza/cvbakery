@@ -68,14 +68,27 @@ exports.update = function(req, res) {
 
 	if (req.files && req.files.photo) {
 		var photoPath = req.files.photo.path;
-		req.body.photo = photoPath.substring(photoPath.lastIndexOf("\\"));
+		req.body.photo = photoPath.substring(photoPath.lastIndexOf("/"));
 	}
 
-	Engineer.findByIdAndUpdate(req.params.id, req.body, function(err, newProfile) {
-
+	Engineer.findById(req.params.id, function(err, engineer) {
 		if (err) res.status(500).send("error happend: " + err);
-		else res.send(newProfile);
+		else {
+			for(var prop in req.body) {
+				engineer[prop] = req.body[prop];
+			}
+			engineer.save(function(err, newProfile) {
+				if (err) res.status(500).send("error happend: " + err);
+				else res.send(newProfile);
+			});
+		}
 	});
+
+	// Engineer.findByIdAndUpdate(req.params.id, req.body, function(err, newProfile) {
+
+	// 	if (err) res.status(500).send("error happend: " + err);
+	// 	else res.send(newProfile);
+	// });
 };
 
 // 削除
