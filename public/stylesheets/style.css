@@ -1,6 +1,6 @@
 /* Global Setting */
 html {
-  height: 100%;
+	height: 100%;
 }
 
 body {
@@ -20,38 +20,18 @@ li {
 
 .input-append .popover,
 .input-prepend .popover {
-  font-size: 12px;
+	font-size: 12px;
 }
-
-/* Text input */
-/*.sl-text {
-	font: inherit;
-	color: inherit !important;
-	text-align: left;
-	outline: none;
-	cursor: text;
-	background: white !important;
-	height: 20px;
-}*/
 
 .sl-photo {
 	max-width: 150px;
 	min-width: 150px;
 	max-height: 210px;
 	margin-bottom: 5px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
-/*.sl-editor input{
-	margin-bottom: 0px !important;
-	height: 15px !important;
-}
-
-.sl-editor select{
-	margin-bottom: 0px !important;
-	height: 25px !important;
-	line-height: 25px !important;
-}
-*/
 .sl-editor {
 	display: none;
 }
@@ -62,7 +42,12 @@ li {
 
 .sl-input {
 	display: inline-block;
-	/*margin: 0px !important;*/
+}
+
+.error span{
+	border-color: #b94a48 !important;
+	background-color: #f2dede !important;
+	color: #b94a48;
 }
 
 /* Panel common */
@@ -72,69 +57,7 @@ li {
 	-moz-box-shadow: 1px 1px 3px gray;
 	-webkit-box-shadow: 1px 1px 3px gray;
 	box-shadow: 1px 1px 3px gray;
-	/*float: left;*/
 }
-
-/*.row-fluid [class*="span"] {
-	min-height: 40px;
-	line-height: 30px;
-}*/
-
-/*.sl-panel .ui-widget-header {
-  border-bottom: none;
-  min-height: 1em;
-  padding: 0.6em 0.8em;
-  margin: 0;
-}
-
-.sl-panel .sl-header-toolbar {
-	float: right;
-}
-
-.sl-panel .sl-header-toolbar div{
-	float: right;
-	margin-left: 0.4em;
-	padding: 0;
-}
-
-.sl-panel .ui-widget-content {
-  padding: 0 0.8em;
-  margin: 0;
-}
-
-.sl-panel .ui-widget-content .message{
-  padding-top: 0.6em;
-}*/
-
-/*.sl-panel .item {
-	width: 50%;
-	clear: left;
-	float: left;
-}
-
-.sl-panel .item-right {
-	width: 50%;
-	clear: right;
-	float: right;
-}*/
-
-/*.sl-panel .label {
-	width: 30%;
-	height: 2.5em;
-	line-height: 2.5em;
-	clear: left;
-	float: left;
-	padding: 0.5em;
-	text-align: right;
-}
-
-.sl-panel .value {
-	width: 50%;
-	height: 2.5em;
-	line-height: 2.5em;
-	float: left;
-	padding: 0.5em;
-}*/
 
 /* Main Header*/
 #header {
@@ -155,7 +78,7 @@ li {
 	position: relative;
 	float: left;
 	margin-left: -100%;
-	right: 530px;
+	right: 410px;
 }
 
 /* Main Content */
@@ -166,7 +89,6 @@ li {
 }
 
 #toolArea {
-	/*float: right;*/
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -185,7 +107,7 @@ li {
 
 /* Account Panel*/
 #accountPanel {
-	max-width: 260px;
+	max-width: 180px;
 }
 
 /* Register Panel*/
@@ -194,17 +116,6 @@ li {
 	margin: auto;
 }
 
-/* Menu */
-/*#menuPanel {
-	margin: 0;
-	padding: 0;
-	max-width: 600px;
-}
-
-#menuPanel li {
-	float: left;
-}*/
-
 #logoutBtn {
 	float: right;
 	margin-right: 1em;
@@ -212,12 +123,11 @@ li {
 
 /* Resume Panel*/
 #resumePanel {
-	max-width: 580px;
-	min-width: 580px;
+	max-width: 700px;
+	min-width: 700px;
 	margin-right: 10px;
 	font-size: 14px;
 	line-height: 30px;
-	/*position: relative;*/
 }
 
 #resumePanel .radio.inline{
@@ -232,29 +142,19 @@ li {
 #resumePanel [class*="span"] {
 	border: 1px none green;
 	min-height: 40px;
-	margin-left: 0px !important;
-	margin-bottom: 0px !important;
+	/*margin-left: 0px !important;*/
+	/*margin-bottom: 0px !important;*/
 }
 
 #resumeToolPanel {
-	/*min-width: 260px;*/
-	max-width: 220px;
+	max-width: 180px;
 }
 
 #resumeToolPanel button {
 	margin: 3px;
-/*	margin-right: 5px;
-	margin-bottom: 5px;*/
 }
 
 #resumeToolPanel .img-polaroid {
 	margin: 3px;
 	float: left;
-/*	margin-right: 5px;
-	margin-bottom: 5px;*/
 }
-
-/*.row-fluid [class*="span"] {
-	min-height: 20px;
-	margin-bottom: 10px;
-}*/

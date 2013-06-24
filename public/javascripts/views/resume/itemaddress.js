@@ -16,18 +16,19 @@ define([
 
         /*Initializer*/
         initialize: function() {
-            
+
             this.ui = _.extend({}, this.commonUI, {
                 inputZipCode: 'input[name="zipCode"]',
                 inputAddress: 'input[name="address"]',
+                iconLoading: '.icon-loading',
                 areaZipCode: '#zipCodeSubArea',
                 areaAddress: '#addressSubArea',
             });
 
             this.events = _.extend({}, this.commonEvents, {
                 // Update model when input's value was chenaged
-                'change input[name="zipCode"]': 'getAddress',
-                'change input[name="address"]': 'updateModel',
+                'change input[name="zipCode"]': 'updateZipCode',
+                'change input[name="address"]': 'updateAddress',
             });
         },
 
@@ -38,14 +39,128 @@ define([
             this.listenTo(vent, 'click:universal', this.switchToValue);
 
             // Attach popover for input control in edit panel
-            this._appendInfoOnZipCode();
-            this._appendInfoOnAddress();
+            this._appendInfoOnInput();
 
             // Attach popover for delete button in edit panel
             this._appendInfoOnRemoveBtn();
         },
 
-        getAddress: function() {
+        /*Validate user input value*/
+        validate: function() {
+
+            var zipCode = this.ui.inputZipCode.val();
+            var address = this.ui.inputAddress.val();
+            var errors = [];
+
+            if (zipCode && !/^[0-9]{7}$/.test(zipCode))
+                errors.push({
+                    target: this.ui.inputZipCode,
+                    title: "郵便番号",
+                    message: '半角数字7桁でご入力ください。'
+                });
+
+            if (address.length > 50)
+                errors.push({
+                    target: this.ui.inputAddress,
+                    title: "住所",
+                    message: '50文字以内でご入力ください。'
+                });
+
+            return errors;
+        },
+
+        updateZipCode: function() {
+
+            var self = this;
+
+            var errors = this.validate();
+            if (errors.length) {
+                this.showError(errors);
+
+                if (_.contains(_.pluck(errors, 'target'), this.ui.inputZipCode))
+                    return;
+            } else {
+                this.clearError();
+                // append normal info help on editor
+                this._appendInfoOnInput();
+            }
+
+            var zipCode = this.ui.inputZipCode.val();
+
+            if(zipCode) this._getAddress(zipCode);
+
+            // Prepare the date for model update
+            var data = {
+                'zipCode': zipCode
+            };
+
+            // Save the model
+            this.model.save(data, {
+
+                // If save success
+                success: function() {
+                    // Update the view panel
+                    self.ui.value.text(self._renderValue()/*"〒 " + zipCode + "）" + self.model.get('address')*/);
+                    // Switch to view panel
+                    self.switchToValue();
+                },
+                // use patch
+                patch: true
+            });
+        },
+
+        /*Update model when edit finished*/
+        updateAddress: function() {
+
+            var self = this;
+
+            var errors = this.validate();
+            if (errors.length) {
+                this.showError(errors);
+
+                if (_.contains(_.pluck(errors, 'target'), this.ui.inputAddress))
+                    return;
+            } else {
+                this.clearError();
+                // append normal info help on editor
+                this._appendInfoOnInput();
+            }
+
+            var address = this.ui.inputAddress.val();
+
+            // Prepare the date for model update
+            var data = {
+                'address': address
+            };
+
+            // Save the model
+            this.model.save(data, {
+
+                // If save success
+                success: function() {
+                    // Update the view panel
+                    self.ui.value.text(self._renderValue()/*"〒 " + self.model.get('zipCode') + "）" + address*/);
+                    // Switch to view panel
+                    self.switchToValue();
+                },
+                // use patch
+                patch: true
+            });
+        },
+
+        _renderValue: function() {
+
+            var result = '';
+
+            if(this.model.get('zipCode'))
+                result += "〒 " + this.model.get('zipCode') + "）"
+
+            result += this.model.get('address');
+
+            return result;
+        },
+
+        _getAddress: function(zipCode) {
 
             var self = this;
 
@@ -53,7 +168,7 @@ define([
             $.ajax({
 
                 // page url
-                url: '/address/' + this.ui.inputZipCode.val(),
+                url: '/address/' + zipCode,
 
                 // method is get
                 type: 'GET',
@@ -64,185 +179,32 @@ define([
                 // wait for 3 seconds
                 timeout: 3000,
 
-                // complete: function() {
-                //     self.$el.append($('<img>').attr({
-                //        src: '../images/loading.gif',
-                //        width: '100px'
-                //     }));
-                // },
+                complete: function() {
+                    self.ui.iconLoading.empty().append('<i class="icon-refresh icon-spin"><i>');
+                },
 
                 // success handler
                 success: function(data) {
+                    setTimeout(function() {
+                        self.ui.iconLoading.empty().text('〒');
+                    }, 100);
                     self.ui.inputAddress.val(data.state + data.city + data.street);
                     self.ui.inputAddress.trigger("change");
                 }
             });
         },
 
-        /*Validate user input value*/
-        validate: function(value) {
+        _appendInfoOnInput: function() {
 
-            // if user input nothing, just return
-            if (!value) return;
-
-            // no more than 20 characters
-            if (value.length > 20)
-                return {
-                    message: '20文字以内でご入力ください。'
-            };
-        },
-
-        /*Update model when edit finished*/
-        updateModel: function() {
-
-            var self = this;
-
-            // Get input value
-            var newZipCode = this.ui.inputZipCode.val();
-            var newAddress = this.ui.inputAddress.val();
-
-            // Prepare the date for model update
-            var data = {
-                'zipCode': newZipCode,
-                'address': newAddress
-            };
-
-            // Save the model
-            this.model.save(data, {
-
-                // If save success
-                success: function() {
-                    // clear the error flag
-                    self.err = false;
-                    // remove the error class from editor
-                    self.ui.areaZipCode.removeClass('error');
-                    self.ui.areaAddress.removeClass('error');
-                    // append normal info help on editor
-                    self._appendInfoOnZipCode();
-                    self._appendInfoOnAddress();
-                    // Update the view panel
-                    self.ui.value.text(newAddress + "（〒" + newZipCode + "）");
-                    // Switch to view panel
-                    self.switchToValue();
-                },
-                // use patch
-                patch: true
-            });
-        },
-
-        /*Delete item when user click OK*/
-        deleteItem: function() {
-
-            var self = this;
-
-            // Prepare the date for model update
-            var data = {
-                'zipCode': null,
-                'address': null
-            };
-
-            // save model
-            this.model.save(data, {
-                // if save success
-                success: function() {
-                    // slide up editor
-                    self.$el.slideUp(function() {
-                        // dispose the view
-                        self.close();
-                    });
-                },
-                // use patch
-                patch: true
-            });
-        },
-
-        /*Display error info for editor*/
-        showError: function(model, error) {
-
-            // if the error is about this view
-            if (error.item == 'zipCode') {
-                // setup error flag
-                this.err = true;
-                // highlight the editor
-                this.ui.areaZipCode.addClass('control-group error');
-                // Attach popover for delete button in edit panel
-                this._appendErrOnZipCode(error.message);
-
-            } else if (error.item == 'address') {
-                // setup error flag
-                this.err = true;
-                // highlight the editor
-                this.ui.areaAddress.addClass('control-group error');
-                // Attach popover for delete button in edit panel
-                this._appendErrOnAddress(error.message);
-            }
-        },
-
-        /**/
-        _appendInfoOnZipCode: function() {
-
-            // Destroy previous popover
-            this.ui.inputZipCode.popover('destroy');
-
-            // Attach a new popover 
-            this.ui.inputZipCode.popover({
+            this._appendInfoOn(this.ui.inputZipCode, {
                 title: '郵便番号',
-                content: '数字7桁で入力してください。ご住所は該当郵便番号で自動に埋め込みます。',
-                placement: 'right',
-                trigger: 'hover',
-                html: true
-                // container: 'body'
+                content: '数字7桁で入力してください。ご住所は該当郵便番号で自動に埋め込みます。'
             });
-        },
 
-        /**/
-        _appendInfoOnAddress: function() {
-
-            // Destroy previous popover
-            this.ui.inputAddress.popover('destroy');
-
-            // Attach a new popover 
-            this.ui.inputAddress.popover({
+            this._appendInfoOn(this.ui.inputAddress, {
                 title: '住所',
-                content: "50文字以内で入力してください。",
-                placement: 'right',
-                trigger: 'hover',
-                // container: 'body'
-            });
-        },
-
-        /**/
-        _appendErrOnZipCode: function(message) {
-
-            // Destroy previous popover
-            this.ui.inputZipCode.popover('destroy');
-
-            // Attach a new popover 
-            this.ui.inputZipCode.popover({
-                title: '<div class="text-error">「郵便番号」は不正です</div>',
-                content: message + '<br/><small class="text-error">この項目は保存されていません。</small>',
-                placement: 'right',
-                html: true,
-                trigger: 'hover',
-                // container: 'body'
-            });
-        },
-
-        /**/
-        _appendErrOnAddress: function(message) {
-
-            // Destroy previous popover
-            this.ui.inputAddress.popover('destroy');
-
-            // Attach a new popover 
-            this.ui.inputAddress.popover({
-                title: '<div class="text-error">「住所」は不正です</div>',
-                content: message + '<br/><small class="text-error">この項目は保存されていません。</small>',
-                placement: 'right',
-                html: true,
-                trigger: 'hover',
-                // container: 'body'
-            });
+                content: "50文字以内で入力してください。"
+            })
         }
     });
 

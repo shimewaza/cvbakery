@@ -1,10 +1,10 @@
 var util = require('util');
 var PDFDocument = require('pdfkit');
 
-// エンジニア
+// Definition of Engineer
 var Engineer = require('../models/engineer.js');
 
-// インデックス
+// Index
 exports.index = function(req, res) {
 
 	Engineer.find({}, function(err, docs) {
@@ -16,7 +16,7 @@ exports.index = function(req, res) {
 	});
 };
 
-// 取得
+// Get single Engineer
 exports.show = function(req, res) {
 
 	Engineer.findOne({
@@ -28,7 +28,7 @@ exports.show = function(req, res) {
 	});
 };
 
-// 作成
+// Create Engineer
 exports.create = function(req, res) {
 
 	var engineer = {};
@@ -59,7 +59,7 @@ exports.create = function(req, res) {
 	});
 };
 
-// 編集
+// Edit Engineer
 exports.update = function(req, res) {
 
 	delete req.body._id;
@@ -68,7 +68,7 @@ exports.update = function(req, res) {
 
 	if (req.files && req.files.photo) {
 		var photoPath = req.files.photo.path;
-		req.body.photo = photoPath.substring(photoPath.lastIndexOf("/"));
+		req.body.photo = photoPath.substring(photoPath.lastIndexOf("\\"));
 	}
 
 	Engineer.findById(req.params.id, function(err, engineer) {
@@ -78,7 +78,7 @@ exports.update = function(req, res) {
 				engineer[prop] = req.body[prop];
 			}
 			engineer.save(function(err, newProfile) {
-				if (err) res.status(500).send("error happend: " + err);
+				if (err) res.status(400).send("error happend: " + err);
 				else res.send(newProfile);
 			});
 		}
@@ -91,11 +91,12 @@ exports.update = function(req, res) {
 	// });
 };
 
-// 削除
+// Delete Engineer
 exports.destroy = function(req, res) {
 
 };
 
+// Export PDF
 exports.pdf = function(req, res) {
 
 	if (req.params.id === 'me') {
@@ -122,6 +123,7 @@ exports.pdf = function(req, res) {
 	}
 };
 
+// Generate PDF
 createPDF = function(profile) {
 
 	var doc = new PDFDocument();

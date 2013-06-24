@@ -35,6 +35,10 @@ define([
 			// mediator.subscribe('user:logout', this.onLogout, {}, this);
 		},
 
+		onBeforeClose: function() {
+			this.$el.slideUp();
+		}
+
 		// // Render template with model
 		// render: function() {
 		// 	this.$el.html(this.template(this.model.toJSON())).appendTo('#navigator');

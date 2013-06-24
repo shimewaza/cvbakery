@@ -18,8 +18,7 @@ define([
                 inputSchool: 'input[name="school"]',
                 inputMajor: 'input[name="major"]',
                 areaGraduate: '.graduateArea',
-                areaSchool: '.schoolArea',
-                areaMajor: '.majorArea',
+                areaSchool: '.schoolArea'
             });
 
             this.events = _.extend({}, this.commonEvents, {
@@ -34,7 +33,10 @@ define([
         },
 
         onRender: function() {
-            this._appendDatePicker(this.ui.inputGraduate);
+            this._appendDatePicker(this.ui.inputGraduate, {
+                startDate: new Date('1970/01/01'),
+                endDate: new Date(),
+            });
             this._appendInfoOnInput();
             this._appendInfoOnDeleteBtn();
         },
@@ -47,7 +49,7 @@ define([
             var errors = [];
 
             // must be a date
-            if ("Invalid Date" == new Date(graduate))
+            if (graduate && "Invalid Date" == new Date(graduate))
                 errors.push({
                     target: this.ui.inputGraduate,
                     title: "卒業日",
@@ -55,7 +57,7 @@ define([
                 });
 
             // can't be late than today
-            if (new Date(graduate) > new Date())
+            if (graduate && new Date(graduate) > new Date())
                 errors.push({
                     target: this.ui.inputGraduate,
                     title: "卒業日",
@@ -95,7 +97,7 @@ define([
                 this._appendInfoOnInput();
             }
 
-            this.ui.areaGraduate.text(this._formatDate(this.ui.inputGraduate.val()));
+            this.renderValue();
             this.model.set('graduate', this.ui.inputGraduate.val());
         },
 
@@ -113,7 +115,7 @@ define([
                 this._appendInfoOnInput();
             }
 
-            this.ui.areaSchool.text(this.ui.inputSchool.val());
+            this.renderValue();
             this.model.set('school', this.ui.inputSchool.val());
         },
 
@@ -131,7 +133,7 @@ define([
                 this._appendInfoOnInput();
             }
 
-            this.ui.areaMajor.text(this.ui.inputMajor.val());
+            this.renderValue();
             this.model.set('major', this.ui.inputMajor.val());
         },
 
@@ -140,6 +142,19 @@ define([
             this.ui.editor.slideUp(function() {
                 self.trigger('item:delete', self.model);
             });
+        },
+
+        renderValue: function() {
+            var graduate = this.ui.inputGraduate.val();
+            var school = this.ui.inputSchool.val();
+            var major = this.ui.inputMajor.val();
+            var result = '';
+
+            if(school) result += school;
+            if(major) result += "　" + major;
+
+            this.ui.areaGraduate.text(this._formatDate(graduate));
+            this.ui.areaSchool.text(result);
         },
 
         _appendInfoOnInput: function() {

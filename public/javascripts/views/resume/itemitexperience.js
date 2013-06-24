@@ -48,17 +48,17 @@ define([
         /*Validate user input value*/
         validate: function(value) {
 
-            // if user input nothing, just return
-            if (!value) return;
-
             var errors = [];
+
+            // if user input nothing, just return
+            if (!value) return errors;
 
             // must be a number less than 99
             if (value.search(/^\d{1,2}$/) || Number(value) > 99 || Number(value) == 0)
                 errors.push({
                     target: this.ui.input,
                     title: this.itemName,
-                    message: '年単位で有効な数字ををご入力ください。'
+                    message: '年単位で有効な数字（1～99）をご入力ください。'
                 });
 
             return errors;

@@ -54,10 +54,10 @@ define([
         /*Validate user input value*/
         validate: function(value) {
 
-            // if user input nothing, just return
-            if (!value) return;
-
             var errors = [];
+
+            // if user input nothing, just return
+            if (!value) return errors;
 
             // must be a date
             if ("Invalid Date" == new Date(value))
@@ -102,13 +102,20 @@ define([
                 // If save success
                 success: function() {
                     // Update the view panel
-                    self.ui.value.text(self._formatDate(newVal));
+                    self.renderValue(newVal);
                     // Switch to view panel
                     self.switchToValue();
                 },
                 // use patch
                 patch: true
             });
+        },
+
+        renderValue: function(newVal) {
+            if(newVal)
+                this.ui.value.text(this._formatDate(newVal));
+            else
+                this.ui.value.text("");
         }
 
     });

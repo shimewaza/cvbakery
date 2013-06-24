@@ -1,8 +1,29 @@
+<%
+    var startDate = obj.startDate;
+    var endDate = obj.endDate;
+    var company = obj.company;
+    var address = obj.address;
+    var position = obj.position;
+    var resultDate = '';
+    var resultCompany = '';
+
+    if(startDate && endDate) 
+        resultDate = formatDate(startDate) + '～' + formatDate(endDate);
+    else if (startDate && !endDate)
+        resultDate = formatDate(startDate) + '～';
+    else if (!startDate && endDate)
+        resultDate = '～' + formatDate(endDate);
+
+    if (company) resultCompany += company;
+    if (address) resultCompany += "　" + address;
+    if (position) resultCompany += "　" + position;
+%>
 <div class="row-fluid sl-value">
-    <div class="span3 dateArea"><%- formatDate(obj.startDate) %>～<%- formatDate(obj.endDate) %></div>
-    <div class="span3 companyArea"><%- obj.company %></div>
-    <div class="span3 addressArea"><%- obj.address %></div>
-    <div class="span3 positionArea"><%- obj.position %></div>
+    <div class="dateArea"><%- resultDate %></div>
+    <div class="row-fluid">
+        <div class="span2"></div>
+        <div class="span10 companyArea"><%- resultCompany %></div>
+    </div>
 </div>
 <div class="row-fluid sl-editor">
     <div class="span11">

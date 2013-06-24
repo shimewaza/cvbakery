@@ -3,16 +3,16 @@
 </div>
 <div class="span8">
     <div class="sl-value">
-        <% print(_.escape(obj.address)　+ "（〒" + obj.zipCode + "）") %>
+        <% if(obj.zipCode) print('〒' + obj.zipCode + '）'); print(obj.address); %>
     </div>
     <div class="sl-editor row-fluid">
         <div class="span10">
-            <div class="input-prepend" id="zipCodeSubArea">
-                <span class="add-on">〒</span>
+            <div class="input-prepend sl-input" id="zipCodeSubArea">
+                <span class="add-on icon-loading">〒</span>
                 <input type="text" class="input-small" placeholder="郵便番号" name="zipCode" value="<%- obj.zipCode %>">
             </div>
             <br/>
-            <div class="input-prepend" id="addressSubArea">
+            <div class="input-prepend sl-input" id="addressSubArea">
                 <span class="add-on"><i class="icon-map-marker"></i></span>
                 <input type="text" class="input-large" placeholder="住所" name="address" value="<%- obj.address %>">
             </div>

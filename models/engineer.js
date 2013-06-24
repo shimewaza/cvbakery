@@ -74,8 +74,7 @@ var Engineer = new Schema({
 	// 最寄り駅
 	nearestStation: {
 		type: String,
-		trim: true,
-		match: /^[0-9]{11}$/
+		trim: true
 	},
 	// 稼働可能日
 	availableDate: {
@@ -86,7 +85,7 @@ var Engineer = new Schema({
 			telNo: {
 				type: String,
 				trim: true,
-				match: /^[0-9]{11}$/
+				match: /^[1-9]{3}-[0-9]{4}-[0-9]{4}$/
 			}
 		}
 	],
@@ -187,10 +186,6 @@ var Engineer = new Schema({
 				type: Date
 			},
 			qualificationName: {
-				type: String,
-				trim: true
-			},
-			remark: {
 				type: String,
 				trim: true
 			}

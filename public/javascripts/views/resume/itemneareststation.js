@@ -48,10 +48,10 @@ define([
         /*Validate user input value*/
         validate: function(value) {
 
-            // if user input nothing, just return
-            if (!value) return;
-
             var errors = [];
+
+            // if user input nothing, just return
+            if (!value) return errors;
 
             // no more than 20 characters
             if (value.length > 20)

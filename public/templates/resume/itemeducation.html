@@ -1,7 +1,14 @@
+<%
+    var school = obj.school;
+    var major = obj.major;
+    var result = '';
+
+    if(school) result += school;
+    if(major) result += "　" + major;
+%>
 <div class="row-fluid sl-value">
-    <div class="span3 graduateArea"><%- formatDate(obj.graduate) %></div>
-    <div class="span4 schoolArea"><%- obj.school %></div>
-    <div class="span5 majorArea"><%- obj.major %></div>
+    <div class="span3 graduateArea"><% print(formatDate(obj.graduate)); %></div>
+    <div class="span9 schoolArea"><% print(result); %></div>
 </div>
 <div class="row-fluid sl-editor">
     <div class="span11">

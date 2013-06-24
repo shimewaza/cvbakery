@@ -54,10 +54,10 @@ define([
         /*Validate user input value*/
         validate: function(value) {
 
-            // do nothing if user input nothing
-            if (!value) return;
-
             var errors = [];
+
+            // do nothing if user input nothing
+            if (!value) return errors;
 
             // must be a date
             if ("Invalid Date" == new Date(value))
@@ -106,17 +106,23 @@ define([
 
             // save the model
             this.model.save(data, {
-
                 // if save success
                 success: function() {
                     // update the view panel
-                    self.ui.value.text(self._formatDate(newVal));
+                    self.renderValue(newVal);
                     // switch to view panel
                     self.switchToValue();
                 },
                 // use patch
                 patch: true
             });
+        },
+
+        renderValue: function(newVal) {
+            if(newVal)
+                this.ui.value.text(this._formatDate(newVal));
+            else
+                this.ui.value.text("");
         }
 
     });

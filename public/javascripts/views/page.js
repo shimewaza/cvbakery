@@ -108,12 +108,12 @@ define([
 
 				// make space for navigator panel
 				$('#body').animate({
-					'padding-left': '265px'
+					'padding-left': '210px'
 				}, function() {
 
 					// move in the navigator
 					$('#navigator').animate({
-						'right': '265px'
+						'right': '210px'
 					});
 				});
 			});
@@ -126,7 +126,7 @@ define([
 
 			// move the navigator out of screen
 			$('#navigator').animate({
-				'right': '530px'
+				'right': '410px'
 			}, function() {
 				// expand the main area
 				$('#body').animate({

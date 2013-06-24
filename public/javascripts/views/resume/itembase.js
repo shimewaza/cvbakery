@@ -218,7 +218,7 @@ define([], function() {
 
             // default option
             var defaultOpt = {
-                placement: 'bottom',
+                placement: 'right',
                 trigger: 'hover',
                 html: true
             };
