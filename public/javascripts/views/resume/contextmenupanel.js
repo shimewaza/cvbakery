@@ -1,21 +1,19 @@
 define([
-        'text!templates/resume/toolpanel.html'
+        'text!templates/resume/contextmenupanel.html'
 ], function(itemPanelTemplate) {
 
     var ToolPanelView = Backbone.Marionette.ItemView.extend({
 
         // This view is a div
-        tagName: 'div',
+        tagName: 'ul',
 
         // Class on HTML page
-        className: 'well well-small container-fluid sl-panel',
+        className: 'well well-small container-fluid sl-panel dropdown-menu',
 
         // ID on HTML page
         id: 'resumeToolPanel',
 
         template: itemPanelTemplate,
-
-        missedItems: [],
 
         subTemplate: _.template('<button class="btn btn-success btn-item" data-item="<%- obj.item %>">\
             <i class="<%= obj.itemIcon %> icon-white btn-item" data-item="<%- obj.item %>">\
@@ -31,7 +29,7 @@ define([
 
         initialize: function() {
             this.listenTo(vent, 'resume:itemRemoved', this.onItemRemoved);
-            this.$el.draggable();
+            // this.$el.draggable();
         },
 
         addItem: function(event) {
@@ -84,7 +82,6 @@ define([
         },
 
         outputPDF: function() {
-
             $.fileDownload('/engineer/me/pdf');
         },
 

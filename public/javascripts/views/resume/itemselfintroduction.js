@@ -32,6 +32,8 @@ define([
         /*After Render*/
         onRender: function() {
 
+            this.ui.input.markdown({autofocus:false,savable:false});
+
             // Listen to the universal-click, switch to view-mode when input lost focus
             this.listenTo(vent, 'click:universal', this.switchToValue);
 
@@ -52,6 +54,8 @@ define([
 
             // Get input value
             var newVal = this.ui.input.val();
+
+            console.log(newVal);
 
             // Prepare the date for model update
             var data = {};

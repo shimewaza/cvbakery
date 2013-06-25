@@ -1,6 +1,6 @@
 define([
-		'text!templates/resume/resume.html',
-		'text!templates/resume/resume-two-columns.html',
+		// 'text!templates/resume/resume.html',
+		// 'text!templates/resume/resume-two-columns.html',
 		'views/resume/itemphoto',
 		'views/resume/itemname',
 		'views/resume/itembirthday',
@@ -19,10 +19,11 @@ define([
 		'views/resume/compositeeducation',
 		'views/resume/compositecareer',
 		'views/resume/compositelanguage',
-		'views/resume/compositequalification'
+		'views/resume/compositequalification',
+		'views/resume/contextMenuPanel'
 ], function(
-	resumeTemplate,
-	resumeTemplateTwoCols,
+	// resumeTemplate,
+	// resumeTemplateTwoCols,
 	PhotoView,
 	NameView,
 	BirthDayView,
@@ -41,7 +42,8 @@ define([
 	EducationComposite,
 	CareerComposite,
 	LanguageComposite,
-	QualificationComposite) {
+	QualificationComposite,
+	ContextMenuPanelView) {
 
 	var ResumeView = Backbone.Marionette.Layout.extend({
 
@@ -55,7 +57,7 @@ define([
 		id: 'resumePanel',
 
 		// Template
-		template: resumeTemplate,
+		// template: resumeTemplate,
 
 		regions: {
 			photoArea: '#photo',
@@ -76,7 +78,8 @@ define([
 			educationArea: '#education',
 			careerArea: '#career',
 			languageArea: '#language',
-			qualificationArea: '#qualification'
+			qualificationArea: '#qualification',
+			contextMenuArea: '#contextMenu'
 		},
 
 		// Initializer
@@ -88,6 +91,10 @@ define([
 					this.$el.html(view.el);
 					this.$el.show('drop');
 				};
+			});
+
+			this.contextMenuPanelView = new ContextMenuPanelView({
+			    model: this.model
 			});
 
 			this.photoView = new PhotoView({
@@ -182,7 +189,7 @@ define([
 
 			this.listenTo(vent, 'resume:itemAdded', this.onItemAdded);
 			this.listenTo(vent, 'resume:changePattern', this.onChangePatter);
-			this.listenTo(vent, 'resume:changeTemplate', this.onChangeTemplate);
+			// this.listenTo(vent, 'resume:changeTemplate', this.onChangeTemplate);
 		},
 
 		// Render
@@ -191,127 +198,99 @@ define([
 			var self = this;
 			var setting = this.model.get('setting');
 
+			this.contextMenuArea.show(this.contextMenuPanelView);
+
 			this.photoArea.show(this.photoView);
 			this.nameArea.show(this.nameView);
 
 			if (setting.birthDay)
 				this.birthDayArea.show(this.birthDayView);
 			else
-				this.birthDayView.removeItem({
-					silence: true
-				});
+				this.birthDayView.removeItem();
 
 			if (setting.gender)
 				this.genderArea.show(this.genderView);
 			else
-				this.genderView.removeItem({
-					silence: true
-				});
+				this.genderView.removeItem();
 
 			if (setting.nationality)
 				this.nationalityArea.show(this.nationalityView);
 			else
-				this.nationalityView.removeItem({
-					silence: true
-				});
+				this.nationalityView.removeItem();
 
 			if (setting.married)
 				this.marriedArea.show(this.marriedView);
 			else
-				this.marriedView.removeItem({
-					silence: true
-				});
+				this.marriedView.removeItem();
 
 			if (setting.firstArrive)
 				this.firstArriveArea.show(this.firstArriveView);
 			else
-				this.firstArriveView.removeItem({
-					silence: true
-				});
+				this.firstArriveView.removeItem();
 
 			if (setting.itExperience)
 				this.itExperienceArea.show(this.itExperienceView);
 			else
-				this.itExperienceView.removeItem({
-					silence: true
-				});
+				this.itExperienceView.removeItem();
 
 			if (setting.availableDate)
 				this.availableDateArea.show(this.availableDateView);
 			else
-				this.availableDateView.removeItem({
-					silence: true
-				});
+				this.availableDateView.removeItem();
 
 			if (setting.address)
 				this.addressArea.show(this.addressView);
 			else
-				this.addressView.removeItem({
-					silence: true
-				});
+				this.addressView.removeItem();
 
 			if (setting.nearestStation)
 				this.nearestStationArea.show(this.nearestStationView);
 			else
-				this.nearestStationView.removeItem({
-					silence: true
-				});
+				this.nearestStationView.removeItem();
 
 			if (setting.telNos)
 				this.telNoArea.show(this.telNoComposite);
 			else
-				this.telNoComposite.removeItem({
-					silence: true
-				});
+				this.telNoComposite.removeItem();
 
 			if (setting.emails)
 				this.emailArea.show(this.emailComposite);
 			else
-				this.emailComposite.removeItem({
-					silence: true
-				});
+				this.emailComposite.removeItem();
 
 			if (setting.homePages)
 				this.homePageArea.show(this.homePageComposite);
 			else
-				this.homePageComposite.removeItem({
-					silence: true
-				});
+				this.homePageComposite.removeItem();
 
 			if (setting.selfIntroduction)
 				this.selfIntroductionArea.show(this.selfIntroductionView);
 			else
-				this.selfIntroductionView.removeItem({
-					silence: true
-				});
+				this.selfIntroductionView.removeItem();
 
 			if (setting.education)
 				this.educationArea.show(this.educationComposite);
 			else
-				this.educationComposite.removeItem({
-					silence: true
-				});
+				this.educationComposite.removeItem();
 
 			if (setting.career)
 				this.careerArea.show(this.careerComposite);
 			else
-				this.careerComposite.removeItem({
-					silence: true
-				});
+				this.careerComposite.removeItem();
 
 			if (setting.languageBackground)
 				this.languageArea.show(this.languageComposite);
 			else
-				this.languageComposite.removeItem({
-					silence: true
-				});
+				this.languageComposite.removeItem();
 
 			if (setting.qualification)
 				this.qualificationArea.show(this.qualificationComposite);
 			else
-				this.qualificationComposite.removeItem({
-					silence: true
-				});
+				this.qualificationComposite.removeItem();
+
+			$('#content').contextmenu({
+				target: '#contextMenu',
+			});
 		},
 
 		onItemAdded: function(data) {
@@ -470,20 +449,20 @@ define([
 
 		onChangePatter: function(data) {
 			console.log(data);
-			this.$el.css('background', data + ' repeat');
+			$('body').css('background', data + ' repeat');
 		},
 
-		onChangeTemplate: function(data) {
-			var self = this;
-			this.$el.hide('slide', function() {
-				self.$el.css('min-width', '1200px').addClass('row-fluid');
-				self.template = resumeTemplateTwoCols;
-				self.render();
-				self.$el.show('slide', {
-					direction: 'right'
-				});
-			});
-		}
+		// onChangeTemplate: function(data) {
+		// 	var self = this;
+		// 	this.$el.hide('slide', function() {
+		// 		self.$el.css('min-width', '1200px').addClass('row-fluid');
+		// 		self.template = resumeTemplateTwoCols;
+		// 		self.render();
+		// 		self.$el.show('slide', {
+		// 			direction: 'right'
+		// 		});
+		// 	});
+		// }
 
 	});
 

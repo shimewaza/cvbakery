@@ -1,9 +1,15 @@
 define([
         'views/page',
         'views/resume/resume',
-        'views/resume/toolPanel',
-        'models/engineer'
-], function(PageView, ResumeView, ToolPanelView, EngineerModel) {
+        'models/engineer',
+        'text!templates/resume/resume.html',
+        'text!templates/resume/resume-two-columns.html'
+], function(
+    PageView, 
+    ResumeView, 
+    EngineerModel,
+    resumeTemplate,
+    resumeTemplateTwoCols) {
 
     var Controller = Backbone.Marionette.Controller.extend({
 
@@ -15,6 +21,8 @@ define([
                 model: new Backbone.Model(this.account)
             });
             this.app.mainRegion.show(this.pageView);
+
+            this.listenTo(vent, 'resume:changeTemplate', this.onChangeTemplate);
         },
 
         toHome: function() {
@@ -29,15 +37,30 @@ define([
                 _id: this.account.userInfo.profileId
             });
 
-            var toolPanelView = new ToolPanelView({
-                model: engineerModel
+            engineerModel.fetch({
+                success: function() {
+                    var resumeView = new ResumeView({
+                        model: engineerModel,
+                        template: resumeTemplate
+                    });
+                    self.pageView.content.show(resumeView);
+                }
             });
-            self.pageView.navigator.show(toolPanelView);
+        },
+
+        onChangeTemplate: function(data) {
+
+            var self = this;
+
+            var engineerModel = new EngineerModel({
+                _id: this.account.userInfo.profileId
+            });
 
             engineerModel.fetch({
                 success: function() {
                     var resumeView = new ResumeView({
-                        model: engineerModel
+                        model: engineerModel,
+                        template: resumeTemplateTwoCols
                     });
                     self.pageView.content.show(resumeView);
                 }

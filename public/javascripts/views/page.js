@@ -12,6 +12,7 @@ define([
 			'click #fullScreenBtn': 'onFullScreen',
 			'click #partScreenBtn': 'onPartScreen',
 			'click #logoutBtn': 'onLogout',
+			'click #helpBtn': 'showHelp',
 			'click': 'onClick'
 		},
 
@@ -75,9 +76,11 @@ define([
 					});
 
 					// hide tool button with animation
-					$('#logoutBtn').hide('drop', function() {
-						$('#fullScreenBtn').hide('drop', function() {
-							$('#partScreenBtn').hide('drop');
+					$('#helpBtn').hide('drop', function() {					
+						$('#partScreenBtn').hide('drop', function() {
+							$('#fullScreenBtn').hide('drop', function() {
+								$('#logoutBtn').hide('drop');
+							});
 						});
 					});
 				}
@@ -88,7 +91,7 @@ define([
 
 			var self = this;
 
-			this.$el.find('#fullScreenBtn').show();
+			this.$el.find('#fullScreenBtn').hide();
 			this.$el.find('#partScreenBtn').hide();
 
 			// make space for menu panel
@@ -97,8 +100,10 @@ define([
 			}, function() {
 
 				// move in tool button with animation
-				$('#fullScreenBtn').show('drop', function() {
-					$('#logoutBtn').show('drop');
+				$('#logoutBtn').show('drop', function() {
+					$('#fullScreenBtn').show('drop', function() {
+						$('#helpBtn').show('drop');
+					});
 				});
 
 				// move in the menu
@@ -144,7 +149,14 @@ define([
 					if(typeof callback === "function") callback();
 				});
 			});
+		},
 
+		showHelp: function() {
+		    bootstro.start('.bootstro', {
+		        nextButton: '<button class="btn btn-primary bootstro-next-btn">次  <i class="icon-chevron-right"></i></button>',
+		        prevButton: '<button class="btn btn-primary bootstro-prev-btn"><i class="icon-chevron-left"></i>  前</button>',
+		        finishButton: ''
+		    });
 		},
 
 		onClick: function() {
