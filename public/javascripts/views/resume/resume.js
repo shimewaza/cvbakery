@@ -1,7 +1,7 @@
 define([
-		// 'text!templates/resume/resume.html',
-		// 'text!templates/resume/resume-two-columns.html',
-		'views/resume/itemphoto',
+	// 'text!templates/resume/resume.html',
+	// 'text!templates/resume/resume-two-columns.html',
+	'views/resume/itemphoto',
 		'views/resume/itemname',
 		'views/resume/itembirthday',
 		'views/resume/itemgender',
@@ -12,19 +12,20 @@ define([
 		'views/resume/itemavailabledate',
 		'views/resume/itemaddress',
 		'views/resume/itemneareststation',
-		'views/resume/compositetelno',
-		'views/resume/compositeemail',
-		'views/resume/compositehomepage',
+		'views/resume/itemtelno',
+		'views/resume/itememail',
+		'views/resume/itemhomepage',
 		'views/resume/itemselfintroduction',
 		'views/resume/compositeeducation',
 		'views/resume/compositecareer',
 		'views/resume/compositelanguage',
 		'views/resume/compositequalification',
+		'views/resume/compositeskill',
 		'views/resume/contextMenuPanel'
 ], function(
-	// resumeTemplate,
-	// resumeTemplateTwoCols,
-	PhotoView,
+// resumeTemplate,
+// resumeTemplateTwoCols,
+PhotoView,
 	NameView,
 	BirthDayView,
 	GenderView,
@@ -35,14 +36,15 @@ define([
 	AvailableDateView,
 	AddressView,
 	NearestStationView,
-	TelNoComposite,
-	EMailComposite,
-	HomePageComposite,
+	TelNoView,
+	EMailView,
+	HomePageView,
 	SelfIntroductionView,
 	EducationComposite,
 	CareerComposite,
 	LanguageComposite,
 	QualificationComposite,
+	SkillComposite,
 	ContextMenuPanelView) {
 
 	var ResumeView = Backbone.Marionette.Layout.extend({
@@ -79,6 +81,7 @@ define([
 			careerArea: '#career',
 			languageArea: '#language',
 			qualificationArea: '#qualification',
+			skillArea: '#skill',
 			contextMenuArea: '#contextMenu'
 		},
 
@@ -94,7 +97,7 @@ define([
 			});
 
 			this.contextMenuPanelView = new ContextMenuPanelView({
-			    model: this.model
+				model: this.model
 			});
 
 			this.photoView = new PhotoView({
@@ -141,22 +144,16 @@ define([
 				model: this.model
 			});
 
-			var telnos = new Backbone.Collection(this.model.get('telNos'));
-			this.telNoComposite = new TelNoComposite({
-				model: this.model,
-				collection: telnos
+			this.telNoView = new TelNoView({
+				model: this.model
 			});
 
-			var emails = new Backbone.Collection(this.model.get('emails'));
-			this.emailComposite = new EMailComposite({
-				model: this.model,
-				collection: emails
+			this.emailView = new EMailView({
+				model: this.model
 			});
 
-			var homepages = new Backbone.Collection(this.model.get('homePages'));
-			this.homePageComposite = new HomePageComposite({
-				model: this.model,
-				collection: homepages
+			this.homePageView = new HomePageView({
+				model: this.model
 			});
 
 			this.selfIntroductionView = new SelfIntroductionView({
@@ -185,6 +182,12 @@ define([
 			this.qualificationComposite = new QualificationComposite({
 				model: this.model,
 				collection: qualifications
+			});
+
+			var skills = new Backbone.Collection(this.model.get('skill'));
+			this.skillComposite = new SkillComposite({
+				model: this.model,
+				collection: skills
 			});
 
 			this.listenTo(vent, 'resume:itemAdded', this.onItemAdded);
@@ -248,20 +251,20 @@ define([
 			else
 				this.nearestStationView.removeItem();
 
-			if (setting.telNos)
-				this.telNoArea.show(this.telNoComposite);
+			if (setting.telNo)
+				this.telNoArea.show(this.telNoView);
 			else
-				this.telNoComposite.removeItem();
+				this.telNoView.removeItem();
 
-			if (setting.emails)
-				this.emailArea.show(this.emailComposite);
+			if (setting.email)
+				this.emailArea.show(this.emailView);
 			else
-				this.emailComposite.removeItem();
+				this.emailView.removeItem();
 
-			if (setting.homePages)
-				this.homePageArea.show(this.homePageComposite);
+			if (setting.homePage)
+				this.homePageArea.show(this.homePageView);
 			else
-				this.homePageComposite.removeItem();
+				this.homePageView.removeItem();
 
 			if (setting.selfIntroduction)
 				this.selfIntroductionArea.show(this.selfIntroductionView);
@@ -288,8 +291,13 @@ define([
 			else
 				this.qualificationComposite.removeItem();
 
+			if (setting.skill)
+				this.skillArea.show(this.skillComposite);
+			else
+				this.skillComposite.removeItem();
+
 			$('#content').contextmenu({
-				target: '#contextMenu',
+				target: '#contextMenu'
 			});
 		},
 
@@ -367,33 +375,27 @@ define([
 				return;
 			}
 
-			if (data.item == "telNos") {
-				var telnos = new Backbone.Collection(this.model.get('telNos'));
-				this.telNoComposite = new TelNoComposite({
-					model: this.model,
-					collection: telnos
+			if (data.item == "telNo") {
+				this.telNoView = new TelNoView({
+					model: this.model
 				});
-				this.telNoArea.show(this.telNoComposite);
+				this.telNoArea.show(this.telNoView);
 				return;
 			}
 
-			if (data.item == "emails") {
-				var emails = new Backbone.Collection(this.model.get('emails'));
-				this.emailComposite = new EMailComposite({
-					model: this.model,
-					collection: emails
+			if (data.item == "email") {
+				this.emailView = new EMailView({
+					model: this.model
 				});
-				this.emailArea.show(this.emailComposite);
+				this.emailArea.show(this.emailView);
 				return;
 			}
 
-			if (data.item == "homePages") {
-				var homepages = new Backbone.Collection(this.model.get('homePages'));
-				this.homePageComposite = new HomePageComposite({
-					model: this.model,
-					collection: homepages
+			if (data.item == "homePage") {
+				this.homePageView = new HomePageView({
+					model: this.model
 				});
-				this.homePageArea.show(this.homePageComposite);
+				this.homePageArea.show(this.homePageView);
 				return;
 			}
 
@@ -442,6 +444,16 @@ define([
 					collection: qualifications
 				});
 				this.qualificationArea.show(this.qualificationComposite);
+				return;
+			}
+
+			if (data.item == "skill") {
+				var skills = new Backbone.Collection(this.model.get('skill'));
+				this.skillComposite = new SkillComposite({
+					model: this.model,
+					collection: skills
+				});
+				this.skillArea.show(this.skillComposite);
 				return;
 			}
 

@@ -1,16 +1,16 @@
 define([
-        'text!templates/resume/compositeemail.html',
+        'text!templates/resume/compositeskill.html',
         'views/resume/compositebase',
-        'views/resume/itememail'
+        'views/resume/itemskill'
 ], function(template, BaseView, itemView) {
 
-    var EmailView = BaseView.extend({
+    var SkillView = BaseView.extend({
 
-        item: 'emails',
+        item: 'skill',
 
-        itemName: 'E-mail',
+        itemName: 'スキル',
 
-        itemIcon: 'icon-envelope',
+        itemIcon: 'icon-gear',
 
         itemNumber: 5,
 
@@ -43,5 +43,5 @@ define([
         }
     });
 
-    return EmailView;
+    return SkillView;
 });

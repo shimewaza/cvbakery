@@ -35,8 +35,10 @@ define([
 			this.content.open = function(view) {
 				this.$el.hide('slide');
 				this.$el.html(view.el);
+				// this.$el.fadeIn();
 				this.$el.show('slide', {
-					direction: 'right'
+					direction: 'right',
+					easing: 'linear'
 				});
 			};
 

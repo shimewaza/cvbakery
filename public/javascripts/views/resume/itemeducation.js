@@ -12,7 +12,7 @@ define([
 
         /*Initializer*/
         initialize: function() {
-            
+
             this.ui = _.extend({}, this.commonUI, {
                 inputGraduate: 'input[name="graduate"]',
                 inputSchool: 'input[name="school"]',
@@ -150,8 +150,8 @@ define([
             var major = this.ui.inputMajor.val();
             var result = '';
 
-            if(school) result += school;
-            if(major) result += "　" + major;
+            if (school) result += school;
+            if (major) result += "　" + major;
 
             this.ui.areaGraduate.text(this._formatDate(graduate));
             this.ui.areaSchool.text(result);

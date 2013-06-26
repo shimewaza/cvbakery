@@ -81,30 +81,21 @@ var Engineer = new Schema({
 		type: Date
 	},
 	// 電話番号
-	telNos: [{
-			telNo: {
-				type: String,
-				trim: true,
-				match: /^[1-9]{3}-[0-9]{4}-[0-9]{4}$/
-			}
-		}
-	],
+	telNo: {
+		type: String,
+		trim: true,
+		match: /^[1-9]{3}-[0-9]{4}-[0-9]{4}$/
+	},
 	// E-mail
-	emails: [{
-			email: {
-				type: String,
-				trim: true
-			}
-		}
-	],
+	email: {
+		type: String,
+		trim: true
+	},
 	// ホームページ
-	homePages: [{
-			homePage: {
-				type: String,
-				trim: true
-			}
-		}
-	],
+	homePage: {
+		type: String,
+		trim: true
+	},
 	// 郵便番号
 	zipCode: {
 		type: String,
@@ -191,6 +182,19 @@ var Engineer = new Schema({
 			}
 		}
 	],
+	// Skill
+	skill: [{
+			name: {
+				type: String,
+				trim: true
+			},
+			level: {
+				type: Number,
+				min: 0,
+				max: 100
+			}
+		}
+	],
 	// スキル補足
 	skillRemark: {
 		type: String,
@@ -238,15 +242,15 @@ var Engineer = new Schema({
 			type: Boolean,
 			default: true
 		},
-		telNos: {
+		telNo: {
 			type: Boolean,
 			default: true
 		},
-		emails: {
+		email: {
 			type: Boolean,
 			default: true
 		},
-		homePages: {
+		homePage: {
 			type: Boolean,
 			default: true
 		},
@@ -271,6 +275,10 @@ var Engineer = new Schema({
 			default: true
 		},
 		qualification: {
+			type: Boolean,
+			default: true
+		},
+		skill: {
 			type: Boolean,
 			default: true
 		},

@@ -145,8 +145,17 @@ li {
 	min-height: 40px;
 	-moz-border-radius: 6px;
 	border-radius: 6px;
-	/*margin-left: 0px !important;*/
-	/*margin-bottom: 0px !important;*/
+	margin-left: 0px !important;
+	margin-bottom: 0px !important;
+}
+
+#resumePanel .progress {
+	height: 30px;
+	margin-bottom: 10px;
+}
+
+#resumePanel .ui-slider-range {
+	background: #ef2929;
 }
 
 #resumeToolPanel {

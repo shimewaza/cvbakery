@@ -5,7 +5,11 @@ define([
 
     var EmailEditor = BaseView.extend({
 
+        item: 'email',
+
         itemName: "E-mail",
+
+        itemIcon: 'icon-envelope',
 
         itemHelp: "メールアドレスを入力してください。",
 
@@ -21,16 +25,21 @@ define([
 
             this.events = _.extend({}, this.commonEvents, {
                 // Update model when input's value was chenaged
-                'change input': 'updateEmail'
+                'change input': 'updateModel'
             });
         },
 
         onRender: function() {
+
+            // listen to the universal-click, switch to view-mode when input lost focus
+            this.listenTo(vent, 'click:universal', this.switchToValue);
+
             this._appendInfoOn(this.ui.input, {
                 title: this.itemName,
                 content: this.itemHelp
             });
-            this._appendInfoOnDeleteBtn();
+
+            this._appendInfoOnRemoveBtn();
         },
 
         /*Validate user input value*/
@@ -52,7 +61,7 @@ define([
             return errors;
         },
 
-        updateEmail: function() {
+        updateModel: function() {
 
             var self = this;
 
@@ -73,14 +82,21 @@ define([
                 });
             }
 
-            this.ui.value.text(this.ui.input.val());
-            this.model.set('email', this.ui.input.val());
-        },
+            // prepare the date for model update
+            var data = {};
+            data[this.item] = newVal;
 
-        deleteItem: function() {
-            var self = this;
-            this.ui.editor.slideUp(function() {
-                self.trigger('item:delete', self.model);
+            // save the model
+            this.model.save(data, {
+                // if save success
+                success: function() {
+                    // update the view panel
+                    self.ui.value.text(newVal);
+                    // switch to view panel
+                    self.switchToValue();
+                },
+                // use patch
+                patch: true
             });
         }
 
