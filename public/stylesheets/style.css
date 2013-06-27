@@ -6,10 +6,10 @@ html {
 body {
     font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
     background: url('../images/page-bg.png') repeat center top;
-/*    -webkit-transition: all 1s ease;
-       -moz-transition: all 1s ease;
-         -o-transition: all 1s ease;
-            transition: all 1s ease;*/
+/*    -webkit-transition: background 1s ease;
+       -moz-transition: background 1s ease;
+         -o-transition: background 1s ease;
+            transition: background 1s ease;*/
 }
 
 ul {
@@ -154,24 +154,31 @@ li {
 	margin-bottom: 10px;
 }
 
-#resumePanel .ui-slider-range {
-	background: #ef2929;
+#resumePanel .ui-slider-horizontal {
+	height: 1.2em;
 }
 
-#resumeToolPanel {
+#resumePanel .ui-slider .ui-slider-handle {
+	width: 0.8em;
+	height: 1.6em;
+}
+
+#resumeContextMenu {
 	max-width: 240px;
 	min-width: 240px;
 }
 
-#resumeToolPanel .btn-item {
+#resumeContextMenu .btn-item {
 	min-width: 41px;
 }
 
-#resumeToolPanel button {
+#resumeContextMenu button {
 	margin: 3px;
 }
 
-#resumeToolPanel .img-polaroid {
+#resumeContextMenu .bk-sample {
+	height:20px;
+	width:20px; 
 	margin: 3px;
 	float: left;
 }

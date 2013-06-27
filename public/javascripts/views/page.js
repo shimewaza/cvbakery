@@ -78,7 +78,7 @@ define([
 					});
 
 					// hide tool button with animation
-					$('#helpBtn').hide('drop', function() {					
+					$('#helpBtn').hide('drop', function() {
 						$('#partScreenBtn').hide('drop', function() {
 							$('#fullScreenBtn').hide('drop', function() {
 								$('#logoutBtn').hide('drop');
@@ -86,7 +86,7 @@ define([
 						});
 					});
 				}
-			});		
+			});
 		},
 
 		onPartScreen: function() {
@@ -114,15 +114,15 @@ define([
 				});
 
 				// make space for navigator panel
-				$('#body').animate({
-					'padding-left': '210px'
-				}, function() {
+				// $('#body').animate({
+				// 	'padding-left': '210px'
+				// }, function() {
 
-					// move in the navigator
-					$('#navigator').animate({
-						'right': '210px'
-					});
-				});
+				// 	// move in the navigator
+				// 	$('#navigator').animate({
+				// 		'right': '210px'
+				// 	});
+				// });
 			});
 		},
 
@@ -132,33 +132,45 @@ define([
 			this.$el.find('#partScreenBtn').show();
 
 			// move the navigator out of screen
-			$('#navigator').animate({
-				'right': '410px'
+			// $('#navigator').animate({
+			// 	'right': '410px'
+			// }, function() {
+			// 	// expand the main area
+			// 	$('#body').animate({
+			// 		'padding-left': '0px'
+			// 	});
+			// 	// move header out of screen
+			// 	$('#menuPanel').animate({
+			// 		'top': '-40px'
+			// 	}, function() {
+			// 		// expand body
+			// 		$('body').animate({
+			// 			'padding-top': '5px'
+			// 		});
+
+			// 		if (typeof callback === "function") callback();
+			// 	});
+			// });
+
+			// move header out of screen
+			$('#menuPanel').animate({
+				'top': '-40px'
 			}, function() {
-				// expand the main area
-				$('#body').animate({
-					'padding-left': '0px'
+				// expand body
+				$('body').animate({
+					'padding-top': '5px'
 				});
-				// move header out of screen
-				$('#menuPanel').animate({
-					'top': '-40px'
-				}, function() {
-					// expand body
-					$('body').animate({
-						'padding-top': '5px'
-					});
-					
-					if(typeof callback === "function") callback();
-				});
+
+				if (typeof callback === "function") callback();
 			});
 		},
 
 		showHelp: function() {
-		    bootstro.start('.bootstro', {
-		        nextButton: '<button class="btn btn-primary bootstro-next-btn">次  <i class="icon-chevron-right"></i></button>',
-		        prevButton: '<button class="btn btn-primary bootstro-prev-btn"><i class="icon-chevron-left"></i>  前</button>',
-		        finishButton: ''
-		    });
+			bootstro.start('.bootstro', {
+				nextButton: '<button class="btn btn-primary bootstro-next-btn">次  <i class="icon-chevron-right"></i></button>',
+				prevButton: '<button class="btn btn-primary bootstro-prev-btn"><i class="icon-chevron-left"></i>  前</button>',
+				finishButton: ''
+			});
 		},
 
 		onClick: function() {

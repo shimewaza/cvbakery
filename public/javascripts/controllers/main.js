@@ -39,6 +39,9 @@ define([
 
             engineerModel.fetch({
                 success: function() {
+
+                    self._changeBackground(engineerModel.get('backgroundImg'));
+
                     var resumeView = new ResumeView({
                         model: engineerModel,
                         template: resumeTemplate
@@ -62,9 +65,28 @@ define([
                         model: engineerModel,
                         template: resumeTemplateTwoCols
                     });
+                    resumeView.$el.css({
+                        'max-width': '90%',
+                        'min-width': '90%'
+                    });
                     self.pageView.content.show(resumeView);
                 }
             });
+        },
+
+        _changeBackground: function(imageName) {
+
+            if(!imageName) return;
+
+            $('body').css('background', "url('/images/resume/" + imageName + "') repeat");
+
+            // $('body').animate({
+            //     opacity: 0
+            // }, function() {
+            //     $(this)
+            //         .css('background', "url('/images/resume/" + imageName + "') repeat")
+            //         .animate({opacity: 1});
+            // });
         }
     });
 

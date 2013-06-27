@@ -11,7 +11,7 @@ define([
         className: 'well well-small container-fluid sl-panel dropdown-menu',
 
         // ID on HTML page
-        id: 'resumeToolPanel',
+        id: 'resumeContextMenu',
 
         template: itemPanelTemplate,
 
@@ -22,7 +22,7 @@ define([
 
         events: {
             'click .btn-item': 'addItem',
-            'click .img-polaroid': 'changePattern',
+            'click .bk-sample': 'changePattern',
             'click #pdfBtn': 'outputPDF',
             'click #twoColsBtn': 'changeTemplate2Cols',
         },
@@ -30,6 +30,14 @@ define([
         initialize: function() {
             this.listenTo(vent, 'resume:itemRemoved', this.onItemRemoved);
             // this.$el.draggable();
+        },
+
+        onRender: function() {
+            this.$el.find('.bk-sample').each(function() {
+                var imageName = $(this).data('image');
+                var val = "url('/images/resume/" + imageName + "')";
+                $(this).css('background-image', val);
+            })
         },
 
         addItem: function(event) {
@@ -43,20 +51,16 @@ define([
             this.model.save({
                 setting: data
             }, {
-
                 // if save success
                 success: function() {
-
                     vent.trigger('resume:itemAdded', {
                         item: $target.data('item')
                     });
-
                     $target.closest('button').slideUp();
                 },
                 // use patch
                 patch: true
             });
-
         },
 
         onItemRemoved: function(data) {
@@ -77,8 +81,7 @@ define([
 
         changePattern: function(event) {
             var $target = $(event.target);
-            console.log($target.css('background-image'));
-            vent.trigger('resume:changePattern', $target.css('background-image'));
+            vent.trigger('resume:changePattern', $target.data('image'));
         },
 
         outputPDF: function() {

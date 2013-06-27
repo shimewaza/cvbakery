@@ -200,6 +200,11 @@ var Engineer = new Schema({
 		type: String,
 		trim: true
 	},
+	// BackGround Image
+	backgroundImg: {
+		type: String,
+		trim: true
+	},
 	// 公開フラグ
 	setting: {
 		name: {

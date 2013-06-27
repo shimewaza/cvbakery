@@ -53,7 +53,7 @@ PhotoView,
 		tagName: 'div',
 
 		// Class on HTML page
-		className: 'well well-large container-fluid sl-panel',
+		className: 'well well-large container-fluid row-fluid sl-panel',
 
 		// ID on HTML page
 		id: 'resumePanel',
@@ -459,9 +459,22 @@ PhotoView,
 
 		},
 
-		onChangePatter: function(data) {
-			console.log(data);
-			$('body').css('background', data + ' repeat');
+		onChangePatter: function(imageName) {
+
+			// prepare the date for model update
+			var data = {};
+			data['backgroundImg'] = imageName;
+
+			// save the model
+			this.model.save(data, {
+			    // if save success
+			    success: function() {
+			    	var val = "url('/images/resume/" + imageName + "')";
+					$('body').css('background', val + ' repeat');
+			    },
+			    // use patch
+			    patch: true
+			});
 		},
 
 		// onChangeTemplate: function(data) {

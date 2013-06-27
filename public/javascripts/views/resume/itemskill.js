@@ -15,15 +15,12 @@ define([
 
             this.ui = _.extend({}, this.commonUI, {
                 inputSkill: 'input[name="skill"]',
-                inputLevel: '.sl-slider',
-                areaSkill: '.skillArea',
-                areaLevel: '.levelArea'
+                inputLevel: '.sl-slider'
             });
 
             this.events = _.extend({}, this.commonEvents, {
                 // Update model when input's value was chenaged
                 'change input[name="skill"]': 'updateSkill'
-                // 'change input[name="level"]': 'updateLevel'
             });
 
             // Listen to the universal-click, switch to view-mode when input lost focus
@@ -61,11 +58,14 @@ define([
             this.ui.inputLevel.slider({
                 range: 'min',
                 value: this.model.get('level'),
+                slide: function() {
+                    $(this).removeClass(self._getCurrentBarStyle).addClass(self._getBarStyle());
+                },
                 stop: function() {
                     self.renderValue();
                     self.model.set('level', self.ui.inputLevel.slider('value'));
                 }
-            });
+            }).find('.ui-slider-range').addClass('bar');
 
             this._appendInfoOnInput();
             this._appendInfoOnDeleteBtn();
@@ -77,11 +77,11 @@ define([
             var errors = [];
 
             // no more than 20 characters
-            if (skill.length > 20)
+            if (skill.length > 50)
                 errors.push({
                     target: this.ui.inputSkill,
-                    title: "卒業学校",
-                    message: '20文字以内でご入力ください。'
+                    title: "スキル",
+                    message: '50文字以内でご入力ください。'
                 });
 
             return errors;
@@ -113,19 +113,48 @@ define([
         },
 
         renderValue: function() {
-            this.ui.areaSkill.text(this.ui.inputSkill.val());
-            this.ui.areaLevel.text(this.ui.inputLevel.slider('value'));
+
+            this.ui.value.find('.progress')
+                .removeClass(this._getCurrentBarStyle)
+                .addClass(this._getBarStyle());
+
+            this.ui.value.find('.bar')
+                .css('width', this.ui.inputLevel.slider('value') + '%');
+
+            this.ui.value.find('p')
+                .empty()
+                .text(this.ui.inputSkill.val());
         },
 
         _appendInfoOnInput: function() {
             this._appendInfoOn(this.ui.inputSkill, {
-                title: "卒業日",
-                content: "「YYYY/MM/DD」のフォーマットで入力してください。"
+                title: "スキル",
+                content: "スキル名を50文字まで入力してください。"
             });
             this._appendInfoOn(this.ui.inputLevel, {
-                title: "卒業学校",
-                content: "卒業学校の名称を20文字以内入力してください。"
+                title: "スキルレベル",
+                content: "ご自分のスキルレベルの評価を入れてください。"
             });
+        },
+
+        _getBarStyle: function() {
+
+            var barStyle = '';
+
+            if (this.ui.inputLevel.slider('value') >= 85)
+                barStyle = 'progress-success';
+            else if (this.ui.inputLevel.slider('value') >= 55)
+                barStyle = 'progress-info';
+            else if (this.ui.inputLevel.slider('value') >= 25)
+                barStyle = 'progress-warning';
+            else
+                barStyle = 'progress-danger';
+
+            return barStyle;
+        },
+
+        _getCurrentBarStyle: function(index, css) {
+            return (css.match (/\bprogress-\S+/g) || []).join(' ');
         }
 
     });

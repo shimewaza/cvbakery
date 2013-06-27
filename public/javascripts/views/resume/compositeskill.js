@@ -12,7 +12,7 @@ define([
 
         itemIcon: 'icon-gear',
 
-        itemNumber: 5,
+        itemNumber: 20,
 
         /*Template*/
         template: template,
