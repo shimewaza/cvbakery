@@ -21,7 +21,7 @@ define([
 		'views/resume/compositelanguage',
 		'views/resume/compositequalification',
 		'views/resume/compositeskill',
-		'views/resume/contextMenuPanel'
+		'views/resume/contextmenupanel'
 ], function(
 // resumeTemplate,
 // resumeTemplateTwoCols,
@@ -467,13 +467,13 @@ PhotoView,
 
 			// save the model
 			this.model.save(data, {
-			    // if save success
-			    success: function() {
-			    	var val = "url('/images/resume/" + imageName + "')";
+				// if save success
+				success: function() {
+					var val = "url('/images/resume/" + imageName + "')";
 					$('body').css('background', val + ' repeat');
-			    },
-			    // use patch
-			    patch: true
+				},
+				// use patch
+				patch: true
 			});
 		},
 

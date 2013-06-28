@@ -1,6 +1,6 @@
 define([
         'views/resume/itembase',
-        'text!templates/resume/itemavailableDate.html'
+        'text!templates/resume/itemavailabledate.html'
 ], function(BaseView, template) {
 
     var AvailableDateEditor = BaseView.extend({
