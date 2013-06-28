@@ -3,7 +3,12 @@
 </div>
 <div class="span8">
     <div class="sl-value">
-        <%- obj.nearestStation %>
+        <% 
+            if (obj.nearestStation)
+                print(obj.nearestStation);
+            else
+                print('<i class="sl-placeholder">ここをクリックして最寄り駅を入力します</i>')
+        %>
     </div>
     <div class="sl-editor row-fluid">
         <div class="input-prepend sl-input span10">

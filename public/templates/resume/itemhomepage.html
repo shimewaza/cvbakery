@@ -3,7 +3,12 @@
 </div>
 <div class="span8">
     <div class="sl-value">
-        <%- obj.homePage %>
+        <% 
+            if (obj.homePage)
+                print(obj.homePage);
+            else
+                print('<i class="sl-placeholder">ここをクリックして個人サイトを入力します</i>')
+        %>
     </div>
     <div class="sl-editor row-fluid">
         <div class="input-prepend sl-input span10">

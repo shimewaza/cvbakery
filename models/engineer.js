@@ -128,9 +128,10 @@ var Engineer = new Schema({
 				type: String,
 				trim: true
 			},
-			background: {
-				type: String,
-				trim: true
+			level: {
+				type: Number,
+				min: 0,
+				max: 100
 			}
 		}
 	],
@@ -225,19 +226,19 @@ var Engineer = new Schema({
 		},
 		nationality: {
 			type: Boolean,
-			default: true
+			default: false
 		},
 		married: {
 			type: Boolean,
-			default: true
+			default: false
 		},
 		firstArrive: {
 			type: Boolean,
-			default: true
+			default: false
 		},
 		itExperience: {
 			type: Boolean,
-			default: true
+			default: false
 		},
 		nearestStation: {
 			type: Boolean,
@@ -245,7 +246,7 @@ var Engineer = new Schema({
 		},
 		availableDate: {
 			type: Boolean,
-			default: true
+			default: false
 		},
 		telNo: {
 			type: Boolean,
@@ -269,7 +270,7 @@ var Engineer = new Schema({
 		},
 		languageBackground: {
 			type: Boolean,
-			default: true
+			default: false
 		},
 		education: {
 			type: Boolean,

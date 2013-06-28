@@ -3,7 +3,12 @@
 </div>
 <div class="span8">
     <div class="sl-value">
-        <%- obj.telNo %>
+        <% 
+            if (obj.telNo)
+                print(obj.telNo);
+            else
+                print('<i class="sl-placeholder">ここをクリックして電話番号を入力します</i>')
+        %>
     </div>
     <div class="sl-editor row-fluid">
         <div class="input-prepend sl-input span10">

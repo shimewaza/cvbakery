@@ -3,7 +3,12 @@
 </div>
 <div class="span8">
     <div class="sl-value">
-        <%- obj.married %>
+        <% 
+            if (obj.married)
+                print(obj.married);
+            else
+                print('<i class="sl-placeholder">ここをクリックして婚姻状況を入力します</i>')
+        %>
     </div>
     <div class="sl-editor row-fluid">
         <div class="span10" data-toggle="buttons-radio">

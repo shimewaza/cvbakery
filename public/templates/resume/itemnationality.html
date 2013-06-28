@@ -4,7 +4,12 @@
 </div>
 <div class="span8">
     <div class="sl-value">
-        <%- obj.nationality %>
+        <% 
+            if (obj.nationality)
+                print(obj.nationality);
+            else
+                print('<i class="sl-placeholder">ここをクリックして国籍を入力します</i>')
+        %>
     </div>
     <div class="sl-editor row-fluid">
         <div class="input-prepend span10">

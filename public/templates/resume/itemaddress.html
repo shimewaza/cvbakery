@@ -3,7 +3,12 @@
 </div>
 <div class="span8">
     <div class="sl-value">
-        <% if(obj.zipCode) print('〒' + obj.zipCode + '）'); print(obj.address); %>
+        <% 
+            if (obj.zipCode || obj.address) {
+                if(obj.zipCode) print('〒' + obj.zipCode + '）'); print(obj.address);
+            } else
+                print('<i class="sl-placeholder">ここをクリックして住所を入力します</i>')
+        %>
     </div>
     <div class="sl-editor row-fluid">
         <div class="span10">

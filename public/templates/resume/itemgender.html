@@ -3,7 +3,12 @@
 </div>
 <div class="span8">
     <div class="sl-value">
-        <%- obj.gender %>
+        <% 
+            if (obj.gender)
+                print(obj.gender);
+            else
+                print('<i class="sl-placeholder">ここをクリックして性別を入力します</i>')
+        %>
     </div>
     <div class="sl-editor row-fluid">
         <div class="span10" data-toggle="buttons-radio">

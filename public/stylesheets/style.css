@@ -32,6 +32,12 @@ li {
 	min-width: 150px;
 	max-height: 210px;
 	margin-bottom: 5px;
+	margin-left: 10px;
+	/*margin-right: auto;*/
+}
+
+.sl-photo img {
+	max-height: 200px;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -61,6 +67,10 @@ li {
 	-moz-box-shadow: 1px 1px 3px gray;
 	-webkit-box-shadow: 1px 1px 3px gray;
 	box-shadow: 1px 1px 3px gray;
+}
+
+.sl-placeholder {
+	color: #ccc;
 }
 
 /* Main Header*/

@@ -1,6 +1,8 @@
-define([], function() {
+define(['views/resume/compositeempty'], function(EmptyView) {
 
     var BaseView = Backbone.Marionette.CompositeView.extend({
+
+        emptyView: EmptyView,
 
         /*
             Common events may happend
@@ -43,17 +45,17 @@ define([], function() {
             if (model.get('_id')) {
                 this.$el.find(this.itemViewContainer).append(itemView.el);
                 itemView.listenTo(vent, 'click:universal', itemView.switchToValue);
-                this.listenTo(itemView, 'item:delete', this.deleteItem);
             } else {
                 itemView.$el.hide();
-                itemView.ui.value.hide();
-                itemView.ui.editor.show();
+                if(itemView.ui && itemView.ui.value) itemView.ui.value.hide();
+                if(itemView.ui && itemView.ui.editor) itemView.ui.editor.show();
                 this.$el.find(this.itemViewContainer).append(itemView.el);
                 itemView.$el.slideDown(function() {
                     itemView.listenTo(vent, 'click:universal', itemView.switchToValue);
                 });
-                this.listenTo(itemView, 'item:delete', this.deleteItem);
             }
+
+            this.listenTo(itemView, 'item:delete', this.deleteItem);
         },
 
         /*Switch sl-editor from view-mode to edit-mode*/

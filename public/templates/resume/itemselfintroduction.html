@@ -8,7 +8,14 @@
 </div>
 <div class="span9">
     <div class="sl-value">
-        <p><% print(_.escape(obj.selfIntroduction)); %></p>
+        <p>
+            <% 
+                if (obj.selfIntroduction)
+                    print(_.escape(obj.selfIntroduction));
+                else
+                    print('<i class="sl-placeholder">ここをクリックして自己紹介を入力します</i>')
+            %>
+        </p>
     </div>
     <div class="sl-editor">
         <div class="sl-input" style="width: 100%">
