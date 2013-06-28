@@ -68,7 +68,7 @@ exports.update = function(req, res) {
 
 	if (req.files && req.files.photo) {
 		var photoPath = req.files.photo.path;
-		req.body.photo = photoPath.substring(photoPath.lastIndexOf("\\"));
+		req.body.photo = /.*[\/|\\](.*)$/.exec(photoPath)[1];
 	}
 
 	Engineer.findById(req.params.id, function(err, engineer) {
