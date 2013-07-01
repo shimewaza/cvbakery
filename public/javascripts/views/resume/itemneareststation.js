@@ -1,7 +1,8 @@
 define([
         'views/resume/itembase',
-        'text!templates/resume/itemneareststation.html'
-], function(BaseView, template) {
+        'text!templates/resume/default/itemneareststation.html',
+        'text!templates/resume/style1/itemneareststation.html'
+], function(BaseView, defaultTemplate, style1Template) {
 
     var NearestStationEditor = BaseView.extend({
 
@@ -14,7 +15,14 @@ define([
         itemHelp: "20文字以内で入力してください。",
 
         /*Template*/
-        template: template,
+        // template: template,
+
+        getTemplate: function() {
+            if (this.options.templateRef === "default")
+                return defaultTemplate;
+            else if (this.options.templateRef === "style1")
+                return style1Template;
+        },
 
         /*Initializer*/
         initialize: function() {

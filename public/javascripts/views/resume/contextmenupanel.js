@@ -24,7 +24,7 @@ define([
             'click .btn-item': 'addItem',
             'click .bk-sample': 'changePattern',
             'click #pdfBtn': 'outputPDF',
-            'click #twoColsBtn': 'changeTemplate2Cols',
+            'click #style1Btn': 'changeTemplateStyle1',
         },
 
         initialize: function() {
@@ -88,8 +88,8 @@ define([
             $.fileDownload('/engineer/me/pdf');
         },
 
-        changeTemplate2Cols: function() {
-            vent.trigger('resume:changeTemplate', 'resume-tow-cloumns');
+        changeTemplateStyle1: function() {
+            vent.trigger('resume:changeTemplate', 'style1');
         }
     });
 

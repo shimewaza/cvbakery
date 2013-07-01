@@ -1,4 +1,4 @@
-define(['module'], function(module) {
+define([], function() {
 
     var BaseItem = Backbone.Marionette.ItemView.extend({
 

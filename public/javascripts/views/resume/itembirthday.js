@@ -1,7 +1,8 @@
 define([
         'views/resume/itembase',
-        'text!templates/resume/itembirthday.html'
-], function(BaseView, template) {
+        'text!templates/resume/default/itembirthday.html',
+        'text!templates/resume/style1/itembirthday.html'
+], function(BaseView, defaultTemplate, style1Template) {
 
     var BirthDayEditor = BaseView.extend({
 
@@ -14,7 +15,14 @@ define([
         itemHelp: "「YYYY/MM/DD」のフォーマットで入力してください。ご年齢を該当情報によって計算します。",
 
         /*Template*/
-        template: template,
+        // template: template,
+
+        getTemplate: function() {
+            if (this.options.templateRef === "default")
+                return defaultTemplate;
+            else if (this.options.templateRef === "style1")
+                return style1Template;
+        },
 
         /*Initializer*/
         initialize: function() {

@@ -1,6 +1,6 @@
 define([
-		'text!templates/resume/resume.html',
-		'text!templates/resume/resume-two-columns.html',
+		'text!templates/resume/default/resume.html',
+		'text!templates/resume/style1/resume.html',
 		'views/resume/itemphoto',
 		'views/resume/itemname',
 		'views/resume/itembirthday',
@@ -23,8 +23,8 @@ define([
 		'views/resume/compositeskill',
 		'views/resume/contextmenupanel'
 ], function(
-	resumeTemplate,
-	resumeTemplateTwoCols,
+	defaultTemplate,
+	style1Template,
 	PhotoView,
 	NameView,
 	BirthDayView,
@@ -62,8 +62,10 @@ define([
 		// template: resumeTemplate,
 
 		getTemplate: function() {
-			console.log(this.options);
-			return resumeTemplate;
+			if (this.options.templateRef === "default")
+				return defaultTemplate;
+			else if (this.options.templateRef === "style1")
+				return style1Template;
 		},
 
 		regions: {
@@ -102,97 +104,118 @@ define([
 			});
 
 			this.contextMenuPanelView = new ContextMenuPanelView({
-				model: this.model
+				model: this.model,
+				templateRef: this.options.templateRef
 			});
 
 			this.photoView = new PhotoView({
-				model: this.model
+				model: this.model,
+				templateRef: this.options.templateRef
 			});
 
 			this.nameView = new NameView({
-				model: this.model
+				model: this.model,
+				templateRef: this.options.templateRef
 			});
 
 			this.birthDayView = new BirthDayView({
-				model: this.model
+				model: this.model,
+				templateRef: this.options.templateRef
 			});
 
 			this.genderView = new GenderView({
-				model: this.model
+				model: this.model,
+				templateRef: this.options.templateRef
 			});
 
 			this.nationalityView = new NationalityView({
-				model: this.model
+				model: this.model,
+				templateRef: this.options.templateRef
 			});
 
 			this.marriedView = new MarriedView({
-				model: this.model
+				model: this.model,
+				templateRef: this.options.templateRef
 			});
 
 			this.firstArriveView = new FirstArriveView({
-				model: this.model
+				model: this.model,
+				templateRef: this.options.templateRef
 			});
 
 			this.itExperienceView = new ItExperienceView({
-				model: this.model
+				model: this.model,
+				templateRef: this.options.templateRef
 			});
 
 			this.availableDateView = new AvailableDateView({
-				model: this.model
+				model: this.model,
+				templateRef: this.options.templateRef
 			});
 
 			this.addressView = new AddressView({
-				model: this.model
+				model: this.model,
+				templateRef: this.options.templateRef
 			});
 
 			this.nearestStationView = new NearestStationView({
-				model: this.model
+				model: this.model,
+				templateRef: this.options.templateRef
 			});
 
 			this.telNoView = new TelNoView({
-				model: this.model
+				model: this.model,
+				templateRef: this.options.templateRef
 			});
 
 			this.emailView = new EMailView({
-				model: this.model
+				model: this.model,
+				templateRef: this.options.templateRef
 			});
 
 			this.homePageView = new HomePageView({
-				model: this.model
+				model: this.model,
+				templateRef: this.options.templateRef
 			});
 
 			this.selfIntroductionView = new SelfIntroductionView({
-				model: this.model
+				model: this.model,
+				templateRef: this.options.templateRef
 			});
 
 			var educations = new Backbone.Collection(this.model.get('education'));
 			this.educationComposite = new EducationComposite({
 				model: this.model,
-				collection: educations
+				collection: educations,
+				templateRef: this.options.templateRef
 			});
 
 			var careers = new Backbone.Collection(this.model.get('career'));
 			this.careerComposite = new CareerComposite({
 				model: this.model,
-				collection: careers
+				collection: careers,
+				templateRef: this.options.templateRef
 			});
 
 			var languages = new Backbone.Collection(this.model.get('languageBackground'));
 			this.languageComposite = new LanguageComposite({
 				model: this.model,
-				collection: languages
+				collection: languages,
+				templateRef: this.options.templateRef
 			});
 
 			var qualifications = new Backbone.Collection(this.model.get('qualification'));
 			this.qualificationComposite = new QualificationComposite({
 				model: this.model,
-				collection: qualifications
+				collection: qualifications,
+				templateRef: this.options.templateRef
 			});
 
 			var skills = new Backbone.Collection(this.model.get('skill'));
 			this.skillComposite = new SkillComposite({
 				model: this.model,
-				collection: skills
+				collection: skills,
+				templateRef: this.options.templateRef
 			});
 
 			this.listenTo(vent, 'resume:itemAdded', this.onItemAdded);
@@ -310,7 +333,8 @@ define([
 
 			if (data.item == "birthDay") {
 				this.birthDayView = new BirthDayView({
-					model: this.model
+					model: this.model,
+					templateRef: this.options.templateRef
 				});
 				this.birthDayArea.show(this.birthDayView);
 				return;
@@ -318,7 +342,8 @@ define([
 
 			if (data.item == "gender") {
 				this.genderView = new GenderView({
-					model: this.model
+					model: this.model,
+					templateRef: this.options.templateRef
 				});
 				this.genderArea.show(this.genderView);
 				return;
@@ -326,7 +351,8 @@ define([
 
 			if (data.item == "nationality") {
 				this.nationalityView = new NationalityView({
-					model: this.model
+					model: this.model,
+					templateRef: this.options.templateRef
 				});
 				this.nationalityArea.show(this.nationalityView);
 				return;
@@ -334,7 +360,8 @@ define([
 
 			if (data.item == "married") {
 				this.marriedView = new MarriedView({
-					model: this.model
+					model: this.model,
+					templateRef: this.options.templateRef
 				});
 				this.marriedArea.show(this.marriedView);
 				return;
@@ -342,7 +369,8 @@ define([
 
 			if (data.item == "firstArrive") {
 				this.firstArriveView = new FirstArriveView({
-					model: this.model
+					model: this.model,
+					templateRef: this.options.templateRef
 				});
 				this.firstArriveArea.show(this.firstArriveView);
 				return;
@@ -350,7 +378,8 @@ define([
 
 			if (data.item == "itExperience") {
 				this.itExperienceView = new ItExperienceView({
-					model: this.model
+					model: this.model,
+					templateRef: this.options.templateRef
 				});
 				this.itExperienceArea.show(this.itExperienceView);
 				return;
@@ -358,7 +387,8 @@ define([
 
 			if (data.item == "availableDate") {
 				this.availableDateView = new AvailableDateView({
-					model: this.model
+					model: this.model,
+					templateRef: this.options.templateRef
 				});
 				this.availableDateArea.show(this.availableDateView);
 				return;
@@ -366,7 +396,8 @@ define([
 
 			if (data.item == "address") {
 				this.addressView = new AddressView({
-					model: this.model
+					model: this.model,
+					templateRef: this.options.templateRef
 				});
 				this.addressArea.show(this.addressView);
 				return;
@@ -374,7 +405,8 @@ define([
 
 			if (data.item == "nearestStation") {
 				this.nearestStationView = new NearestStationView({
-					model: this.model
+					model: this.model,
+					templateRef: this.options.templateRef
 				});
 				this.nearestStationArea.show(this.nearestStationView);
 				return;
@@ -382,7 +414,8 @@ define([
 
 			if (data.item == "telNo") {
 				this.telNoView = new TelNoView({
-					model: this.model
+					model: this.model,
+					templateRef: this.options.templateRef
 				});
 				this.telNoArea.show(this.telNoView);
 				return;
@@ -390,7 +423,8 @@ define([
 
 			if (data.item == "email") {
 				this.emailView = new EMailView({
-					model: this.model
+					model: this.model,
+					templateRef: this.options.templateRef
 				});
 				this.emailArea.show(this.emailView);
 				return;
@@ -398,7 +432,8 @@ define([
 
 			if (data.item == "homePage") {
 				this.homePageView = new HomePageView({
-					model: this.model
+					model: this.model,
+					templateRef: this.options.templateRef
 				});
 				this.homePageArea.show(this.homePageView);
 				return;
@@ -406,7 +441,8 @@ define([
 
 			if (data.item == "selfIntroduction") {
 				this.selfIntroductionView = new SelfIntroductionView({
-					model: this.model
+					model: this.model,
+					templateRef: this.options.templateRef
 				});
 				this.selfIntroductionArea.show(this.selfIntroductionView);
 				return;
@@ -416,7 +452,8 @@ define([
 				var educations = new Backbone.Collection(this.model.get('education'));
 				this.educationComposite = new EducationComposite({
 					model: this.model,
-					collection: educations
+					collection: educations,
+					templateRef: this.options.templateRef
 				});
 				this.educationArea.show(this.educationComposite);
 				return;
@@ -426,7 +463,8 @@ define([
 				var careers = new Backbone.Collection(this.model.get('career'));
 				this.careerComposite = new CareerComposite({
 					model: this.model,
-					collection: careers
+					collection: careers,
+					templateRef: this.options.templateRef
 				});
 				this.careerArea.show(this.careerComposite);
 				return;
@@ -436,7 +474,8 @@ define([
 				var languages = new Backbone.Collection(this.model.get('languageBackground'));
 				this.languageComposite = new LanguageComposite({
 					model: this.model,
-					collection: languages
+					collection: languages,
+					templateRef: this.options.templateRef
 				});
 				this.languageArea.show(this.languageComposite);
 				return;
@@ -446,7 +485,8 @@ define([
 				var qualifications = new Backbone.Collection(this.model.get('qualification'));
 				this.qualificationComposite = new QualificationComposite({
 					model: this.model,
-					collection: qualifications
+					collection: qualifications,
+					templateRef: this.options.templateRef
 				});
 				this.qualificationArea.show(this.qualificationComposite);
 				return;
@@ -456,7 +496,8 @@ define([
 				var skills = new Backbone.Collection(this.model.get('skill'));
 				this.skillComposite = new SkillComposite({
 					model: this.model,
-					collection: skills
+					collection: skills,
+					templateRef: this.options.templateRef
 				});
 				this.skillArea.show(this.skillComposite);
 				return;
@@ -480,20 +521,7 @@ define([
 				// use patch
 				patch: true
 			});
-		},
-
-		onChangeTemplate: function(data) {
-			// var self = this;
-			// this.$el.hide('slide', function() {
-			// });
-			this.$el.css('min-width', '1200px').addClass('row-fluid');
-			this.template = resumeTemplateTwoCols;
-			this.render();
-			this.$el.show('slide', {
-				direction: 'right'
-			});
 		}
-
 	});
 
 	return ResumeView;

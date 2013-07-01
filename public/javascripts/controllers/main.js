@@ -22,7 +22,7 @@ define([
             });
             this.app.mainRegion.show(this.pageView);
 
-            // this.listenTo(vent, 'resume:changeTemplate', this.onChangeTemplate);
+            this.listenTo(vent, 'resume:changeTemplate', this.onChangeTemplate);
         },
 
         toHome: function() {
@@ -44,7 +44,6 @@ define([
 
                     var resumeView = new ResumeView({
                         model: engineerModel,
-                        // template: resumeTemplate
                         templateRef: 'default'
                     });
                     self.pageView.content.show(resumeView);
@@ -52,28 +51,24 @@ define([
             });
         },
 
-        // onChangeTemplate: function(data) {
+        onChangeTemplate: function(data) {
 
-        //     var self = this;
+            var self = this;
 
-        //     var engineerModel = new EngineerModel({
-        //         _id: this.account.userInfo.profileId
-        //     });
+            var engineerModel = new EngineerModel({
+                _id: this.account.userInfo.profileId
+            });
 
-        //     engineerModel.fetch({
-        //         success: function() {
-        //             var resumeView = new ResumeView({
-        //                 model: engineerModel,
-        //                 template: resumeTemplateTwoCols
-        //             });
-        //             resumeView.$el.css({
-        //                 'max-width': '90%',
-        //                 'min-width': '90%'
-        //             });
-        //             self.pageView.content.show(resumeView);
-        //         }
-        //     });
-        // },
+            engineerModel.fetch({
+                success: function() {
+                    var resumeView = new ResumeView({
+                        model: engineerModel,
+                        templateRef: data
+                    });
+                    self.pageView.content.show(resumeView);
+                }
+            });
+        },
 
         _changeBackground: function(imageName) {
 

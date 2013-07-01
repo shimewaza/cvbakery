@@ -1,0 +1,29 @@
+<div class="span4">
+    <i class="icon-home"></i>　住所：
+</div>
+<div class="span8">
+    <div class="sl-value">
+        <% 
+            if (obj.zipCode || obj.address) {
+                if(obj.zipCode) print('〒' + obj.zipCode + '）'); print(obj.address);
+            } else
+                print('<i class="sl-placeholder">ここをクリックして住所を入力します</i>')
+        %>
+    </div>
+    <div class="sl-editor row-fluid">
+        <div class="span10">
+            <div class="input-prepend sl-input" id="zipCodeSubArea">
+                <span class="add-on icon-loading">〒</span>
+                <input type="text" class="input-small" placeholder="郵便番号" name="zipCode" value="<%- obj.zipCode %>">
+            </div>
+            <br/>
+            <div class="input-prepend sl-input" id="addressSubArea">
+                <span class="add-on"><i class="icon-map-marker"></i></span>
+                <input type="text" class="input-large" placeholder="住所" name="address" value="<%- obj.address %>">
+            </div>
+        </div>
+        <div class="span2">
+            <button class="btn btn-small btn-warning btn-remove"><i class="icon-remove icon-white"></i></button>
+        </div>
+    </div>
+</div>

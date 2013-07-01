@@ -1,7 +1,8 @@
 define([
         'views/resume/itembase',
-        'text!templates/resume/itemfirstarrive.html'
-], function(BaseView, template) {
+        'text!templates/resume/default/itemfirstarrive.html',
+        'text!templates/resume/style1/itemfirstarrive.html'
+], function(BaseView, defaultTemplate, style1Template) {
 
     var FirstArriveEditor = BaseView.extend({
 
@@ -14,7 +15,14 @@ define([
         itemHelp: "初めて日本へ来た日期を「YYYY/MM/DD」のフォーマットで入力してください。",
 
         /*Template*/
-        template: template,
+        // template: template,
+
+        getTemplate: function() {
+            if (this.options.templateRef === "default")
+                return defaultTemplate;
+            else if (this.options.templateRef === "style1")
+                return style1Template;
+        },
 
         /*Initializer*/
         initialize: function() {

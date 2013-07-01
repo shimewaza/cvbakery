@@ -1,7 +1,8 @@
 define([
         'views/resume/itembase',
-        'text!templates/resume/itemnationality.html'
-], function(BaseView, template) {
+        'text!templates/resume/default/itemnationality.html',
+        'text!templates/resume/style1/itemnationality.html'
+], function(BaseView, defaultTemplate, style1Template) {
 
     var NationalityEditor = BaseView.extend({
 
@@ -12,7 +13,14 @@ define([
         itemIcon: 'icon-flag',
 
         /*Template*/
-        template: template,
+        // template: template,
+
+        getTemplate: function() {
+            if (this.options.templateRef === "default")
+                return defaultTemplate;
+            else if (this.options.templateRef === "style1")
+                return style1Template;
+        },
 
         /*Initializer*/
         initialize: function() {

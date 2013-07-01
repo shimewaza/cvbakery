@@ -1,14 +1,22 @@
 define([
         'views/resume/itembase',
-        'text!templates/resume/itemqualification.html'
-], function(BaseView, template) {
+        'text!templates/resume/default/itemqualification.html',
+        'text!templates/resume/style1/itemqualification.html'
+], function(BaseView, defaultTemplate, style1Template) {
 
     var ItemEducation = BaseView.extend({
 
         itemName: '資格',
 
         /*Template*/
-        template: template,
+        // template: template,
+
+        getTemplate: function() {
+            if (this.options.templateRef === "default")
+                return defaultTemplate;
+            else if (this.options.templateRef === "style1")
+                return style1Template;
+        },
 
         /*Initializer*/
         initialize: function() {

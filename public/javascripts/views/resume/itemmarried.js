@@ -1,7 +1,8 @@
 define([
         'views/resume/itembase',
-        'text!templates/resume/itemmarried.html'
-], function(BaseView, template) {
+        'text!templates/resume/default/itemmarried.html',
+        'text!templates/resume/style1/itemmarried.html'
+], function(BaseView, defaultTemplate, style1Template) {
 
     var MarriedEditor = BaseView.extend({
 
@@ -12,7 +13,14 @@ define([
         itemIcon: 'icon-heart',
 
         /*Template*/
-        template: template,
+        // template: template,
+
+        getTemplate: function() {
+            if (this.options.templateRef === "default")
+                return defaultTemplate;
+            else if (this.options.templateRef === "style1")
+                return style1Template;
+        },
 
         /*Initializer*/
         initialize: function() {

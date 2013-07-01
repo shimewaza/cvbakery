@@ -1,7 +1,8 @@
 define([
         'views/resume/itembase',
-        'text!templates/resume/itemaddress.html'
-], function(BaseView, template) {
+        'text!templates/resume/default/itemaddress.html',
+        'text!templates/resume/style1/itemaddress.html'
+], function(BaseView, defaultTemplate, style1Template) {
 
     var AddressEditor = BaseView.extend({
 
@@ -12,7 +13,14 @@ define([
         itemIcon: 'icon-home',
 
         /*Template*/
-        template: template,
+        // template: template,
+
+        getTemplate: function() {
+            if (this.options.templateRef === "default")
+                return defaultTemplate;
+            else if (this.options.templateRef === "style1")
+                return style1Template;
+        },
 
         /*Initializer*/
         initialize: function() {

@@ -1,14 +1,22 @@
 define([
         'views/resume/itembase',
-        'text!templates/resume/itemskill.html'
-], function(BaseView, template) {
+        'text!templates/resume/default/itemskill.html',
+        'text!templates/resume/style1/itemskill.html'
+], function(BaseView, defaultTemplate, style1Template) {
 
     var ItemSkill = BaseView.extend({
 
         itemName: 'スキル',
 
         /*Template*/
-        template: template,
+        // template: template,
+
+        getTemplate: function() {
+            if (this.options.templateRef === "default")
+                return defaultTemplate;
+            else if (this.options.templateRef === "style1")
+                return style1Template;
+        },
 
         /*Initializer*/
         initialize: function() {

@@ -1,14 +1,22 @@
 define([
         'views/resume/itembase',
-        'text!templates/resume/itemlanguage.html'
-], function(BaseView, template) {
+        'text!templates/resume/default/itemlanguage.html',
+        'text!templates/resume/style1/itemlanguage.html'
+], function(BaseView, defaultTemplate, style1Template) {
 
     var ItemLanguage = BaseView.extend({
 
         itemName: '語学能力',
 
         /*Template*/
-        template: template,
+        // template: template,
+
+        getTemplate: function() {
+            if (this.options.templateRef === "default")
+                return defaultTemplate;
+            else if (this.options.templateRef === "style1")
+                return style1Template;
+        },
 
         /*Initializer*/
         initialize: function() {

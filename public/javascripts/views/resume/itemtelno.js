@@ -1,7 +1,8 @@
 define([
         'views/resume/itembase',
-        'text!templates/resume/itemtelno.html'
-], function(BaseView, template) {
+        'text!templates/resume/default/itemtelno.html',
+        'text!templates/resume/style1/itemtelno.html'
+], function(BaseView, defaultTemplate, style1Template) {
 
     var TelNoEditor = BaseView.extend({
 
@@ -14,7 +15,14 @@ define([
         itemHelp: "「000-0000-0000」のフォーマットでお電話番号を入力してください。",
 
         /*Template*/
-        template: template,
+        // template: template,
+
+        getTemplate: function() {
+            if (this.options.templateRef === "default")
+                return defaultTemplate;
+            else if (this.options.templateRef === "style1")
+                return style1Template;
+        },
 
         /*Initializer*/
         initialize: function() {

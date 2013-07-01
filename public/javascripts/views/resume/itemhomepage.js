@@ -1,7 +1,8 @@
 define([
         'views/resume/itembase',
-        'text!templates/resume/itemhomepage.html'
-], function(BaseView, template) {
+        'text!templates/resume/default/itemhomepage.html',
+        'text!templates/resume/style1/itemhomepage.html',
+], function(BaseView, defaultTemplate, style1Template) {
 
     var HomePageEditor = BaseView.extend({
 
@@ -14,7 +15,14 @@ define([
         itemHelp: "ご自分のサイトやブログなどのURLを入力してください。",
 
         /*Template*/
-        template: template,
+        // template: template,
+
+        getTemplate: function() {
+            if (this.options.templateRef === "default")
+                return defaultTemplate;
+            else if (this.options.templateRef === "style1")
+                return style1Template;
+        },
 
         /*Initializer*/
         initialize: function() {

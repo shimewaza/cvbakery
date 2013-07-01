@@ -1,8 +1,9 @@
 define([
-        'text!templates/resume/compositeskill.html',
+        'text!templates/resume/default/compositeskill.html',
+        'text!templates/resume/style1/compositeskill.html',
         'views/resume/compositebase',
         'views/resume/itemskill'
-], function(template, BaseView, itemView) {
+], function(defaultTemplate, style1Template, BaseView, itemView) {
 
     var SkillView = BaseView.extend({
 
@@ -15,16 +16,26 @@ define([
         itemNumber: 20,
 
         /*Template*/
-        template: template,
+        // template: template,
 
         itemViewContainer: '.item-container',
 
         itemView: itemView,
 
+        getTemplate: function() {
+            if (this.options.templateRef === "default")
+                return defaultTemplate;
+            else if (this.options.templateRef === "style1")
+                return style1Template;
+        },
+
         /*Initializer*/
         initialize: function() {
             this.ui = _.extend({}, this.commonUI);
             this.events = _.extend({}, this.commonEvents);
+            this.itemViewOptions = {
+                templateRef: this.options.templateRef
+            };
         },
 
         onRender: function() {
