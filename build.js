@@ -1,6 +1,7 @@
 ({
     baseUrl: "./public/javascripts",
     name: "boot",
-    out: "boot-built.js",
+    out: "./public/javascripts/boot-built.js",
+    preserveLicenseComments: false,
     mainConfigFile: "./public/javascripts/boot.js"
 })

@@ -1,7 +1,7 @@
 define([
-	// 'text!templates/resume/resume.html',
-	// 'text!templates/resume/resume-two-columns.html',
-	'views/resume/itemphoto',
+		'text!templates/resume/resume.html',
+		'text!templates/resume/resume-two-columns.html',
+		'views/resume/itemphoto',
 		'views/resume/itemname',
 		'views/resume/itembirthday',
 		'views/resume/itemgender',
@@ -23,9 +23,9 @@ define([
 		'views/resume/compositeskill',
 		'views/resume/contextmenupanel'
 ], function(
-// resumeTemplate,
-// resumeTemplateTwoCols,
-PhotoView,
+	resumeTemplate,
+	resumeTemplateTwoCols,
+	PhotoView,
 	NameView,
 	BirthDayView,
 	GenderView,
@@ -60,6 +60,11 @@ PhotoView,
 
 		// Template
 		// template: resumeTemplate,
+
+		getTemplate: function() {
+			console.log(this.options);
+			return resumeTemplate;
+		},
 
 		regions: {
 			photoArea: '#photo',
@@ -192,7 +197,7 @@ PhotoView,
 
 			this.listenTo(vent, 'resume:itemAdded', this.onItemAdded);
 			this.listenTo(vent, 'resume:changePattern', this.onChangePatter);
-			// this.listenTo(vent, 'resume:changeTemplate', this.onChangeTemplate);
+			this.listenTo(vent, 'resume:changeTemplate', this.onChangeTemplate);
 		},
 
 		// Render
@@ -477,17 +482,17 @@ PhotoView,
 			});
 		},
 
-		// onChangeTemplate: function(data) {
-		// 	var self = this;
-		// 	this.$el.hide('slide', function() {
-		// 		self.$el.css('min-width', '1200px').addClass('row-fluid');
-		// 		self.template = resumeTemplateTwoCols;
-		// 		self.render();
-		// 		self.$el.show('slide', {
-		// 			direction: 'right'
-		// 		});
-		// 	});
-		// }
+		onChangeTemplate: function(data) {
+			// var self = this;
+			// this.$el.hide('slide', function() {
+			// });
+			this.$el.css('min-width', '1200px').addClass('row-fluid');
+			this.template = resumeTemplateTwoCols;
+			this.render();
+			this.$el.show('slide', {
+				direction: 'right'
+			});
+		}
 
 	});
 

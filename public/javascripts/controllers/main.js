@@ -2,14 +2,14 @@ define([
         'views/page',
         'views/resume/resume',
         'models/engineer',
-        'text!templates/resume/resume.html',
-        'text!templates/resume/resume-two-columns.html'
+        // 'text!templates/resume/resume.html',
+        // 'text!templates/resume/resume-two-columns.html'
 ], function(
     PageView, 
     ResumeView, 
-    EngineerModel,
-    resumeTemplate,
-    resumeTemplateTwoCols) {
+    EngineerModel
+/*    resumeTemplate,
+    resumeTemplateTwoCols*/) {
 
     var Controller = Backbone.Marionette.Controller.extend({
 
@@ -22,7 +22,7 @@ define([
             });
             this.app.mainRegion.show(this.pageView);
 
-            this.listenTo(vent, 'resume:changeTemplate', this.onChangeTemplate);
+            // this.listenTo(vent, 'resume:changeTemplate', this.onChangeTemplate);
         },
 
         toHome: function() {
@@ -44,35 +44,36 @@ define([
 
                     var resumeView = new ResumeView({
                         model: engineerModel,
-                        template: resumeTemplate
+                        // template: resumeTemplate
+                        templateRef: 'default'
                     });
                     self.pageView.content.show(resumeView);
                 }
             });
         },
 
-        onChangeTemplate: function(data) {
+        // onChangeTemplate: function(data) {
 
-            var self = this;
+        //     var self = this;
 
-            var engineerModel = new EngineerModel({
-                _id: this.account.userInfo.profileId
-            });
+        //     var engineerModel = new EngineerModel({
+        //         _id: this.account.userInfo.profileId
+        //     });
 
-            engineerModel.fetch({
-                success: function() {
-                    var resumeView = new ResumeView({
-                        model: engineerModel,
-                        template: resumeTemplateTwoCols
-                    });
-                    resumeView.$el.css({
-                        'max-width': '90%',
-                        'min-width': '90%'
-                    });
-                    self.pageView.content.show(resumeView);
-                }
-            });
-        },
+        //     engineerModel.fetch({
+        //         success: function() {
+        //             var resumeView = new ResumeView({
+        //                 model: engineerModel,
+        //                 template: resumeTemplateTwoCols
+        //             });
+        //             resumeView.$el.css({
+        //                 'max-width': '90%',
+        //                 'min-width': '90%'
+        //             });
+        //             self.pageView.content.show(resumeView);
+        //         }
+        //     });
+        // },
 
         _changeBackground: function(imageName) {
 

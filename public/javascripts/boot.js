@@ -90,6 +90,6 @@ require.config({
 	}
 });
 
-require(['selink'], function(selink) {
+require(['fileupload', 'marionette', 'deepmodel', 'vent', 'selink'], function(fileupload, marionette, deepmodel, vent, selink) {
 	selink.start();
 });
