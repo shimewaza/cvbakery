@@ -6,10 +6,6 @@ html {
 body {
     font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
     background: url('../images/page-bg.png') repeat center top;
-/*    -webkit-transition: background 1s ease;
-       -moz-transition: background 1s ease;
-         -o-transition: background 1s ease;
-            transition: background 1s ease;*/
 }
 
 ul {
@@ -25,21 +21,6 @@ li {
 .input-append .popover,
 .input-prepend .popover {
 	font-size: 12px;
-}
-
-.sl-photo {
-	max-width: 150px;
-	min-width: 150px;
-	max-height: 210px;
-	margin-bottom: 5px;
-	margin-left: 10px;
-	/*margin-right: auto;*/
-}
-
-.sl-photo img {
-	max-height: 200px;
-	margin-left: auto;
-	margin-right: auto;
 }
 
 .sl-editor {
@@ -131,8 +112,8 @@ li {
 	margin: auto;
 }
 
-/* Resume Panel*/
-#resumePanel {
+/* Resume Panel Default Style*/
+#resumePanel.default {
 	max-width: 700px;
 	min-width: 700px;
 	margin-left: auto;
@@ -141,44 +122,107 @@ li {
 	line-height: 30px;
 }
 
-#resumePanel .radio.inline{
-	padding-top: 0px;
-	vertical-align: top;
-}
-
-#resumePanel hr {
+#resumePanel.default hr {
 	margin: 10px 0;
 }
 
-#resumePanel [class*="span"] {
-	border: 1px none green;
+#resumePanel.default .sl-photo {
+	max-width: 150px;
+	min-width: 150px;
+	max-height: 210px;
+	margin-bottom: 5px;
+	margin-left: 10px;
+	/*margin-right: auto;*/
+}
+
+#resumePanel.default .sl-photo img {
+	max-height: 200px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#resumePanel.default [class*="span"] {
+	/*border: 1px none green;*/
 	min-height: 40px;
 	-moz-border-radius: 6px;
 	border-radius: 6px;
-	margin-left: 0px !important;
+	/*margin-left: 0px !important;*/
 	margin-bottom: 0px !important;
 }
 
-#resumePanel .progress {
+#resumePanel.default .progress {
 	height: 30px;
 	margin-bottom: 10px;
 }
 
-#resumePanel .ui-slider-horizontal {
+#resumePanel.default .ui-slider-horizontal {
 	height: 1.2em;
 }
 
-#resumePanel .ui-slider .ui-slider-handle {
+#resumePanel.default .ui-slider .ui-slider-handle {
 	width: 0.8em;
 	height: 1.6em;
 }
 
+/* Resume Panel Style No.1*/
+#resumePanel.style1 {
+	max-width: 1000px;
+	min-width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+/*	font-size: 14px;
+	line-height: 30px;*/
+}
+
+#resumePanel.style1 hr {
+	margin: 5px 0;
+}
+
+#resumePanel.style1 .sl-photo {
+	max-width: 100%;
+	min-width: 120px;
+	max-height: 210px;
+	margin-bottom: 5px;
+	/*margin-left: 10px;*/
+	/*margin-right: auto;*/
+}
+
+#resumePanel.style1 .sl-photo img {
+	width: auto;
+	max-width: 90%;
+	max-height: 200px;
+/*	margin-left: auto;
+	margin-right: auto;*/
+}
+
+#resumePanel.style1 [class*="span"] {
+	/*border: 1px dashed green;*/
+	min-height: 40px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	margin-bottom: 0px !important;
+}
+
+#resumePanel.style1 .progress {
+	margin-bottom: 5px;
+}
+
+#resumePanel.style1 .ui-slider-horizontal {
+	height: 1.2em;
+}
+
+#resumePanel.style1 .ui-slider .ui-slider-handle {
+	width: 0.8em;
+	height: 1.6em;
+}
+
+/*Resume Context Menu*/
 #resumeContextMenu {
 	max-width: 240px;
 	min-width: 240px;
 }
 
-#resumeContextMenu .btn-item {
+#resumeContextMenu .btn {
 	min-width: 41px;
 }
 

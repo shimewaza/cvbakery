@@ -11,7 +11,7 @@
         <p>
             <% 
                 if (obj.selfIntroduction)
-                    print(_.escape(obj.selfIntroduction));
+                    print(markdown.toHTML(obj.selfIntroduction));
                 else
                     print('<i class="sl-placeholder">ここをクリックして自己紹介を入力します</i>')
             %>

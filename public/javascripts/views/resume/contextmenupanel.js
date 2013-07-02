@@ -23,8 +23,8 @@ define([
         events: {
             'click .btn-item': 'addItem',
             'click .bk-sample': 'changePattern',
+            'click .tp-sample': 'changeTemplate',
             'click #pdfBtn': 'outputPDF',
-            'click #style1Btn': 'changeTemplateStyle1',
         },
 
         initialize: function() {
@@ -84,13 +84,14 @@ define([
             vent.trigger('resume:changePattern', $target.data('image'));
         },
 
+        changeTemplate: function(event) {
+            var $target = $(event.target);
+            vent.trigger('resume:changeTemplate', $target.data('template'));
+        },
+
         outputPDF: function() {
             $.fileDownload('/engineer/me/pdf');
         },
-
-        changeTemplateStyle1: function() {
-            vent.trigger('resume:changeTemplate', 'style1');
-        }
     });
 
     return ToolPanelView;

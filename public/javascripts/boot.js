@@ -7,6 +7,7 @@ require.config({
 		datepicker: 'lib/bootstrap-datepicker',
 		contextmenu: 'lib/bootstrap-contextmenu',
 		markdown: 'lib/bootstrap-markdown',
+		'markdown.lib': 'lib/markdown',
 		bootstro: 'lib/bootstro',
 		'jquery.ui.widget': 'lib/jquery.ui.widget',
 		iframetransport: 'lib/jquery.iframe-transport',
@@ -38,7 +39,7 @@ require.config({
 			deps: ['datepicker']
 		},
 		markdown: {
-			deps: ['jquery']
+			deps: ['jquery', 'markdown.lib']
 		},
 		bootstro: {
 			deps: ['bootstrap']

@@ -1,15 +1,11 @@
 define([
         'views/page',
         'views/resume/resume',
-        'models/engineer',
-        // 'text!templates/resume/resume.html',
-        // 'text!templates/resume/resume-two-columns.html'
+        'models/engineer'
 ], function(
     PageView, 
     ResumeView, 
-    EngineerModel
-/*    resumeTemplate,
-    resumeTemplateTwoCols*/) {
+    EngineerModel) {
 
     var Controller = Backbone.Marionette.Controller.extend({
 
@@ -75,14 +71,6 @@ define([
             if(!imageName) return;
 
             $('body').css('background', "url('/images/resume/" + imageName + "') repeat");
-
-            // $('body').animate({
-            //     opacity: 0
-            // }, function() {
-            //     $(this)
-            //         .css('background', "url('/images/resume/" + imageName + "') repeat")
-            //         .animate({opacity: 1});
-            // });
         }
     });
 

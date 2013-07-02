@@ -53,7 +53,7 @@ define([
 		tagName: 'div',
 
 		// Class on HTML page
-		className: 'well well-large container-fluid row-fluid sl-panel',
+		className: 'well well-large container-fluid sl-panel',
 
 		// ID on HTML page
 		id: 'resumePanel',
@@ -62,10 +62,13 @@ define([
 		// template: resumeTemplate,
 
 		getTemplate: function() {
-			if (this.options.templateRef === "default")
+			if (this.options.templateRef === "default") {
+				this.$el.addClass('default');
 				return defaultTemplate;
-			else if (this.options.templateRef === "style1")
+			} else if (this.options.templateRef === "style1") {
+				this.$el.addClass('style1');
 				return style1Template;
+			}
 		},
 
 		regions: {

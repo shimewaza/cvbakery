@@ -101,7 +101,7 @@ define([
 			controller: landingController
 		});
 
-		landingController.toLogin();
+		// landingController.toLogin();
 	});
 
 	selink.listenTo(vent, 'login:success', function(data) {

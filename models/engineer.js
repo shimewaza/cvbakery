@@ -206,6 +206,11 @@ var Engineer = new Schema({
 		type: String,
 		trim: true
 	},
+	// Resume Template
+	template: {
+		type: String,
+		trim: true
+	},
 	// 公開フラグ
 	setting: {
 		name: {
@@ -288,6 +293,11 @@ var Engineer = new Schema({
 			type: Boolean,
 			default: true
 		},
+	},
+	// Flag of frist visit
+	isFirstVisit: {
+		type: Boolean,
+		default: true
 	},
 	// 論理削除フラグ
 	logicDelete: {

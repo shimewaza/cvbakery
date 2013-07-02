@@ -33,14 +33,15 @@ define([
 
             this.events = _.extend({}, this.commonEvents, {
                 // Update model when input's value was chenaged
-                'change textarea': 'updateModel'
+                'change textarea': 'updateModel',
+                'click .btn': 'updateModel'
             });
         },
 
         /*After Render*/
         onRender: function() {
 
-            this.ui.input.markdown({autofocus:false,savable:false});
+            this.ui.input.markdown();
 
             // Listen to the universal-click, switch to view-mode when input lost focus
             this.listenTo(vent, 'click:universal', this.switchToValue);
@@ -81,7 +82,7 @@ define([
                     // append normal info help on editor
                     self._appendInfoOn();
                     // Update the view panel
-                    self.ui.value.text(newVal);
+                    self.ui.value.empty().append(markdown.toHTML(newVal));
                     // Switch to view panel
                     self.switchToValue();
                 },

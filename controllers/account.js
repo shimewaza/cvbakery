@@ -10,7 +10,7 @@ var engineerMenu = [{
 	icon: 'icon-user',
 	name: '私の履歴書',
 	url: '/#resume'
-}, {
+}/*, {
 	icon: 'icon-search',
 	name: '仕事探し',
 	url: '/link3'
@@ -22,7 +22,7 @@ var engineerMenu = [{
 	icon: 'icon-wrench',
 	name: 'アカウント管理',
 	url: '/link5'
-}, ];
+}, */];
 
 exports.index = function(req, res) {
 
