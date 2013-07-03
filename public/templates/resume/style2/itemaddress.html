@@ -1,7 +1,7 @@
-<div class="span4">
-    <i class="icon-home"></i>　住所：
+<div class="span1">
+    <i class="icon-home"></i>
 </div>
-<div class="span8">
+<div class="span11">
     <div class="sl-value">
         <% 
             if (obj.zipCode || obj.address) {
@@ -19,7 +19,7 @@
             <br/>
             <div class="input-prepend sl-input" id="addressSubArea">
                 <span class="add-on"><i class="icon-map-marker"></i></span>
-                <input type="text" class="input-large" placeholder="住所" name="address" value="<%- obj.address %>">
+                <input type="text" class="input-medium" placeholder="住所" name="address" value="<%- obj.address %>">
             </div>
         </div>
         <div class="span2">

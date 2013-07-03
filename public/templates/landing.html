@@ -1,70 +1,99 @@
-<div class="navbar">
-  <div class="navbar-inner">
-    <a class="brand" href="#">CV Bakery</a>
-    <ul class="nav">
-      <!-- <li class="active"><a href="#">Home</a></li> -->
-    </ul>
-    <ul class="nav pull-right">
-      <li>
-          <form class="navbar-form">
-            <div class="input-prepend">
-                <span class="add-on"><i class="icon-user"></i></span>
-                <input type="text" class="input-small" placeholder="username" name="username">
-            </div>
-            <div class="input-prepend">
-                <span class="add-on"><i class="icon-key"></i></span>
-                <input type="password" class="input-small" placeholder="password" name="password">
-            </div>
-            <a id="narvLoginBtn" class="btn btn-success" href="#"><i class="icon-unlock-alt icon-white"></i> ログイン</a>
-          </form>
-      </li>
-    </ul>
-  </div>
+<div class="navbar" style="margin-bottom: 0px;">
+    <div class="navbar-inner">
+        <a class="brand" href="#">CV Bakery</a>
+        <ul class="nav">
+            <!-- <li class="active"><a href="#">Home</a></li> -->
+        </ul>
+        <ul class="nav pull-right">
+            <li>
+                <form class="navbar-form">
+                    <div class="input-prepend" style="margin-bottom: 0px;">
+                        <span class="add-on"><i class="icon-envelope"></i></span>
+                        <input type="text" class="input-small" placeholder="e-mail" name="username">
+                    </div>
+                    <div class="input-prepend" style="margin-bottom: 0px;">
+                        <span class="add-on"><i class="icon-key"></i></span>
+                        <input type="password" class="input-small" placeholder="password" name="password">
+                    </div>
+                    <a id="narvLoginBtn" class="btn btn-success" href="#">
+                        <i class="icon-unlock-alt icon-white"></i> Login
+                    </a>
+                    <a id="narvLoginBtn" class="btn btn-warning" href="#">
+                        <i class="icon-medkit icon-white"></i> Forgot Password?
+                    </a>
+                </form>
+            </li>
+        </ul>
+    </div>
 </div>
 
-<div id="content" style="min-height: 600px;">
+<div id="content" style="float: none;">
 
     <div id="myCarousel" class="carousel slide">
-      <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-      </ol>
-      <!-- Carousel items -->
-      <div class="carousel-inner">
-        <div class="active item">
-            <div style="background: url(images/landing/bootstrap-mdo-sfmoma-01.jpg); width: 100%; max-height: 500px; min-height: 500px; position: relative;">
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+        <!-- Carousel items -->
+        <div class="carousel-inner">
+            <div class="active item">
+                    <div style="background: url(images/landing/bootstrap-mdo-sfmoma-01.jpg); width: 100%; max-height: 500px; min-height: 500px; position: relative;">
+                    </div>
+            </div>
+            <div class="item">
+                    <div style="background: url(images/landing/bootstrap-mdo-sfmoma-02.jpg); width: 100%; max-height: 500px; min-height: 500px; position: relative;">
+                            <div id="login" style="position:absolute; top: 125px; right: 100px;"></div>
+                    </div>
+                    <!-- <img src="/images/landing/bootstrap-mdo-sfmoma-02.jpg" style="width: 100%;"> -->
+            </div>
+            <div class="item">
+                    <div style="background: url(images/landing/bootstrap-mdo-sfmoma-03.jpg); width: 100%; max-height: 500px; min-height: 500px; position: relative;">
+                            <div id="register" style="position:absolute; top: 125px; right: 100px;"></div>
+                    </div>
             </div>
         </div>
-        <div class="item">
-            <div style="background: url(images/landing/bootstrap-mdo-sfmoma-02.jpg); width: 100%; max-height: 500px; min-height: 500px; position: relative;">
-                <div id="login" style="position:absolute; top: 125px; right: 100px;"></div>
-            </div>
-            <!-- <img src="/images/landing/bootstrap-mdo-sfmoma-02.jpg" style="width: 100%;"> -->
-        </div>
-        <div class="item">
-            <div style="background: url(images/landing/bootstrap-mdo-sfmoma-03.jpg); width: 100%; max-height: 500px; min-height: 500px; position: relative;">
-                <div id="register" style="position:absolute; top: 125px; right: 100px;"></div>
-            </div>
-        </div>
-      </div>
-      <!-- Carousel nav -->
-      <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-      <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+        <!-- Carousel nav -->
+        <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+        <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
     </div>
 
-    <div>
-        <p>The name Controller is bound to cause a bit of confusion, which is rather unfortunate. There was some discussion and debate about what to call this object, the idea that people would confuse this with an MVC style controller came up a number of times. In the end, we decided to call this a controller anyways, as the typical use case is to control the workflow and process of an application and / or module.
-
-But the truth is, this is a very generic, multi-purpose object that can serve many different roles in many different scenarios. We are always open to suggestions, with good reason and discussion, on renaming objects to be more descriptive, less confusing, etc. If you would like to suggest a different name, please do so in either the mailing list or the github issues list.</p>
+    <div class="row-fluid">
+        <div class="span4 offset1">
+            <h4>About CV-Bakery</h4>
+            <ul>
+                <li>The name Controller is bound to cause a bit of confusion, which is</li>
+                <li>rather unfortunate. There was some discussion and debate about what to call</li>
+                <li>this object, the idea that people would confuse this with an MVC </li>
+                <li>style controller came up a number of times. In the end, we decided</li>
+                <li>to call this a controller anyways, as the typical use case is to contro</li>
+                <li>to call this a controller anyways, as the typical use case is to</li>
+                <li>control the workflow and process of an application and / or module</li>
+                <li>ifferent roles in many different scenarios. We are always open to </li>
+            </ul>
+            <p>.But the truth is, this is a very generic, multi-purpose object that can serve many d, with good reason and discussion, on renaming objects to be more descriptive, less confusing, etc. If you would like to suggest a different name, please do so in either the mailing list or the github issues list.</p>
+        </div>
+        <div class="span4 offset1">
+            <h4>Browser support</h4>
+            <ul>
+                <li>The name Controller is bound to cause a bit of confusion, which is</li>
+                <li>rather unfortunate. There was some discussion and debate about what to call</li>
+                <li>this object, the idea that people would confuse this with an MVC </li>
+                <li>style controller came up a number of times. In the end, we decided</li>
+                <li>to call this a controller anyways, as the typical use case is to contro</li>
+                <li>to call this a controller anyways, as the typical use case is to</li>
+                <li>control the workflow and process of an application and / or module</li>
+                <li>ifferent roles in many different scenarios. We are always open to </li>
+            </ul>
+            <p>.But the truth is, this is a very generic, multi-purpose object that can serve many d, with good reason and discussion, on renaming objects to be more descriptive, less confusing, etc. If you would like to suggest a different name, please do so in either the mailing list or the github issues list.</p>
+        </div>
     </div>
-
 </div>
 
-<div id="footer" style="text-align: center; padding: 30px 0; margin-top: 70px; border-top: 1px solid #e5e5e5; background-color: #f5f5f5;">
-    <div class="container" style="margin-right: auto; margin-left: auto;">
-            <p>Designed and built with all the love in the world by <a href="http://twitter.com/mdo" target="_blank">@mdo</a> and <a href="http://twitter.com/fat" target="_blank">@fat</a>.</p>
-            <p>Code licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License v2.0</a>, documentation under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
-            <p><a href="http://glyphicons.com">Glyphicons Free</a> licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+<div id="footer" style="text-align: center; padding: 30px 0; margin-top: 130px; border-top: 1px solid #e5e5e5; background-color: #f5f5f5;">
+    <div style="margin-right: auto; margin-left: auto;">
+        <p>Designed and built with all the love in the world by @mdo and @fat.</p>
+        <p>Code licensed under Apache License v2.0, documentation under CC BY 3.0.</p>
+        <p>Glyphicons Free licensed under CC BY 3.0.</p>
     </div>
 </div>

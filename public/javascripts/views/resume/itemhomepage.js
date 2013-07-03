@@ -2,7 +2,12 @@ define([
         'views/resume/itembase',
         'text!templates/resume/default/itemhomepage.html',
         'text!templates/resume/style1/itemhomepage.html',
-], function(BaseView, defaultTemplate, style1Template) {
+        'text!templates/resume/style2/itemhomepage.html'
+], function(
+    BaseView,
+    defaultTemplate,
+    style1Template,
+    style2Template) {
 
     var HomePageEditor = BaseView.extend({
 
@@ -22,6 +27,8 @@ define([
                 return defaultTemplate;
             else if (this.options.templateRef === "style1")
                 return style1Template;
+            else if (this.options.templateRef === "style2")
+                return style2Template;
         },
 
         /*Initializer*/

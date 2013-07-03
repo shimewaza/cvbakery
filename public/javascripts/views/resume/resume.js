@@ -1,6 +1,7 @@
 define([
 		'text!templates/resume/default/resume.html',
 		'text!templates/resume/style1/resume.html',
+		'text!templates/resume/style2/resume.html',
 		'views/resume/itemphoto',
 		'views/resume/itemname',
 		'views/resume/itembirthday',
@@ -25,6 +26,7 @@ define([
 ], function(
 	defaultTemplate,
 	style1Template,
+	style2Template,
 	PhotoView,
 	NameView,
 	BirthDayView,
@@ -68,6 +70,9 @@ define([
 			} else if (this.options.templateRef === "style1") {
 				this.$el.addClass('style1');
 				return style1Template;
+			} else if (this.options.templateRef === "style2") {
+				this.$el.addClass('style2');
+				return style2Template;
 			}
 		},
 

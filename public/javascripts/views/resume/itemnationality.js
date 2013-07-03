@@ -1,8 +1,13 @@
 define([
         'views/resume/itembase',
         'text!templates/resume/default/itemnationality.html',
-        'text!templates/resume/style1/itemnationality.html'
-], function(BaseView, defaultTemplate, style1Template) {
+        'text!templates/resume/style1/itemnationality.html',
+        'text!templates/resume/style2/itemnationality.html'
+], function(
+    BaseView,
+    defaultTemplate,
+    style1Template,
+    style2Template) {
 
     var NationalityEditor = BaseView.extend({
 
@@ -20,6 +25,8 @@ define([
                 return defaultTemplate;
             else if (this.options.templateRef === "style1")
                 return style1Template;
+            else if (this.options.templateRef === "style2")
+                return style2Template;
         },
 
         /*Initializer*/

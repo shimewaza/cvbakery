@@ -8,16 +8,6 @@ body {
     background: url('../images/page-bg.png') repeat center top;
 }
 
-ul {
-	margin: 0;
-	padding: 0;
-	width: auto;
-}
-
-li {
-	list-style: none;
-}
-
 .input-append .popover,
 .input-prepend .popover {
 	font-size: 12px;
@@ -25,10 +15,6 @@ li {
 
 .sl-editor {
 	display: none;
-}
-
-.sl-editor button {
-	margin-bottom: 10px;
 }
 
 .sl-input {
@@ -167,7 +153,7 @@ li {
 /* Resume Panel Style No.1*/
 #resumePanel.style1 {
 	max-width: 1000px;
-	min-width: 90%;
+	min-width: 1000px;
 	margin-left: auto;
 	margin-right: auto;
 /*	font-size: 14px;
@@ -212,6 +198,70 @@ li {
 }
 
 #resumePanel.style1 .ui-slider .ui-slider-handle {
+	width: 0.8em;
+	height: 1.6em;
+}
+
+/* Resume Panel Style No.2*/
+#resumePanel.style2 {
+	max-width: 1000px;
+	min-width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+/*	font-size: 14px;
+	line-height: 30px;*/
+}
+
+#resumePanel.style2 hr {
+	margin: 5px 0;
+}
+
+#resumePanel.style2 .sl-photo {
+	max-width: 100%;
+	min-width: 120px;
+	max-height: 210px;
+	margin-bottom: 5px;
+	/*margin-left: 10px;*/
+	/*margin-right: auto;*/
+}
+
+#resumePanel.style2 .sl-photo img {
+	width: auto;
+	max-width: 90%;
+	max-height: 200px;
+/*	margin-left: auto;
+	margin-right: auto;*/
+}
+
+#resumePanel.style2 [class*="span"] {
+	/*border: 1px dashed green;*/
+	min-height: 30px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	margin-bottom: 0px !important;
+}
+
+#resumePanel.style2 .composite-header {
+	border-bottom: 1px dotted #B8B896;
+}
+
+#resumePanel.style2 .item-container {
+	margin-top: 10px;
+}
+
+#resumePanel.style2 h4 {
+	margin-bottom: 0px;
+}
+
+#resumePanel.style2 .progress {
+	margin-bottom: 5px;
+}
+
+#resumePanel.style2 .ui-slider-horizontal {
+	height: 1.2em;
+}
+
+#resumePanel.style2 .ui-slider .ui-slider-handle {
 	width: 0.8em;
 	height: 1.6em;
 }

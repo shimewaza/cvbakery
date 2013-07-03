@@ -1,9 +1,15 @@
 define([
         'text!templates/resume/default/compositeskill.html',
         'text!templates/resume/style1/compositeskill.html',
+        'text!templates/resume/style2/compositeskill.html',
         'views/resume/compositebase',
         'views/resume/itemskill'
-], function(defaultTemplate, style1Template, BaseView, itemView) {
+], function(
+    defaultTemplate,
+    style1Template,
+    style2Template,
+    BaseView,
+    itemView) {
 
     var SkillView = BaseView.extend({
 
@@ -27,6 +33,8 @@ define([
                 return defaultTemplate;
             else if (this.options.templateRef === "style1")
                 return style1Template;
+            else if (this.options.templateRef === "style2")
+                return style2Template;
         },
 
         /*Initializer*/

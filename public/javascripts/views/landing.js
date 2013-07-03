@@ -23,11 +23,15 @@ define([
 
 			this.loginView = new LoginView();
 			this.registerView = new RegisterView();
-
-			this.$el.find('#myCarousel').carousel();
 		},
 
 		onRender: function() {
+
+			// initialize carousel here for auto-start
+			this.$el.find('#myCarousel').carousel({
+				interval: 3000
+			});
+
 			this.loginArea.show(this.loginView);
 			this.registerArea.show(this.registerView);
 		},
@@ -61,7 +65,7 @@ define([
 
 				// login error handler
 				error: function(xhr, status) {
-					self.$('.message').text(xhr.responseText);
+					self.$('.nav-message').text(xhr.responseText);
 				}
 			});
 		}
