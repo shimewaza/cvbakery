@@ -1,0 +1,24 @@
+<div class="span1 offset1">
+    <i class="icon-leaf"></i>
+</div>
+<div class="span10">
+    <div class="sl-value">
+        <% 
+            if (obj.gender)
+                print(obj.gender);
+            else
+                print('<i class="sl-placeholder">ここをクリックして性別を入力します</i>')
+        %>
+    </div>
+    <div class="sl-editor row-fluid">
+        <div class="span10" data-toggle="buttons-radio">
+            <button class="btn btn-small btn-info btn-value"><i class="icon-male"></i>　男</button>
+            <button class="btn btn-small btn-info btn-value"><i class="icon-female"></i>　女</button>
+        </div>
+        <div class="span2">
+            <button class="btn btn-small btn-warning btn-remove">
+                <i class="icon-remove icon-white"></i>
+            </button>
+        </div>
+    </div>
+</div>

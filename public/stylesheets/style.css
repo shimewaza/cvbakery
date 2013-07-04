@@ -98,7 +98,7 @@ body {
 	margin: auto;
 }
 
-/* Resume Panel Default Style*/
+/******************* Resume Panel Default Style *******************/
 #resumePanel.default {
 	max-width: 700px;
 	min-width: 700px;
@@ -123,6 +123,7 @@ body {
 
 #resumePanel.default .sl-photo img {
 	max-height: 200px;
+	display: block;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -150,7 +151,7 @@ body {
 	height: 1.6em;
 }
 
-/* Resume Panel Style No.1*/
+/******************* Resume Panel Style No.1 *******************/
 #resumePanel.style1 {
 	max-width: 1000px;
 	min-width: 1000px;
@@ -175,10 +176,11 @@ body {
 
 #resumePanel.style1 .sl-photo img {
 	width: auto;
+	display: block;
 	max-width: 90%;
 	max-height: 200px;
-/*	margin-left: auto;
-	margin-right: auto;*/
+	margin-left: auto;
+	margin-right: auto;
 }
 
 #resumePanel.style1 [class*="span"] {
@@ -202,7 +204,7 @@ body {
 	height: 1.6em;
 }
 
-/* Resume Panel Style No.2*/
+/******************* Resume Panel Style No.2 *******************/
 #resumePanel.style2 {
 	max-width: 1000px;
 	min-width: 1000px;
@@ -229,8 +231,9 @@ body {
 	width: auto;
 	max-width: 90%;
 	max-height: 200px;
-/*	margin-left: auto;
-	margin-right: auto;*/
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 #resumePanel.style2 [class*="span"] {
@@ -262,6 +265,68 @@ body {
 }
 
 #resumePanel.style2 .ui-slider .ui-slider-handle {
+	width: 0.8em;
+	height: 1.6em;
+}
+
+/******************* Resume Panel Style No.3 *******************/
+#resumePanel.style3 {
+	max-width: 1000px;
+	min-width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-right: 0px;
+	font-size: 14px;
+	line-height: 30px;
+}
+
+#resumePanel.style3 hr {
+	margin: 5px 0;
+}
+
+#resumePanel.style3 .sl-photo {
+	margin-bottom: 5px;
+}
+
+#resumePanel.style3 .sl-photo img {
+	/*max-height: 200px;*/
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#resumePanel.style3 [class*="span"] {
+	/*border: 1px none green;*/
+	min-height: 40px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	/*margin-left: 0px !important;*/
+	margin-bottom: 0px !important;
+}
+
+#resumePanel.style3 .composite-header {
+	/*border: 1px dotted #B8B896;*/
+	background-color: #eee;
+}
+
+#resumePanel.style3 .composite-header .sl-editor{
+	margin-top: 5px;
+}
+
+#resumePanel.style3 .item-container {
+	margin-top: 10px;
+}
+
+#resumePanel.style3 .progress {
+	height: 30px;
+	margin-bottom: 10px;
+}
+
+#resumePanel.style3 .ui-slider-horizontal {
+	height: 1.2em;
+}
+
+#resumePanel.style3 .ui-slider .ui-slider-handle {
 	width: 0.8em;
 	height: 1.6em;
 }

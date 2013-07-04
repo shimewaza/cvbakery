@@ -2,12 +2,14 @@ define([
         'views/resume/itembase',
         'text!templates/resume/default/itemcareer.html',
         'text!templates/resume/style1/itemcareer.html',
-        'text!templates/resume/style2/itemcareer.html'
+        'text!templates/resume/style2/itemcareer.html',
+        'text!templates/resume/style3/itemcareer.html'
 ], function(
     BaseView,
     defaultTemplate,
     style1Template,
-    style2Template) {
+    style2Template,
+    style3Template) {
 
     var ItemEducation = BaseView.extend({
 
@@ -23,6 +25,8 @@ define([
                 return style1Template;
             else if (this.options.templateRef === "style2")
                 return style2Template;
+            else if (this.options.templateRef === "style3")
+                return style3Template;
         },
 
         /*Initializer*/

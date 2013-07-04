@@ -1,0 +1,24 @@
+<div class="span1 offset1">
+    <i class="icon-globe"></i>
+</div>
+<div class="span10">
+    <div class="sl-value">
+        <% 
+            if (obj.homePage)
+                print(obj.homePage);
+            else
+                print('<i class="sl-placeholder">ここをクリックして個人サイトを入力します</i>')
+        %>
+    </div>
+    <div class="sl-editor row-fluid">
+        <div class="input-prepend sl-input span10">
+            <span class="add-on"><i class="icon-globe"></i></span>
+            <input type="text" class="input-medium" placeholder="サイトURL" name="homePage" value="<%- obj.homePage %>">
+        </div>
+        <div class="span2">
+            <button class="btn btn-small btn-warning btn-remove">
+                <i class="icon-remove icon-white"></i>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="span1 offset1">
+    <i class="icon-calendar"></i>
+</div>
+<div class="span10">
+    <div class="sl-value">
+        <% 
+            if (obj.birthDay)
+                print(formatDate(obj.birthDay));
+            else
+                print('<i class="sl-placeholder">ここをクリックして生年月日を入力します</i>')
+        %>
+    </div>
+    <div class="sl-editor row-fluid">
+        <div class="input-prepend sl-input span10">
+            <span class="add-on"><i class="icon-calendar"></i></span>
+            <input type="text" class="input-small" placeholder="生年月日" name="birthDay" value="<%- simpleFormatDate(obj.birthDay) %>">
+        </div>
+        <div class="span2">
+            <button class="btn btn-small btn-warning btn-remove">
+                <i class="icon-remove icon-white"></i>
+            </button>
+        </div>
+    </div>
+</div>

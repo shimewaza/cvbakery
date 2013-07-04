@@ -2,12 +2,14 @@ define([
         'views/resume/itembase',
         'text!templates/resume/default/itemitexperience.html',
         'text!templates/resume/style1/itemitexperience.html',
-        'text!templates/resume/style2/itemitexperience.html'
+        'text!templates/resume/style2/itemitexperience.html',
+        'text!templates/resume/style3/itemitexperience.html'
 ], function(
     BaseView,
     defaultTemplate,
     style1Template,
-    style2Template) {
+    style2Template,
+    style3Template) {
 
     var ItExperienceEditor = BaseView.extend({
 
@@ -29,6 +31,8 @@ define([
                 return style1Template;
             else if (this.options.templateRef === "style2")
                 return style2Template;
+            else if (this.options.templateRef === "style3")
+                return style3Template;
         },
 
         /*Initializer*/

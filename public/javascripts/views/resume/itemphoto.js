@@ -2,12 +2,14 @@ define([
         'views/resume/itembase',
         'text!templates/resume/default/itemphoto.html',
         'text!templates/resume/style1/itemphoto.html',
-        'text!templates/resume/style2/itemphoto.html'
+        'text!templates/resume/style2/itemphoto.html',
+        'text!templates/resume/style3/itemphoto.html'
 ], function(
     BaseView,
     defaultTemplate,
     style1Template,
-    style2Template) {
+    style2Template,
+    style3Template) {
 
     var PhotoEditor = BaseView.extend({
 
@@ -27,6 +29,8 @@ define([
                 return style1Template;
             else if (this.options.templateRef === "style2")
                 return style2Template;
+            else if (this.options.templateRef === "style3")
+                return style3Template;
         },
 
         /*Initializer*/

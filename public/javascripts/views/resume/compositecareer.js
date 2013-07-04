@@ -2,12 +2,14 @@ define([
         'text!templates/resume/default/compositecareer.html',
         'text!templates/resume/style1/compositecareer.html',
         'text!templates/resume/style2/compositecareer.html',
+        'text!templates/resume/style3/compositecareer.html',
         'views/resume/compositebase',
         'views/resume/itemcareer'
 ], function(
     defaultTemplate,
     style1Template,
     style2Template,
+    style3Template,
     BaseView,
     itemView) {
 
@@ -35,6 +37,8 @@ define([
                 return style1Template;
             else if (this.options.templateRef === "style2")
                 return style2Template;
+            else if (this.options.templateRef === "style3")
+                return style3Template;
         },
 
         /*Initializer*/
