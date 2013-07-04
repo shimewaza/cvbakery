@@ -168,6 +168,7 @@ sendMail = function() {
 	    // Prepare nodemailer transport object
 	    var transport = nodemailer.createTransport("SMTP", {
 	      // service: "Gmail",
+	      port: 587,
 	      auth: {
 	        user: "administrator@selink.jp",
 	        pass: "ZSkikuD2O5"

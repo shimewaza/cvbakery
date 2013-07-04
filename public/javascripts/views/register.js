@@ -18,7 +18,7 @@ define(['text!templates/register.html'], function(registerTemplate) {
 			$.ajax({
 
 				// page url
-				url: '/account/create',
+				url: '/tempaccount/create',
 
 				// post form data
 				data: this.$('form').serialize(),

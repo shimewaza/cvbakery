@@ -4,14 +4,14 @@ var Schema = mongoose.Schema;
 
 var Account = new Schema({
 	// ユーザ名
-	userName: {
+	accountId: {
 		type: String,
 		trim: true,
 		required: true,
 		unique: true
 	},
 	// パスワード
-	passWord: {
+	password: {
 		type: String,
 		trim: true,
 		required: true

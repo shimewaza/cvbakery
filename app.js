@@ -31,7 +31,7 @@ app.configure(function() {
   app.use(express.static(path.join(__dirname, 'public')));
   app.use(function(req, res, next) {
 
-    var excludePath = ['/', '/login', '/account/create'];
+    var excludePath = ['/', '/login', '/tempaccount/create'];
 
     if (excludePath.indexOf(req.path) != -1) {
       next();
@@ -67,7 +67,7 @@ app.get('/home', function(req, res) {
 
 
 // データモデル名称
-var prefixes = ['engineer', 'account'];
+var prefixes = ['tempaccount', 'account', 'engineer'];
 
 // ルートとデータモデルのマッピング
 prefixes.forEach(function(prefix) {

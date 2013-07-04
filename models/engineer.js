@@ -84,7 +84,7 @@ var Engineer = new Schema({
 	telNo: {
 		type: String,
 		trim: true,
-		match: /^[1-9]{3}-[0-9]{4}-[0-9]{4}$/
+		match: /^[0-9]{3}-[0-9]{4}-[0-9]{4}$/
 	},
 	// E-mail
 	email: {
