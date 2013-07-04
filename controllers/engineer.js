@@ -167,10 +167,10 @@ sendMail = function() {
 
 	    // Prepare nodemailer transport object
 	    var transport = nodemailer.createTransport("SMTP", {
-	      service: "Gmail",
+	      // service: "Gmail",
 	      auth: {
-	        user: "joe.19840729.china@gmail.com",
-	        pass: "19840729"
+	        user: "administrator@selink.jp",
+	        pass: "ZSkikuD2O5"
 	      }
 	    });
 
