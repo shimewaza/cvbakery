@@ -9,6 +9,10 @@ define(['text!templates/register.html'], function(registerTemplate) {
 			'click #registerBtn': 'register'
 		},
 
+		ui: {
+			'msgArea': '.message'
+		},
+
 		// Register new user, feedback result
 		register: function() {
 
@@ -36,7 +40,12 @@ define(['text!templates/register.html'], function(registerTemplate) {
 
 				// login error handler
 				error: function(xhr, status) {
-					self.$('.message').text(xhr.responseText);
+					self.ui.msgArea.noty({
+						type: 'warning',
+						timeout: 3000,
+						text: xhr.responseText,
+						layout: 'bottomRight'
+					});
 				}
 			});
 		}

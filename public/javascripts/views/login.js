@@ -9,6 +9,10 @@ define(['text!templates/login.html'], function(loginTemplate) {
 			'click #loginBtn': 'login'
 		},
 
+		ui: {
+			'msgArea': '.message'
+		},
+
 		// Login action
 		// Post username and password for user authorize
 		login: function(event) {
@@ -38,7 +42,12 @@ define(['text!templates/login.html'], function(loginTemplate) {
 
 				// login error handler
 				error: function(xhr, status) {
-					self.$('.message').text(xhr.responseText);
+					self.ui.msgArea.noty({
+						type: 'warning',
+						timeout: 3000,
+						text: xhr.responseText,
+						layout: 'bottomRight'
+					});
 				}
 			});
 		}
