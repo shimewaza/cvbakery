@@ -4,11 +4,6 @@ var PDFDocument = require('pdfkit');
 // Definition of Engineer
 var Engineer = require('../models/engineer.js');
 
-var path           = require('path')
-  , templatesDir   = path.resolve(__dirname, '..', 'mailtemplates')
-  , emailTemplates = require('email-templates')
-  , nodemailer     = require('nodemailer');
-
 // Index
 exports.index = function(req, res) {
 
@@ -104,7 +99,7 @@ exports.destroy = function(req, res) {
 // Export PDF
 exports.pdf = function(req, res) {
 
-	sendMail();
+	// sendMail();
 
 	if (req.params.id === 'me') {
 
@@ -153,130 +148,4 @@ createPDF = function(profile) {
 	});
 
 	return doc;
-}
-
-sendMail = function() {
-
-	emailTemplates(templatesDir, function(err, template) {
-
-	  if (err) {
-	    console.log(err);
-	  } else {
-
-	    // ## Send a single email
-
-	    // Prepare nodemailer transport object
-	    var transport = nodemailer.createTransport("SMTP", {
-	      // service: "Gmail",
-	      port: 587,
-	      auth: {
-	        user: "administrator@selink.jp",
-	        pass: "ZSkikuD2O5"
-	      }
-	    });
-
-	    // An example users object with formatted email function
-	    var locals = {
-	      email: 'joe_19840729@hotmail.com',
-	      name: {
-	        first: 'Joe',
-	        last: 'Hetfield'
-	      }
-	    };
-
-	    // Send a single email
-	    template('2col-1-2', locals, function(err, html, text) {
-	      if (err) {
-	        console.log(err);
-	      } else {
-	        transport.sendMail({
-	          from: 'Spicy Meatball <spicy.meatball@spaghetti.com>',
-	          to: locals.email,
-	          subject: 'Mangia gli spaghetti con polpette!',
-	          html: html,
-	          // generateTextFromHTML: true,
-	          text: text
-	        }, function(err, responseStatus) {
-	          if (err) {
-	            console.log(err);
-	          } else {
-	            console.log(responseStatus.message);
-	          }
-	        });
-	      }
-	    });
-
-
-	    // // ## Send a batch of emails and only load the template once
-
-	    // // Prepare nodemailer transport object
-	    // var transportBatch = nodemailer.createTransport("SMTP", {
-	    //   service: "Gmail",
-	    //   auth: {
-	    //     user: "some-user@gmail.com",
-	    //     pass: "some-password"
-	    //   }
-	    // });
-
-	    // // An example users object
-	    // var users = [
-	    //   {
-	    //     email: 'pappa.pizza@spaghetti.com',
-	    //     name: {
-	    //       first: 'Pappa',
-	    //       last: 'Pizza'
-	    //     }
-	    //   },
-	    //   {
-	    //     email: 'mister.geppetto@spaghetti.com',
-	    //     name: {
-	    //       first: 'Mister',
-	    //       last: 'Geppetto'
-	    //     }
-	    //   }
-	    // ];
-
-	    // // Custom function for sending emails outside the loop
-	    // //
-	    // // NOTE:
-	    // //  We need to patch postmark.js module to support the API call
-	    // //  that will let us send a batch of up to 500 messages at once.
-	    // //  (e.g. <https://github.com/diy/trebuchet/blob/master/lib/index.js#L160>)
-	    // var Render = function(locals) {
-	    //   this.locals = locals;
-	    //   this.send = function(err, html, text) {
-	    //     if (err) {
-	    //       console.log(err);
-	    //     } else {
-	    //       transportBatch.sendMail({
-	    //         from: 'Spicy Meatball <spicy.meatball@spaghetti.com>',
-	    //         to: locals.email,
-	    //         subject: 'Mangia gli spaghetti con polpette!',
-	    //         html: html,
-	    //         // generateTextFromHTML: true,
-	    //         text: text
-	    //       }, function(err, responseStatus) {
-	    //         if (err) {
-	    //           console.log(err);
-	    //         } else {
-	    //           console.log(responseStatus.message);
-	    //         }
-	    //       });
-	    //     }
-	    //   };
-	    //   this.batch = function(batch) {
-	    //     batch(this.locals, templatesDir, this.send);
-	    //   };
-	    // };
-
-	    // // Load the template and send the emails
-	    // template('newsletter', true, function(err, batch) {
-	    //   for(var user in users) {
-	    //     var render = new Render(users[user]);
-	    //     render.batch(batch);
-	    //   }
-	    // });
-
-	  }
-	});
 }
