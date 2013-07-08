@@ -36,7 +36,7 @@ exports.sendAccountActiveMail = function(recipient) {
                 } else {
                     transport.sendMail({
                         from: 'CV Bakery <noreply@cvbakery.com>',
-                        to: locals.email,
+                        to: recipient.email,
                         subject: 'Welcome to CV Bakery!',
                         html: html,
                         // generateTextFromHTML: true,
