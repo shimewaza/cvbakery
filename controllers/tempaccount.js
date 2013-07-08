@@ -44,7 +44,9 @@ exports.create = function(req, res) {
                 if (err) res.status(500).send(err);
                 else {
                     // send authorize mail
-                    Mailer.sendAccountActiveMail();
+                    Mailer.sendAccountActiveMail({
+                        email: req.body.accountId
+                    });
                     // send success message
                     res.json({
                         message: "ご登録ありがとうございます、ログイン画面からお入りください。"

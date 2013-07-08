@@ -3,7 +3,7 @@ var path = require('path'),
     emailTemplates = require('email-templates'),
     nodemailer = require('nodemailer');
 
-// ## Send a single email
+// Setup mail transport facility
 var transport = nodemailer.createTransport("SMTP", {
     port: 587,
     auth: {
@@ -20,26 +20,17 @@ exports.sendAccountActiveMail = function(recipient) {
             console.log(err);
         } else {
 
-            // // ## Send a single email
-            // var transport = nodemailer.createTransport("SMTP", {
-            //     port: 587,
-            //     auth: {
-            //         user: "administrator@selink.jp",
-            //         pass: "ZSkikuD2O5"
-            //     }
-            // });
-
             // An example users object with formatted email function
-            var locals = {
-                email: 'joe_19840729@hotmail.com',
-                name: {
-                    first: 'Joe',
-                    last: 'Hetfield'
-                }
-            };
+            // var locals = {
+            //     email: 'joe_19840729@hotmail.com',
+            //     name: {
+            //         first: 'Joe',
+            //         last: 'Hetfield'
+            //     }
+            // };
 
-            // Send a single email
-            template('2col-1-2', locals, function(err, html, text) {
+            // send account active email
+            template('account-active', locals, function(err, html, text) {
                 if (err) {
                     console.log(err);
                 } else {
