@@ -6,10 +6,11 @@ var path = require('path'),
 // Prepare nodemailer transport object
 exports.transport = function() {
     return transport = nodemailer.createTransport("SMTP", {
-        service: "Gmail",
+        // service: "Gmail",
+        port: 587,
         auth: {
-            user: "joe.19840729.china@gmail.com",
-            pass: "19840729"
+            user: "administrator@selink.jp",
+            pass: "ZSkikuD2O5"
         }
     });
 }();
