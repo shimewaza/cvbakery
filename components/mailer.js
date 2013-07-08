@@ -3,19 +3,14 @@ var path = require('path'),
     emailTemplates = require('email-templates'),
     nodemailer = require('nodemailer');
 
-// Prepare nodemailer transport object
-// exports.transport = function() {
-//     return transport = nodemailer.createTransport("SMTP", {
-//         // service: "Gmail",
-//         port: 587,
-//         auth: {
-//             user: "administrator@selink.jp",
-//             pass: "ZSkikuD2O5"
-//         }
-//     });
-// }();
-
-
+// ## Send a single email
+var transport = nodemailer.createTransport("SMTP", {
+    port: 587,
+    auth: {
+        user: "administrator@selink.jp",
+        pass: "ZSkikuD2O5"
+    }
+});
 
 exports.sendAccountActiveMail = function(recipient) {
 
@@ -25,14 +20,14 @@ exports.sendAccountActiveMail = function(recipient) {
             console.log(err);
         } else {
 
-            // ## Send a single email
-            var transport = nodemailer.createTransport("SMTP", {
-                port: 587,
-                auth: {
-                    user: "administrator@selink.jp",
-                    pass: "ZSkikuD2O5"
-                }
-            });
+            // // ## Send a single email
+            // var transport = nodemailer.createTransport("SMTP", {
+            //     port: 587,
+            //     auth: {
+            //         user: "administrator@selink.jp",
+            //         pass: "ZSkikuD2O5"
+            //     }
+            // });
 
             // An example users object with formatted email function
             var locals = {
