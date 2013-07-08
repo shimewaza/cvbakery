@@ -30,7 +30,7 @@ exports.sendAccountActiveMail = function(recipient) {
             // };
 
             // send account active email
-            template('account-active', locals, function(err, html, text) {
+            template('account-active', recipient, function(err, html, text) {
                 if (err) {
                     console.log(err);
                 } else {
