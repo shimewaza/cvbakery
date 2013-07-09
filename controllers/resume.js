@@ -1,14 +1,14 @@
 var util = require('util');
 var PDFDocument = require('pdfkit');
 
-// Definition of Engineer
-var Engineer = require('../models/engineer.js');
+// Definition of Resume
+var Resume = require('../models/resume.js');
 
 // Index
 exports.index = function(req, res) {
 
-	Engineer.find({}, function(err, docs) {
-		res.render('engineer/index', {
+	Resume.find({}, function(err, docs) {
+		res.render('resume/index', {
 			docs: docs,
 			title: "index",
 			user: req.session.user
@@ -16,10 +16,10 @@ exports.index = function(req, res) {
 	});
 };
 
-// Get single Engineer
+// Get single Resume
 exports.show = function(req, res) {
 
-	Engineer.findOne({
+	Resume.findOne({
 		_id: req.params.id
 	}, function(err, profile) {
 		if (err) res.send("error happend: " + err);
@@ -28,29 +28,29 @@ exports.show = function(req, res) {
 	});
 };
 
-// Create Engineer
+// Create Resume
 exports.create = function(req, res) {
 
-	var engineer = {};
+	var resume = {};
 
 	for (var prop in req.body) {
-		engineer[prop] = req.body[prop];
+		resume[prop] = req.body[prop];
 	}
 
-	var engineerObj = new Engineer(engineer);
+	var resumeObj = new Resume(resume);
 
-	engineerObj.save(function(err, data) {
+	resumeObj.save(function(err, data) {
 
 		if (err) {
 			console.log(util.inspect(err));
-			res.render('engineer/new', {
+			res.render('resume/new', {
 				title: "new",
 				err: err
 			});
 		} else {
 			console.log(data);
-			Engineer.find({}, function(err, docs) {
-				res.render('engineer/index', {
+			Resume.find({}, function(err, docs) {
+				res.render('resume/index', {
 					docs: docs,
 					title: "index"
 				});
@@ -59,7 +59,7 @@ exports.create = function(req, res) {
 	});
 };
 
-// Edit Engineer
+// Edit Resume
 exports.update = function(req, res) {
 
 	delete req.body._id;
@@ -71,13 +71,13 @@ exports.update = function(req, res) {
 		req.body.photo = /.*[\/|\\](.*)$/.exec(photoPath)[1];
 	}
 
-	Engineer.findById(req.params.id, function(err, engineer) {
+	Resume.findById(req.params.id, function(err, resume) {
 		if (err) res.status(500).send("error happend: " + err);
 		else {
 			for(var prop in req.body) {
-				engineer[prop] = req.body[prop];
+				resume[prop] = req.body[prop];
 			}
-			engineer.save(function(err, newProfile) {
+			resume.save(function(err, newProfile) {
 				if (err) res.status(400).send("error happend: " + err);
 				else res.send(newProfile);
 			});
@@ -91,7 +91,7 @@ exports.update = function(req, res) {
 	// });
 };
 
-// Delete Engineer
+// Delete Resume
 exports.destroy = function(req, res) {
 
 };
@@ -103,7 +103,7 @@ exports.pdf = function(req, res) {
 
 	if (req.params.id === 'me') {
 
-		Engineer.findOne({
+		Resume.findOne({
 			_id: req.session.accountInfo.userInfo.profileId
 		}, function(err, profile) {
 			if (err) res.send("error happend: " + err);

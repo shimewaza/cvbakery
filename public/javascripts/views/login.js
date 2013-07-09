@@ -27,7 +27,7 @@ define(['text!templates/login.html'], function(loginTemplate) {
 				url: '/login',
 
 				// post form data
-				data: this.$('form').serialize(),
+				data: this.$('#login-form').serialize(),
 
 				// method is post
 				type: 'POST',

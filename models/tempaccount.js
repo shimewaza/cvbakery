@@ -23,14 +23,14 @@ var TempAccount = new Schema({
         type: String,
         trim: true,
         required: true,
-        default: 'Engineer',
+        default: 'Person',
         enum: metadata.userType_option
     },
     // Create Date
     createDate: {
         type: Date,
         default: Date.now,
-        expires: 60
+        expires: 60 * 60
     }
 });
 

@@ -1,76 +1,63 @@
 define([
         'views/page',
         'views/resume/resume',
-        'models/engineer'
+        'models/resume'
 ], function(
     PageView, 
     ResumeView, 
-    EngineerModel) {
+    ResumeModel) {
 
+    // Main page controller
     var Controller = Backbone.Marionette.Controller.extend({
 
+        // Initializer of main page controller 
         initialize: function(options) {
-            this.app = options.app;
-            this.account = options.account;
 
+            // hold application ref
+            this.app = options.app;
+            // hold user account info
+            this.account = options.account;
+            // create and hold resume model            
+            this.resumeModel = new ResumeModel({
+                _id: options.account.userInfo.profileId
+            });
+
+            // create main page
             this.pageView = new PageView({
                 model: new Backbone.Model(this.account)
             });
+            // show main page
             this.app.mainRegion.show(this.pageView);
 
-            this.listenTo(vent, 'resume:changeTemplate', this.onChangeTemplate);
+            // Listening the resume template change singnal
+            this.listenTo(vent, 'resume:changeTemplate', this.toResume);
         },
 
+        // To home page
         toHome: function() {
 
         },
 
-        toResume: function() {
+        // To resume page
+        toResume: function(templateName) {
 
             var self = this;
 
-            var engineerModel = new EngineerModel({
-                _id: this.account.userInfo.profileId
-            });
+            // populate resume model with lastest data
+            this.resumeModel.fetch({
 
-            engineerModel.fetch({
+                // if success
                 success: function() {
 
-                    self._changeBackground(engineerModel.get('backgroundImg'));
-
+                    // create new resume view
                     var resumeView = new ResumeView({
-                        model: engineerModel,
-                        templateRef: 'default'
+                        model: self.resumeModel,
+                        templateRef: templateName || 'default'
                     });
+                    // show resume
                     self.pageView.content.show(resumeView);
                 }
             });
-        },
-
-        onChangeTemplate: function(data) {
-
-            var self = this;
-
-            var engineerModel = new EngineerModel({
-                _id: this.account.userInfo.profileId
-            });
-
-            engineerModel.fetch({
-                success: function() {
-                    var resumeView = new ResumeView({
-                        model: engineerModel,
-                        templateRef: data
-                    });
-                    self.pageView.content.show(resumeView);
-                }
-            });
-        },
-
-        _changeBackground: function(imageName) {
-
-            if(!imageName) return;
-
-            $('body').css('background', "url('/images/resume/" + imageName + "') repeat");
         }
     });
 

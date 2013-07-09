@@ -36,15 +36,19 @@ define([
                 inputGraduate: 'input[name="graduate"]',
                 inputSchool: 'input[name="school"]',
                 inputMajor: 'input[name="major"]',
+                inputDetail: 'textarea',
                 areaGraduate: '.graduateArea',
-                areaSchool: '.schoolArea'
+                areaSchool: '.schoolArea',
+                areaDetail: '.detailArea'
             });
 
             this.events = _.extend({}, this.commonEvents, {
                 // Update model when input's value was chenaged
                 'change input[name="graduate"]': 'updateGraduate',
                 'change input[name="school"]': 'updateSchool',
-                'change input[name="major"]': 'updateMajor'
+                'change input[name="major"]': 'updateMajor',
+                'change textarea': 'updateDetail',
+                'click .btn': 'updateDetail'
             });
 
             // Listen to the universal-click, switch to view-mode when input lost focus
@@ -52,6 +56,9 @@ define([
         },
 
         onRender: function() {
+
+            this.ui.inputDetail.markdown();
+
             this._appendDatePicker(this.ui.inputGraduate, {
                 startDate: new Date('1970/01/01'),
                 endDate: new Date(),
@@ -156,6 +163,24 @@ define([
             this.model.set('major', this.ui.inputMajor.val());
         },
 
+        updateDetail: function() {
+
+            var errors = this.validate();
+            if (errors.length) {
+                this.showError(errors);
+
+                if (_.contains(_.pluck(errors, 'target'), this.ui.inputDetail))
+                    return;
+            } else {
+                this.clearError();
+                // append normal info help on editor
+                this._appendInfoOnInput();
+            }
+
+            this.renderValue();
+            this.model.set('detail', this.ui.inputDetail.val());
+        },
+
         deleteItem: function() {
             var self = this;
             this.ui.editor.slideUp(function() {
@@ -167,6 +192,7 @@ define([
             var graduate = this.ui.inputGraduate.val();
             var school = this.ui.inputSchool.val();
             var major = this.ui.inputMajor.val();
+            var detail = this.ui.inputDetail.val();
             var result = '';
 
             if (school) result += school;
@@ -174,6 +200,7 @@ define([
 
             this.ui.areaGraduate.text(this._formatDate(graduate));
             this.ui.areaSchool.text(result);
+            this.ui.areaDetail.empty().append(markdown.toHTML(detail));
         },
 
         _appendInfoOnInput: function() {
@@ -188,6 +215,10 @@ define([
             this._appendInfoOn(this.ui.inputMajor, {
                 title: "学部、学科、専攻",
                 content: "学部、学科、または専攻を20文字以内入力してください。"
+            });
+            this._appendInfoOn(this.ui.inputDetail, {
+                title: "この学歴について説明したいこと",
+                content: "この学歴について説明したいことを入力してください。"
             });
         }
 

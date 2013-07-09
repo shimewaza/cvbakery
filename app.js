@@ -1,7 +1,6 @@
 /**
  * Module dependencies.
  */
-
 var express = require('express'),
   http = require('http'),
   path = require('path'),
@@ -67,7 +66,7 @@ app.get('/home', function(req, res) {
 
 
 // データモデル名称
-var prefixes = ['tempaccount', 'account', 'engineer'];
+var prefixes = ['tempaccount', 'account', 'resume'];
 
 // ルートとデータモデルのマッピング
 prefixes.forEach(function(prefix) {

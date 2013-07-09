@@ -20,15 +20,6 @@ exports.sendAccountActiveMail = function(recipient) {
             console.log(err);
         } else {
 
-            // An example users object with formatted email function
-            // var locals = {
-            //     email: 'joe_19840729@hotmail.com',
-            //     name: {
-            //         first: 'Joe',
-            //         last: 'Hetfield'
-            //     }
-            // };
-
             // send account active email
             template('account-active', recipient, function(err, html, text) {
                 if (err) {

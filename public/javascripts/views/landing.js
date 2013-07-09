@@ -28,9 +28,7 @@ define([
 		onRender: function() {
 
 			// initialize carousel here for auto-start
-			this.$el.find('#myCarousel').carousel({
-				interval: 3000
-			});
+			this.$el.find('#myCarousel').carousel();
 
 			this.loginArea.show(this.loginView);
 			this.registerArea.show(this.registerView);

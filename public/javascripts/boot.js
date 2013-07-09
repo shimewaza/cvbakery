@@ -2,6 +2,7 @@ require.config({
 	paths: {
 		jquery: 'lib/jquery-1.9.1',
 		jqueryui: 'lib/jquery-ui-1.10.3.custom.min',
+		jqueryraf: 'lib/jquery.requestAnimationFrame',         // not sure if this useful
 		bootstrap: 'lib/bootstrap',
 		datepickerlang: 'lib/locales/bootstrap-datepicker.ja', // date picker
 		datepicker: 'lib/bootstrap-datepicker',                // date picker
@@ -15,7 +16,7 @@ require.config({
 		filedownload: 'lib/jquery.fileDownload',               // upload/download
 		isotope: 'lib/jquery.isotope.min',                     // isotope
 		'noty.core': 'lib/jquery.noty',                        // noty
-		'noty.inline': 'lib/layouts/inline',                    // noty
+		'noty.inline': 'lib/layouts/inline',                   // noty
 		'noty.layout': 'lib/layouts/bottomRight',              // noty
 		'noty': 'lib/themes/default',                          // noty
 		underscore: 'lib/underscore',
@@ -34,6 +35,9 @@ require.config({
 			exports: 'jQuery'
 		},
 		jqueryui: {
+			deps: ['jquery']
+		},
+		jqueryraf: {
 			deps: ['jquery']
 		},
 		datepicker: {
@@ -91,6 +95,7 @@ require.config({
 		selink: {
 			deps: [
 					'jqueryui',
+					'jqueryraf',
 					'bootstrap',
 					'datepickerlang',
 					'markdown',

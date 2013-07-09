@@ -86,11 +86,13 @@ define([
 
         changeTemplate: function(event) {
             var $target = $(event.target);
-            vent.trigger('resume:changeTemplate', $target.data('template'));
+            $('#resumePanel').hide('slide', function() {
+                vent.trigger('resume:changeTemplate', $target.data('template'));
+            })
         },
 
         outputPDF: function() {
-            $.fileDownload('/engineer/me/pdf');
+            $.fileDownload('/resume/me/pdf');
         },
     });
 

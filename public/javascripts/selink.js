@@ -9,16 +9,20 @@ define([
 	MainRouter,
 	MainController) {
 
-	var selink = new Backbone.Marionette.Application();
+	// Setup CV Bakery application
+	var CVBakery = new Backbone.Marionette.Application();
 
-	selink.addRegions({
+	// The application has only one region -- page body
+	CVBakery.addRegions({
 		mainRegion: 'body'
 	});
 
-	selink.addInitializer(function(options) {
+	// Add application initializer
+	CVBakery.addInitializer(function(options) {
 
+		// TODO: ajax default behavior (this may wrong)
 		$.ajaxSetup({
-			timeout:3000,
+			timeout: 3000,
 			error: function(xhr, errorType, exceptionThrown) {
 				console.log(xhr);
 				console.log(errorType);
@@ -40,28 +44,22 @@ define([
 
 			// success handler
 			success: function(data) {
-				// Start history
+				// singnal login success
 				vent.trigger('login:success', data);
 			},
 
 			// error handler
 			error: function(xhr, status) {
-				// Unauthed user move to login page
+				// singnal logout success as login faile
 				vent.trigger('logout:success');
 			}
 		});
 	});
 
-	selink.on('initialize:before', function(options) {
+	// Before application initialization
+	CVBakery.on('initialize:before', function(options) {
 
-		// Backbone.Marionette.Region.prototype.open = function(view) {
-		// 	var self = this;
-		// 	this.$el.fadeOut(function() {
-		// 		self.$el.html(view.el);
-		// 		self.$el.fadeIn();
-		// 	});
-		// };
-
+		// THIS IS VITAL, change the default behavior of views load template
 		Backbone.Marionette.TemplateCache.prototype.loadTemplate = function(templateId) {
 
 			var template = templateId;
@@ -72,54 +70,51 @@ define([
 				err.name = "NoTemplateError";
 				throw err;
 			}
-
 			return template;
 		};
-
-		// console.log('SELink initialize started.');
 	});
 
-	selink.on('initialize:after', function(options) {
+	// After application initialization
+	CVBakery.on('initialize:after', function(options) {
+		// start backbone history
 		Backbone.history.start();
-		// console.log('SELink initialize finished.');
 	});
 
-	selink.on('start', function(options) {
-		// console.log('SELink has started.');
+	// On application start
+	CVBakery.on('start', function(options) {
+		// console.log('CVBakery has started.');
 	});
 
-	selink.listenTo(vent, 'logout:success', function() {
+	// Listening logout success singnal
+	CVBakery.listenTo(vent, 'logout:success', function() {
 
-		// var LandingRouter = require('routers/landing');
-		// var LandingController = require('controllers/landing');
-
+		// make controller for landing page
 		var landingController = new LandingController({
 			app: this
 		});
-
+		// setup router for landing page
 		var landingRouter = new LandingRouter({
 			controller: landingController
 		});
-
-		// landingController.toLogin();
+		// move to login page
+		landingController.toLogin();
 	});
 
-	selink.listenTo(vent, 'login:success', function(data) {
+	// Listening login success singnal
+	CVBakery.listenTo(vent, 'login:success', function(data) {
 
-		// var MainRouter = require('routers/main');
-		// var MainController = require('controllers/main');
-
+		// make controller for main page
 		var mainController = new MainController({
 			app: this,
 			account: data
 		});
-
+		// setup router for main page
 		var mainRouter = new MainRouter({
 			controller: mainController
 		});
-
-		// mainController.toResume();
+		// move to resume page
+		mainController.toResume();
 	});
 
-	return selink;
+	return CVBakery;
 });

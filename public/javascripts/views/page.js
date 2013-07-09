@@ -1,21 +1,24 @@
 define([
 		'text!templates/page.html',
-		'views/menu',
-		'views/account'
-], function(pageTemplate, MenuView, AccountView) {
+		'views/menu'
+], function(pageTemplate, MenuView) {
 
+	// PageView is the biggest frame of the application
 	var PageView = Backbone.Marionette.Layout.extend({
 
+		// Template
 		template: pageTemplate,
 
+		// Events
 		events: {
 			'click #fullScreenBtn': 'onFullScreen',
 			'click #partScreenBtn': 'onPartScreen',
 			'click #logoutBtn': 'onLogout',
-			'click #helpBtn': 'showHelp',
+			'click #helpBtn': 'onShowHelp',
 			'click': 'onClick'
 		},
 
+		// Regions
 		regions: {
 			header: '#header',
 			content: '#content',
@@ -23,43 +26,47 @@ define([
 			footer: '#footer'
 		},
 
+		// Initializer
 		initialize: function() {
 
+			// create menu
 			this.menuView = new MenuView({
 				model: this.model
 			});
-			this.accountView = new AccountView({
-				model: this.model
-			});
 
+			// for slide animation effect change the default 
+			// behavior of show view on content region
 			this.content.open = function(view) {
 				this.$el.hide('slide');
 				this.$el.html(view.el);
-				// this.$el.fadeIn();
 				this.$el.show('slide', {
 					direction: 'right',
 					easing: 'linear'
 				});
 			};
-
+			
+			// for slide animation effect change the default 
+			// behavior of show view on navigator region
 			this.navigator.open = function(view) {
-				this.$el.hide('slide');
+				this.$el.hide();
 				this.$el.html(view.el);
 				this.$el.show('slide');
 			};
 		},
 
+		// After render
 		onRender: function() {
+			// show menu
 			this.header.show(this.menuView);
-			this.navigator.show(this.accountView);
 		},
 
+		// After show
 		onShow: function() {
+			// move in the page component
 			this.onPartScreen();
 		},
 
 		// Logout action
-		// Hide menu and navigator panel
 		onLogout: function() {
 
 			var self = this;
@@ -73,32 +80,31 @@ define([
 				dataType: 'json',
 
 				success: function(data) {
+					// expand screen to hide menu panel
 					self.onFullScreen(function() {
+						// singnal logout success
 						vent.trigger('logout:success');
 					});
 
 					// hide tool button with animation
-					$('#helpBtn').hide('drop', function() {
-						$('#partScreenBtn').hide('drop', function() {
-							$('#fullScreenBtn').hide('drop', function() {
-								$('#logoutBtn').hide('drop');
-							});
-						});
+					$('#partScreenBtn').hide('drop', function() {
+						$('#fullScreenBtn').hide('drop');
 					});
 				}
 			});
 		},
 
+		// On part-screen button click
 		onPartScreen: function() {
 
 			var self = this;
 
-			this.$el.find('#fullScreenBtn').hide();
+			this.$el.find('#fullScreenBtn').show();
 			this.$el.find('#partScreenBtn').hide();
 
 			// make space for menu panel
 			$('body').animate({
-				'padding-top': '45px'
+				'padding-top': '40px'
 			}, function() {
 
 				// move in tool button with animation
@@ -113,16 +119,6 @@ define([
 					'top': '0px'
 				});
 
-				// make space for navigator panel
-				// $('#body').animate({
-				// 	'padding-left': '210px'
-				// }, function() {
-
-				// 	// move in the navigator
-				// 	$('#navigator').animate({
-				// 		'right': '210px'
-				// 	});
-				// });
 			});
 		},
 
@@ -131,41 +127,21 @@ define([
 			this.$el.find('#fullScreenBtn').hide();
 			this.$el.find('#partScreenBtn').show();
 
-			// move the navigator out of screen
-			// $('#navigator').animate({
-			// 	'right': '410px'
-			// }, function() {
-			// 	// expand the main area
-			// 	$('#body').animate({
-			// 		'padding-left': '0px'
-			// 	});
-			// 	// move header out of screen
-			// 	$('#menuPanel').animate({
-			// 		'top': '-40px'
-			// 	}, function() {
-			// 		// expand body
-			// 		$('body').animate({
-			// 			'padding-top': '5px'
-			// 		});
-
-			// 		if (typeof callback === "function") callback();
-			// 	});
-			// });
-
 			// move header out of screen
 			$('#menuPanel').animate({
 				'top': '-40px'
 			}, function() {
 				// expand body
 				$('body').animate({
-					'padding-top': '5px'
+					'padding-top': '0px'
 				});
 
 				if (typeof callback === "function") callback();
 			});
 		},
 
-		showHelp: function() {
+		// Show help tutorial
+		onShowHelp: function() {
 			bootstro.start('.bootstro', {
 				nextButton: '<button class="btn btn-primary bootstro-next-btn">次  <i class="icon-chevron-right"></i></button>',
 				prevButton: '<button class="btn btn-primary bootstro-prev-btn"><i class="icon-chevron-left"></i>  前</button>',
@@ -173,6 +149,7 @@ define([
 			});
 		},
 
+		// Emit singnal on every click, sub component will use this signal to justify their behavior
 		onClick: function() {
 			vent.trigger('click:universal');
 		}

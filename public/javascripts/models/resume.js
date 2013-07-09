@@ -1,10 +1,10 @@
 define([], function() {
 
-    var Engineer = Backbone.DeepModel.extend({
+    var Resume = Backbone.DeepModel.extend({
 
         idAttribute: "_id",
 
-        urlRoot: '/engineer',
+        urlRoot: '/resume',
 
         pattern: {
             telNo: /^\d{2,3}-\d{4}-\d{4}$/
@@ -120,5 +120,5 @@ define([], function() {
         }
     });
 
-    return Engineer;
+    return Resume;
 });

@@ -242,6 +242,7 @@ define([
 			var self = this;
 			var setting = this.model.get('setting');
 
+			this._changeBackground(this.model.get('backgroundImg'));
 			this.contextMenuArea.show(this.contextMenuPanelView);
 
 			this.photoArea.show(this.photoView);
@@ -534,6 +535,17 @@ define([
 				// use patch
 				patch: true
 			});
+		},
+
+		_changeBackground: function(imageName) {
+
+		    if(!imageName) return;
+
+			var currentBk = /.*[\/|\\](.*)\)$/.exec($('body').css('background-image'))[1];
+
+			if(imageName == currentBk) return;
+
+		    $('body').css('background', "url('/images/resume/" + imageName + "') repeat");
 		}
 	});
 

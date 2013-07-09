@@ -2,34 +2,34 @@ var mongoose = require('mongoose');
 var metadata = require('./metadata');
 var Schema = mongoose.Schema;
 
-var Engineer = new Schema({
+var Resume = new Schema({
 
-	// 姓
+	// First Name
 	firstName: {
 		type: String,
 		trim: true
 	},
-	// 名
+	// Last Name
 	lastName: {
 		type: String,
 		trim: true
 	},
-	// 姓（英字）
+	// First Name in English
 	firstNameEn: {
 		type: String,
 		trim: true
 	},
-	// 名（英字）
+	// Last Name in English
 	lastNameEn: {
 		type: String,
 		trim: true
 	},
-	// 姓（フリガナ）
+	// First Name in Japanese
 	firstNameKana: {
 		type: String,
 		trim: true
 	},
-	// 名（フリガナ）
+	// Last Name in Japanese
 	lastNameKana: {
 		type: String,
 		trim: true
@@ -39,48 +39,48 @@ var Engineer = new Schema({
 		type: String,
 		trim: true
 	},
-	// 生年月日
+	// Birth Day
 	birthDay: {
 		type: Date
 	},
-	// 性別
+	// Gender
 	gender: {
 		type: String,
 		trim: true,
 		enum: metadata.gender_option
 	},
-	// 国籍
+	// Nationality
 	nationality: {
 		type: String,
 		trim: true,
 		enum: metadata.nationality_option
 	},
-	// 婚姻状況
+	// Marriage
 	married: {
 		type: String,
 		trim: true,
 		enum: metadata.married_option
 	},
-	// 初回来日
+	// First time arrive this country
 	firstArrive: {
 		type: Date
 	},
-	// IT経験年数
+	// IT Experience (In Year)
 	itExperience: {
 		type: Number,
 		min: 0,
 		max: 99
 	},
-	// 最寄り駅
+	// Nearest Station
 	nearestStation: {
 		type: String,
 		trim: true
 	},
-	// 稼働可能日
+	// Availability
 	availableDate: {
 		type: Date
 	},
-	// 電話番号
+	// Tel No
 	telNo: {
 		type: String,
 		trim: true,
@@ -91,18 +91,18 @@ var Engineer = new Schema({
 		type: String,
 		trim: true
 	},
-	// ホームページ
+	// Home Page
 	homePage: {
 		type: String,
 		trim: true
 	},
-	// 郵便番号
+	// Zip Code
 	zipCode: {
 		type: String,
 		trim: true,
 		match: /^[0-9]{7}$/
 	},
-	// 住所
+	// Address
 	address: {
 		type: String,
 		trim: true
@@ -117,12 +117,12 @@ var Engineer = new Schema({
 		type: Number,
 		min: 0
 	},
-	// 自己紹介
+	// Self Introduction
 	selfIntroduction: {
 		type: String,
 		trim: true
 	},
-	// 言語背景
+	// Language Background
 	languageBackground: [{
 			language: {
 				type: String,
@@ -147,6 +147,10 @@ var Engineer = new Schema({
 			major: {
 				type: String,
 				trim: true
+			},
+			detail: {
+				type: String,
+				trim: true	
 			}
 		}
 	],
@@ -169,6 +173,10 @@ var Engineer = new Schema({
 			position: {
 				type: String,
 				trim: true
+			},
+			detail: {
+				type: String,
+				trim: true	
 			}
 		}
 	],
@@ -180,6 +188,10 @@ var Engineer = new Schema({
 			qualificationName: {
 				type: String,
 				trim: true
+			},
+			detail: {
+				type: String,
+				trim: true	
 			}
 		}
 	],
@@ -196,7 +208,7 @@ var Engineer = new Schema({
 			}
 		}
 	],
-	// スキル補足
+	// Other Skill
 	skillRemark: {
 		type: String,
 		trim: true
@@ -211,7 +223,7 @@ var Engineer = new Schema({
 		type: String,
 		trim: true
 	},
-	// 公開フラグ
+	// Item open flag
 	setting: {
 		name: {
 			type: Boolean,
@@ -299,31 +311,31 @@ var Engineer = new Schema({
 		type: Boolean,
 		default: true
 	},
-	// 論理削除フラグ
+	// Logical Delete flag
 	logicDelete: {
 		type: Boolean,
 		default: false
 	},
-	// 作成日
+	// Create Date
 	createDate: {
 		type: Date,
 		default: Date.now
 	},
-	// 作成者
+	// Creator
 	createUser: {
 		type: String,
 		trim: true
 	},
-	// 更新日
+	// Modify Date
 	updateDate: {
 		type: Date,
 		default: Date.now
 	},
-	// 更新者
+	// Modifier
 	updateUser: {
 		type: String,
 		trim: true
 	}
 });
 
-module.exports = mongoose.model('Engineer', Engineer);
+module.exports = mongoose.model('Resume', Resume);

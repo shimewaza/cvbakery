@@ -1,8 +1,8 @@
 var util = require('util');
 var Account = require('../models/account.js');
-var Engineer = require('../models/engineer.js');
+var Resume = require('../models/resume.js');
 
-var engineerMenu = [{
+var personMenu = [{
 	icon: 'icon-home',
 	name: 'Home',
 	url: '/#home'
@@ -43,10 +43,10 @@ exports.show = function(req, res) {
 exports.create = function(req, res) {
 
 	var accountObj = new Account(req.body, false);
-	var engineerObj = new Engineer();
+	var resumeObj = new Resume();
 
-	accountObj.userType = "Engineer";
-	accountObj.profileId = engineerObj._id;
+	accountObj.userType = "Person";
+	accountObj.profileId = resumeObj._id;
 
 	accountObj.save(function(err, data) {
 
@@ -54,7 +54,7 @@ exports.create = function(req, res) {
 			if (err.code == 11000) res.status(424).send("該当ユーザIDが既に取られましたので、他のIDで登録してください。");
 			else res.status(500).send("server error");
 		} else {
-			engineerObj.save();
+			resumeObj.save();
 			res.json({
 				message: "ご登録ありがとうございます、ログイン画面からお入りください。"
 			});
@@ -88,7 +88,7 @@ exports.login = function(req, res) {
 			req.session.accountId = account._id;
 			req.session.accountInfo = {
 				userInfo: account,
-				menu: engineerMenu
+				menu: personMenu
 			};
 			res.json(req.session.accountInfo);
 		}

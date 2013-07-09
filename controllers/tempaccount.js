@@ -32,12 +32,10 @@ exports.create = function(req, res) {
         }
         // if a existed account are found, require another ID
         else if (account) {
-            console.log(account);
             res.status(424).send("該当ユーザIDが既に取られましたので、他のIDで登録してください。");
         }
         // for valid account ID
         else {
-            console.log(req.body);
             // save temp account object
             tempAccountObj.save(function(err) {
                 // handle error

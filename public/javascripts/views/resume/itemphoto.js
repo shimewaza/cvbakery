@@ -15,7 +15,7 @@ define([
 
         item: 'photo',
 
-        itemName: '性別',
+        itemName: '写真',
 
         itemIcon: 'icon-leaf',
 
