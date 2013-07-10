@@ -220,7 +220,7 @@ define([], function() {
             var defaultOpt = {
                 placement: 'bottom',
                 trigger: 'hover',
-                delay: { show: 500, hide: 0 },
+                // delay: { show: 500, hide: 0 },
                 html: true
             };
 

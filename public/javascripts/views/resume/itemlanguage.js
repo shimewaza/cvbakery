@@ -15,9 +15,6 @@ define([
 
         itemName: '語学能力',
 
-        /*Template*/
-        // template: template,
-
         getTemplate: function() {
             if (this.options.templateRef === "default")
                 return defaultTemplate;

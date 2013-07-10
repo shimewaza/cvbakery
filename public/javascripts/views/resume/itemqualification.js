@@ -15,9 +15,6 @@ define([
 
         itemName: '資格',
 
-        /*Template*/
-        // template: template,
-
         getTemplate: function() {
             if (this.options.templateRef === "default")
                 return defaultTemplate;
@@ -35,15 +32,18 @@ define([
             this.ui = _.extend({}, this.commonUI, {
                 inputQualifiedDate: 'input[name="qualifiedDate"]',
                 inputQualificationName: 'input[name="qualificationName"]',
+                inputDetail: 'textarea',
                 areaQualifiedDate: '.qualifiedDateArea',
                 areaQualificationName: '.qualificationNameArea',
-                input: 'input'
+                areaDetail: '.detailArea'
             });
 
             this.events = _.extend({}, this.commonEvents, {
                 // Update model when input's value was chenaged
                 'change input[name="qualifiedDate"]': 'updateQualifiedDate',
-                'change input[name="qualificationName"]': 'updateQualificationName'
+                'change input[name="qualificationName"]': 'updateQualificationName',
+                'change textarea': 'updateDetail',
+                'click .btn': 'updateDetail'
             });
 
             // Listen to the universal-click, switch to view-mode when input lost focus
@@ -51,6 +51,9 @@ define([
         },
 
         onRender: function() {
+
+            this.ui.inputDetail.markdown();
+
             this._appendDatePicker(this.ui.inputQualifiedDate, {
                 startDate: new Date('1970/01/01'),
                 endDate: new Date(),
@@ -128,6 +131,24 @@ define([
             this.model.set('qualificationName', this.ui.inputQualificationName.val());
         },
 
+        updateDetail: function() {
+
+            var errors = this.validate();
+            if (errors.length) {
+                this.showError(errors);
+
+                if (_.contains(_.pluck(errors, 'target'), this.ui.inputDetail))
+                    return;
+            } else {
+                this.clearError();
+                // append normal info help on editor
+                this._appendInfoOnInput();
+            }
+
+            this.ui.areaDetail.empty().append(markdown.toHTML(this.ui.inputDetail.val()));
+            this.model.set('detail', this.ui.inputDetail.val());
+        },
+
         deleteItem: function() {
             var self = this;
             this.ui.editor.slideUp(function() {
@@ -143,6 +164,10 @@ define([
             this._appendInfoOn(this.ui.inputQualificationName, {
                 title: "資格名",
                 content: "ご資格の名称、20文字以内入力してください。"
+            });
+            this._appendInfoOn(this.ui.inputDetail, {
+                title: "この資格について説明したいこと",
+                content: "この資格について説明したいことを入力してください。"
             });
         }
     });

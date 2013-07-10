@@ -180,6 +180,28 @@ var Resume = new Schema({
 			}
 		}
 	],
+	// Work Experience
+	workExperience: [{
+			startDate: {
+				type: Date
+			},
+			endDate: {
+				type: Date
+			},
+			title: {
+				type: String,
+				trim: true
+			},
+			position: {
+				type: String,
+				trim: true
+			},
+			detail: {
+				type: String,
+				trim: true	
+			}
+		}
+	],
 	// Qualification
 	qualification: [{
 			qualifiedDate: {
@@ -294,6 +316,10 @@ var Resume = new Schema({
 			default: true
 		},
 		career: {
+			type: Boolean,
+			default: true
+		},
+		workExperience: {
 			type: Boolean,
 			default: true
 		},

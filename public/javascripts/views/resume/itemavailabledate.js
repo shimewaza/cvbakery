@@ -21,9 +21,6 @@ define([
 
         itemHelp: "次の仕事を始められる日期を「YYYY/MM/DD」のフォーマットで入力してください。",
 
-        /*Template*/
-        // template: template,
-
         getTemplate: function() {
             if (this.options.templateRef === "default")
                 return defaultTemplate;

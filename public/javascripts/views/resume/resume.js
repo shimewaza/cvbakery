@@ -20,6 +20,7 @@ define([
 		'views/resume/itemselfintroduction',
 		'views/resume/compositeeducation',
 		'views/resume/compositecareer',
+		'views/resume/compositeworkexperience',
 		'views/resume/compositelanguage',
 		'views/resume/compositequalification',
 		'views/resume/compositeskill',
@@ -46,6 +47,7 @@ define([
 	SelfIntroductionView,
 	EducationComposite,
 	CareerComposite,
+	WorkExperienceComposite,
 	LanguageComposite,
 	QualificationComposite,
 	SkillComposite,
@@ -99,6 +101,7 @@ define([
 			selfIntroductionArea: '#selfIntroduction',
 			educationArea: '#education',
 			careerArea: '#career',
+			workExperienceArea: '#workExperience',
 			languageArea: '#language',
 			qualificationArea: '#qualification',
 			skillArea: '#skill',
@@ -207,6 +210,13 @@ define([
 			this.careerComposite = new CareerComposite({
 				model: this.model,
 				collection: careers,
+				templateRef: this.options.templateRef
+			});
+
+			var workExperiences = new Backbone.Collection(this.model.get('workExperience'));
+			this.workExperienceComposite = new WorkExperienceComposite({
+				model: this.model,
+				collection: workExperiences,
 				templateRef: this.options.templateRef
 			});
 
@@ -322,6 +332,11 @@ define([
 				this.careerArea.show(this.careerComposite);
 			else
 				this.careerComposite.removeItem();
+
+			if (setting.workExperience)
+				this.workExperienceArea.show(this.workExperienceComposite);
+			else
+				this.workExperienceComposite.removeItem();
 
 			if (setting.languageBackground)
 				this.languageArea.show(this.languageComposite);
@@ -481,6 +496,17 @@ define([
 					templateRef: this.options.templateRef
 				});
 				this.careerArea.show(this.careerComposite);
+				return;
+			}
+
+			if (data.item == "workExperience") {
+				var workExperiences = new Backbone.Collection(this.model.get('workExperience'));
+				this.workExperienceComposite = new WorkExperienceComposite({
+					model: this.model,
+					collection: workExperiences,
+					templateRef: this.options.templateRef
+				});
+				this.workExperienceArea.show(this.workExperienceComposite);
 				return;
 			}
 

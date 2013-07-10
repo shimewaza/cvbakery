@@ -21,9 +21,6 @@ define([
 
         itemHelp: "なるべくアピールしましょう！",
 
-        /*Template*/
-        // template: template,
-
         getTemplate: function() {
             if (this.options.templateRef === "default")
                 return defaultTemplate;

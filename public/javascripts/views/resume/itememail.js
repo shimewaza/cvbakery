@@ -21,9 +21,6 @@ define([
 
         itemHelp: "メールアドレスを入力してください。",
 
-        /*Template*/
-        // template: template,
-
         getTemplate: function() {
             if (this.options.templateRef === "default")
                 return defaultTemplate;

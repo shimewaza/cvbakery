@@ -15,9 +15,6 @@ define([
 
         itemName: '学歴',
 
-        /*Template*/
-        // template: template,
-
         getTemplate: function() {
             if (this.options.templateRef === "default")
                 return defaultTemplate;

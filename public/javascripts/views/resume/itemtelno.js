@@ -21,9 +21,6 @@ define([
 
         itemHelp: "「000-0000-0000」のフォーマットでお電話番号を入力してください。",
 
-        /*Template*/
-        // template: template,
-
         getTemplate: function() {
             if (this.options.templateRef === "default")
                 return defaultTemplate;

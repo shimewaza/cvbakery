@@ -1,10 +1,10 @@
 define([
-        'text!templates/resume/default/compositeskill.html',
-        'text!templates/resume/style1/compositeskill.html',
-        'text!templates/resume/style2/compositeskill.html',
-        'text!templates/resume/style3/compositeskill.html',
+        'text!templates/resume/default/compositeworkexperience.html',
+        'text!templates/resume/style1/compositeworkexperience.html',
+        'text!templates/resume/style2/compositeworkexperience.html',
+        'text!templates/resume/style3/compositeworkexperience.html',
         'views/resume/compositebase',
-        'views/resume/itemskill'
+        'views/resume/itemworkexperience'
 ], function(
     defaultTemplate,
     style1Template,
@@ -13,18 +13,15 @@ define([
     BaseView,
     itemView) {
 
-    var SkillView = BaseView.extend({
+    var WorkExperienceView = BaseView.extend({
 
-        item: 'skill',
+        item: 'workExperience',
 
-        itemName: 'スキル',
+        itemName: '仕事経験',
 
-        itemIcon: 'icon-gear',
+        itemIcon: 'icon-group',
 
-        itemNumber: 10,
-
-        /*Template*/
-        // template: template,
+        itemNumber: 5,
 
         itemViewContainer: '.item-container',
 
@@ -66,5 +63,5 @@ define([
         }
     });
 
-    return SkillView;
+    return WorkExperienceView;
 });

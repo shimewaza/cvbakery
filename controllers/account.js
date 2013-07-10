@@ -77,8 +77,8 @@ exports.destroy = function() {
 exports.login = function(req, res) {
 
 	Account.findOne({
-		userName: req.body.username,
-		passWord: req.body.password
+		accountId: req.body.username,
+		password: req.body.password
 	}, function(err, account) {
 
 		if (err) res.status(500).send("大変申し訳ございませんが、サーバエラーが発生しました。しばらくお待ちいただいて、再度お試してください。");

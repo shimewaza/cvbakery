@@ -35,7 +35,11 @@ define(['text!templates/register.html'], function(registerTemplate) {
 
 				// login success handler
 				success: function(result) {
-					self.$('.message').text(result.message);
+					self.ui.msgArea.noty({
+						type: 'success',
+						timeout: 3000,
+						text: result.message
+					});
 				},
 
 				// login error handler
@@ -43,8 +47,7 @@ define(['text!templates/register.html'], function(registerTemplate) {
 					self.ui.msgArea.noty({
 						type: 'warning',
 						timeout: 3000,
-						text: xhr.responseText,
-						layout: 'bottomRight'
+						text: xhr.responseText
 					});
 				}
 			});

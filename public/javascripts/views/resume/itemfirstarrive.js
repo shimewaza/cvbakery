@@ -21,9 +21,6 @@ define([
 
         itemHelp: "初めて日本へ来た日期を「YYYY/MM/DD」のフォーマットで入力してください。",
 
-        /*Template*/
-        // template: template,
-
         getTemplate: function() {
             if (this.options.templateRef === "default")
                 return defaultTemplate;

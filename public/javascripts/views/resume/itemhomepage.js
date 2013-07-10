@@ -21,9 +21,6 @@ define([
 
         itemHelp: "ご自分のサイトやブログなどのURLを入力してください。",
 
-        /*Template*/
-        // template: template,
-
         getTemplate: function() {
             if (this.options.templateRef === "default")
                 return defaultTemplate;

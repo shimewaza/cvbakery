@@ -21,9 +21,6 @@ define([
 
         itemHelp: "IT業界で勤めていた年数を入力してください。",
 
-        /*Template*/
-        // template: template,
-
         getTemplate: function() {
             if (this.options.templateRef === "default")
                 return defaultTemplate;

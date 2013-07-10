@@ -26,6 +26,7 @@ exports.mapModelRoute = function(app, prefix) {
 exports.mapRoute = function(app) {
 
 	var account = require('./controllers/account');
+	var tempaccount = require('./controllers/tempaccount');
 	var address = require('./controllers/address');
 	var resume = require('./controllers/resume');
 
@@ -34,6 +35,9 @@ exports.mapRoute = function(app) {
 
 	// Logout
 	app.get('/logout', account.logout);
+
+	// Account activate request
+	app.get('/activate/:id', tempaccount.activate);
 
 	// Address query
 	app.get('/address/:zipCode', address.show);

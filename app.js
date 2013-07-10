@@ -34,6 +34,8 @@ app.configure(function() {
 
     if (excludePath.indexOf(req.path) != -1) {
       next();
+    } else if (/\/activate\/.*/.test(req.path)) {
+      next();
     } else if (!req.session.accountId) {
       res.status(401).send("ログインしてください。");
     } else {

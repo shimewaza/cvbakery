@@ -21,9 +21,6 @@ define([
 
         itemHelp: "「YYYY/MM/DD」のフォーマットで入力してください。ご年齢を該当情報によって計算します。",
 
-        /*Template*/
-        // template: template,
-
         getTemplate: function() {
             if (this.options.templateRef === "default")
                 return defaultTemplate;

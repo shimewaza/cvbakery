@@ -21,9 +21,6 @@ define([
 
         itemHelp: "20文字以内で入力してください。",
 
-        /*Template*/
-        // template: template,
-
         getTemplate: function() {
             if (this.options.templateRef === "default")
                 return defaultTemplate;

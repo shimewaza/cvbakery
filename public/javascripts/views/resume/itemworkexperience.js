@@ -1,9 +1,9 @@
 define([
         'views/resume/itembase',
-        'text!templates/resume/default/itemcareer.html',
-        'text!templates/resume/style1/itemcareer.html',
-        'text!templates/resume/style2/itemcareer.html',
-        'text!templates/resume/style3/itemcareer.html'
+        'text!templates/resume/default/itemworkexperience.html',
+        'text!templates/resume/style1/itemworkexperience.html',
+        'text!templates/resume/style2/itemworkexperience.html',
+        'text!templates/resume/style3/itemworkexperience.html'
 ], function(
     BaseView,
     defaultTemplate,
@@ -11,9 +11,9 @@ define([
     style2Template,
     style3Template) {
 
-    var ItemCareer = BaseView.extend({
+    var ItemWorkExperience = BaseView.extend({
 
-        itemName: '社歴',
+        itemName: '仕事経験',
 
         getTemplate: function() {
             if (this.options.templateRef === "default")
@@ -32,12 +32,11 @@ define([
             this.ui = _.extend({}, this.commonUI, {
                 inputStartDate: 'input[name="startDate"]',
                 inputEndDate: 'input[name="endDate"]',
-                inputCompany: 'input[name="company"]',
-                inputAddress: 'input[name="address"]',
+                inputTitle: 'input[name="title"]',
                 inputPosition: 'input[name="position"]',
                 inputDetail: 'textarea',
                 areaDate: '.dateArea',
-                areaCompany: '.companyArea',
+                areaTitle: '.titleArea',
                 areaDetail: '.detailArea'
             });
 
@@ -45,8 +44,7 @@ define([
                 // Update model when input's value was chenaged
                 'change input[name="startDate"]': 'updateStartDate',
                 'change input[name="endDate"]': 'updateEndDate',
-                'change input[name="company"]': 'updateCompany',
-                'change input[name="address"]': 'updateAddress',
+                'change input[name="title"]': 'updateTitle',
                 'change input[name="position"]': 'updatePosition',
                 'change textarea': 'updateDetail',
                 'click .btn': 'updateDetail'
@@ -76,8 +74,7 @@ define([
 
             var startDate = this.ui.inputStartDate.val();
             var endDate = this.ui.inputEndDate.val();
-            var company = this.ui.inputCompany.val();
-            var address = this.ui.inputAddress.val();
+            var title = this.ui.inputTitle.val();
             var position = this.ui.inputPosition.val();
             var errors = [];
 
@@ -114,18 +111,10 @@ define([
                 });
 
             // no more than 20 characters
-            if (company.length > 20)
+            if (title.length > 20)
                 errors.push({
-                    target: this.ui.inputCompany,
+                    target: this.ui.inputTitle,
                     title: "会社名",
-                    message: '20文字以内でご入力ください。'
-                });
-
-            // no more than 20 characters
-            if (address.length > 20)
-                errors.push({
-                    target: this.ui.inputAddress,
-                    title: "所在地",
                     message: '20文字以内でご入力ください。'
                 });
 
@@ -176,13 +165,13 @@ define([
             this.model.set('endDate', this.ui.inputEndDate.val());
         },
 
-        updateCompany: function() {
+        updateTitle: function() {
 
             var errors = this.validate();
             if (errors.length) {
                 this.showError(errors);
 
-                if (_.contains(_.pluck(errors, 'target'), this.ui.inputCompany))
+                if (_.contains(_.pluck(errors, 'target'), this.ui.inputTitle))
                     return;
             } else {
                 this.clearError();
@@ -191,25 +180,7 @@ define([
             }
 
             this.renderValue();
-            this.model.set('company', this.ui.inputCompany.val());
-        },
-
-        updateAddress: function() {
-
-            var errors = this.validate();
-            if (errors.length) {
-                this.showError(errors);
-
-                if (_.contains(_.pluck(errors, 'target'), this.ui.inputAddress))
-                    return;
-            } else {
-                this.clearError();
-                // append normal info help on editor
-                this._appendInfoOnInput();
-            }
-
-            this.renderValue();
-            this.model.set('address', this.ui.inputAddress.val());
+            this.model.set('title', this.ui.inputTitle.val());
         },
 
         updatePosition: function() {
@@ -259,12 +230,11 @@ define([
 
             var startDate = this.ui.inputStartDate.val();
             var endDate = this.ui.inputEndDate.val();
-            var company = this.ui.inputCompany.val();
-            var address = this.ui.inputAddress.val();
+            var title = this.ui.inputTitle.val();
             var position = this.ui.inputPosition.val();
             var detail = this.ui.inputDetail.val();
             var resultDate = '';
-            var resultCompany = '';
+            var resultTitle = '';
 
             if(startDate && endDate) 
                 resultDate = this._formatDate(startDate) + '～' + this._formatDate(endDate);
@@ -273,42 +243,37 @@ define([
             else if (!startDate && endDate)
                 resultDate = '～' + this._formatDate(endDate);
 
-            if (company) resultCompany += company;
-            if (address) resultCompany += "　" + address;
-            if (position) resultCompany += "　" + position;
+            if (title) resultTitle += title;
+            if (position) resultTitle += "　" + position;
 
             this.ui.areaDate.text(resultDate);
-            this.ui.areaCompany.text(resultCompany);
+            this.ui.areaTitle.text(resultTitle);
             this.ui.areaDetail.empty().append(markdown.toHTML(detail));
         },
 
         _appendInfoOnInput: function() {
             this._appendInfoOn(this.ui.inputStartDate, {
-                title: "勤務開始日",
+                title: "開始日",
                 content: "「YYYY/MM/DD」のフォーマットで入力してください。"
             });
             this._appendInfoOn(this.ui.inputEndDate, {
-                title: "勤務終了日",
+                title: "終了日",
                 content: "「YYYY/MM/DD」のフォーマットで入力してください。"
             });
-            this._appendInfoOn(this.ui.inputCompany, {
-                title: "会社名",
+            this._appendInfoOn(this.ui.inputTitle, {
+                title: "仕事名",
                 content: "お勤めていた会社の名称、20文字以内入力してください。"
             });
-            this._appendInfoOn(this.ui.inputAddress, {
-                title: "所在地",
-                content: "お勤めていた会社の所在地、20文字以内入力してください。"
-            });
             this._appendInfoOn(this.ui.inputPosition, {
-                title: "職務",
+                title: "担当職務",
                 content: "ご担当していた職務、20文字以内入力してください。"
             });
             this._appendInfoOn(this.ui.inputDetail, {
-                title: "この社歴について説明したいこと",
-                content: "この社歴について説明したいことを入力してください。"
+                title: "この仕事について説明したいこと",
+                content: "この仕事について説明したいことを入力してください。"
             });
         }
     });
 
-    return ItemCareer;
+    return ItemWorkExperience;
 });

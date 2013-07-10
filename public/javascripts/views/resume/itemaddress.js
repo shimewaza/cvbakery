@@ -19,9 +19,6 @@ define([
 
         itemIcon: 'icon-home',
 
-        /*Template*/
-        // template: template,
-
         getTemplate: function() {
             if (this.options.templateRef === "default")
                 return defaultTemplate;

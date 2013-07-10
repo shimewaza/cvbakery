@@ -6,6 +6,8 @@ define([
 	// PageView is the biggest frame of the application
 	var PageView = Backbone.Marionette.Layout.extend({
 
+		id: 'mainPage',
+
 		// Template
 		template: pageTemplate,
 
@@ -40,8 +42,7 @@ define([
 				this.$el.hide('slide');
 				this.$el.html(view.el);
 				this.$el.show('slide', {
-					direction: 'right',
-					easing: 'linear'
+					direction: 'right'
 				});
 			};
 			
@@ -82,13 +83,18 @@ define([
 				success: function(data) {
 					// expand screen to hide menu panel
 					self.onFullScreen(function() {
-						// singnal logout success
-						vent.trigger('logout:success');
-					});
 
-					// hide tool button with animation
-					$('#partScreenBtn').hide('drop', function() {
-						$('#fullScreenBtn').hide('drop');
+						// hide tool button with animation
+						$('#partScreenBtn').hide('drop', { direction: 'right' }, function() {
+
+							$('#fullScreenBtn').hide('drop', { direction: 'right' }, function() {
+
+								self.$el.fadeOut(function() {
+									// singnal logout success
+									vent.trigger('logout:success');
+								});
+							});
+						});
 					});
 				}
 			});
