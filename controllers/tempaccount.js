@@ -58,7 +58,7 @@ exports.create = function(req, res) {
                 } else {
                     // send account-activate mail
                     Mailer.sendAccountActiveMail({
-                        id: tempAccountObj._id;
+                        id: tempAccountObj._id,
                         email: accountId
                     });
 
