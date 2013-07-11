@@ -192,11 +192,30 @@ define([
             var detail = this.ui.inputDetail.val();
             var result = '';
 
-            if (school) result += school;
-            if (major) result += "　" + major;
+            if (graduate) {
+                var newEl = $('<span/>')
+                            .addClass('label label-info')
+                            .append($('<i/>').addClass('icon-bell'))
+                            .append('&nbsp;&nbsp;&nbsp;&nbsp;' + this._formatDate(graduate))
+                this.ui.areaGraduate.empty().append(newEl);
+            }
 
-            this.ui.areaGraduate.text(this._formatDate(graduate));
-            this.ui.areaSchool.text(result);
+            this.ui.areaSchool.empty();
+            if (school) {
+                var newEl = $('<h5/>')
+                            .append($('<i/>').addClass('icon-book'))
+                            .append('&nbsp;&nbsp;' + school);
+                this.ui.areaSchool.append(newEl);
+            }
+
+            if (major) {
+                var newEl = $('<h6/>')
+                            .addClass('sl-placeholder')
+                            .append($('<i/>').addClass('icon-pencil'))
+                            .append('&nbsp;&nbsp;' + major);
+                this.ui.areaSchool.append(newEl);
+            }
+
             this.ui.areaDetail.empty().append(markdown.toHTML(detail));
         },
 

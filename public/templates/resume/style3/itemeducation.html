@@ -1,14 +1,18 @@
-<%
-    var school = obj.school;
-    var major = obj.major;
-    var result = '';
-
-    if(school) result += school;
-    if(major) result += "　" + major;
-%>
 <div class="span6 row-fluid sl-value">
-    <span class="span9 schoolArea"><% print(result); %></span>
-    <small class="span3 graduateArea"><% print(formatDate(obj.graduate)); %></small>
+    <span class="span7 schoolArea">
+        <%
+            if (obj.school)
+                print('<h5><i class="icon-book"></i>&nbsp;&nbsp;' + obj.school + '</h5>');
+            if (obj.major)
+                print('<h6 class="sl-placeholder"><i class="icon-pencil"></i>&nbsp;&nbsp;' + obj.major + '</h6>');
+        %>
+    </span>
+    <small class="span5 graduateArea">
+        <%
+            if (obj.graduate)
+                print('<span class="label label-info"><i class="icon-bell"></i>&nbsp;&nbsp;&nbsp;&nbsp;' + formatDate(obj.graduate) + '</span>');
+        %>
+    </small>
     <div class="detailArea">
         <% 
             if (obj.detail)

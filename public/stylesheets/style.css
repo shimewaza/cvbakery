@@ -34,6 +34,9 @@ body {
   font-size: 11.9px;
 }
 .sl-value:hover {
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
   background-color: #ccc;
 }
 .sl-editor {
@@ -102,6 +105,13 @@ body {
   margin-right: auto;
   margin-top: 5px;
 }
+#resumePanel .detailArea {
+  clear: both;
+  font-size: 11.9px;
+}
+#resumePanel .label {
+  margin-top: 12px;
+}
 #resumePanel.default {
   max-width: 700px;
   min-width: 700px;
@@ -122,6 +132,9 @@ body {
   margin-left: auto;
   margin-right: auto;
   max-height: 200px;
+}
+#resumePanel.default .detailArea {
+  padding-left: 25px;
 }
 #resumePanel.default [class*="span"] {
   -webkit-border-radius: 6px;
@@ -165,6 +178,9 @@ body {
   width: auto;
   max-width: 90%;
   max-height: 200px;
+}
+#resumePanel.style1 .detailArea {
+  padding-left: 25px;
 }
 #resumePanel.style1 [class*="span"] {
   -webkit-border-radius: 6px;
@@ -277,4 +293,38 @@ body {
 #resumePanel.style3 .ui-slider .ui-slider-handle {
   width: 0.8em;
   height: 1.6em;
+}
+#landingPage .navbar {
+  margin-bottom: 0px;
+}
+#landingPage .navbar .input-prepend {
+  margin-bottom: 0px;
+}
+#landingPage #content {
+  float: none;
+}
+#landingPage #content .sl-carousel-item {
+  width: 100%;
+  max-height: 500px;
+  min-height: 500px;
+  position: relative;
+}
+#landingPage #content .item1 {
+  background-image: url(../images/landing/bootstrap-mdo-sfmoma-01.jpg);
+}
+#landingPage #content .item2 {
+  background-image: url(../images/landing/bootstrap-mdo-sfmoma-02.jpg);
+}
+#landingPage #content .item3 {
+  background-image: url(../images/landing/bootstrap-mdo-sfmoma-03.jpg);
+}
+#landingPage #footer {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  padding: 30px 0;
+  margin-top: 130px;
+  border-top: 1px solid #e5e5e5;
+  background-color: #f5f5f5;
 }

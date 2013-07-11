@@ -139,7 +139,8 @@ define([
 
             this.ui.value.find('p')
                 .empty()
-                .text(this.ui.inputSkill.val());
+                .append($('<i/>').addClass('icon-gear'))
+                .append('&nbsp;&nbsp;' + this.ui.inputSkill.val());
         },
 
         _appendInfoOnInput: function() {

@@ -109,7 +109,16 @@ define([
                 this._appendInfoOnInput();
             }
 
-            this.ui.areaQualifiedDate.text(this._formatDate(this.ui.inputQualifiedDate.val()));
+            var qualifiedDate = this.ui.inputQualifiedDate.val();
+
+            if (qualifiedDate) {
+                var newEl = $('<span/>')
+                            .addClass('label label-info')
+                            .append($('<i/>').addClass('icon-calendar'))
+                            .append('&nbsp;&nbsp;&nbsp;&nbsp;' + this._formatDate(qualifiedDate))
+                this.ui.areaQualifiedDate.empty().append(newEl);
+            }
+
             this.model.set('qualifiedDate', this.ui.inputQualifiedDate.val());
         },
 
@@ -127,7 +136,15 @@ define([
                 this._appendInfoOnInput();
             }
 
-            this.ui.areaQualificationName.text(this.ui.inputQualificationName.val());
+            var qualificationName = this.ui.inputQualificationName.val();
+
+            if (qualificationName) {
+                var newEl = $('<h5/>')
+                            .append($('<i/>').addClass('icon-bookmark-empty'))
+                            .append('&nbsp;&nbsp;' + qualificationName);
+                this.ui.areaQualificationName.empty().append(newEl);
+            }
+
             this.model.set('qualificationName', this.ui.inputQualificationName.val());
         },
 

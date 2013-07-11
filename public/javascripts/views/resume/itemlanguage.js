@@ -86,7 +86,8 @@ define([
 
             this.ui.value.find('p')
                 .empty()
-                .text(this.ui.inputLanguage.val());
+                .append($('<i/>').addClass('icon-comment-alt'))
+                .append('&nbsp;&nbsp;' + this.ui.inputLanguage.val());
         },
 
         _appendInfoOnInput: function() {

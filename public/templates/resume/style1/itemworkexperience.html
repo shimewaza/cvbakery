@@ -1,10 +1,7 @@
 <%
     var startDate = obj.startDate;
     var endDate = obj.endDate;
-    var title = obj.title;
-    var position = obj.position;
     var resultDate = '';
-    var resultTitle = '';
 
     if(startDate && endDate) 
         resultDate = formatDate(startDate) + '～' + formatDate(endDate);
@@ -12,15 +9,21 @@
         resultDate = formatDate(startDate) + '～';
     else if (!startDate && endDate)
         resultDate = '～' + formatDate(endDate);
-
-    if (title) resultTitle += title;
-    if (position) resultTitle += "　" + position;
 %>
 <div class="row-fluid sl-value">
-    <div class="dateArea"><%- resultDate %></div>
-    <div class="row-fluid">
-        <div class="span2"></div>
-        <div class="span10 titleArea"><%- resultTitle %></div>
+    <div class="span6 titleArea">
+        <%
+            if (obj.title)
+                print('<h5><i class="icon-flag-alt"></i>&nbsp;&nbsp;' + obj.title + '</h5>');
+            if (obj.position)
+                print('<h6 class="sl-placeholder"><i class="icon-wrench"></i>&nbsp;&nbsp;' + obj.position + '</h6>');
+        %>
+    </div>
+    <div class="span6 dateArea">
+        <%
+            if (resultDate)
+                print('<span class="label label-info"><i class="icon-calendar"></i>&nbsp;&nbsp;&nbsp;&nbsp;' + resultDate + '</span>');
+        %>
     </div>
     <div class="detailArea">
         <% 

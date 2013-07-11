@@ -264,7 +264,6 @@ define([
             var position = this.ui.inputPosition.val();
             var detail = this.ui.inputDetail.val();
             var resultDate = '';
-            var resultCompany = '';
 
             if(startDate && endDate) 
                 resultDate = this._formatDate(startDate) + '～' + this._formatDate(endDate);
@@ -273,12 +272,39 @@ define([
             else if (!startDate && endDate)
                 resultDate = '～' + this._formatDate(endDate);
 
-            if (company) resultCompany += company;
-            if (address) resultCompany += "　" + address;
-            if (position) resultCompany += "　" + position;
+            if (resultDate) {
+                var newEl = $('<span/>')
+                            .addClass('label label-info')
+                            .append($('<i/>').addClass('icon-calendar'))
+                            .append('&nbsp;&nbsp;&nbsp;&nbsp;' + resultDate)
+                this.ui.areaDate.empty().append(newEl);
+            }
 
-            this.ui.areaDate.text(resultDate);
-            this.ui.areaCompany.text(resultCompany);
+            this.ui.areaCompany.empty();
+
+            if (company) {
+                var newEl = $('<h5/>')
+                            .append($('<i/>').addClass('icon-building'))
+                            .append('&nbsp;&nbsp;' + company);
+                this.ui.areaCompany.append(newEl);
+            }
+
+            if (address) {
+                var newEl = $('<h6/>')
+                            .addClass('sl-placeholder')
+                            .append($('<i/>').addClass('icon-map-marker'))
+                            .append('&nbsp;&nbsp;' + address);
+                this.ui.areaCompany.append(newEl);
+            }
+
+            if (position) {
+                var newEl = $('<h6/>')
+                            .addClass('sl-placeholder')
+                            .append($('<i/>').addClass('icon-user'))
+                            .append('&nbsp;&nbsp;' + position);
+                this.ui.areaCompany.append(newEl);
+            }
+
             this.ui.areaDetail.empty().append(markdown.toHTML(detail));
         },
 

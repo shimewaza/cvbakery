@@ -12,6 +12,7 @@ body {
 }
 
 .sl-value:hover {
+    .border-radius(6px);
     background-color: #ccc;
 }
 
@@ -102,8 +103,18 @@ body {
 // Resume Panel
 // -------------------------
 #resumePanel {
+
     .center-block;
     margin-top: 5px;
+
+    .detailArea {
+        clear: both;
+        font-size: @fontSizeSmall;
+    }
+
+    .label {
+        margin-top: 12px;
+    }
 
     // Default style
     // -------------------------
@@ -127,6 +138,10 @@ body {
                 .center-block;
                 max-height: 200px;
             }
+        }
+
+        .detailArea {
+            padding-left: 25px;
         }
 
         [class*="span"] {
@@ -179,6 +194,10 @@ body {
                 max-width: 90%;
                 max-height: 200px;
             }
+        }
+
+        .detailArea {
+            padding-left: 25px;
         }
 
         [class*="span"] {
@@ -319,5 +338,50 @@ body {
                 height: 1.6em;
             }
         }
+    }
+}
+
+// Landing Page
+// -------------------------
+#landingPage {
+
+    .navbar {
+        margin-bottom: 0px;
+
+        .input-prepend {
+            margin-bottom: 0px;
+        }
+    }
+
+    #content {
+        float: none;
+
+        .sl-carousel-item {
+            width: 100%; 
+            max-height: 500px; 
+            min-height: 500px; 
+            position: relative;
+        }
+        
+        .item1 {
+            background-image: url(../images/landing/bootstrap-mdo-sfmoma-01.jpg); 
+        }
+
+        .item2 {
+            background-image: url(../images/landing/bootstrap-mdo-sfmoma-02.jpg);
+        }
+
+        .item3 {
+            background-image: url(../images/landing/bootstrap-mdo-sfmoma-03.jpg);
+        }
+    }
+
+    #footer {
+        .center-block;
+        text-align: center;
+        padding: 30px 0;
+        margin-top: 130px;
+        border-top: 1px solid #e5e5e5;
+        background-color: #f5f5f5;
     }
 }

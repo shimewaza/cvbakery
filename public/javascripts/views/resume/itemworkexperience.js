@@ -234,7 +234,6 @@ define([
             var position = this.ui.inputPosition.val();
             var detail = this.ui.inputDetail.val();
             var resultDate = '';
-            var resultTitle = '';
 
             if(startDate && endDate) 
                 resultDate = this._formatDate(startDate) + '～' + this._formatDate(endDate);
@@ -243,11 +242,31 @@ define([
             else if (!startDate && endDate)
                 resultDate = '～' + this._formatDate(endDate);
 
-            if (title) resultTitle += title;
-            if (position) resultTitle += "　" + position;
+            if (resultDate) {
+                var newEl = $('<span/>')
+                            .addClass('label label-info')
+                            .append($('<i/>').addClass('icon-calendar'))
+                            .append('&nbsp;&nbsp;&nbsp;&nbsp;' + resultDate)
+                this.ui.areaDate.empty().append(newEl);
+            }
 
-            this.ui.areaDate.text(resultDate);
-            this.ui.areaTitle.text(resultTitle);
+            this.ui.areaTitle.empty();
+
+            if (title) {
+                var newEl = $('<h5/>')
+                            .append($('<i/>').addClass('icon-flag-alt'))
+                            .append('&nbsp;&nbsp;' + title);
+                this.ui.areaTitle.append(newEl);
+            }
+
+            if (position) {
+                var newEl = $('<h6/>')
+                            .addClass('sl-placeholder')
+                            .append($('<i/>').addClass('icon-wrench'))
+                            .append('&nbsp;&nbsp;' + position);
+                this.ui.areaTitle.append(newEl);
+            }
+
             this.ui.areaDetail.empty().append(markdown.toHTML(detail));
         },
 

@@ -1,6 +1,16 @@
 <div class="span6 row-fluid sl-value">
-    <div class="span3 qualifiedDateArea"><%- formatDate(obj.qualifiedDate) %></div>
-    <div class="span9 qualificationNameArea"><%- obj.qualificationName %></div>
+    <div class="span7 qualificationNameArea">
+        <%
+            if (obj.qualificationName)
+                print('<h5><i class="icon-bookmark-empty"></i>&nbsp;&nbsp;' + obj.qualificationName + '</h5>');
+        %>
+    </div>
+    <div class="span5 qualifiedDateArea">
+        <%
+            if (obj.qualifiedDate)
+                print('<span class="label label-info"><i class="icon-calendar"></i>&nbsp;&nbsp;&nbsp;&nbsp;' + formatDate(obj.qualifiedDate) + '</span>');
+        %>
+    </div>
     <div class="detailArea">
         <% 
             if (obj.detail)

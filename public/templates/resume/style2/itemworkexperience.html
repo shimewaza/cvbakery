@@ -17,10 +17,19 @@
     if (position) resultTitle += "　" + position;
 %>
 <div class="row-fluid sl-value">
-    <div class="dateArea"><%- resultDate %></div>
-    <div class="row-fluid">
-        <div class="span2"></div>
-        <div class="span10 titleArea"><%- resultTitle %></div>
+    <div class="dateArea">
+        <%
+            if (resultDate)
+                print('<span class="label label-info"><i class="icon-calendar"></i>&nbsp;&nbsp;&nbsp;&nbsp;' + resultDate + '</span>');
+        %>
+    </div>
+    <div class="titleArea">
+        <%
+            if (obj.title)
+                print('<h5><i class="icon-flag-alt"></i>&nbsp;&nbsp;' + obj.title + '</h5>');
+            if (obj.position)
+                print('<h6 class="sl-placeholder"><i class="icon-wrench"></i>&nbsp;&nbsp;' + obj.position + '</h6>');
+        %>
     </div>
     <div class="detailArea">
         <% 

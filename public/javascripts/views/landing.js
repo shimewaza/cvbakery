@@ -6,6 +6,8 @@ define([
 
 	var PageView = Backbone.Marionette.Layout.extend({
 
+		id: 'landingPage',
+
 		template: pageTemplate,
 
 		events: {
