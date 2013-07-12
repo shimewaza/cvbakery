@@ -114,6 +114,14 @@ define([
 		});
 		// move to resume page
 		mainController.toResume();
+
+		// say hello to user
+		noty({
+			type: 'information',
+			timeout: 5000,
+			text: "こんにちは、CV Bakeryへようこそ！",
+			layout: 'bottomRight'
+		})
 	});
 
 	return CVBakery;

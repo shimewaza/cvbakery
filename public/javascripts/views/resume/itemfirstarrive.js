@@ -3,13 +3,15 @@ define([
         'text!templates/resume/default/itemfirstarrive.html',
         'text!templates/resume/style1/itemfirstarrive.html',
         'text!templates/resume/style2/itemfirstarrive.html',
-        'text!templates/resume/style3/itemfirstarrive.html'
+        'text!templates/resume/style3/itemfirstarrive.html',
+        'text!templates/resume/style4/itemfirstarrive.html'
 ], function(
     BaseView,
     defaultTemplate,
     style1Template,
     style2Template,
-    style3Template) {
+    style3Template,
+    style4Template) {
 
     var FirstArriveEditor = BaseView.extend({
 
@@ -30,6 +32,8 @@ define([
                 return style2Template;
             else if (this.options.templateRef === "style3")
                 return style3Template;
+            else if (this.options.templateRef === "style4")
+                return style4Template;
         },
 
         /*Initializer*/

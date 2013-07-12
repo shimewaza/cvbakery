@@ -1,35 +1,37 @@
 define([
-		'text!templates/resume/default/resume.html',
-		'text!templates/resume/style1/resume.html',
-		'text!templates/resume/style2/resume.html',
-		'text!templates/resume/style3/resume.html',
-		'views/resume/itemphoto',
-		'views/resume/itemname',
-		'views/resume/itembirthday',
-		'views/resume/itemgender',
-		'views/resume/itemnationality',
-		'views/resume/itemmarried',
-		'views/resume/itemfirstarrive',
-		'views/resume/itemitexperience',
-		'views/resume/itemavailabledate',
-		'views/resume/itemaddress',
-		'views/resume/itemneareststation',
-		'views/resume/itemtelno',
-		'views/resume/itememail',
-		'views/resume/itemhomepage',
-		'views/resume/itemselfintroduction',
-		'views/resume/compositeeducation',
-		'views/resume/compositecareer',
-		'views/resume/compositeworkexperience',
-		'views/resume/compositelanguage',
-		'views/resume/compositequalification',
-		'views/resume/compositeskill',
-		'views/resume/contextmenupanel'
+	'text!templates/resume/default/resume.html',
+	'text!templates/resume/style1/resume.html',
+	'text!templates/resume/style2/resume.html',
+	'text!templates/resume/style3/resume.html',
+	'text!templates/resume/style4/resume.html',
+	'views/resume/itemphoto',
+	'views/resume/itemname',
+	'views/resume/itembirthday',
+	'views/resume/itemgender',
+	'views/resume/itemnationality',
+	'views/resume/itemmarried',
+	'views/resume/itemfirstarrive',
+	'views/resume/itemitexperience',
+	'views/resume/itemavailabledate',
+	'views/resume/itemaddress',
+	'views/resume/itemneareststation',
+	'views/resume/itemtelno',
+	'views/resume/itememail',
+	'views/resume/itemhomepage',
+	'views/resume/itemselfintroduction',
+	'views/resume/compositeeducation',
+	'views/resume/compositecareer',
+	'views/resume/compositeworkexperience',
+	'views/resume/compositelanguage',
+	'views/resume/compositequalification',
+	'views/resume/compositeskill',
+	'views/resume/contextmenupanel'
 ], function(
 	defaultTemplate,
 	style1Template,
 	style2Template,
 	style3Template,
+	style4Template,
 	PhotoView,
 	NameView,
 	BirthDayView,
@@ -80,7 +82,19 @@ define([
 			} else if (this.options.templateRef === "style3") {
 				this.$el.addClass('style3');
 				return style3Template;
+			} else if (this.options.templateRef === "style4") {
+				this.$el.addClass('style4');
+				return style4Template;
 			}
+		},
+
+		ui: {
+			instructionModal: '#instructionModal'
+		},
+
+		events: {
+			'click #instructionStartBtn': 'onInstructionStart',
+			'click #instructionCancelBtn': 'onInstructionCancel'
 		},
 
 		regions: {
@@ -241,9 +255,12 @@ define([
 				templateRef: this.options.templateRef
 			});
 
+			this._setupTour();
+
 			this.listenTo(vent, 'resume:itemAdded', this.onItemAdded);
 			this.listenTo(vent, 'resume:changePattern', this.onChangePatter);
 			this.listenTo(vent, 'resume:changeTemplate', this.onChangeTemplate);
+			this.listenTo(vent, 'resume:showTour', this.onShowTour);
 		},
 
 		// Render
@@ -356,6 +373,12 @@ define([
 			$('#content').contextmenu({
 				target: '#contextMenu'
 			});
+
+			if (setting.isFirstVisit) {
+				setTimeout(function() {
+					self.ui.instructionModal.modal('show');
+				}, 1000);
+			}
 		},
 
 		onItemAdded: function(data) {
@@ -545,6 +568,30 @@ define([
 
 		},
 
+		onInstructionStart: function() {
+			this.ui.instructionModal.modal('hide');
+			this._setUserVisited();
+			setTimeout(function() {
+				self.tour.start();
+			}, 500);
+		},
+
+		onInstructionCancel: function() {
+			this._setUserVisited();
+		},
+
+		_setUserVisited: function() {
+			// prepare the date for model update
+			var data = this.model.get('setting');
+			data['isFirstVisit'] = false;
+
+			// save the model
+			this.model.save({ setting: data }, {
+			    // use patch
+			    patch: true
+			});
+		},
+
 		onChangePatter: function(imageName) {
 
 			// prepare the date for model update
@@ -563,15 +610,77 @@ define([
 			});
 		},
 
+		onShowTour: function() {
+			console.log("message");
+			this.tour.start();
+		},
+
 		_changeBackground: function(imageName) {
 
-		    if(!imageName) return;
+			if (!imageName) return;
 
 			var currentBk = /.*[\/|\\](.*)\)$/.exec($('body').css('background-image'))[1];
 
-			if(imageName == currentBk) return;
+			if (imageName == currentBk) return;
 
-		    $('body').css('background', "url('/images/resume/" + imageName + "') repeat");
+			$('body').css('background', "url('/images/resume/" + imageName + "') repeat");
+		},
+
+		_setupTour: function() {
+
+			var self = this;
+
+			this.tour = new Tour({
+				backdrop: true,
+				onEnd: function() {
+					$.removeCookie('tour_current_step');
+					$.removeCookie('tour_end');
+				}
+			});
+
+			this.tour.addSteps([{
+				element: "#photo",
+				title: "ここは顔写真です",
+				content: "履歴書に写真をつけるのはイメージアップには効果的。",
+				onHide: function() {
+					self.photoView.switchToEditor();
+				}
+			}, {
+				element: "#photo",
+				title: "顔写真を添付しましょう",
+				content: "写真をクリックすると、アップロードボタン表示します。",
+				onHide: function() {
+					self.photoView.switchToValue();
+				}
+			}, {
+				element: "#basic-info",
+				title: "こちらは基本情報です",
+				content: "各項目クリックしたら、編集できます。",
+				onHide: function() {
+					self.telNoView.switchToEditor();
+				}
+			}, {
+				element: "#telNo",
+				title: "例えば、電話番号",
+				content: '項目自体を履歴書に載せたくない場合は、<button class="btn btn-small btn-warning btn-remove"><i class="icon-remove icon-white"></i></button>ボタンで隠せます。',
+				onHide: function() {
+					self.telNoView.switchToValue();
+				}
+			}, {
+				element: "#skill",
+				title: "複合な項目もあります",
+				content: "基本情報と同じく、クリックしだい編集できます。",
+				onHide: function() {
+					self.skillComposite.switchToEditor();
+				}
+			}, {
+				element: "#skill",
+				title: "スキルを例としたら",
+				content: "基本情報と同じく、クリックしだい編集できます。",
+				onHide: function() {
+					self.skillComposite.switchToValue();
+				}
+			}]);
 		}
 	});
 

@@ -331,11 +331,11 @@ var Resume = new Schema({
 			type: Boolean,
 			default: true
 		},
-	},
-	// Flag of frist visit
-	isFirstVisit: {
-		type: Boolean,
-		default: true
+		// Flag of frist visit
+		isFirstVisit: {
+			type: Boolean,
+			default: true
+		},
 	},
 	// Logical Delete flag
 	logicDelete: {

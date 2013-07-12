@@ -1,0 +1,39 @@
+<div class="sl-value text-center">
+    <% if (!obj.firstNameEn 
+        && !obj.lastNameEn 
+        && !obj.firstNameKana 
+        && !obj.lastNameKana 
+        && !obj.firstName 
+        && !obj.lastName) 
+        print('<h4 class="sl-placeholder">氏名を入力</h4>'); else { %>
+    <h5><%- obj.firstNameEn %>&nbsp;&nbsp;&nbsp;&nbsp;<%- obj.lastNameEn %></h5>
+    <h5><%- obj.firstNameKana %>&nbsp;&nbsp;&nbsp;&nbsp;<%- obj.lastNameKana %></h5>
+    <h4><%- obj.firstName %>&nbsp;&nbsp;&nbsp;&nbsp;<%- obj.lastName %></h4>
+    <% } %>
+</div>
+<div class="sl-editor">
+    <div class="row-fluid">
+        <div class="span6">
+            <input type="text" class="input-small" placeholder="姓（英字）" name="firstNameEn" value="<%- obj.firstNameEn %>">
+        </div>
+        <div class="span6">
+            <input type="text" class="input-small" placeholder="名（英字）" name="lastNameEn" value="<%- obj.lastNameEn %>">
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span6">
+            <input type="text" class="input-small" placeholder="フリガナ" name="firstNameKana" value="<%- obj.firstNameKana %>">
+        </div>
+        <div class="span6">
+            <input type="text" class="input-small" placeholder="フリガナ" name="lastNameKana" value="<%- obj.lastNameKana %>">
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span6">
+            <input type="text" class="input-small" placeholder="姓（漢字）" name="firstName" value="<%- obj.firstName %>">
+        </div>
+        <div class="span6">
+            <input type="text" class="input-small" placeholder="名（漢字）"name="lastName" value="<%- obj.lastName %>">
+        </div>
+    </div>
+</div>

@@ -3,6 +3,7 @@ define([
         'text!templates/resume/style1/compositeskill.html',
         'text!templates/resume/style2/compositeskill.html',
         'text!templates/resume/style3/compositeskill.html',
+        'text!templates/resume/style4/compositeskill.html',
         'views/resume/compositebase',
         'views/resume/itemskill'
 ], function(
@@ -10,6 +11,7 @@ define([
     style1Template,
     style2Template,
     style3Template,
+    style4Template,
     BaseView,
     itemView) {
 
@@ -39,6 +41,8 @@ define([
                 return style2Template;
             else if (this.options.templateRef === "style3")
                 return style3Template;
+            else if (this.options.templateRef === "style4")
+                return style4Template;
         },
 
         /*Initializer*/

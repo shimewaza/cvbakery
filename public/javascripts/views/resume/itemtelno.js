@@ -3,13 +3,15 @@ define([
         'text!templates/resume/default/itemtelno.html',
         'text!templates/resume/style1/itemtelno.html',
         'text!templates/resume/style2/itemtelno.html',
-        'text!templates/resume/style3/itemtelno.html'
+        'text!templates/resume/style3/itemtelno.html',
+        'text!templates/resume/style4/itemtelno.html'
 ], function(
     BaseView,
     defaultTemplate,
     style1Template,
     style2Template,
-    style3Template) {
+    style3Template,
+    style4Template) {
 
     var TelNoEditor = BaseView.extend({
 
@@ -30,6 +32,8 @@ define([
                 return style2Template;
             else if (this.options.templateRef === "style3")
                 return style3Template;
+            else if (this.options.templateRef === "style4")
+                return style4Template;
         },
 
         /*Initializer*/

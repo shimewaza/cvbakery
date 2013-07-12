@@ -45,8 +45,7 @@ define(['text!templates/login.html'], function(loginTemplate) {
 					self.ui.msgArea.noty({
 						type: 'warning',
 						timeout: 3000,
-						text: xhr.responseText,
-						layout: 'bottomRight'
+						text: xhr.responseText
 					});
 				}
 			});

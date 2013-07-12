@@ -3,13 +3,15 @@ define([
         'text!templates/resume/default/itemname.html',
         'text!templates/resume/style1/itemname.html',
         'text!templates/resume/style2/itemname.html',
-        'text!templates/resume/style3/itemname.html'
+        'text!templates/resume/style3/itemname.html',
+        'text!templates/resume/style4/itemname.html'
 ], function(
     BaseView,
     defaultTemplate,
     style1Template,
     style2Template,
-    style3Template) {
+    style3Template,
+    style4Template) {
 
     var NameEditor = BaseView.extend({
 
@@ -26,6 +28,8 @@ define([
                 return style2Template;
             else if (this.options.templateRef === "style3")
                 return style3Template;
+            else if (this.options.templateRef === "style4")
+                return style4Template;
         },
 
         /*Initializer*/

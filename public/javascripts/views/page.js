@@ -1,6 +1,6 @@
 define([
-		'text!templates/page.html',
-		'views/menu'
+	'text!templates/page.html',
+	'views/menu'
 ], function(pageTemplate, MenuView) {
 
 	// PageView is the biggest frame of the application
@@ -45,7 +45,7 @@ define([
 					direction: 'right'
 				});
 			};
-			
+
 			// for slide animation effect change the default 
 			// behavior of show view on navigator region
 			this.navigator.open = function(view) {
@@ -85,9 +85,13 @@ define([
 					self.onFullScreen(function() {
 
 						// hide tool button with animation
-						$('#partScreenBtn').hide('drop', { direction: 'right' }, function() {
+						$('#partScreenBtn').hide('drop', {
+							direction: 'right'
+						}, function() {
 
-							$('#fullScreenBtn').hide('drop', { direction: 'right' }, function() {
+							$('#fullScreenBtn').hide('drop', {
+								direction: 'right'
+							}, function() {
 
 								self.$el.fadeOut(function() {
 									// singnal logout success
@@ -148,11 +152,30 @@ define([
 
 		// Show help tutorial
 		onShowHelp: function() {
-			bootstro.start('.bootstro', {
-				nextButton: '<button class="btn btn-primary bootstro-next-btn">次  <i class="icon-chevron-right"></i></button>',
-				prevButton: '<button class="btn btn-primary bootstro-prev-btn"><i class="icon-chevron-left"></i>  前</button>',
-				finishButton: ''
-			});
+
+			// var tour = new Tour({
+			// 	backdrop: true,
+			// 	onEnd: function() {
+			// 		$.removeCookie('tour_current_step');
+			// 		$.removeCookie('tour_end');
+			// 	}
+			// });
+
+			// tour.addSteps([{
+			// 	element: "#photo",
+			// 	title: "顔写真を添付しよう！",
+			// 	content: "履歴書に写真をつけるのはイメージアップには効果的。"
+			// }, {
+			// 	element: "#photo",
+			// 	title: "基本情報を編集",
+			// 	content: "各項目をクリックしたら、ご自分に関する基本情報を編集できます。",
+			// 	onShow: function() {
+			// 		alert("hi!");
+			// 	}
+			// }]);
+
+			// tour.start();
+			vent.trigger('resume:showTour');
 		},
 
 		// Emit singnal on every click, sub component will use this signal to justify their behavior

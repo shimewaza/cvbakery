@@ -9,7 +9,9 @@ require.config({
 		contextmenu: 'lib/bootstrap-contextmenu',              // context menu
 		markdown: 'lib/bootstrap-markdown',                    // markdown input
 		'markdown.lib': 'lib/markdown',                        // markdown input
-		bootstro: 'lib/bootstro',                              // bootstro
+		//bootstro: 'lib/bootstro',                              // bootstro
+		bootstraptour: 'lib/bootstrap-tour',                   // bootstrap-tour
+		'jquery.cookie': 'lib/jquery.cookie',            // cookie
 		'jquery.ui.widget': 'lib/jquery.ui.widget',            // upload/download
 		iframetransport: 'lib/jquery.iframe-transport',        // upload/download
 		fileupload: 'lib/jquery.fileupload',                   // upload/download
@@ -49,8 +51,14 @@ require.config({
 		markdown: {
 			deps: ['jquery', 'markdown.lib']
 		},
-		bootstro: {
-			deps: ['bootstrap']
+		// bootstro: {
+		// 	deps: ['bootstrap']
+		// },
+		'jquery.cookie': {
+			deps: ['jquery']
+		},
+		bootstraptour: {
+			deps: ['jquery.cookie', 'bootstrap']
 		},
 		contextmenu: {
 			deps: ['bootstrap']
@@ -99,7 +107,8 @@ require.config({
 					'bootstrap',
 					'datepickerlang',
 					'markdown',
-					'bootstro',
+					// 'bootstro',
+					'bootstraptour',
 					'contextmenu',
 					'fileupload',
 					'filedownload',
