@@ -122,6 +122,6 @@ require.config({
 	}
 });
 
-require(['fileupload', 'marionette', 'deepmodel', 'vent', 'selink'], function(fileupload, marionette, deepmodel, vent, selink) {
+require(['fileupload', 'jquery.cookie', 'marionette', 'deepmodel', 'vent', 'selink'], function(fileupload, cookie, marionette, deepmodel, vent, selink) {
 	selink.start();
 });
