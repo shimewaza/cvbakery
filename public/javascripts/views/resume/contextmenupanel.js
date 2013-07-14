@@ -1,5 +1,5 @@
 define([
-        'text!templates/resume/contextmenupanel.html'
+    'text!templates/resume/contextmenupanel.html'
 ], function(itemPanelTemplate) {
 
     var ToolPanelView = Backbone.Marionette.ItemView.extend({
@@ -65,18 +65,22 @@ define([
 
         onItemRemoved: function(data) {
 
-            $(this.subTemplate(data))
-                .css('display', 'none')
-                .appendTo('#itemBtnArea')
-                .popover({
-                    title: data.itemName,
-                    content: data.itemName + "履歴書に追加します。",
-                    placement: 'right',
-                    trigger: 'hover',
-                    html: true,
-                    container: 'body'
-                })
-                .slideDown();
+            var self = this;
+            // This is not right...., if the context menu are not add to DOM yet, the button will lost, so i wait for 1s.
+            setTimeout(function() {
+                $(self.subTemplate(data))
+                    .css('display', 'none')
+                    .appendTo('#itemBtnArea')
+                    .popover({
+                        title: data.itemName,
+                        content: data.itemName + "履歴書に追加します。",
+                        placement: 'right',
+                        trigger: 'hover',
+                        html: true,
+                        container: 'body'
+                    })
+                    .slideDown();
+            }, 1000);
         },
 
         changePattern: function(event) {
@@ -88,12 +92,12 @@ define([
             var $target = $(event.target);
             $('#resumePanel').hide('slide', function() {
                 vent.trigger('resume:changeTemplate', $target.data('template'));
-            })
+            });
         },
 
         outputPDF: function() {
             $.fileDownload('/resume/me/pdf');
-        },
+        }
     });
 
     return ToolPanelView;

@@ -55,6 +55,7 @@ define([
 	SkillComposite,
 	ContextMenuPanelView) {
 
+	// Resume View
 	var ResumeView = Backbone.Marionette.Layout.extend({
 
 		// This view is a div
@@ -67,8 +68,6 @@ define([
 		id: 'resumePanel',
 
 		// Template
-		// template: resumeTemplate,
-
 		getTemplate: function() {
 			if (this.options.templateRef === "default") {
 				this.$el.addClass('default');
@@ -88,15 +87,19 @@ define([
 			}
 		},
 
+		// UI
 		ui: {
+			// Modal dialog for user's first visit
 			instructionModal: '#instructionModal'
 		},
 
+		// Events
 		events: {
 			'click #instructionStartBtn': 'onInstructionStart',
 			'click #instructionCancelBtn': 'onInstructionCancel'
 		},
 
+		// Regions
 		regions: {
 			photoArea: '#photo',
 			nameArea: '#name',
@@ -125,6 +128,7 @@ define([
 		// Initializer
 		initialize: function() {
 
+			// user drop effection for every region's open method
 			this.regionManager.each(function(region) {
 				region.open = function(view) {
 					this.$el.hide();
@@ -133,133 +137,166 @@ define([
 				};
 			});
 
+			// build context menu
 			this.contextMenuPanelView = new ContextMenuPanelView({
 				model: this.model,
 				templateRef: this.options.templateRef
 			});
 
+			// build photo view
 			this.photoView = new PhotoView({
 				model: this.model,
 				templateRef: this.options.templateRef
 			});
 
+			// build name view
 			this.nameView = new NameView({
 				model: this.model,
 				templateRef: this.options.templateRef
 			});
 
+			// build birth day view
 			this.birthDayView = new BirthDayView({
 				model: this.model,
 				templateRef: this.options.templateRef
 			});
 
+			// build gender view
 			this.genderView = new GenderView({
 				model: this.model,
 				templateRef: this.options.templateRef
 			});
 
+			// build nationality view
 			this.nationalityView = new NationalityView({
 				model: this.model,
 				templateRef: this.options.templateRef
 			});
 
+			// build marrage view
 			this.marriedView = new MarriedView({
 				model: this.model,
 				templateRef: this.options.templateRef
 			});
 
+			// build first arrive view
 			this.firstArriveView = new FirstArriveView({
 				model: this.model,
 				templateRef: this.options.templateRef
 			});
 
+			// build IT experience view
 			this.itExperienceView = new ItExperienceView({
 				model: this.model,
 				templateRef: this.options.templateRef
 			});
 
+			// build availabilty view
 			this.availableDateView = new AvailableDateView({
 				model: this.model,
 				templateRef: this.options.templateRef
 			});
 
+			// build address view
 			this.addressView = new AddressView({
 				model: this.model,
 				templateRef: this.options.templateRef
 			});
 
+			// build nearest station view
 			this.nearestStationView = new NearestStationView({
 				model: this.model,
 				templateRef: this.options.templateRef
 			});
 
+			// build tel no view
 			this.telNoView = new TelNoView({
 				model: this.model,
 				templateRef: this.options.templateRef
 			});
 
+			// build email view
 			this.emailView = new EMailView({
 				model: this.model,
 				templateRef: this.options.templateRef
 			});
 
+			// build home page view
 			this.homePageView = new HomePageView({
 				model: this.model,
 				templateRef: this.options.templateRef
 			});
 
+			// build self introduction view
 			this.selfIntroductionView = new SelfIntroductionView({
 				model: this.model,
 				templateRef: this.options.templateRef
 			});
 
+			// get education collection
 			var educations = new Backbone.Collection(this.model.get('education'));
+			// build education view
 			this.educationComposite = new EducationComposite({
 				model: this.model,
 				collection: educations,
 				templateRef: this.options.templateRef
 			});
 
+			// get career collection
 			var careers = new Backbone.Collection(this.model.get('career'));
+			// build career view
 			this.careerComposite = new CareerComposite({
 				model: this.model,
 				collection: careers,
 				templateRef: this.options.templateRef
 			});
 
+			// get work experience collection
 			var workExperiences = new Backbone.Collection(this.model.get('workExperience'));
+			// build work experience view
 			this.workExperienceComposite = new WorkExperienceComposite({
 				model: this.model,
 				collection: workExperiences,
 				templateRef: this.options.templateRef
 			});
 
+			// get language collection
 			var languages = new Backbone.Collection(this.model.get('languageBackground'));
+			// build language view
 			this.languageComposite = new LanguageComposite({
 				model: this.model,
 				collection: languages,
 				templateRef: this.options.templateRef
 			});
 
+			// get qualification collection
 			var qualifications = new Backbone.Collection(this.model.get('qualification'));
+			// build qualification view
 			this.qualificationComposite = new QualificationComposite({
 				model: this.model,
 				collection: qualifications,
 				templateRef: this.options.templateRef
 			});
 
+			// get skill collection
 			var skills = new Backbone.Collection(this.model.get('skill'));
+			// build skill view
 			this.skillComposite = new SkillComposite({
 				model: this.model,
 				collection: skills,
 				templateRef: this.options.templateRef
 			});
 
+			// setup user instruction
 			this._setupTour();
 
+			// listen to context menu event: add item 
 			this.listenTo(vent, 'resume:itemAdded', this.onItemAdded);
+			// listen to context menu event: change back pattern
 			this.listenTo(vent, 'resume:changePattern', this.onChangePatter);
+			// listen to context menu event: change template
 			this.listenTo(vent, 'resume:changeTemplate', this.onChangeTemplate);
+			// listen to main page event: show user instruction
 			this.listenTo(vent, 'resume:showTour', this.onShowTour);
 		},
 
@@ -267,114 +304,162 @@ define([
 		onRender: function() {
 
 			var self = this;
+
+			// get user setting
 			var setting = this.model.get('setting');
 
+			// change back pattern to user setting
 			this._changeBackground(this.model.get('backgroundImg'));
-			this.contextMenuArea.show(this.contextMenuPanelView);
 
+			// show(add) context menu
+			this.contextMenuArea.show(this.contextMenuPanelView);
+			// activate context menu
+			$('#content').contextmenu({
+				target: '#contextMenu'
+			});
+
+			// show photo view
 			this.photoArea.show(this.photoView);
+
+			// show name view
 			this.nameArea.show(this.nameView);
 
 			if (setting.birthDay)
 				this.birthDayArea.show(this.birthDayView);
 			else
-				this.birthDayView.removeItem();
+				this.birthDayView.removeItem({
+					silence: true
+				});
 
 			if (setting.gender)
 				this.genderArea.show(this.genderView);
 			else
-				this.genderView.removeItem();
+				this.genderView.removeItem({
+					silence: true
+				});
 
 			if (setting.nationality)
 				this.nationalityArea.show(this.nationalityView);
 			else
-				this.nationalityView.removeItem();
+				this.nationalityView.removeItem({
+					silence: true
+				});
 
 			if (setting.married)
 				this.marriedArea.show(this.marriedView);
 			else
-				this.marriedView.removeItem();
+				this.marriedView.removeItem({
+					silence: true
+				});
 
 			if (setting.firstArrive)
 				this.firstArriveArea.show(this.firstArriveView);
 			else
-				this.firstArriveView.removeItem();
+				this.firstArriveView.removeItem({
+					silence: true
+				});
 
 			if (setting.itExperience)
 				this.itExperienceArea.show(this.itExperienceView);
 			else
-				this.itExperienceView.removeItem();
+				this.itExperienceView.removeItem({
+					silence: true
+				});
 
 			if (setting.availableDate)
 				this.availableDateArea.show(this.availableDateView);
 			else
-				this.availableDateView.removeItem();
+				this.availableDateView.removeItem({
+					silence: true
+				});
 
 			if (setting.address)
 				this.addressArea.show(this.addressView);
 			else
-				this.addressView.removeItem();
+				this.addressView.removeItem({
+					silence: true
+				});
 
 			if (setting.nearestStation)
 				this.nearestStationArea.show(this.nearestStationView);
 			else
-				this.nearestStationView.removeItem();
+				this.nearestStationView.removeItem({
+					silence: true
+				});
 
 			if (setting.telNo)
 				this.telNoArea.show(this.telNoView);
 			else
-				this.telNoView.removeItem();
+				this.telNoView.removeItem({
+					silence: true
+				});
 
 			if (setting.email)
 				this.emailArea.show(this.emailView);
 			else
-				this.emailView.removeItem();
+				this.emailView.removeItem({
+					silence: true
+				});
 
 			if (setting.homePage)
 				this.homePageArea.show(this.homePageView);
 			else
-				this.homePageView.removeItem();
+				this.homePageView.removeItem({
+					silence: true
+				});
 
 			if (setting.selfIntroduction)
 				this.selfIntroductionArea.show(this.selfIntroductionView);
 			else
-				this.selfIntroductionView.removeItem();
+				this.selfIntroductionView.removeItem({
+					silence: true
+				});
 
 			if (setting.education)
 				this.educationArea.show(this.educationComposite);
 			else
-				this.educationComposite.removeItem();
+				this.educationComposite.removeItem({
+					silence: true
+				});
 
 			if (setting.career)
 				this.careerArea.show(this.careerComposite);
 			else
-				this.careerComposite.removeItem();
+				this.careerComposite.removeItem({
+					silence: true
+				});
 
 			if (setting.workExperience)
 				this.workExperienceArea.show(this.workExperienceComposite);
 			else
-				this.workExperienceComposite.removeItem();
+				this.workExperienceComposite.removeItem({
+					silence: true
+				});
 
 			if (setting.languageBackground)
 				this.languageArea.show(this.languageComposite);
 			else
-				this.languageComposite.removeItem();
+				this.languageComposite.removeItem({
+					silence: true
+				});
 
 			if (setting.qualification)
 				this.qualificationArea.show(this.qualificationComposite);
 			else
-				this.qualificationComposite.removeItem();
+				this.qualificationComposite.removeItem({
+					silence: true
+				});
 
 			if (setting.skill)
 				this.skillArea.show(this.skillComposite);
 			else
-				this.skillComposite.removeItem();
+				this.skillComposite.removeItem({
+					silence: true
+				});
 
-			$('#content').contextmenu({
-				target: '#contextMenu'
-			});
-
+			// if this is the fisrt time of user access
 			if (setting.isFirstVisit) {
+				// show user instruction modal, delay for 1s
 				setTimeout(function() {
 					self.ui.instructionModal.modal('show');
 				}, 1000);
@@ -568,31 +653,47 @@ define([
 
 		},
 
+		// On user clicked OK button of the instruction modal
 		onInstructionStart: function() {
+
+			var self = this;
+
+			// hide modal
 			this.ui.instructionModal.modal('hide');
+			// clear the first time visit flag
 			this._setUserVisited();
+			// start instruction after 0.5s
 			setTimeout(function() {
 				self.tour.start();
 			}, 500);
 		},
 
+		// On user clicked NO button of the instruction modal
 		onInstructionCancel: function() {
+			// just clear the first time visit flag
 			this._setUserVisited();
 		},
 
+		// Clear the first time visit flag
 		_setUserVisited: function() {
+
 			// prepare the date for model update
 			var data = this.model.get('setting');
 			data['isFirstVisit'] = false;
 
 			// save the model
-			this.model.save({ setting: data }, {
-			    // use patch
-			    patch: true
+			this.model.save({
+				setting: data
+			}, {
+				// use patch
+				patch: true
 			});
 		},
 
+		// Change back pattern
 		onChangePatter: function(imageName) {
+
+			var self = this;
 
 			// prepare the date for model update
 			var data = {};
@@ -602,30 +703,35 @@ define([
 			this.model.save(data, {
 				// if save success
 				success: function() {
-					var val = "url('/images/resume/" + imageName + "')";
-					$('body').css('background', val + ' repeat');
+					self._changeBackground(imageName);
 				},
 				// use patch
 				patch: true
 			});
 		},
 
-		onShowTour: function() {
-			console.log("message");
-			this.tour.start();
-		},
-
+		// Change back patten actually
 		_changeBackground: function(imageName) {
 
+			// do nothing when told nothing
 			if (!imageName) return;
 
+			// get the current back patten name with regex
 			var currentBk = /.*[\/|\\](.*)\)$/.exec($('body').css('background-image'))[1];
 
+			// do nothing if the same pattern
 			if (imageName == currentBk) return;
 
+			// change back patten
 			$('body').css('background', "url('/images/resume/" + imageName + "') repeat");
 		},
 
+		// Run user instruction
+		onShowTour: function() {
+			this.tour.start();
+		},
+
+		// Setup user instruction
 		_setupTour: function() {
 
 			var self = this;
@@ -662,25 +768,68 @@ define([
 			}, {
 				element: "#telNo",
 				title: "例えば、電話番号",
-				content: '項目自体を履歴書に載せたくない場合は、<button class="btn btn-small btn-warning btn-remove"><i class="icon-remove icon-white"></i></button>ボタンで隠せます。',
+				content: '項目自体を履歴書に載せたくない場合は、\
+						<button class="btn btn-small btn-warning btn-remove"><i class="icon-remove icon-white"></i></button>\
+						ボタンで隠せます。',
 				onHide: function() {
 					self.telNoView.switchToValue();
 				}
 			}, {
 				element: "#skill",
 				title: "複合な項目もあります",
-				content: "基本情報と同じく、クリックしだい編集できます。",
+				content: "基本情報と同じく、クリックしだい編集できます。初めての時はレコード0件です。",
 				onHide: function() {
 					self.skillComposite.switchToEditor();
 				}
 			}, {
 				element: "#skill",
 				title: "スキルを例としたら",
-				content: "基本情報と同じく、クリックしだい編集できます。",
+				content: 'レコード作成、追加する場合は、\
+						<button class="btn btn-small btn-info btn-add"><i class="icon-plus icon-white"></i></button>\
+						ボタンをクリックします。',
+				onHide: function() {
+					self.skillComposite.addItem();
+				}
+			}, {
+				element: "#skill .item-container .sl-editor",
+				title: "スキルを例としたら",
+				content: 'これは新たに作成したレコードです。'
+			}, {
+				element: "#skill .item-container .sl-editor input",
+				title: "スキルを例としたら",
+				content: 'ここでスキルの名称を入力出来ます。'
+			}, {
+				element: "#skill .item-container .sl-editor .sl-slider",
+				title: "スキルを例としたら",
+				content: 'ここはスキルレベルを示すゲージです、ハンドルをドラグして調整出来ます。'
+			}, {
+				element: "#skill .item-container .sl-editor .btn-delete",
+				title: "スキルを例としたら",
+				content: '該当レコードを不要となりましたら、\
+						<button class="btn btn-small btn-danger btn-delete"><i class="icon-minus icon-white"></i></button>\
+						ボタンで削除できます。',
 				onHide: function() {
 					self.skillComposite.switchToValue();
+					self.educationComposite.switchToEditor();
+					self.educationComposite.addItem();
 				}
-			}]);
+			}, {
+				element: "#education .item-container .sl-editor",
+				title: "他の項目も同じです",
+				content: '項目により編集できる内容が違うですが、使い方は一緒です。',
+				onHide: function() {
+					self.educationComposite.switchToValue();
+					console.log($('#education'));
+					$('#education').trigger({
+						type: 'click',
+						which: 3
+					});
+				}
+			}, {
+				element: "#contextMenu",
+				title: "スキルを例としたら",
+				content: 'ここはスキルレベルを示すゲージです、ハンドルをドラグして調整出来ます。'
+			},]);
 		}
 	});
 

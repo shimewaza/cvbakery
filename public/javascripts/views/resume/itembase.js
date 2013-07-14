@@ -97,14 +97,17 @@ define([], function() {
 
             var self = this;
 
-            // console.log(silence);
-
-            if (option && option.silence === true) {
+            if (option && option.silence) {
+                
                 vent.trigger('resume:itemRemoved', {
                     item: self.item,
                     itemName: self.itemName,
                     itemIcon: self.itemIcon
                 });
+
+                // dispose the view
+                self.close();
+
                 return;
             }
 

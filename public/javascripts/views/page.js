@@ -132,6 +132,7 @@ define([
 			});
 		},
 
+		// On full-screen button click
 		onFullScreen: function(callback) {
 
 			this.$el.find('#fullScreenBtn').hide();
@@ -152,28 +153,6 @@ define([
 
 		// Show help tutorial
 		onShowHelp: function() {
-
-			// var tour = new Tour({
-			// 	backdrop: true,
-			// 	onEnd: function() {
-			// 		$.removeCookie('tour_current_step');
-			// 		$.removeCookie('tour_end');
-			// 	}
-			// });
-
-			// tour.addSteps([{
-			// 	element: "#photo",
-			// 	title: "顔写真を添付しよう！",
-			// 	content: "履歴書に写真をつけるのはイメージアップには効果的。"
-			// }, {
-			// 	element: "#photo",
-			// 	title: "基本情報を編集",
-			// 	content: "各項目をクリックしたら、ご自分に関する基本情報を編集できます。",
-			// 	onShow: function() {
-			// 		alert("hi!");
-			// 	}
-			// }]);
-
 			// tour.start();
 			vent.trigger('resume:showTour');
 		},
