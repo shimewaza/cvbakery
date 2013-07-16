@@ -68,6 +68,35 @@ define([
             this._appendInfoOnDeleteBtn();
         },
 
+        // TODO: this lost the benifet of inhertance.....
+        switchToValue: function() {
+
+            var self = this;
+            var graduate = this.ui.inputGraduate.val();
+            var school = this.ui.inputSchool.val();
+            var major = this.ui.inputMajor.val();
+            var detail = this.ui.inputDetail.val();
+
+            // stop execution if mouse still above this item
+            // or item's editor has error
+            if (this.focus || this.err) return;
+
+            // delete this item if got empty input
+            if (!graduate && !school && !major && !detail) {
+                this.deleteItem();
+                return;
+            }
+
+            // attach popover for remove button in edit panel
+            this._appendInfoOnRemoveBtn();
+
+            // slide up the edit panel
+            this.ui.editor.slideUp('fast', function() {
+                // fadeIn view panel
+                self.ui.value.fadeIn('fast');
+            });
+        },
+
         validate: function() {
 
             var graduate = this.ui.inputGraduate.val();

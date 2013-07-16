@@ -47,6 +47,33 @@ define([
             // this.listenTo(vent, 'click:universal', this.switchToValue);
         },
 
+        // TODO: this lost the benifet of inhertance.....
+        switchToValue: function() {
+
+            var self = this;
+            var level = self.ui.inputLevel.slider('value');
+            var name = this.ui.inputSkill.val();
+
+            // stop execution if mouse still above this item
+            // or item's editor has error
+            if (this.focus || this.err) return;
+
+            // delete this item if got empty input
+            if (!level && !name) {
+                this.deleteItem();
+                return;
+            }
+
+            // attach popover for remove button in edit panel
+            this._appendInfoOnRemoveBtn();
+
+            // slide up the edit panel
+            this.ui.editor.slideUp('fast', function() {
+                // fadeIn view panel
+                self.ui.value.fadeIn('fast');
+            });
+        },
+
         onRender: function() {
 
             var self = this;

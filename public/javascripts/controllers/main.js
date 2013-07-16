@@ -52,7 +52,7 @@ define([
                     // create new resume view
                     var resumeView = new ResumeView({
                         model: self.resumeModel,
-                        templateRef: templateName || 'default'
+                        templateRef: templateName || self.resumeModel.get('template') || 'default'
                     });
                     // show resume
                     self.pageView.content.show(resumeView);

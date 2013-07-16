@@ -1,10 +1,10 @@
 define([
-        'views/resume/itembase',
-        'text!templates/resume/default/itemcareer.html',
-        'text!templates/resume/style1/itemcareer.html',
-        'text!templates/resume/style2/itemcareer.html',
-        'text!templates/resume/style3/itemcareer.html',
-        'text!templates/resume/style4/itemcareer.html'
+    'views/resume/itembase',
+    'text!templates/resume/default/itemcareer.html',
+    'text!templates/resume/style1/itemcareer.html',
+    'text!templates/resume/style2/itemcareer.html',
+    'text!templates/resume/style3/itemcareer.html',
+    'text!templates/resume/style4/itemcareer.html'
 ], function(
     BaseView,
     defaultTemplate,
@@ -74,6 +74,37 @@ define([
             });
             this._appendInfoOnInput();
             this._appendInfoOnDeleteBtn();
+        },
+
+        // TODO: this lost the benifet of inhertance.....
+        switchToValue: function() {
+
+            var self = this;
+            var startDate = this.ui.inputStartDate.val();
+            var endDate = this.ui.inputEndDate.val();
+            var company = this.ui.inputCompany.val();
+            var address = this.ui.inputAddress.val();
+            var position = this.ui.inputPosition.val();
+            var detail = this.ui.inputDetail.val();
+
+            // stop execution if mouse still above this item
+            // or item's editor has error
+            if (this.focus || this.err) return;
+
+            // delete this item if got empty input
+            if (!startDate && !endDate && !company && !address && !position && !detail) {
+                this.deleteItem();
+                return;
+            }
+
+            // attach popover for remove button in edit panel
+            this._appendInfoOnRemoveBtn();
+
+            // slide up the edit panel
+            this.ui.editor.slideUp('fast', function() {
+                // fadeIn view panel
+                self.ui.value.fadeIn('fast');
+            });
         },
 
         validate: function() {
@@ -269,7 +300,7 @@ define([
             var detail = this.ui.inputDetail.val();
             var resultDate = '';
 
-            if(startDate && endDate) 
+            if (startDate && endDate)
                 resultDate = this._formatDate(startDate) + '～' + this._formatDate(endDate);
             else if (startDate && !endDate)
                 resultDate = this._formatDate(startDate) + '～';
@@ -278,9 +309,9 @@ define([
 
             if (resultDate) {
                 var newEl = $('<span/>')
-                            .addClass('label label-info')
-                            .append($('<i/>').addClass('icon-calendar'))
-                            .append('&nbsp;&nbsp;&nbsp;&nbsp;' + resultDate)
+                    .addClass('label label-info')
+                    .append($('<i/>').addClass('icon-calendar'))
+                    .append('&nbsp;&nbsp;&nbsp;&nbsp;' + resultDate)
                 this.ui.areaDate.empty().append(newEl);
             }
 
@@ -288,24 +319,24 @@ define([
 
             if (company) {
                 var newEl = $('<h5/>')
-                            .append($('<i/>').addClass('icon-building'))
-                            .append('&nbsp;&nbsp;' + company);
+                    .append($('<i/>').addClass('icon-building'))
+                    .append('&nbsp;&nbsp;' + company);
                 this.ui.areaCompany.append(newEl);
             }
 
             if (address) {
                 var newEl = $('<h6/>')
-                            .addClass('sl-placeholder')
-                            .append($('<i/>').addClass('icon-map-marker'))
-                            .append('&nbsp;&nbsp;' + address);
+                    .addClass('sl-placeholder')
+                    .append($('<i/>').addClass('icon-map-marker'))
+                    .append('&nbsp;&nbsp;' + address);
                 this.ui.areaCompany.append(newEl);
             }
 
             if (position) {
                 var newEl = $('<h6/>')
-                            .addClass('sl-placeholder')
-                            .append($('<i/>').addClass('icon-user'))
-                            .append('&nbsp;&nbsp;' + position);
+                    .addClass('sl-placeholder')
+                    .append($('<i/>').addClass('icon-user'))
+                    .append('&nbsp;&nbsp;' + position);
                 this.ui.areaCompany.append(newEl);
             }
 

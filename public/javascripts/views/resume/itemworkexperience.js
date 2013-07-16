@@ -74,6 +74,36 @@ define([
             this._appendInfoOnDeleteBtn();
         },
 
+        // TODO: this lost the benifet of inhertance.....
+        switchToValue: function() {
+
+            var self = this;
+            var startDate = this.ui.inputStartDate.val();
+            var endDate = this.ui.inputEndDate.val();
+            var title = this.ui.inputTitle.val();
+            var position = this.ui.inputPosition.val();
+            var detail = this.ui.inputDetail.val();
+
+            // stop execution if mouse still above this item
+            // or item's editor has error
+            if (this.focus || this.err) return;
+
+            // delete this item if got empty input
+            if (!startDate && !endDate && !title && !position && !detail) {
+                this.deleteItem();
+                return;
+            }
+
+            // attach popover for remove button in edit panel
+            this._appendInfoOnRemoveBtn();
+
+            // slide up the edit panel
+            this.ui.editor.slideUp('fast', function() {
+                // fadeIn view panel
+                self.ui.value.fadeIn('fast');
+            });
+        },
+
         validate: function() {
 
             var startDate = this.ui.inputStartDate.val();

@@ -1,0 +1,512 @@
+<head>
+    <title>CV Bakery</title>
+    <meta charset="utf-8">
+    <link type="text/css" rel="stylesheet" href="/stylesheets/bootstrap.css">
+    <link type="text/css" rel="stylesheet" href="/stylesheets/bootstrap-responsive.css">
+    <link type="text/css" rel="stylesheet" href="/stylesheets/bootstrap-markdown.css">
+    <link type="text/css" rel="stylesheet" href="/stylesheets/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="/stylesheets/jquery-ui-1.10.3.custom.min.css">
+    <link type="text/css" rel="stylesheet" href="/stylesheets/datepicker.css">
+    <link type="text/css" rel="stylesheet" href="/stylesheets/bootstrap-tour.css">
+    <link type="text/css" rel="stylesheet" href="/stylesheets/jquery.fileupload-ui.css">
+    <link type="text/css" rel="stylesheet" href="/stylesheets/style.css">
+    <script type="text/javascript" data-main="javascripts/boot" src="/javascripts/lib/require.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="boot" src="javascripts/boot.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="marionette" src="javascripts/lib/backbone.marionette.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="jquery.ui.widget" src="javascripts/lib/jquery.ui.widget.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="iframetransport" src="javascripts/lib/jquery.iframe-transport.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="backbone.wreqr" src="javascripts/lib/backbone.wreqr.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="jquery" src="javascripts/lib/jquery-1.9.1.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="backbone.babysitter" src="javascripts/lib/backbone.babysitter.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="markdown.lib" src="javascripts/lib/markdown.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="underscore" src="javascripts/lib/underscore.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="jquery.cookie" src="javascripts/lib/jquery.cookie.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="backbone" src="javascripts/lib/backbone.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="jqueryui" src="javascripts/lib/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="jqueryraf" src="javascripts/lib/jquery.requestAnimationFrame.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="bootstrap" src="javascripts/lib/bootstrap.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="markdown" src="javascripts/lib/bootstrap-markdown.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="filedownload" src="javascripts/lib/jquery.fileDownload.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="isotope" src="javascripts/lib/jquery.isotope.min.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="datepicker" src="javascripts/lib/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="noty.core" src="javascripts/lib/jquery.noty.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="fileupload" src="javascripts/lib/jquery.fileupload.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="deepmodel" src="javascripts/lib/deep-model.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="vent" src="javascripts/lib/vent.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="bootstraptour" src="javascripts/lib/bootstrap-tour.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="contextmenu" src="javascripts/lib/bootstrap-contextmenu.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="noty.inline" src="javascripts/lib/layouts/inline.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="datepickerlang" src="javascripts/lib/locales/bootstrap-datepicker.ja.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="noty.layout" src="javascripts/lib/layouts/bottomRight.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="noty" src="javascripts/lib/themes/default.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="selink" src="javascripts/selink.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="routers/landing" src="javascripts/routers/landing.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="controllers/landing" src="javascripts/controllers/landing.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="routers/main" src="javascripts/routers/main.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="controllers/main" src="javascripts/controllers/main.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="views/landing" src="javascripts/views/landing.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="views/page" src="javascripts/views/page.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="views/resume/resume" src="javascripts/views/resume/resume.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="models/resume" src="javascripts/models/resume.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="text" src="javascripts/lib/text.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="views/login" src="javascripts/views/login.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="views/register" src="javascripts/views/register.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="views/menu" src="javascripts/views/menu.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="views/resume/itemphoto" src="javascripts/views/resume/itemphoto.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="views/resume/itemname" src="javascripts/views/resume/itemname.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="views/resume/itembirthday" src="javascripts/views/resume/itembirthday.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="views/resume/itemgender" src="javascripts/views/resume/itemgender.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="views/resume/itemnationality" src="javascripts/views/resume/itemnationality.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="views/resume/itemmarried" src="javascripts/views/resume/itemmarried.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="views/resume/itemfirstarrive" src="javascripts/views/resume/itemfirstarrive.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="views/resume/itemitexperience" src="javascripts/views/resume/itemitexperience.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="views/resume/itemavailabledate" src="javascripts/views/resume/itemavailabledate.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="views/resume/itemaddress" src="javascripts/views/resume/itemaddress.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="views/resume/itemneareststation" src="javascripts/views/resume/itemneareststation.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="views/resume/itemtelno" src="javascripts/views/resume/itemtelno.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="views/resume/itememail" src="javascripts/views/resume/itememail.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="views/resume/itemhomepage" src="javascripts/views/resume/itemhomepage.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="views/resume/itemselfintroduction" src="javascripts/views/resume/itemselfintroduction.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="views/resume/compositeeducation" src="javascripts/views/resume/compositeeducation.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="views/resume/compositecareer" src="javascripts/views/resume/compositecareer.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="views/resume/compositeworkexperience" src="javascripts/views/resume/compositeworkexperience.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="views/resume/compositelanguage" src="javascripts/views/resume/compositelanguage.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="views/resume/compositequalification" src="javascripts/views/resume/compositequalification.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="views/resume/compositeskill" src="javascripts/views/resume/compositeskill.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="views/resume/contextmenupanel" src="javascripts/views/resume/contextmenupanel.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="views/resume/itembase" src="javascripts/views/resume/itembase.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="views/resume/compositebase" src="javascripts/views/resume/compositebase.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="views/resume/itemeducation" src="javascripts/views/resume/itemeducation.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="views/resume/itemcareer" src="javascripts/views/resume/itemcareer.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="views/resume/itemworkexperience" src="javascripts/views/resume/itemworkexperience.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="views/resume/itemlanguage" src="javascripts/views/resume/itemlanguage.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="views/resume/itemqualification" src="javascripts/views/resume/itemqualification.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="views/resume/itemskill" src="javascripts/views/resume/itemskill.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="views/resume/compositeempty" src="javascripts/views/resume/compositeempty.js"></script>
+</head>
+
+<body style="padding-top: 40px; background-image: url(http://localhost:3000/images/resume/kindajean.png); background-position: initial initial; background-repeat: repeat repeat;">
+    <div id="mainPage">
+        <div id="header">
+            <div id="menuPanel" class="navbar navbar-fixed-top" style="top: 0px;">
+                <div class="navbar-inner">
+                    <a class="brand" href="#">CV Bakery</a>
+                    <ul class="nav">
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="body">
+
+            <div id="content" style="display: block;">
+                <div id="resumePanel" class="well well-large container-fluid sl-panel style2">
+                    <div class="row-fluid">
+                        <div class="span2">
+                            <div class="row-fluid bootstro" id="photo" style="display: block;">
+                                <div>
+                                    <div class="sl-photo">
+                                        <img src="/upload/bd7f8bf89535d3c3b1adda31209aeeef.jpg" class="img-polaroid">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="span6">
+                            <div id="name" style="display: block;">
+                                <div>
+                                    <div class="sl-value">
+                                        <h4>
+                                            周&nbsp;&nbsp;&nbsp;&nbsp;鼎 シュウ&nbsp;&nbsp;&nbsp;&nbsp;テイ zhou&nbsp;&nbsp;&nbsp;&nbsp;ding
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="selfIntroduction" style="display: block;">
+                                <div>
+                                    <div class="row-fluid">
+                                        <div class="span12">
+                                            <div class="sl-value">
+                                                <p>
+                                                </p>
+                                                <p>［ワシントン　１５日　ロイター］ - ロンドンのヒースロー空港でエチオピア航空のボーイング＜BA.N＞７８７型機が発火した問題で、当局が原因の可能性として調査している航空機用救命無線機（ＥＬＴ）に使用されているマンガンリチウム電池は、米ウルトラライフ＜ULBI.O＞製だった。ある関係者が１５日明らかにした。［ワシントン　１５日　ロイター］ - ロンドンのヒースロー空港でエチオピア航空のボーイング＜BA.N＞７８７型機が発火した問題で、当局が原因の可能性として調査している航空機用救命無線機（ＥＬＴ）に使用されているマンガンリチウム電池は、米ウルトラライフ＜ULBI.O＞製だった。ある関係者が１５日明らかにした。</p>
+                                                <p></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="span3 offset1">
+                            <div class="row-fluid" id="birthDay"></div>
+                            <div class="row-fluid" id="gender" style="display: block;">
+                                <div>
+                                    <div class="span1">
+                                        <i class="icon-leaf"></i>
+                                    </div>
+                                    <div class="span11">
+                                        <div class="sl-value">
+                                            男
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row-fluid" id="nationality"></div>
+                            <div class="row-fluid" id="married"></div>
+                            <div class="row-fluid" id="firstArrive"></div>
+                            <div class="row-fluid" id="itExperience"></div>
+                            <div class="row-fluid" id="availableDate"></div>
+                            <div class="row-fluid" id="address" style="display: block;">
+                                <div>
+                                    <div class="span1">
+                                        <i class="icon-home"></i>
+                                    </div>
+                                    <div class="span11">
+                                        <div class="sl-value">
+                                            〒1310043）東京都墨田区立花
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row-fluid" id="nearestStation" style="display: block;">
+                                <div>
+                                    <div class="span1">
+                                        <i class="icon-road"></i>
+                                    </div>
+                                    <div class="span11">
+                                        <div class="sl-value">
+                                            JR総武線　亀戸
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row-fluid" id="telNo" style="display: block;">
+                                <div>
+                                    <div class="span1">
+                                        <i class="icon-phone"></i>
+                                    </div>
+                                    <div class="span11">
+                                        <div class="sl-value">
+                                            090-9103-4996
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row-fluid" id="email" style="display: block;">
+                                <div>
+                                    <div class="span1">
+                                        <i class="icon-envelope"></i>
+                                    </div>
+                                    <div class="span11">
+                                        <div class="sl-value">
+                                            joe_19840729@hotmail.com
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row-fluid" id="homePage" style="display: block;">
+                                <div>
+                                    <div class="span1">
+                                        <i class="icon-globe"></i>
+                                    </div>
+                                    <div class="span11">
+                                        <div class="sl-value">
+                                            www.cvbakery.com
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row-fluid">
+                        <div class="span4">
+                            <div id="education" style="margin: 20px; display: block;">
+                                <div>
+                                    <div class="row-fluid composite-header">
+                                        <div class="span8">
+                                            <h4><i class="icon-pencil icon-large"></i>&nbsp;&nbsp;学歴</h4>
+                                        </div>
+                                    </div>
+                                    <div class="row-fluid">
+                                        <div class="span12 row-fluid item-container">
+                                            <div>
+                                                <div class="row-fluid sl-value">
+                                                    <div class="span7 schoolArea">
+                                                        <h5><i class="icon-book"></i>&nbsp;&nbsp;asdf</h5>
+                                                        <h6 class="sl-placeholder"><i class="icon-pencil"></i>&nbsp;&nbsp;dd</h6>
+                                                    </div>
+                                                    <div class="span5 graduateArea">
+                                                        <span class="label label-info"><i class="icon-bell"></i>&nbsp;&nbsp;&nbsp;&nbsp;2011年3月4日</span>
+                                                    </div>
+                                                    <div class="detailArea">
+                                                        <p>［ワシントン　１５日　ロイター］ - ロンドンのヒースロー空港でエチオピア航空のボーイング＜BA.N＞７８７型機が発火した問題で、当局が原因の可能性として調査している航空機用救命無線機（ＥＬＴ）に使用されているマンガンリチウム電池は、米ウルトラライフ＜ULBI.O＞製だった。ある関係者が１５日明らかにした。</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="row-fluid sl-value">
+                                                    <div class="span7 schoolArea">
+                                                        <h5><i class="icon-book"></i>&nbsp;&nbsp;情報工程学院</h5>
+                                                        <h6 class="sl-placeholder"><i class="icon-pencil"></i>&nbsp;&nbsp;コンピュータ工学</h6>
+                                                    </div>
+                                                    <div class="span5 graduateArea">
+                                                        <span class="label label-info"><i class="icon-bell"></i>&nbsp;&nbsp;&nbsp;&nbsp;2012年3月1日</span>
+                                                    </div>
+                                                    <div class="detailArea">
+                                                        <p>［ワシントン　１５日　ロイター］ - ロンドンのヒースロー空港でエチオピア航空のボーイング＜BA.N＞７８７型機が発火した問題で、当局が原因の可能性として調査している航空機用救命無線機（ＥＬＴ）に使用されているマンガンリチウム電池は、米ウルトラライフ＜ULBI.O＞製だった。ある関係者が１５日明らかにした。</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="qualification" style="margin: 20px; display: block;">
+                                <div>
+                                    <div class="row-fluid composite-header">
+                                        <div class="span8">
+                                            <h4><i class="icon-credit-card icon-large"></i>&nbsp;&nbsp;資格</h4>
+                                        </div>
+                                    </div>
+                                    <div class="row-fluid">
+                                        <div class="span12 row-fluid item-container">
+                                            <div>
+                                                <div class="row-fluid sl-value">
+                                                    <div class="span7 qualificationNameArea">
+                                                        <h5><i class="icon-bookmark-empty"></i>&nbsp;&nbsp;自動車免許</h5>
+                                                    </div>
+                                                    <div class="span5 qualifiedDateArea">
+                                                        <span class="label label-info"><i class="icon-calendar"></i>&nbsp;&nbsp;&nbsp;&nbsp;2010年2月2日</span>
+                                                    </div>
+                                                    <div class="detailArea">
+                                                        <p>［ワシントン　１５日　ロイター］ - ロンドンのヒースロー空港でエチオピア航空のボーイング＜BA.N＞７８７型機が発火した問題で、当局が原因の可能性として調査している航空機用救命無線機（ＥＬＴ）に使用されているマンガンリチウム電池は、米ウルトラライフ＜ULBI.O＞製だった。ある関係者が１５日明らかにした。</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="row-fluid sl-value">
+                                                    <div class="span7 qualificationNameArea">
+                                                        <h5><i class="icon-bookmark-empty"></i>&nbsp;&nbsp;自転車免許</h5>
+                                                    </div>
+                                                    <div class="span5 qualifiedDateArea">
+                                                        <span class="label label-info"><i class="icon-calendar"></i>&nbsp;&nbsp;&nbsp;&nbsp;2010年2月17日</span>
+                                                    </div>
+                                                    <div class="detailArea">
+                                                        <p>［ワシントン　１５日　ロイター］ - ロンドンのヒースロー空港でエチオピア航空のボーイング＜BA.N＞７８７型機が発火した問題で、当局が原因の可能性として調査している航空機用救命無線機（ＥＬＴ）に使用されているマンガンリチウム電池は、米ウルトラライフ＜ULBI.O＞製だった。ある関係者が１５日明らかにした。</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="span4">
+                            <div id="career" style="margin: 20px; display: block;">
+                                <div>
+                                    <div class="row-fluid composite-header">
+                                        <div class="span8">
+                                            <h4><i class="icon-briefcase icon-large"></i>&nbsp;&nbsp;職歴</h4>
+                                        </div>
+                                    </div>
+                                    <div class="row-fluid">
+                                        <div class="span12 row-fluid item-container">
+                                            <div>
+                                                <div class="row-fluid sl-value">
+                                                    <div class="dateArea">
+                                                        <span class="label label-info"><i class="icon-calendar"></i>&nbsp;&nbsp;&nbsp;&nbsp;2006年7月13日～2009年7月2日</span>
+                                                    </div>
+                                                    <div class="companyArea">
+                                                        <h5><i class="icon-building"></i>&nbsp;&nbsp;株式会社　トレックス</h5>
+                                                        <h6 class="sl-placeholder"><i class="icon-map-marker"></i>&nbsp;&nbsp;東京都　小船町</h6>
+                                                        <h6 class="sl-placeholder"><i class="icon-user"></i>&nbsp;&nbsp;正社員</h6>
+                                                    </div>
+                                                    <div class="detailArea">
+                                                        <p>［ワシントン　１５日　ロイター］ - ロンドンのヒースロー空港でエチオピア航空のボーイング＜BA.N＞７８７型機が発火した問題で、当局が原因の可能性として調査している航空機用救命無線機（ＥＬＴ）に使用されているマンガンリチウム電池は、米ウルトラライフ＜ULBI.O＞製だった。ある関係者が１５日明らかにした。</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="row-fluid sl-value">
+                                                    <div class="dateArea">
+                                                        <span class="label label-info"><i class="icon-calendar"></i>&nbsp;&nbsp;&nbsp;&nbsp;2008年11月13日～2013年7月10日</span>
+                                                    </div>
+                                                    <div class="companyArea">
+                                                        <h5><i class="icon-building"></i>&nbsp;&nbsp;株式会社　イー・ビジネス</h5>
+                                                        <h6 class="sl-placeholder"><i class="icon-map-marker"></i>&nbsp;&nbsp;東京都　八丁堀</h6>
+                                                        <h6 class="sl-placeholder"><i class="icon-user"></i>&nbsp;&nbsp;契約社員</h6>
+                                                    </div>
+                                                    <div class="detailArea">
+                                                        <p>［ワシントン　１５日　ロイター］ - ロンドンのヒースロー空港でエチオピア航空のボーイング＜BA.N＞７８７型機が発火した問題で、当局が原因の可能性として調査している航空機用救命無線機（ＥＬＴ）に使用されているマンガンリチウム電池は、米ウルトラライフ＜ULBI.O＞製だった。ある関係者が１５日明らかにした。</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="workExperience" style="margin: 20px; display: block;">
+                                <div>
+                                    <div class="row-fluid composite-header">
+                                        <div class="span8">
+                                            <h4><i class="icon-group icon-large"></i>&nbsp;&nbsp;仕事経験</h4>
+                                        </div>
+                                    </div>
+                                    <div class="row-fluid">
+                                        <div class="span12 row-fluid item-container">
+                                            <div>
+                                                <div class="row-fluid sl-value">
+                                                    <div class="dateArea">
+                                                        <span class="label label-info"><i class="icon-calendar"></i>&nbsp;&nbsp;&nbsp;&nbsp;2008年6月10日～2010年2月4日</span>
+                                                    </div>
+                                                    <div class="titleArea">
+                                                        <h5><i class="icon-flag-alt"></i>&nbsp;&nbsp;システム開発</h5>
+                                                        <h6 class="sl-placeholder"><i class="icon-wrench"></i>&nbsp;&nbsp;プログラマー</h6>
+                                                    </div>
+                                                    <div class="detailArea">
+                                                        <p>［ワシントン　１５日　ロイター］ - ロンドンのヒースロー空港でエチオピア航空のボーイング＜BA.N＞７８７型機が発火した問題で、当局が原因の可能性として調査している航空機用救命無線機（ＥＬＴ）に使用されているマンガンリチウム電池は、米ウルトラライフ＜ULBI.O＞製だった。ある関係者が１５日明らかにした。</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="row-fluid sl-value">
+                                                    <div class="dateArea">
+                                                        <span class="label label-info"><i class="icon-calendar"></i>&nbsp;&nbsp;&nbsp;&nbsp;2010年4月14日～2011年4月14日</span>
+                                                    </div>
+                                                    <div class="titleArea">
+                                                        <h5><i class="icon-flag-alt"></i>&nbsp;&nbsp;システム開発</h5>
+                                                        <h6 class="sl-placeholder"><i class="icon-wrench"></i>&nbsp;&nbsp;リーダ</h6>
+                                                    </div>
+                                                    <div class="detailArea">
+                                                        <p>［ワシントン　１５日　ロイター］ - ロンドンのヒースロー空港でエチオピア航空のボーイング＜BA.N＞７８７型機が発火した問題で、当局が原因の可能性として調査している航空機用救命無線機（ＥＬＴ）に使用されているマンガンリチウム電池は、米ウルトラライフ＜ULBI.O＞製だった。ある関係者が１５日明らかにした。</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="span4">
+                            <div id="skill" style="margin: 20px; display: block;">
+                                <div>
+                                    <div class="row-fluid composite-header">
+                                        <div class="span8">
+                                            <h4><i class="icon-gears icon-large"></i>&nbsp;&nbsp;スキル</h4>
+                                        </div>
+                                    </div>
+                                    <div class="row-fluid">
+                                        <div class="span12 row-fluid item-container">
+                                            <div>
+                                                <div class="row-fluid sl-value">
+                                                    <div class="progress progress-success">
+                                                        <div class="bar" style="width: 90%;">
+                                                            <p class="text-left" style="margin-left: 10px;"><i class="icon-gear"></i>&nbsp;&nbsp;java</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="row-fluid sl-value">
+                                                    <div class="progress progress-info">
+                                                        <div class="bar" style="width: 64%;">
+                                                            <p class="text-left" style="margin-left: 10px;"><i class="icon-gear"></i>&nbsp;&nbsp;mysql</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="row-fluid sl-value">
+                                                    <div class="progress progress-success">
+                                                        <div class="bar" style="width: 86%;">
+                                                            <p class="text-left" style="margin-left: 10px;"><i class="icon-gear"></i>&nbsp;&nbsp;javascript</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="row-fluid sl-value">
+                                                    <div class="progress progress-warning">
+                                                        <div class="bar" style="width: 43%;">
+                                                            <p class="text-left" style="margin-left: 10px;"><i class="icon-gear"></i>&nbsp;&nbsp;oracle10g</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="row-fluid sl-value">
+                                                    <div class="progress progress-info">
+                                                        <div class="bar" style="width: 64%;">
+                                                            <p class="text-left" style="margin-left: 10px;"><i class="icon-gear"></i>&nbsp;&nbsp;design</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="row-fluid sl-value">
+                                                    <div class="progress progress-warning">
+                                                        <div class="bar" style="width: 28%;">
+                                                            <p class="text-left" style="margin-left: 10px;"><i class="icon-gear"></i>&nbsp;&nbsp;</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="language" style="margin: 20px; display: block;">
+                                <div>
+                                    <div class="row-fluid composite-header">
+                                        <div class="span8">
+                                            <h4><i class="icon-comments-alt icon-large"></i>&nbsp;&nbsp;語学能力</h4>
+                                        </div>
+                                    </div>
+                                    <div class="row-fluid">
+                                        <div class="span12 row-fluid item-container">
+                                            <div>
+                                                <div class="row-fluid sl-value">
+                                                    <div class="progress progress-success">
+                                                        <div class="bar" style="width: 100%;">
+                                                            <p class="text-left" style="margin-left: 10px;"><i class="icon-comment-alt"></i>&nbsp;&nbsp;中国語</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="row-fluid sl-value">
+                                                    <div class="progress progress-info">
+                                                        <div class="bar" style="width: 79%;">
+                                                            <p class="text-left" style="margin-left: 10px;"><i class="icon-comment-alt"></i>&nbsp;&nbsp;英語</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="row-fluid sl-value">
+                                                    <div class="progress progress-warning">
+                                                        <div class="bar" style="width: 38%;">
+                                                            <p class="text-left" style="margin-left: 10px;"><i class="icon-comment-alt"></i>&nbsp;&nbsp;日本語</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="navigator"></div>
+
+        </div>
+        <div id="footer"></div>
+    </div>
+</body>"
