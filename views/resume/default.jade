@@ -1,0 +1,304 @@
+!!! 5
+html(lang='ja')
+    head
+        title CV Bakery
+        meta(charset='utf-8')
+        link(type='text/css', rel='stylesheet', href='/stylesheets/bootstrap.css')
+        link(type='text/css', rel='stylesheet', href='/stylesheets/bootstrap-responsive.css')
+        link(type='text/css', rel='stylesheet', href='/stylesheets/font-awesome.min.css')
+        link(type='text/css', rel='stylesheet', href='/stylesheets/jquery-ui-1.10.3.custom.min.css')
+        link(type='text/css', rel='stylesheet', href='/stylesheets/style.css')
+    body(style='padding-top: 40px; background-image: url(http://localhost:3000/images/resume/#{backgroundImg}); background-position: initial initial; background-repeat: repeat repeat;')
+        #mainPage
+            #header
+                #menuPanel.navbar.navbar-fixed-top(style='top: 0px;')
+                    .navbar-inner
+                        a.brand(href='http://www.cvbakery.com') CV Bakery
+                        ul.nav
+                #content
+                    #resumePanel.well.well-large.container-fluid.sl-panel.default
+                        .row-fluid
+                            .span4
+                                #photo.row-fluid
+                                    div
+                                        .sl-photo
+                                            img.img-polaroid(src='/upload/#{photo}')
+                                #name.row-fluid
+                                    div
+                                        .sl-value.text-center(style='padding-right: 40px;')
+                                            h5
+                                                | #{firstNameEn}&nbsp;&nbsp;&nbsp;&nbsp;#{lastNameEn}
+                                            h5
+                                                | #{firstNameKana}&nbsp;&nbsp;&nbsp;&nbsp;#{lastNameKana}
+                                            h4
+                                                | #{firstName}&nbsp;&nbsp;&nbsp;&nbsp;#{lastName}
+                            #basic-info.span8
+                                if (setting.birthDay)
+                                    #birthDay.row-fluid
+                                        div
+                                            .span4
+                                                i.icon-calendar
+                                                | &nbsp;&nbsp;&nbsp;&nbsp;生年月日：
+                                            .span8
+                                                .sl-value
+                                                    | #{birthDay}
+                                if (setting.gender)
+                                    #gender.row-fluid
+                                        div
+                                            .span4
+                                                i.icon-leaf
+                                                | &nbsp;&nbsp;&nbsp;&nbsp;性別：
+                                            .span8
+                                                .sl-value
+                                                    | #{gender}
+                                if (setting.nationality)
+                                    #nationality.row-fluid
+                                        div
+                                            .span4
+                                                i.icon-flag
+                                                | &nbsp;&nbsp;&nbsp;&nbsp;国籍：
+                                            .span8
+                                                .sl-value
+                                                    | #{nationality}
+                                if (setting.married)
+                                    #married.row-fluid
+                                        div
+                                            .span4
+                                                i.icon-heart
+                                                | &nbsp;&nbsp;&nbsp;&nbsp;婚姻状況：
+                                            .span8
+                                                .sl-value
+                                                    | #{married}
+                                if (setting.firstArrive)
+                                    #firstArrive.row-fluid
+                                        div
+                                            .span4
+                                                i.icon-plane
+                                                | &nbsp;&nbsp;&nbsp;&nbsp;初回来日：
+                                            .span8
+                                                .sl-value
+                                                    | #{firstArrive}
+                                if (setting.itExperience)
+                                    #itExperience.row-fluid
+                                        div
+                                            .span4
+                                                i.icon-briefcase
+                                                | &nbsp;&nbsp;&nbsp;&nbsp;IT経験年数：
+                                            .span8
+                                                .sl-value
+                                                    | #{itExperience}
+                                if (setting.availableDate)
+                                    #availableDate.row-fluid
+                                        div
+                                            .span4
+                                                i.icon-ok
+                                                | &nbsp;&nbsp;&nbsp;&nbsp;稼働可能日：
+                                            .span8
+                                                .sl-value
+                                                    | #{availableDate}
+                                if (setting.address)
+                                    #address.row-fluid
+                                        div
+                                            .span4
+                                                i.icon-home
+                                                | &nbsp;&nbsp;&nbsp;&nbsp;住所：
+                                            .span8
+                                                .sl-value
+                                                    | 〒#{zipCode}）#{address}
+                                if (setting.nearestStation)
+                                    #nearestStation.row-fluid
+                                        div
+                                            .span4
+                                                i.icon-road
+                                                | &nbsp;&nbsp;&nbsp;&nbsp;最寄り駅：
+                                            .span8
+                                                .sl-value
+                                                    | #{nearestStation}
+                                if (setting.telNo)
+                                    #telNo.row-fluid
+                                        div
+                                            .span4
+                                                i.icon-phone
+                                                | &nbsp;&nbsp;&nbsp;&nbsp;電話番号：
+                                            .span8
+                                                .sl-value
+                                                    | #{telNo}
+                                if (setting.email)
+                                    #email.row-fluid
+                                        div
+                                            .span4
+                                                i.icon-envelope
+                                                | &nbsp;&nbsp;&nbsp;&nbsp;E-Mail：
+                                            .span8
+                                                .sl-value
+                                                    | #{email}
+                                if (setting.homePage)
+                                    #homePage.row-fluid
+                                        div
+                                            .span4
+                                                i.icon-globe
+                                                | &nbsp;&nbsp;&nbsp;&nbsp;個人サイト：
+                                            .span8
+                                                .sl-value
+                                                    a(href="http://#{homePage}")
+                                                        | #{homePage}
+                        if (setting.selfIntroduction)
+                            #selfIntroduction
+                                div
+                                    hr
+                                    .row-fluid
+                                        .span3
+                                            h4
+                                                i.icon-user.icon-large
+                                                | &nbsp;&nbsp;自己紹介
+                                        .span9
+                                            .sl-value
+                                                p
+                                                p
+                                                    | #{selfIntroduction}
+                                                p
+                        if (setting.skill)
+                            #skill
+                                div
+                                    hr
+                                    .row-fluid
+                                        .span3
+                                            h4
+                                                i.icon-gears.icon-large
+                                                | &nbsp;&nbsp;スキル
+                                        .span9.row-fluid.item-container
+                                            each item in skill
+                                                div
+                                                    .row-fluid.sl-value
+                                                        .progress.progress-success(style='width: 85%;')
+                                                            .bar(style='width: #{item.level}%;')
+                                                                p.text-left(style='margin-left: 10px;')
+                                                                    i.icon-gear
+                                                                    | &nbsp;&nbsp;#{item.name}
+                        if (setting.languageBackground)
+                            #language
+                                div
+                                    hr
+                                    .row-fluid
+                                        .span3
+                                            h4
+                                                i.icon-comments-alt.icon-large
+                                                | &nbsp;&nbsp;語学能力
+                                        .span9.row-fluid.item-container
+                                            each item in languageBackground
+                                                div
+                                                    .row-fluid.sl-value
+                                                        .progress.progress-success(style='width: 85%;')
+                                                            .bar(style='width: #{item.level}%;')
+                                                                p.text-left(style='margin-left: 10px;')
+                                                                    i.icon-comment-alt
+                                                                    | &nbsp;&nbsp;#{item.language}
+                        if (setting.education)
+                            #education
+                                div
+                                    hr
+                                    .row-fluid
+                                        .span3
+                                            h4
+                                                i.icon-pencil.icon-large
+                                                | &nbsp;&nbsp;学歴
+                                        .span9.row-fluid.item-container
+                                            each item in education
+                                                div
+                                                    .row-fluid.sl-value
+                                                        .span9.schoolArea
+                                                            h5
+                                                                i.icon-book
+                                                                | &nbsp;&nbsp;#{item.school}
+                                                            h6.sl-placeholder
+                                                                i.icon-pencil
+                                                                | &nbsp;&nbsp;#{item.major}
+                                                        .span3.graduateArea
+                                                            span.label.label-info
+                                                                i.icon-bell
+                                                                | &nbsp;&nbsp;#{item.graduate}
+                                                        .detailArea
+                                                            p
+                                                                | #{item.detail}
+                        if (setting.qualification)
+                            #qualification                                                        
+                                div
+                                    hr
+                                    .row-fluid
+                                        .span3
+                                            h4
+                                                i.icon-credit-card.icon-large
+                                                | &nbsp;&nbsp;資格
+                                        .span9.row-fluid.item-container
+                                            each item in qualification
+                                                div
+                                                    .row-fluid.sl-value
+                                                        .span9.qualificationNameArea
+                                                            h5
+                                                                i.icon-bookmark-empty
+                                                                | &nbsp;&nbsp;#{item.qualificationName}
+                                                        .span3.qualifiedDateArea
+                                                            span.label.label-info
+                                                                i.icon-calendar
+                                                                | &nbsp;&nbsp;#{item.qualifiedDate}
+                                                        .detailArea
+                                                            p
+                                                                | #{item.detail}
+                        if (setting.career)
+                            #career
+                                div
+                                    hr
+                                    .row-fluid
+                                        .span3
+                                            h4
+                                                i.icon-briefcase.icon-large
+                                                | &nbsp;&nbsp;職歴
+                                        .span9.row-fluid.item-container
+                                            each item in career
+                                                div
+                                                    .row-fluid.sl-value
+                                                        .span7.companyArea
+                                                            h5
+                                                                i.icon-building
+                                                                | &nbsp;&nbsp;#{item.company}
+                                                            h6.sl-placeholder
+                                                                i.icon-map-marker
+                                                                | &nbsp;&nbsp;#{item.address}
+                                                            h6.sl-placeholder
+                                                                i.icon-user
+                                                                | &nbsp;&nbsp;#{item.position}
+                                                        .span5.dateArea
+                                                            span.label.label-info
+                                                                i.icon-calendar
+                                                                | &nbsp;&nbsp;#{item.startDate}～#{item.endDate}
+                                                        .detailArea
+                                                            p
+                                                                | #{item.detail}
+                        if (setting.workExperience)
+                            #workExperience
+                                div
+                                    hr
+                                    .row-fluid
+                                        .span3
+                                            h4
+                                                i.icon-group.icon-large
+                                                | &nbsp;&nbsp;仕事経験
+                                        .span9.row-fluid.item-container
+                                            each item in workExperience
+                                                div
+                                                    .row-fluid.sl-value
+                                                        .span7.titleArea
+                                                            h5
+                                                                i.icon-flag-alt
+                                                                | &nbsp;&nbsp;#{item.title}
+                                                            h6.sl-placeholder
+                                                                i.icon-wrench
+                                                                | &nbsp;&nbsp;#{item.position}
+                                                        .span5.dateArea
+                                                            span.label.label-info
+                                                                i.icon-calendar
+                                                                | &nbsp;&nbsp;#{item.startDate}～#{item.endDate}
+                                                        .detailArea
+                                                            p
+                                                                | #{item.detail}
+            #footer

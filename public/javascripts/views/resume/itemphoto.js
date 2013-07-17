@@ -1,10 +1,10 @@
 define([
-        'views/resume/itembase',
-        'text!templates/resume/default/itemphoto.html',
-        'text!templates/resume/style1/itemphoto.html',
-        'text!templates/resume/style2/itemphoto.html',
-        'text!templates/resume/style3/itemphoto.html',
-        'text!templates/resume/style4/itemphoto.html'
+    'views/resume/itembase',
+    'text!templates/resume/default/itemphoto.html',
+    'text!templates/resume/style1/itemphoto.html',
+    'text!templates/resume/style2/itemphoto.html',
+    'text!templates/resume/style3/itemphoto.html',
+    'text!templates/resume/style4/itemphoto.html'
 ], function(
     BaseView,
     defaultTemplate,
@@ -40,12 +40,12 @@ define([
             this.ui = _.extend({}, this.commonUI, {
                 photo: 'img',
                 inputFile: 'input[type="file"]',
-                hideBtn: '.hideBtn',
+                hideBtn: '.btn-hide',
             });
 
             this.events = _.extend({}, this.commonEvents, {
                 // Update model when input's value was chenaged
-                'click .btn-value': 'updateModel',
+                'click .btn-hide': 'updateModel',
             });
         },
 
@@ -57,49 +57,88 @@ define([
             // Listen to the universal-click, switch to view-mode when input lost focus
             this.listenTo(vent, 'click:universal', this.switchToValue);
 
-            // Attach popover for remove button in edit panel
-            this._appendInfoOnRemoveBtn();
+            // Attach popover for input control in edit panel
+            this._appendInfoOnInput();
 
             this.ui.inputFile.fileupload({
                 type: 'PUT',
                 dataType: 'json',
                 done: function(e, data) {
-                    self.ui.photo.fadeOut(function(){
-                        self.ui.photo.attr('src', '/upload/'+data.result.photo);
+                    self.ui.photo.fadeOut(function() {
+                        self.ui.photo.attr('src', '/upload/' + data.result.photo);
                         self.ui.photo.fadeIn();
                     });
-                    // console.log(data);
-                    // $.each(data.result.files, function(index, file) {
-                    //  $('<p/>').text(file.name).appendTo(self.$el);
-                    // });
                 }
             });
         },
 
         /*Update model when edit finished*/
-        updateModel: function(event) {
+        updateModel: function() {
 
             var self = this;
 
-            // Get input value
-            var newVal = $(event.target).text();
+            // toggle value bettween "true"(display) and "false"(hide)
+            var data = this.model.get('setting');
+            data[this.item] = !data[this.item];
 
-            // Prepare the date for model update
-            var data = {};
-            data[this.item] = newVal;
-
+            console.log(data);
             // Save the model
-            this.model.save(data, {
+            this.model.save({
+                setting: data
+            }, {
                 // If save success
                 success: function() {
+
+                    var icon = self.ui.hideBtn.find('i');
+                    var message = '';
+                    
                     // Update the view panel
-                    self.ui.value.text(newVal);
+                    icon.removeClass('icon-eye-close icon-eye-open');
+                    if (data[self.item]) {
+                        icon.addClass('icon-eye-close');
+                        message = "写真を公開にしました。";
+                    } else {
+                        icon.addClass('icon-eye-open');
+                        message = "写真を非公開にしました。";
+                    }
+                    self._appendInfoOnInput();
+
                     // Switch to view panel
                     self.switchToValue();
+
+                    // say hello to user
+                    noty({
+                        type: 'success',
+                        timeout: 3000,
+                        text: message,
+                        layout: 'bottomRight'
+                    })
                 },
                 // use patch
                 patch: true
             });
+        },
+
+        _appendInfoOnInput: function() {
+
+            this._appendInfoOn(this.$el.find('.fileinput-button'), {
+                title: '写真を変更',
+                content: 'ここをクリックして写真を選択できます。'
+            });
+
+            var popoverContent = {
+                title: '写真を非公開にする',
+                content: '写真を非公開にすれば、他人からあなたの写真を見えなくなります。<br><small class="text-error">※只今写真公開中です</small>'
+            }
+
+            if (!this.model.get('setting').photo) {
+                popoverContent = {
+                    title: '写真を公開にする',
+                    content: '写真を公開にすれば、他人からあなたの写真を見えます。 <br><small class="text-error">※只今写真非公開です</small>'
+                }
+            }
+
+            this._appendInfoOn(this.ui.hideBtn, popoverContent);
         }
 
     });

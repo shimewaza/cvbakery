@@ -1,5 +1,6 @@
 <%
     var photo = obj.photo || 'default.png';
+    var icon = obj.setting.photo ? 'icon-eye-close' : 'icon-eye-open';
 %>
 
 <div class="sl-photo">
@@ -13,6 +14,6 @@
         <input id="fileupload" type="file" name="photo" data-url="/resume/<%- obj._id %>">
     </span>
     <span class="btn btn-danger btn-hide">
-        <i class="icon-eye-close icon-white"></i>
+        <i class="<%- icon %> icon-white"></i>
     </span>
 </div>

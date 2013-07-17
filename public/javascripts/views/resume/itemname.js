@@ -127,13 +127,55 @@ define([
                 // If save success
                 success: function() {
                     // Update the view panel
-                    // self.ui.value.text(newVal);
+                    self._renderValue();
                     // Switch to view panel
                     self.switchToValue();
                 },
                 // use patch
                 patch: true
             });
+        },
+
+        _renderValue: function() {
+
+            var firstName = this.ui.inputFirstName.val();
+            var lastName = this.ui.inputLastName.val();
+            var firstNameKana = this.ui.inputFirstNameKana.val();
+            var lastNameKana = this.ui.inputLastNameKana.val();
+            var firstNameEn = this.ui.inputFirstNameEn.val();
+            var lastNameEn = this.ui.inputLastNameEn.val();
+
+            if (!firstName && !lastName && !firstNameKana && !lastNameKana && !firstNameEn && !lastNameEn) {
+
+                this.ui.value.empty().append('<h4 class="sl-placeholder">氏名を入力</h4>');
+
+            } else if (this.options.templateRef === "style2") {
+
+                this.ui.value.empty().append('<h4></h4>');
+                var innerH4 = this.ui.value.find('h4');
+                if (firstName || lastName) {
+                    innerH4.append(firstName + '&nbsp;&nbsp;&nbsp;&nbsp;' + lastName);
+                }
+                if (firstNameKana || lastNameKana) {
+                    innerH4.append(firstNameKana + '&nbsp;&nbsp;&nbsp;&nbsp;' + lastNameKana);
+                } 
+                if (firstNameEn || lastNameEn) {
+                    innerH4.append(firstNameEn + '&nbsp;&nbsp;&nbsp;&nbsp;' + lastNameEn);
+                } 
+            } else {
+                
+                this.ui.value.empty();
+
+                if (firstNameEn || lastNameEn) {
+                    this.ui.value.append('<h5>' + firstNameEn + '&nbsp;&nbsp;&nbsp;&nbsp;' + lastNameEn + '</h5>');
+                }
+                if (firstNameKana || lastNameKana) {
+                    this.ui.value.append('<h5>' + firstNameKana + '&nbsp;&nbsp;&nbsp;&nbsp;' + lastNameKana + '</h5>');
+                } 
+                if (firstName || lastName) {
+                    this.ui.value.append('<h4>' + firstName + '&nbsp;&nbsp;&nbsp;&nbsp;' + lastName + '</h4>');
+                }
+            }
         },
 
         _appendInfoOnInput: function() {

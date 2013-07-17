@@ -125,6 +125,19 @@ exports.pdf = function(req, res) {
 	}
 };
 
+exports.myresume = function(req, res) {
+
+	Resume.findOne({
+		_id: req.params.id
+	}, function(err, profile) {
+		if (err) res.send("error happend: " + err);
+		console.log(profile);
+		if (profile) {
+			res.render('resume/style1', profile);
+		}
+	});
+}
+
 // Generate PDF
 createPDF = function(profile) {
 

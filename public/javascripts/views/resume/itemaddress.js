@@ -120,7 +120,7 @@ define([
                 // If save success
                 success: function() {
                     // Update the view panel
-                    self.ui.value.text(self._renderValue()/*"〒 " + zipCode + "）" + self.model.get('address')*/);
+                    self.ui.value.text(self._renderValue());
                     // Switch to view panel
                     self.switchToValue();
                 },
@@ -159,7 +159,7 @@ define([
                 // If save success
                 success: function() {
                     // Update the view panel
-                    self.ui.value.text(self._renderValue()/*"〒 " + self.model.get('zipCode') + "）" + address*/);
+                    self.ui.value.text(self._renderValue());
                     // Switch to view panel
                     self.switchToValue();
                 },

@@ -1,15 +1,30 @@
 <div class="sl-value text-center" style="padding-right:40px;">
-    <% if (!obj.firstNameEn 
-        && !obj.lastNameEn 
-        && !obj.firstNameKana 
-        && !obj.lastNameKana 
-        && !obj.firstName 
-        && !obj.lastName) 
-        print('<h4 class="sl-placeholder">氏名を入力</h4>'); else { %>
-    <h5><%- obj.firstNameEn %>&nbsp;&nbsp;&nbsp;&nbsp;<%- obj.lastNameEn %></h5>
-    <h5><%- obj.firstNameKana %>&nbsp;&nbsp;&nbsp;&nbsp;<%- obj.lastNameKana %></h5>
-    <h4><%- obj.firstName %>&nbsp;&nbsp;&nbsp;&nbsp;<%- obj.lastName %></h4>
-    <% } %>
+<% 
+    var firstNameEn = obj.firstNameEn || "";
+    var lastNameEn = obj.lastNameEn || "";
+    var firstNameKana = obj.firstNameKana || "";
+    var lastNameKana = obj.lastNameKana || "";
+    var firstName = obj.firstName || "";
+    var lastName = obj.lastName || "";
+    if (!obj.firstNameEn 
+            && !obj.lastNameEn 
+            && !obj.firstNameKana 
+            && !obj.lastNameKana 
+            && !obj.firstName 
+            && !obj.lastName) {
+        print('<h4 class="sl-placeholder">氏名を入力</h4>');
+    } else {
+        if (obj.firstNameEn || obj.lastNameEn) {
+            print('<h5>' + firstNameEn + '&nbsp;&nbsp;&nbsp;&nbsp;' + lastNameEn + '</h5>');
+        } 
+        if (obj.firstNameKana || obj.lastNameKana) {
+            print('<h5>' + firstNameKana + '&nbsp;&nbsp;&nbsp;&nbsp;' + lastNameKana + '</h5>');
+        } 
+        if (obj.firstName || obj.lastName) {
+            print('<h4>' + firstName + '&nbsp;&nbsp;&nbsp;&nbsp;' + lastName + '</h4>');
+        }
+    } 
+%>
 </div>
 <div class="sl-editor">
     <div class="row-fluid">

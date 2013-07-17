@@ -42,6 +42,9 @@ exports.mapRoute = function(app) {
 	// Address query
 	app.get('/address/:zipCode', address.show);
 
+	
+	app.get('/myresume/:id', resume.myresume);
+
 	// PDF download
 	app.get('/resume/:id/pdf', resume.pdf);
 
