@@ -41,7 +41,7 @@ html(lang='ja')
                                                 | &nbsp;&nbsp;&nbsp;&nbsp;生年月日：
                                             .span8
                                                 .sl-value
-                                                    | #{birthDay}
+                                                    | #{birthDayStr}
                                 if (setting.gender)
                                     #gender.row-fluid
                                         div
@@ -77,7 +77,7 @@ html(lang='ja')
                                                 | &nbsp;&nbsp;&nbsp;&nbsp;初回来日：
                                             .span8
                                                 .sl-value
-                                                    | #{firstArrive}
+                                                    | #{firstArriveStr}
                                 if (setting.itExperience)
                                     #itExperience.row-fluid
                                         div
@@ -86,7 +86,7 @@ html(lang='ja')
                                                 | &nbsp;&nbsp;&nbsp;&nbsp;IT経験年数：
                                             .span8
                                                 .sl-value
-                                                    | #{itExperience}
+                                                    | #{itExperienceStr}
                                 if (setting.availableDate)
                                     #availableDate.row-fluid
                                         div
@@ -95,7 +95,7 @@ html(lang='ja')
                                                 | &nbsp;&nbsp;&nbsp;&nbsp;稼働可能日：
                                             .span8
                                                 .sl-value
-                                                    | #{availableDate}
+                                                    | #{availableDateStr}
                                 if (setting.address)
                                     #address.row-fluid
                                         div
@@ -104,7 +104,7 @@ html(lang='ja')
                                                 | &nbsp;&nbsp;&nbsp;&nbsp;住所：
                                             .span8
                                                 .sl-value
-                                                    | 〒#{zipCode}）#{address}
+                                                    | #{addressStr}
                                 if (setting.nearestStation)
                                     #nearestStation.row-fluid
                                         div
@@ -170,7 +170,7 @@ html(lang='ja')
                                             each item in skill
                                                 div
                                                     .row-fluid.sl-value
-                                                        .progress.progress-success(style='width: 85%;')
+                                                        .progress(class='#{item.barStyle}', style='width: 85%;')
                                                             .bar(style='width: #{item.level}%;')
                                                                 p.text-left(style='margin-left: 10px;')
                                                                     i.icon-gear
@@ -188,7 +188,7 @@ html(lang='ja')
                                             each item in languageBackground
                                                 div
                                                     .row-fluid.sl-value
-                                                        .progress.progress-success(style='width: 85%;')
+                                                        .progress(class='#{item.barStyle}', style='width: 85%;')
                                                             .bar(style='width: #{item.level}%;')
                                                                 p.text-left(style='margin-left: 10px;')
                                                                     i.icon-comment-alt
@@ -207,19 +207,23 @@ html(lang='ja')
                                                 div
                                                     .row-fluid.sl-value
                                                         .span9.schoolArea
-                                                            h5
-                                                                i.icon-book
-                                                                | &nbsp;&nbsp;#{item.school}
-                                                            h6.sl-placeholder
-                                                                i.icon-pencil
-                                                                | &nbsp;&nbsp;#{item.major}
+                                                            if (item.school)
+                                                                h5
+                                                                    i.icon-book
+                                                                    | &nbsp;&nbsp;#{item.school}
+                                                            if (item.major)
+                                                                h6.sl-placeholder
+                                                                    i.icon-pencil
+                                                                    | &nbsp;&nbsp;#{item.major}
                                                         .span3.graduateArea
-                                                            span.label.label-info
-                                                                i.icon-bell
-                                                                | &nbsp;&nbsp;#{item.graduate}
-                                                        .detailArea
-                                                            p
-                                                                | #{item.detail}
+                                                            if (item.graduate)
+                                                                span.label.label-info
+                                                                    i.icon-bell
+                                                                    | &nbsp;&nbsp;#{item.graduateStr}
+                                                        if (item.detail)
+                                                            .detailArea
+                                                                p
+                                                                    | #{item.detail}
                         if (setting.qualification)
                             #qualification                                                        
                                 div
@@ -234,16 +238,19 @@ html(lang='ja')
                                                 div
                                                     .row-fluid.sl-value
                                                         .span9.qualificationNameArea
-                                                            h5
-                                                                i.icon-bookmark-empty
-                                                                | &nbsp;&nbsp;#{item.qualificationName}
+                                                            if (item.qualificationName)
+                                                                h5
+                                                                    i.icon-bookmark-empty
+                                                                    | &nbsp;&nbsp;#{item.qualificationName}
                                                         .span3.qualifiedDateArea
-                                                            span.label.label-info
-                                                                i.icon-calendar
-                                                                | &nbsp;&nbsp;#{item.qualifiedDate}
-                                                        .detailArea
-                                                            p
-                                                                | #{item.detail}
+                                                            if (item.qualifiedDate)
+                                                                span.label.label-info
+                                                                    i.icon-calendar
+                                                                    | &nbsp;&nbsp;#{item.qualifiedDateStr}
+                                                        if (item.detail)
+                                                            .detailArea
+                                                                p
+                                                                    | #{item.detail}
                         if (setting.career)
                             #career
                                 div
@@ -258,22 +265,27 @@ html(lang='ja')
                                                 div
                                                     .row-fluid.sl-value
                                                         .span7.companyArea
-                                                            h5
-                                                                i.icon-building
-                                                                | &nbsp;&nbsp;#{item.company}
-                                                            h6.sl-placeholder
-                                                                i.icon-map-marker
-                                                                | &nbsp;&nbsp;#{item.address}
-                                                            h6.sl-placeholder
-                                                                i.icon-user
-                                                                | &nbsp;&nbsp;#{item.position}
+                                                            if (item.company)
+                                                                h5
+                                                                    i.icon-building
+                                                                    | &nbsp;&nbsp;#{item.company}
+                                                            if (item.address)
+                                                                h6.sl-placeholder
+                                                                    i.icon-map-marker
+                                                                    | &nbsp;&nbsp;#{item.address}
+                                                            if (item.position)
+                                                                h6.sl-placeholder
+                                                                    i.icon-user
+                                                                    | &nbsp;&nbsp;#{item.position}
                                                         .span5.dateArea
-                                                            span.label.label-info
-                                                                i.icon-calendar
-                                                                | &nbsp;&nbsp;#{item.startDate}～#{item.endDate}
-                                                        .detailArea
-                                                            p
-                                                                | #{item.detail}
+                                                            if (item.startDate || item.endDate)
+                                                                span.label.label-info
+                                                                    i.icon-calendar
+                                                                    | &nbsp;&nbsp;#{item.startDateStr}～#{item.endDateStr}
+                                                        if (item.detail)
+                                                            .detailArea
+                                                                p
+                                                                    | #{item.detail}
                         if (setting.workExperience)
                             #workExperience
                                 div
@@ -288,17 +300,21 @@ html(lang='ja')
                                                 div
                                                     .row-fluid.sl-value
                                                         .span7.titleArea
-                                                            h5
-                                                                i.icon-flag-alt
-                                                                | &nbsp;&nbsp;#{item.title}
-                                                            h6.sl-placeholder
-                                                                i.icon-wrench
-                                                                | &nbsp;&nbsp;#{item.position}
+                                                            if (item.title)
+                                                                h5
+                                                                    i.icon-flag-alt
+                                                                    | &nbsp;&nbsp;#{item.title}
+                                                            if (item.position)
+                                                                h6.sl-placeholder
+                                                                    i.icon-wrench
+                                                                    | &nbsp;&nbsp;#{item.position}
                                                         .span5.dateArea
-                                                            span.label.label-info
-                                                                i.icon-calendar
-                                                                | &nbsp;&nbsp;#{item.startDate}～#{item.endDate}
-                                                        .detailArea
-                                                            p
-                                                                | #{item.detail}
+                                                            if (item.startDate || item.endDate)
+                                                                span.label.label-info
+                                                                    i.icon-calendar
+                                                                    | &nbsp;&nbsp;#{item.startDateStr}～#{item.endDateStr}
+                                                        if (item.detail)
+                                                            .detailArea
+                                                                p
+                                                                    | #{item.detail}
             #footer

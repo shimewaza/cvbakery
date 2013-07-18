@@ -1,6 +1,6 @@
 var Mailer = require('../components/mailer.js');
 var Account = require('../models/account.js');
-var Resume = require('../models/resume.js');
+var Resume = require('../models/resume/resume.js');
 var TempAccount = require('../models/tempaccount.js');
 
 var personMenu = [{

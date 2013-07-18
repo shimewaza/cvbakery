@@ -57,6 +57,10 @@ define([
 
 		// After render
 		onRender: function() {
+
+			// listen to the universal-click, switch to view-mode when input lost focus
+			this.listenTo(vent, 'logout:sessionTimeOut', this.doLogout);
+
 			// show menu
 			this.header.show(this.menuView);
 		},
@@ -81,26 +85,34 @@ define([
 				dataType: 'json',
 
 				success: function(data) {
-					// expand screen to hide menu panel
-					self.onFullScreen(function() {
+					self.doLogout();
+				}
+			});
+		},
 
-						// hide tool button with animation
-						$('#partScreenBtn').hide('drop', {
-							direction: 'right'
-						}, function() {
+		// This is how actually logout affect page, used by multiple events
+		doLogout: function() {
 
-							$('#fullScreenBtn').hide('drop', {
-								direction: 'right'
-							}, function() {
+			var self = this;
 
-								self.$el.fadeOut(function() {
-									// singnal logout success
-									vent.trigger('logout:success');
-								});
-							});
+			// expand screen to hide menu panel
+			this.onFullScreen(function() {
+
+				// hide tool button with animation
+				$('#partScreenBtn').hide('drop', {
+					direction: 'right'
+				}, function() {
+
+					$('#fullScreenBtn').hide('drop', {
+						direction: 'right'
+					}, function() {
+
+						self.$el.fadeOut(function() {
+							// singnal logout success
+							vent.trigger('logout:success');
 						});
 					});
-				}
+				});
 			});
 		},
 

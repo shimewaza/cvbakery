@@ -188,10 +188,27 @@ define(['views/resume/compositeempty'], function(EmptyView) {
             // Save the model
             this.model.save(data, {
 
-                // If save success
+                // if save success
                 success: function() {
                     // Switch to view panel
                     self.switchToValue();
+                },
+                // handle some error status
+                statusCode: {
+                    // unauthorized
+                    401: function(xhr, status) {
+                        noty({
+                            type: 'error',
+                            timeout: 5000,
+                            text: xhr.responseText,
+                            layout: 'bottomRight'
+                        })
+                        // singnal logout, main page will capture this
+                        vent.trigger('logout:sessionTimeOut');
+                    }
+                },
+                // if other errors happend
+                error: function(xhr, status) {
                 },
                 // use patch
                 patch: true

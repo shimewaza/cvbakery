@@ -37,7 +37,7 @@ app.configure(function() {
     } else if (/\/activate\/.*/.test(req.path) || /\/myresume\/.*/.test(req.path)) {
       next();
     } else if (!req.session.accountId) {
-      res.status(401).send("ログインしてください。");
+      res.status(401).send("セッション切りましたので、再度ログインしてください。");
     } else {
       next();
     }

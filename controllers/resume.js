@@ -2,7 +2,7 @@ var util = require('util');
 var PDFDocument = require('pdfkit');
 
 // Definition of Resume
-var Resume = require('../models/resume.js');
+var Resume = require('../models/resume/resume.js');
 
 // Index
 exports.index = function(req, res) {
@@ -129,11 +129,12 @@ exports.myresume = function(req, res) {
 
 	Resume.findOne({
 		_id: req.params.id
-	}, function(err, profile) {
+	}, function(err, resume) {
 		if (err) res.send("error happend: " + err);
-		console.log(profile);
-		if (profile) {
-			res.render('resume/style1', profile);
+		if (resume) {
+			res.render('resume/' + resume.template, resume);
+		} else {
+			res.send("resume not exists");
 		}
 	});
 }

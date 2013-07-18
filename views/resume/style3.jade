@@ -1,0 +1,297 @@
+!!! 5
+html(lang='ja')
+    head
+        title CV Bakery
+        meta(charset='utf-8')
+        link(type='text/css', rel='stylesheet', href='/stylesheets/bootstrap.css')
+        link(type='text/css', rel='stylesheet', href='/stylesheets/bootstrap-responsive.css')
+        link(type='text/css', rel='stylesheet', href='/stylesheets/font-awesome.min.css')
+        link(type='text/css', rel='stylesheet', href='/stylesheets/jquery-ui-1.10.3.custom.min.css')
+        link(type='text/css', rel='stylesheet', href='/stylesheets/style.css')
+    body(style='padding-top: 40px; background-image: url(http://localhost:3000/images/resume/#{backgroundImg}); background-position: initial initial; background-repeat: repeat repeat;')
+        #mainPage
+            #header
+                #menuPanel.navbar.navbar-fixed-top(style='top: 0px;')
+                    .navbar-inner
+                        a.brand(href='http://www.cvbakery.com') CV Bakery
+                        ul.nav
+                #content
+                    #resumePanel.well.well-large.container-fluid.sl-panel.style3
+                        .row-fluid
+                            .span4
+                                #photo.row-fluid
+                                    div
+                                        .sl-photo
+                                            img.img-polaroid(src='/upload/#{photo}')
+                                #name
+                                    div
+                                        .sl-value.text-center
+                                            h5
+                                                | #{firstNameEn}&nbsp;&nbsp;&nbsp;&nbsp;#{lastNameEn}
+                                            h5
+                                                | #{firstNameKana}&nbsp;&nbsp;&nbsp;&nbsp;#{lastNameKana}
+                                            h4
+                                                | #{firstName}&nbsp;&nbsp;&nbsp;&nbsp;#{lastName}
+                                if (setting.selfIntroduction)
+                                    #selfIntroduction
+                                        div
+                                            hr
+                                            .row-fluid
+                                                .span12
+                                                    .sl-value
+                                                        p
+                                                        p
+                                                            | #{selfIntroduction}
+                                                        p
+                                if (setting.skill)
+                                    #skill
+                                        div
+                                            hr
+                                            .row-fluid
+                                                .span12.row-fluid.item-container
+                                                    each item in skill
+                                                        div
+                                                            .row-fluid.sl-value
+                                                                .progress(class='#{item.barStyle}')
+                                                                    .bar(style='width: #{item.level}%;')
+                                                                        p.text-left(style='margin-left: 10px;')
+                                                                            i.icon-gear
+                                                                            | &nbsp;&nbsp;#{item.name}
+                                if (setting.languageBackground)
+                                    #language
+                                        div
+                                            hr
+                                            .row-fluid
+                                                .span12.row-fluid.item-container
+                                                    each item in languageBackground
+                                                        div
+                                                            .row-fluid.sl-value
+                                                                .progress(class='#{item.barStyle}')
+                                                                    .bar(style='width: #{item.level}%;')
+                                                                        p.text-left(style='margin-left: 10px;')
+                                                                            i.icon-comment-alt
+                                                                            | &nbsp;&nbsp;#{item.language}
+                                hr
+                                if (setting.birthDay)
+                                    #birthDay.row-fluid
+                                        div
+                                            .span1.offset1
+                                                i.icon-calendar
+                                            .span10
+                                                .sl-value
+                                                    | #{birthDayStr}
+                                if (setting.gender)
+                                    #gender.row-fluid
+                                        div
+                                            .span1.offset1
+                                                i.icon-leaf
+                                            .span10
+                                                .sl-value
+                                                    | #{gender}
+                                if (setting.nationality)
+                                    #nationality.row-fluid
+                                        div
+                                            .span1.offset1
+                                                i.icon-flag
+                                            .span10
+                                                .sl-value
+                                                    | #{nationality}
+                                if (setting.married)
+                                    #married.row-fluid
+                                        div
+                                            .span1.offset1
+                                                i.icon-heart
+                                            .span10
+                                                .sl-value
+                                                    | #{married}
+                                if (setting.firstArrive)
+                                    #firstArrive.row-fluid
+                                        div
+                                            .span1.offset1
+                                                i.icon-plane
+                                            .span10
+                                                .sl-value
+                                                    | #{firstArriveStr}
+                                if (setting.itExperience)
+                                    #itExperience.row-fluid
+                                        div
+                                            .span1.offset1
+                                                i.icon-briefcase
+                                            .span10
+                                                .sl-value
+                                                    | #{itExperienceStr}
+                                if (setting.availableDate)
+                                    #availableDate.row-fluid
+                                        div
+                                            .span1.offset1
+                                                i.icon-ok
+                                            .span10
+                                                .sl-value
+                                                    | #{availableDateStr}
+                                if (setting.address)
+                                    #address.row-fluid
+                                        div
+                                            .span1.offset1
+                                                i.icon-home
+                                            .span10
+                                                .sl-value
+                                                    | #{addressStr}
+                                if (setting.nearestStation)
+                                    #nearestStation.row-fluid
+                                        div
+                                            .span1.offset1
+                                                i.icon-road
+                                            .span10
+                                                .sl-value
+                                                    | #{nearestStation}
+                                if (setting.telNo)
+                                    #telNo.row-fluid
+                                        div
+                                            .span1.offset1
+                                                i.icon-phone
+                                            .span10
+                                                .sl-value
+                                                    | #{telNo}
+                                if (setting.email)
+                                    #email.row-fluid
+                                        div
+                                            .span1.offset1
+                                                i.icon-envelope
+                                            .span10
+                                                .sl-value
+                                                    | #{email}
+                                if (setting.homePage)
+                                    #homePage.row-fluid
+                                        div
+                                            .span1.offset1
+                                                i.icon-globe
+                                            .span10
+                                                .sl-value
+                                                    a(href="http://#{homePage}")
+                                                        | #{homePage}
+                            .span8
+                                if (setting.education)
+                                    #education
+                                        div
+                                            .row-fluid.composite-header
+                                                .span2
+                                                    h4
+                                                        i.icon-pencil.icon-large
+                                                        | &nbsp;&nbsp;学歴
+                                            .row-fluid
+                                                .span12.row-fluid.item-container
+                                                    each item in education
+                                                        div
+                                                            .span6.row-fluid.sl-value
+                                                                span.span7.schoolArea
+                                                                    if (item.school)
+                                                                        h5
+                                                                            i.icon-book
+                                                                            | &nbsp;&nbsp;#{item.school}
+                                                                    if (item.major)
+                                                                        h6.sl-placeholder
+                                                                            i.icon-pencil
+                                                                            | &nbsp;&nbsp;#{item.major}
+                                                                small.span5.graduateArea
+                                                                    if (item.graduate)
+                                                                        span.label.label-info
+                                                                            i.icon-bell
+                                                                            | &nbsp;&nbsp;#{item.graduateStr}
+                                                                if (item.detail)
+                                                                    .detailArea
+                                                                        p
+                                                                            | #{item.detail}
+                                if (setting.qualification)
+                                    #qualification
+                                        div
+                                            .row-fluid.composite-header
+                                                .span2
+                                                    h4
+                                                        i.icon-credit-card.icon-large
+                                                        | &nbsp;&nbsp;資格
+                                            .row-fluid
+                                                .span12.row-fluid.item-container
+                                                    each item in qualification
+                                                        div
+                                                            .span6.row-fluid.sl-value
+                                                                .span7.qualificationNameArea
+                                                                    if (item.qualificationName)
+                                                                        h5
+                                                                            i.icon-bookmark-empty
+                                                                            | &nbsp;&nbsp;#{item.qualificationName}
+                                                                .span5.qualifiedDateArea
+                                                                    if (item.qualifiedDate)
+                                                                        span.label.label-info
+                                                                            i.icon-calendar
+                                                                            | &nbsp;&nbsp;#{item.qualifiedDateStr}
+                                                                if (item.detail)
+                                                                    .detailArea
+                                                                        p
+                                                                            | #{item.detail}
+                                if (setting.career)
+                                    #career
+                                        div
+                                            .row-fluid.composite-header
+                                                .span2
+                                                    h4
+                                                        i.icon-briefcase.icon-large
+                                                        | &nbsp;&nbsp;職歴
+                                            .row-fluid
+                                                .span12.row-fluid.item-container
+                                                    each item in career
+                                                        div
+                                                            .span6.row-fluid.sl-value
+                                                                if (item.startDate || item.endDate)
+                                                                    .dateArea
+                                                                        span.label.label-info
+                                                                            i.icon-calendar
+                                                                            | &nbsp;&nbsp;#{item.startDateStr}～#{item.endDateStr}
+                                                                .companyArea
+                                                                    if (item.company)
+                                                                        h5
+                                                                            i.icon-building
+                                                                            | &nbsp;&nbsp;#{item.company}
+                                                                    if (item.address)
+                                                                        h6.sl-placeholder
+                                                                            i.icon-map-marker
+                                                                            | &nbsp;&nbsp;#{item.address}
+                                                                    if (item.position)
+                                                                        h6.sl-placeholder
+                                                                            i.icon-user
+                                                                            | &nbsp;&nbsp;#{item.position}
+                                                                if (item.detail)
+                                                                    .detailArea
+                                                                        p
+                                                                            | #{item.detail}
+                                if (setting.workExperience)
+                                    #workExperience
+                                        div
+                                            .row-fluid.composite-header
+                                                .span3
+                                                    h4
+                                                        i.icon-group.icon-large
+                                                        | &nbsp;&nbsp;仕事経験
+                                            .row-fluid
+                                                .span12.row-fluid.item-container
+                                                    each item in workExperience
+                                                        div
+                                                            .span6.row-fluid.sl-value
+                                                                if (item.startDate || item.endDate)
+                                                                    .dateArea
+                                                                        span.label.label-info
+                                                                            i.icon-calendar
+                                                                            | &nbsp;&nbsp;#{item.startDateStr}～#{item.endDateStr}
+                                                                .titleArea
+                                                                    if (item.title)
+                                                                        h5
+                                                                            i.icon-flag-alt
+                                                                            | &nbsp;&nbsp;#{item.title}
+                                                                    if (item.position)
+                                                                        h6.sl-placeholder
+                                                                            i.icon-wrench
+                                                                            | &nbsp;&nbsp;#{item.position}
+                                                                if (item.detail)
+                                                                    .detailArea
+                                                                        p
+                                                                            | #{item.detail}
+            #footer

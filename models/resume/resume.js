@@ -1,6 +1,17 @@
+var moment = require('moment');
 var mongoose = require('mongoose');
-var metadata = require('./metadata');
+var metadata = require('../metadata');
 var Schema = mongoose.Schema;
+
+// Sub documents
+var Skill = require('./skill');
+var Career = require('./career');
+var Education = require('./education');
+var Qualification = require('./qualification');
+var WorkExperience = require('./workexperience');
+var LanguageBackground = require('./languagebackground');
+
+moment.lang('ja');
 
 var Resume = new Schema({
 
@@ -123,118 +134,17 @@ var Resume = new Schema({
 		trim: true
 	},
 	// Language Background
-	languageBackground: [{
-			language: {
-				type: String,
-				trim: true
-			},
-			level: {
-				type: Number,
-				min: 0,
-				max: 100
-			}
-		}
-	],
+	languageBackground: [LanguageBackground],
 	// Education
-	education: [{
-			graduate: {
-				type: Date
-			},
-			school: {
-				type: String,
-				trim: true
-			},
-			major: {
-				type: String,
-				trim: true
-			},
-			detail: {
-				type: String,
-				trim: true	
-			}
-		}
-	],
+	education: [Education],
 	// Career
-	career: [{
-			startDate: {
-				type: Date
-			},
-			endDate: {
-				type: Date
-			},
-			company: {
-				type: String,
-				trim: true
-			},
-			address: {
-				type: String,
-				trim: true
-			},
-			position: {
-				type: String,
-				trim: true
-			},
-			detail: {
-				type: String,
-				trim: true	
-			}
-		}
-	],
+	career: [Career],
 	// Work Experience
-	workExperience: [{
-			startDate: {
-				type: Date
-			},
-			endDate: {
-				type: Date
-			},
-			title: {
-				type: String,
-				trim: true
-			},
-			position: {
-				type: String,
-				trim: true
-			},
-			detail: {
-				type: String,
-				trim: true	
-			}
-		}
-	],
+	workExperience: [WorkExperience],
 	// Qualification
-	qualification: [{
-			qualifiedDate: {
-				type: Date
-			},
-			qualificationName: {
-				type: String,
-				trim: true
-			},
-			detail: {
-				type: String,
-				trim: true	
-			}
-		}
-	],
+	qualification: [Qualification],
 	// Skill
-	skill: [{
-			name: {
-				type: String,
-				trim: true
-			},
-			level: {
-				type: Number,
-				min: 0,
-				max: 100
-			}
-		}
-	],
-	// Other Skill
-	skillRemark: {
-		type: String,
-		trim: true
-	},
+	skill: [Skill],
 	// BackGround Image
 	backgroundImg: {
 		type: String,
@@ -362,6 +272,36 @@ var Resume = new Schema({
 		type: String,
 		trim: true
 	}
+});
+
+Resume.virtual('birthDayStr').get(function() {
+	return moment(new Date(this.birthDay)).format('LL');
+});
+
+Resume.virtual('firstArriveStr').get(function() {
+	return moment(new Date(this.firstArrive)).format('LL');
+});
+
+Resume.virtual('availableDateStr').get(function() {
+	return moment(new Date(this.availableDate)).format('LL');
+});
+
+Resume.virtual('availableDateStr').get(function() {
+	return moment(new Date(this.availableDate)).format('LL');
+});
+
+Resume.virtual('itExperienceStr').get(function() {
+	if (this.itExperience)
+		return this.itExperience + '年';
+	else
+		return "";
+});
+
+Resume.virtual('addressStr').get(function() {
+	if (this.zipCode)
+		return '〒' + this.zipCode + '）' + this.address;
+	else
+		return this.address;
 });
 
 module.exports = mongoose.model('Resume', Resume);

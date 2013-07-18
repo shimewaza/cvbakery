@@ -1,6 +1,6 @@
 var util = require('util');
 var Account = require('../models/account.js');
-var Resume = require('../models/resume.js');
+var Resume = require('../models/resume/resume.js');
 
 var personMenu = [{
 	icon: 'icon-home',
