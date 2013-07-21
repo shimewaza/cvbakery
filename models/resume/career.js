@@ -1,4 +1,5 @@
 var moment = require('moment');
+var markdown = require('markdown').markdown;
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
@@ -41,6 +42,10 @@ Career.virtual('endDateStr').get(function() {
 		return moment(new Date(this.endDate)).format('LL');
 	else
 		return "";
+});
+
+Career.virtual('detailStr').get(function() {
+	return markdown.toHTML(this.detail);
 });
 
 module.exports = Career;

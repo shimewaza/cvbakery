@@ -22,7 +22,10 @@ html(lang='ja')
                                 #photo.row-fluid
                                     div
                                         .sl-photo
-                                            img.img-polaroid(src='/upload/#{photo}')
+                                            if (setting.photo)
+                                                img.img-polaroid(src='/upload/#{photo}')
+                                            else
+                                                img.img-polaroid(src='/upload/default.png')
                             .span6
                                 #name
                                     div
@@ -39,7 +42,7 @@ html(lang='ja')
                                                     .sl-value
                                                         p
                                                         p
-                                                            | #{selfIntroduction}
+                                                            | !{selfIntroductionStr}
                                                         p
                             .span3.offset1
                                 if (setting.birthDay)
@@ -172,7 +175,7 @@ html(lang='ja')
                                                                 if (item.detail)
                                                                     .detailArea
                                                                         p
-                                                                            | #{item.detail}
+                                                                            | !{item.detailStr}
                                 if (setting.qualification)
                                     #qualification(style='margin: 20px; display: block;')
                                         div
@@ -199,7 +202,7 @@ html(lang='ja')
                                                                 if (item.detail)
                                                                     .detailArea
                                                                         p
-                                                                            | #{item.detail}
+                                                                            | !{item.detailStr}
                             .span4
                                 if (setting.career)
                                     #career(style='margin: 20px; display: block;')
@@ -235,7 +238,7 @@ html(lang='ja')
                                                                 if (item.detail)
                                                                     .detailArea
                                                                         p
-                                                                            | #{item.detail}
+                                                                            | !{item.detailStr}
                                 if (setting.workExperience)
                                     #workExperience(style='margin: 20px; display: block;')
                                         div
@@ -266,7 +269,7 @@ html(lang='ja')
                                                                 if (item.detail)
                                                                     .detailArea
                                                                         p
-                                                                            | #{item.detail}
+                                                                            | !{item.detailStr}
                             .span4
                                 if (setting.skill)
                                     #skill(style='margin: 20px; display: block;')

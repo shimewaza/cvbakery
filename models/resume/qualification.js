@@ -1,4 +1,5 @@
 var moment = require('moment');
+var markdown = require('markdown').markdown;
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
@@ -20,6 +21,10 @@ var Qualification = new Schema({
 
 Qualification.virtual('qualifiedDateStr').get(function() {
 	return moment(new Date(this.qualifiedDate)).format('LL');
+});
+
+Qualification.virtual('detailStr').get(function() {
+	return markdown.toHTML(this.detail);
 });
 
 module.exports = Qualification;

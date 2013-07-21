@@ -22,7 +22,10 @@ html(lang='ja')
                                 #photo.row-fluid
                                     div
                                         .sl-photo
-                                            img.img-polaroid(src='/upload/#{photo}')
+                                            if (setting.photo)
+                                                img.img-polaroid(src='/upload/#{photo}')
+                                            else
+                                                img.img-polaroid(src='/upload/default.png')
                                 #name
                                     div
                                         .sl-value.text-center
@@ -41,7 +44,7 @@ html(lang='ja')
                                                     .sl-value
                                                         p
                                                         p
-                                                            | #{selfIntroduction}
+                                                            | !{selfIntroductionStr}
                                                         p
                                 if (setting.skill)
                                     #skill
@@ -200,7 +203,7 @@ html(lang='ja')
                                                                 if (item.detail)
                                                                     .detailArea
                                                                         p
-                                                                            | #{item.detail}
+                                                                            | !{item.detailStr}
                                 if (setting.qualification)
                                     #qualification
                                         div
@@ -227,7 +230,7 @@ html(lang='ja')
                                                                 if (item.detail)
                                                                     .detailArea
                                                                         p
-                                                                            | #{item.detail}
+                                                                            | !{item.detailStr}
                                 if (setting.career)
                                     #career
                                         div
@@ -262,7 +265,7 @@ html(lang='ja')
                                                                 if (item.detail)
                                                                     .detailArea
                                                                         p
-                                                                            | #{item.detail}
+                                                                            | !{item.detailStr}
                                 if (setting.workExperience)
                                     #workExperience
                                         div
@@ -293,5 +296,5 @@ html(lang='ja')
                                                                 if (item.detail)
                                                                     .detailArea
                                                                         p
-                                                                            | #{item.detail}
+                                                                            | !{item.detailStr}
             #footer

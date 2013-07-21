@@ -1,4 +1,5 @@
 var moment = require('moment');
+var markdown = require('markdown').markdown;
 var mongoose = require('mongoose');
 var metadata = require('../metadata');
 var Schema = mongoose.Schema;
@@ -302,6 +303,10 @@ Resume.virtual('addressStr').get(function() {
 		return '〒' + this.zipCode + '）' + this.address;
 	else
 		return this.address;
+});
+
+Resume.virtual('selfIntroductionStr').get(function() {
+	return markdown.toHTML(this.selfIntroduction);
 });
 
 module.exports = mongoose.model('Resume', Resume);
