@@ -193,7 +193,7 @@ body {
   margin-bottom: 0px !important;
 }
 #resumePanel.style1 .progress {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 #resumePanel.style1 .ui-slider-horizontal {
   height: 1.2em;
@@ -252,7 +252,7 @@ body {
 #resumePanel.style3,
 #resumePanel.style4 {
   width: 1000px;
-  font-size: 14px;
+  font-size: 11.9px;
 }
 #resumePanel.style3 hr,
 #resumePanel.style4 hr {
@@ -303,6 +303,50 @@ body {
 }
 #resumePanel.style3 .ui-slider .ui-slider-handle,
 #resumePanel.style4 .ui-slider .ui-slider-handle {
+  width: 0.8em;
+  height: 1.6em;
+}
+#resumePanel.style5 {
+  width: 1000px;
+  font-size: 11.9px;
+}
+#resumePanel.style5 hr {
+  margin: 10px 0;
+}
+#resumePanel.style5 .sl-photo {
+  max-width: 150px;
+  min-width: 150px;
+  max-height: 210px;
+  margin-bottom: 5px;
+  margin-left: 10px;
+}
+#resumePanel.style5 .sl-photo img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-height: 200px;
+}
+#resumePanel.style5 .detailArea {
+  padding-left: 25px;
+}
+#resumePanel.style5 [class*="span"] {
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  min-height: 40px;
+  margin-bottom: 0px !important;
+}
+#resumePanel.style5 .bar {
+  line-height: 30px;
+}
+#resumePanel.style5 .progress {
+  height: 30px;
+  margin-bottom: 10px;
+}
+#resumePanel.style5 .ui-slider-horizontal {
+  height: 1.2em;
+}
+#resumePanel.style5 .ui-slider .ui-slider-handle {
   width: 0.8em;
   height: 1.6em;
 }

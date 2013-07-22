@@ -4,6 +4,7 @@ define([
         'text!templates/resume/style2/compositeeducation.html',
         'text!templates/resume/style3/compositeeducation.html',
         'text!templates/resume/style4/compositeeducation.html',
+        'text!templates/resume/style5/compositeeducation.html',
         'views/resume/compositebase',
         'views/resume/itemeducation'
 ], function(
@@ -12,6 +13,7 @@ define([
     style2Template,
     style3Template,
     style4Template,
+    style5Template,
     BaseView,
     itemView) {
 
@@ -43,6 +45,8 @@ define([
                 return style3Template;
             else if (this.options.templateRef === "style4")
                 return style4Template;
+            else if (this.options.templateRef === "style5")
+                return style5Template;
         },
 
         /*Initializer*/

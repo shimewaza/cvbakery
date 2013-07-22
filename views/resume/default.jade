@@ -29,12 +29,15 @@ html(lang='ja')
                                 #name.row-fluid
                                     div
                                         .sl-value.text-center(style='padding-right: 40px;')
-                                            h5
-                                                | #{firstNameEn}&nbsp;&nbsp;&nbsp;&nbsp;#{lastNameEn}
-                                            h5
-                                                | #{firstNameKana}&nbsp;&nbsp;&nbsp;&nbsp;#{lastNameKana}
-                                            h4
-                                                | #{firstName}&nbsp;&nbsp;&nbsp;&nbsp;#{lastName}
+                                            if (firstNameEn || lastNameEn)
+                                                h5
+                                                    | #{firstNameEn}&nbsp;&nbsp;&nbsp;&nbsp;#{lastNameEn}
+                                            if (firstNameKana || lastNameKana)
+                                                h5
+                                                    | #{firstNameKana}&nbsp;&nbsp;&nbsp;&nbsp;#{lastNameKana}
+                                            if (firstName || lastName)
+                                                h4
+                                                    | #{firstName}&nbsp;&nbsp;&nbsp;&nbsp;#{lastName}
                             #basic-info.span8
                                 if (setting.birthDay)
                                     #birthDay.row-fluid

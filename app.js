@@ -30,7 +30,7 @@ app.configure(function() {
   app.use(express.static(path.join(__dirname, 'public')));
   app.use(function(req, res, next) {
 
-    var excludePath = ['/', '/login', '/tempaccount/create'];
+    var excludePath = ['/', '/login', '/tempaccount/create', '/retrivepass'];
 
     if (excludePath.indexOf(req.path) != -1) {
       next();

@@ -36,6 +36,8 @@ exports.mapRoute = function(app) {
 	// Logout
 	app.get('/logout', account.logout);
 
+	app.post('/retrivepass', account.retrivepass);
+
 	// Account activate request
 	app.get('/activate/:id', tempaccount.activate);
 

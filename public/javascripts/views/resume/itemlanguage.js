@@ -4,14 +4,16 @@ define([
         'text!templates/resume/style1/itemlanguage.html',
         'text!templates/resume/style2/itemlanguage.html',
         'text!templates/resume/style3/itemlanguage.html',
-        'text!templates/resume/style4/itemlanguage.html'
+        'text!templates/resume/style4/itemlanguage.html',
+        'text!templates/resume/style5/itemlanguage.html'
 ], function(
     BaseView,
     defaultTemplate,
     style1Template,
     style2Template,
     style3Template,
-    style4Template) {
+    style4Template,
+    style5Template) {
 
     var ItemLanguage = BaseView.extend({
 
@@ -28,6 +30,8 @@ define([
                 return style3Template;
             else if (this.options.templateRef === "style4")
                 return style4Template;
+            else if (this.options.templateRef === "style5")
+                return style5Template;
         },
 
         /*Initializer*/

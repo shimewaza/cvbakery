@@ -1,0 +1,24 @@
+<div class="row-fluid">
+<div class="span11">
+    <div class="sl-value">
+        <p>
+            <% 
+                if (obj.selfIntroduction)
+                    print(markdown.toHTML(obj.selfIntroduction));
+                else
+                    print('<i class="sl-placeholder">ここをクリックして自己紹介を入力します</i>')
+            %>
+        </p>
+    </div>
+    <div class="sl-editor">
+        <div class="sl-input" style="width: 100%">
+            <textarea style="width: 95%" rows="10" name="selfIntroduction"><%- obj.selfIntroduction %></textarea>
+        </div>
+    </div>
+</div>
+<div class="span1">
+    <div class="sl-editor">
+        <button class="btn btn-small btn-warning btn-remove"><i class="icon-remove icon-white"></i></button>
+    </div>
+</div>
+</div>

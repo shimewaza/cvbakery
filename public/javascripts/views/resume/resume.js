@@ -4,6 +4,7 @@ define([
 	'text!templates/resume/style2/resume.html',
 	'text!templates/resume/style3/resume.html',
 	'text!templates/resume/style4/resume.html',
+	'text!templates/resume/style5/resume.html',
 	'views/resume/itemphoto',
 	'views/resume/itemname',
 	'views/resume/itembirthday',
@@ -32,6 +33,7 @@ define([
 	style2Template,
 	style3Template,
 	style4Template,
+	style5Template,
 	PhotoView,
 	NameView,
 	BirthDayView,
@@ -84,6 +86,9 @@ define([
 			} else if (this.options.templateRef === "style4") {
 				this.$el.addClass('style4');
 				return style4Template;
+			} else if (this.options.templateRef === "style5") {
+				this.$el.addClass('style5');
+				return style5Template;
 			}
 		},
 

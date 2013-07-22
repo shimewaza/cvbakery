@@ -4,14 +4,16 @@ define([
         'text!templates/resume/style1/itemhomepage.html',
         'text!templates/resume/style2/itemhomepage.html',
         'text!templates/resume/style3/itemhomepage.html',
-        'text!templates/resume/style4/itemhomepage.html'
+        'text!templates/resume/style4/itemhomepage.html',
+        'text!templates/resume/style5/itemhomepage.html'
 ], function(
     BaseView,
     defaultTemplate,
     style1Template,
     style2Template,
     style3Template,
-    style4Template) {
+    style4Template,
+    style5Template) {
 
     var HomePageEditor = BaseView.extend({
 
@@ -34,6 +36,8 @@ define([
                 return style3Template;
             else if (this.options.templateRef === "style4")
                 return style4Template;
+            else if (this.options.templateRef === "style5")
+                return style5Template;
         },
 
         /*Initializer*/

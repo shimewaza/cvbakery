@@ -44,101 +44,113 @@ html(lang='ja')
                                                         p
                                                             | !{selfIntroductionStr}
                                                         p
-                            .span3.offset1
+                            .span4
                                 if (setting.birthDay)
                                     #birthDay.row-fluid
                                         div
-                                            .span1
+                                            .span4
                                                 i.icon-calendar
-                                            .span11
+                                                | &nbsp;&nbsp;&nbsp;&nbsp;生年月日：
+                                            .span8
                                                 .sl-value
                                                     | #{birthDayStr}
                                 if (setting.gender)
                                     #gender.row-fluid
                                         div
-                                            .span1
+                                            .span4
                                                 i.icon-leaf
-                                            .span11
+                                                | &nbsp;&nbsp;&nbsp;&nbsp;性別：
+                                            .span8
                                                 .sl-value
                                                     | #{gender}
                                 if (setting.nationality)
                                     #nationality.row-fluid
                                         div
-                                            .span1
+                                            .span4
                                                 i.icon-flag
-                                            .span11
+                                                | &nbsp;&nbsp;&nbsp;&nbsp;国籍：
+                                            .span8
                                                 .sl-value
                                                     | #{nationality}
                                 if (setting.married)
                                     #married.row-fluid
                                         div
-                                            .span1
+                                            .span4
                                                 i.icon-heart
-                                            .span11
+                                                | &nbsp;&nbsp;&nbsp;&nbsp;婚姻状況：
+                                            .span8
                                                 .sl-value
                                                     | #{married}
                                 if (setting.firstArrive)
                                     #firstArrive.row-fluid
                                         div
-                                            .span1
+                                            .span4
                                                 i.icon-plane
-                                            .span11
+                                                | &nbsp;&nbsp;&nbsp;&nbsp;初回来日：
+                                            .span8
                                                 .sl-value
                                                     | #{firstArriveStr}
                                 if (setting.itExperience)
                                     #itExperience.row-fluid
                                         div
-                                            .span1
+                                            .span4
                                                 i.icon-briefcase
-                                            .span11
+                                                | &nbsp;&nbsp;&nbsp;&nbsp;IT経験年数：
+                                            .span8
                                                 .sl-value
                                                     | #{itExperienceStr}
                                 if (setting.availableDate)
                                     #availableDate.row-fluid
                                         div
-                                            .span1
+                                            .span4
                                                 i.icon-ok
-                                            .span11
+                                                | &nbsp;&nbsp;&nbsp;&nbsp;稼働可能日：
+                                            .span8
                                                 .sl-value
                                                     | #{availableDateStr}
                                 if (setting.address)
                                     #address.row-fluid
                                         div
-                                            .span1
+                                            .span4
                                                 i.icon-home
-                                            .span11
+                                                | &nbsp;&nbsp;&nbsp;&nbsp;住所：
+                                            .span8
                                                 .sl-value
                                                     | #{addressStr}
                                 if (setting.nearestStation)
                                     #nearestStation.row-fluid
                                         div
-                                            .span1
+                                            .span4
                                                 i.icon-road
-                                            .span11
+                                                | &nbsp;&nbsp;&nbsp;&nbsp;最寄り駅：
+                                            .span8
                                                 .sl-value
                                                     | #{nearestStation}
                                 if (setting.telNo)
                                     #telNo.row-fluid
                                         div
-                                            .span1
+                                            .span4
                                                 i.icon-phone
-                                            .span11
+                                                | &nbsp;&nbsp;&nbsp;&nbsp;電話番号：
+                                            .span8
                                                 .sl-value
                                                     | #{telNo}
                                 if (setting.email)
                                     #email.row-fluid
                                         div
-                                            .span1
+                                            .span4
                                                 i.icon-envelope
-                                            .span11
+                                                | &nbsp;&nbsp;&nbsp;&nbsp;E-Mail：
+                                            .span8
                                                 .sl-value
                                                     | #{email}
                                 if (setting.homePage)
                                     #homePage.row-fluid
                                         div
-                                            .span1
+                                            .span4
                                                 i.icon-globe
-                                            .span11
+                                                | &nbsp;&nbsp;&nbsp;&nbsp;個人サイト：
+                                            .span8
                                                 .sl-value
                                                     a(href="http://#{homePage}")
                                                         | #{homePage}

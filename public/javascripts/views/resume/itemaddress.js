@@ -4,14 +4,16 @@ define([
         'text!templates/resume/style1/itemaddress.html',
         'text!templates/resume/style2/itemaddress.html',
         'text!templates/resume/style3/itemaddress.html',
-        'text!templates/resume/style4/itemaddress.html'
+        'text!templates/resume/style4/itemaddress.html',
+        'text!templates/resume/style5/itemaddress.html'
 ], function(
     BaseView,
     defaultTemplate,
     style1Template,
     style2Template,
     style3Template,
-    style4Template) {
+    style4Template,
+    style5Template) {
 
     var AddressEditor = BaseView.extend({
 
@@ -32,6 +34,8 @@ define([
                 return style3Template;
             else if (this.options.templateRef === "style4")
                 return style4Template;
+            else if (this.options.templateRef === "style5")
+                return style5Template;
         },
 
         /*Initializer*/

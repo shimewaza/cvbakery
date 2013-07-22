@@ -4,14 +4,16 @@ define([
     'text!templates/resume/style1/itemcareer.html',
     'text!templates/resume/style2/itemcareer.html',
     'text!templates/resume/style3/itemcareer.html',
-    'text!templates/resume/style4/itemcareer.html'
+    'text!templates/resume/style4/itemcareer.html',
+    'text!templates/resume/style5/itemcareer.html'
 ], function(
     BaseView,
     defaultTemplate,
     style1Template,
     style2Template,
     style3Template,
-    style4Template) {
+    style4Template,
+    style5Template) {
 
     var ItemCareer = BaseView.extend({
 
@@ -28,6 +30,8 @@ define([
                 return style3Template;
             else if (this.options.templateRef === "style4")
                 return style4Template;
+            else if (this.options.templateRef === "style5")
+                return style5Template;
         },
 
         /*Initializer*/
