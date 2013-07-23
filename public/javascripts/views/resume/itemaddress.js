@@ -17,6 +17,8 @@ define([
 
     var AddressEditor = BaseView.extend({
 
+        className: 'row-fluid sl-editable',
+
         item: 'address',
 
         itemName: "住所",

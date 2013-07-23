@@ -17,20 +17,6 @@ body {
     font-size: @fontSizeSmall;
 }
 
-.sl-value:hover {
-    .border-radius(6px);
-    background-color: #ccc;
-}
-
-.sl-editor {
-    display: none;
-}
-
-.sl-panel {
-    .border-radius(6px);
-    .box-shadow(1px 1px 3px gray);
-}
-
 .sl-placeholder {
     color: @grayLight;
 }
@@ -90,6 +76,9 @@ body {
     max-width: 240px;
     min-width: 240px;
 
+    // drop shadow
+    .box-shadow(1px 1px 3px gray);
+
     button {
         margin: 3px;
     }
@@ -110,8 +99,57 @@ body {
 // -------------------------
 #resumePanel {
 
+    // always in center
     .center-block;
+
+    // drop shadow
+    .box-shadow(1px 1px 3px gray);
+
+    // gap for menu and resume
     margin-top: 5px;
+
+    // 12px font
+    font-size: @fontSizeSmall;
+
+    #photo {
+        text-align: center;
+    }
+
+    #skill, #language {
+        .input-append,
+        .input-prepend {
+            margin-bottom: 0px;
+        }
+    }
+
+    .sl-editable {
+        .border-radius(6px);
+        padding: 5px;
+        line-height: @inputHeight;
+        &:hover {    
+            background-color: #ccc;
+            cursor: pointer;
+        }
+    }
+
+    .sl-sub-editable {
+        .border-radius(6px);
+        padding: 5px;
+        &:hover {    
+            background-color: #ccc;
+            cursor: pointer;
+        }
+    }
+
+    .sl-editor {
+        display: none;
+    }
+
+    [class*="span"] {
+        .border-radius(6px);
+        min-height: @inputHeight;
+        margin: 0px !important;
+    }
 
     .detailArea {
         clear: both;
@@ -122,12 +160,30 @@ body {
         margin-top: 12px;
     }
 
+    .bar {
+        line-height: @inputHeight;
+    }
+
+    .progress {
+        height: @inputHeight;
+        margin-bottom: 0px;
+    }
+
+    .ui-slider-horizontal {
+        height: 1.2em;
+    }
+
+    .ui-slider {
+        .ui-slider-handle {
+            width: 0.8em;
+            height: 1.6em;
+        }
+    }
+
     // Default style
     // -------------------------
     &.default {
         width: 700px;
-        // max-width: 700px;
-        // min-width: 700px;
         font-size: @baseFontSize;
 
         hr {
@@ -135,97 +191,40 @@ body {
         }
 
         .sl-photo {
-            max-width: 150px;
-            min-width: 150px;
-            max-height: 210px;
-            margin-bottom: 5px;
-            margin-left: 10px;
-
             img {
                 .center-block;
-                max-height: 200px;
+                max-width: 90%;
+                height: auto;
             }
         }
-
-        .detailArea {
-            padding-left: 25px;
-        }
-
-        [class*="span"] {
-            .border-radius(6px);
-            min-height: 40px;
-            margin-bottom: 0px !important;
-        }
-
-        .bar {
-            line-height: @inputHeight;
-        }
-
-        .progress {
-            height: 30px;
-            margin-bottom: 10px;
-        }
-
-        .ui-slider-horizontal {
-            height: 1.2em;
-        }
-
-        .ui-slider {
-            .ui-slider-handle {
-                width: 0.8em;
-                height: 1.6em;
-            }
-        } 
     }
 
     // Style 1
     // -------------------------
     &.style1 {
         width: 1000px;
-        // max-width: 1000px;
-        // min-width: 1000px;
-        font-size: @fontSizeSmall;
 
         hr {
             margin: 5px 0;
         }
 
         .sl-photo {
-            max-width: 100%;
-            min-width: 120px;
-            max-height: 210px;
-            margin-bottom: 5px;
-
             img {
                 .center-block;
-                width: auto;
                 max-width: 90%;
-                max-height: 200px;
+                height: auto;
             }
         }
 
-        .detailArea {
-            padding-left: 25px;
-        }
-
-        [class*="span"] {
-            .border-radius(6px);
-            min-height: 40px;
-            margin-bottom: 0px !important;
-        }
-
-        .progress {
-            margin-bottom: 10px;
-        }
-
-        .ui-slider-horizontal {
-            height: 1.2em;
-        }
-
-        .ui-slider {
-            .ui-slider-handle {
-                width: 0.8em;
-                height: 1.6em;
+        .composite-header {
+            background-color: #eee;
+            padding: 5px;
+            &:hover {
+                background-color: #ccc;
+                cursor: pointer;
+            }
+            .sl-editor{
+                margin-top: 7px;
             }
         }
     }
@@ -234,9 +233,6 @@ body {
     // -------------------------
     &.style2 {
         width: 1000px;
-        // max-width: 1000px;
-        // min-width: 1000px;
-        font-size: @fontSizeSmall;
 
         hr {
             margin: 5px 0;
@@ -247,46 +243,32 @@ body {
         }
 
         .sl-photo {
-            max-width: 100%;
-            min-width: 120px;
-            max-height: 210px;
-            margin-bottom: 5px;
-
             img {
                 .center-block;
-                width: auto;
                 max-width: 90%;
-                max-height: 200px;
+                height: auto;
             }
         }
 
         [class*="span"] {
-            .border-radius(6px);
             min-height: 30px;
-            margin-bottom: 0px !important;
         }
 
         .composite-header {
+            .border-radius(6px);
             border-bottom: 1px dotted #B8B896;
+            padding: 5px;
+            &:hover {
+                background-color: #ccc;
+                cursor: pointer;
+            }
+            .sl-editor{
+                margin-top: 7px;
+            }
         }
 
         .item-container {
             margin-top: 10px;
-        }
-
-        .progress {
-            margin-bottom: 5px;
-        }
-
-        .ui-slider-horizontal {
-            height: 1.2em;
-        }
-
-        .ui-slider {
-            .ui-slider-handle {
-                width: 0.8em;
-                height: 1.6em;
-            }
         }
     }
 
@@ -294,10 +276,6 @@ body {
     // -------------------------
     &.style3,&.style4 {
         width: 1000px;
-        // max-width: 1000px;
-        // min-width: 1000px;
-        // padding-right: 0px;
-        font-size: @fontSizeSmall;
 
         hr {
             margin: 5px 0;
@@ -308,18 +286,18 @@ body {
 
             img {
                 .center-block;
+                max-width: 90%;
+                height: auto;
             }
-        }
-
-        [class*="span"] {
-            .border-radius(6px);
-            min-height: 40px;
-            margin-bottom: 0px !important;
         }
 
         .composite-header {
             background-color: #eee;
-
+            padding: 5px;
+            &:hover {
+                background-color: #ccc;
+                cursor: pointer;
+            }
             .sl-editor{
                 margin-top: 7px;
             }
@@ -328,82 +306,24 @@ body {
         .item-container {
             margin-top: 10px;
         }
-
-        .bar {
-            line-height: @inputHeight;
-        }
-
-        .progress {
-            height: 30px;
-            margin-bottom: 10px;
-        }
-
-        .ui-slider-horizontal {
-            height: 1.2em;
-        }
-
-        .ui-slider {
-            .ui-slider-handle {
-                width: 0.8em;
-                height: 1.6em;
-            }
-        }
     }
 
-    // Default style
+    // Style 5
     // -------------------------
     &.style5 {
         width: 1000px;
-        // max-width: 700px;
-        // min-width: 700px;
-        font-size: @fontSizeSmall;
 
         hr {
             margin: 10px 0;
         }
 
         .sl-photo {
-            max-width: 150px;
-            min-width: 150px;
-            max-height: 210px;
-            margin-bottom: 5px;
-            margin-left: 10px;
-
             img {
                 .center-block;
-                max-height: 200px;
+                max-width: 90%;
+                height: auto;
             }
         }
-
-        .detailArea {
-            padding-left: 25px;
-        }
-
-        [class*="span"] {
-            .border-radius(6px);
-            min-height: 40px;
-            margin-bottom: 0px !important;
-        }
-
-        .bar {
-            line-height: @inputHeight;
-        }
-
-        .progress {
-            height: 30px;
-            margin-bottom: 10px;
-        }
-
-        .ui-slider-horizontal {
-            height: 1.2em;
-        }
-
-        .ui-slider {
-            .ui-slider-handle {
-                width: 0.8em;
-                height: 1.6em;
-            }
-        } 
     }
 }
 

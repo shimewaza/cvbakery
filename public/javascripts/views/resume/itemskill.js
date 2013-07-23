@@ -17,6 +17,8 @@ define([
 
     var ItemSkill = BaseView.extend({
 
+        className: 'sl-sub-editable',
+
         itemName: 'スキル',
 
         getTemplate: function() {
@@ -30,8 +32,10 @@ define([
                 return style3Template;
             else if (this.options.templateRef === "style4")
                 return style4Template;
-            else if (this.options.templateRef === "style5")
+            else if (this.options.templateRef === "style5") {
+                this.$el.addClass('span6');
                 return style5Template;
+            }
         },
 
         /*Initializer*/

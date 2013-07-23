@@ -17,6 +17,8 @@ define([
 
     var GenderEditor = BaseView.extend({
 
+        className: 'row-fluid sl-editable',
+        
         item: 'gender',
 
         itemName: '性別',

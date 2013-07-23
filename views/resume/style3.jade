@@ -18,16 +18,16 @@ html(lang='ja')
                 #content
                     #resumePanel.well.well-large.container-fluid.sl-panel.style3
                         .row-fluid
-                            .span4
-                                #photo.row-fluid
-                                    div
+                            .span4(style="margin-right: 25px !important")
+                                #photo
+                                    .sl-editable
                                         .sl-photo
                                             if (setting.photo)
                                                 img.img-polaroid(src='/upload/#{photo}')
                                             else
                                                 img.img-polaroid(src='/upload/default.png')
                                 #name
-                                    div
+                                    .sl-editable
                                         .sl-value.text-center
                                             if (firstNameEn || lastNameEn)
                                                 h5
@@ -40,47 +40,39 @@ html(lang='ja')
                                                     | #{firstName}&nbsp;&nbsp;&nbsp;&nbsp;#{lastName}
                                 if (setting.selfIntroduction)
                                     #selfIntroduction
-                                        div
-                                            hr
-                                            .row-fluid
-                                                .span12
-                                                    .sl-value
-                                                        p
-                                                        p
-                                                            | !{selfIntroductionStr}
-                                                        p
+                                        hr
+                                        .sl-sub-editable
+                                            .sl-value
+                                                p
+                                                p
+                                                    | !{selfIntroductionStr}
+                                                p
                                 if (setting.skill)
                                     #skill
-                                        div
-                                            hr
-                                            .row-fluid
-                                                .span12.row-fluid.item-container
-                                                    each item in skill
-                                                        div
-                                                            .row-fluid.sl-value
-                                                                .progress(class='#{item.barStyle}')
-                                                                    .bar(style='width: #{item.level}%;')
-                                                                        p.text-left(style='margin-left: 10px;')
-                                                                            i.icon-gear
-                                                                            | &nbsp;&nbsp;#{item.name}
+                                        hr
+                                        .item-container
+                                            each item in skill
+                                                .sl-sub-editable
+                                                    .progress(class='#{item.barStyle}')
+                                                        .bar(style='width: #{item.level}%;')
+                                                            p.text-left(style='margin-left: 10px;')
+                                                                i.icon-gear
+                                                                | &nbsp;&nbsp;#{item.name}
                                 if (setting.languageBackground)
                                     #language
-                                        div
-                                            hr
-                                            .row-fluid
-                                                .span12.row-fluid.item-container
-                                                    each item in languageBackground
-                                                        div
-                                                            .row-fluid.sl-value
-                                                                .progress(class='#{item.barStyle}')
-                                                                    .bar(style='width: #{item.level}%;')
-                                                                        p.text-left(style='margin-left: 10px;')
-                                                                            i.icon-comment-alt
-                                                                            | &nbsp;&nbsp;#{item.language}
+                                        hr
+                                        .item-container
+                                            each item in languageBackground
+                                                .sl-sub-editable
+                                                    .progress(class='#{item.barStyle}')
+                                                        .bar(style='width: #{item.level}%;')
+                                                            p.text-left(style='margin-left: 10px;')
+                                                                i.icon-comment-alt
+                                                                | &nbsp;&nbsp;#{item.language}
                                 hr
                                 if (setting.birthDay)
-                                    #birthDay.row-fluid
-                                        div
+                                    #birthDay
+                                        .row-fluid.sl-editable
                                             .span4
                                                 i.icon-calendar
                                                 | &nbsp;&nbsp;&nbsp;&nbsp;生年月日：
@@ -88,8 +80,8 @@ html(lang='ja')
                                                 .sl-value
                                                     | #{birthDayStr}
                                 if (setting.gender)
-                                    #gender.row-fluid
-                                        div
+                                    #gender
+                                        .row-fluid.sl-editable
                                             .span4
                                                 i.icon-leaf
                                                 | &nbsp;&nbsp;&nbsp;&nbsp;性別：
@@ -97,8 +89,8 @@ html(lang='ja')
                                                 .sl-value
                                                     | #{gender}
                                 if (setting.nationality)
-                                    #nationality.row-fluid
-                                        div
+                                    #nationality
+                                        .row-fluid.sl-editable
                                             .span4
                                                 i.icon-flag
                                                 | &nbsp;&nbsp;&nbsp;&nbsp;国籍：
@@ -106,8 +98,8 @@ html(lang='ja')
                                                 .sl-value
                                                     | #{nationality}
                                 if (setting.married)
-                                    #married.row-fluid
-                                        div
+                                    #married
+                                        .row-fluid.sl-editable
                                             .span4
                                                 i.icon-heart
                                                 | &nbsp;&nbsp;&nbsp;&nbsp;婚姻状況：
@@ -115,8 +107,8 @@ html(lang='ja')
                                                 .sl-value
                                                     | #{married}
                                 if (setting.firstArrive)
-                                    #firstArrive.row-fluid
-                                        div
+                                    #firstArrive
+                                        .row-fluid.sl-editable
                                             .span4
                                                 i.icon-plane
                                                 | &nbsp;&nbsp;&nbsp;&nbsp;初回来日：
@@ -124,8 +116,8 @@ html(lang='ja')
                                                 .sl-value
                                                     | #{firstArriveStr}
                                 if (setting.itExperience)
-                                    #itExperience.row-fluid
-                                        div
+                                    #itExperience
+                                        .row-fluid.sl-editable
                                             .span4
                                                 i.icon-briefcase
                                                 | &nbsp;&nbsp;&nbsp;&nbsp;IT経験年数：
@@ -133,8 +125,8 @@ html(lang='ja')
                                                 .sl-value
                                                     | #{itExperienceStr}
                                 if (setting.availableDate)
-                                    #availableDate.row-fluid
-                                        div
+                                    #availableDate
+                                        .row-fluid.sl-editable
                                             .span4
                                                 i.icon-ok
                                                 | &nbsp;&nbsp;&nbsp;&nbsp;稼働可能日：
@@ -142,8 +134,8 @@ html(lang='ja')
                                                 .sl-value
                                                     | #{availableDateStr}
                                 if (setting.address)
-                                    #address.row-fluid
-                                        div
+                                    #address
+                                        .row-fluid.sl-editable
                                             .span4
                                                 i.icon-home
                                                 | &nbsp;&nbsp;&nbsp;&nbsp;住所：
@@ -151,8 +143,8 @@ html(lang='ja')
                                                 .sl-value
                                                     | #{addressStr}
                                 if (setting.nearestStation)
-                                    #nearestStation.row-fluid
-                                        div
+                                    #nearestStation
+                                        .row-fluid.sl-editable
                                             .span4
                                                 i.icon-road
                                                 | &nbsp;&nbsp;&nbsp;&nbsp;最寄り駅：
@@ -160,8 +152,8 @@ html(lang='ja')
                                                 .sl-value
                                                     | #{nearestStation}
                                 if (setting.telNo)
-                                    #telNo.row-fluid
-                                        div
+                                    #telNo
+                                        .row-fluid.sl-editable
                                             .span4
                                                 i.icon-phone
                                                 | &nbsp;&nbsp;&nbsp;&nbsp;電話番号：
@@ -169,8 +161,8 @@ html(lang='ja')
                                                 .sl-value
                                                     | #{telNo}
                                 if (setting.email)
-                                    #email.row-fluid
-                                        div
+                                    #email
+                                        .row-fluid.sl-editable
                                             .span4
                                                 i.icon-envelope
                                                 | &nbsp;&nbsp;&nbsp;&nbsp;E-Mail：
@@ -178,8 +170,8 @@ html(lang='ja')
                                                 .sl-value
                                                     | #{email}
                                 if (setting.homePage)
-                                    #homePage.row-fluid
-                                        div
+                                    #homePage
+                                        .row-fluid.sl-editable
                                             .span4
                                                 i.icon-globe
                                                 | &nbsp;&nbsp;&nbsp;&nbsp;個人サイト：
@@ -190,126 +182,115 @@ html(lang='ja')
                             .span8
                                 if (setting.education)
                                     #education
-                                        div
-                                            .row-fluid.composite-header
-                                                .span2
-                                                    h4
-                                                        i.icon-pencil.icon-large
-                                                        | &nbsp;&nbsp;学歴
-                                            .row-fluid
-                                                .span12.row-fluid.item-container
-                                                    each item in education
-                                                        div
-                                                            .span6.row-fluid.sl-value
-                                                                span.span7.schoolArea
-                                                                    if (item.school)
-                                                                        h5
-                                                                            i.icon-book
-                                                                            | &nbsp;&nbsp;#{item.school}
-                                                                    if (item.major)
-                                                                        h6.sl-placeholder
-                                                                            i.icon-pencil
-                                                                            | &nbsp;&nbsp;#{item.major}
-                                                                small.span5.graduateArea
-                                                                    if (item.graduate)
-                                                                        span.label.label-info
-                                                                            i.icon-bell
-                                                                            | &nbsp;&nbsp;#{item.graduateStr}
-                                                                if (item.detail)
-                                                                    .detailArea
-                                                                        p
-                                                                            | !{item.detailStr}
+                                        .composite-header
+                                            h4
+                                                i.icon-pencil.icon-large
+                                                | &nbsp;&nbsp;学歴
+                                        .row-fluid.item-container
+                                            each item in education
+                                                .span6.sl-sub-editable
+                                                    .row-fluid.sl-value
+                                                        span.span7.schoolArea
+                                                            if (item.school)
+                                                                h5
+                                                                    i.icon-book
+                                                                    | &nbsp;&nbsp;#{item.school}
+                                                            if (item.major)
+                                                                h6.sl-placeholder
+                                                                    i.icon-pencil
+                                                                    | &nbsp;&nbsp;#{item.major}
+                                                        small.span5.graduateArea
+                                                            if (item.graduate)
+                                                                span.label.label-info.pull-right
+                                                                    i.icon-bell
+                                                                    | &nbsp;&nbsp;#{item.graduateStr}
+                                                        if (item.detail)
+                                                            .detailArea
+                                                                p
+                                                                    | !{item.detailStr}
                                 if (setting.qualification)
                                     #qualification
-                                        div
-                                            .row-fluid.composite-header
-                                                .span2
-                                                    h4
-                                                        i.icon-credit-card.icon-large
-                                                        | &nbsp;&nbsp;資格
-                                            .row-fluid
-                                                .span12.row-fluid.item-container
-                                                    each item in qualification
-                                                        div
-                                                            .span6.row-fluid.sl-value
-                                                                .span7.qualificationNameArea
-                                                                    if (item.qualificationName)
-                                                                        h5
-                                                                            i.icon-bookmark-empty
-                                                                            | &nbsp;&nbsp;#{item.qualificationName}
-                                                                .span5.qualifiedDateArea
-                                                                    if (item.qualifiedDate)
-                                                                        span.label.label-info
-                                                                            i.icon-calendar
-                                                                            | &nbsp;&nbsp;#{item.qualifiedDateStr}
-                                                                if (item.detail)
-                                                                    .detailArea
-                                                                        p
-                                                                            | !{item.detailStr}
+                                        .composite-header
+                                            h4
+                                                i.icon-credit-card.icon-large
+                                                | &nbsp;&nbsp;資格
+                                        .row-fluid.item-container
+                                            each item in qualification
+                                                .span6.sl-sub-editable
+                                                    .row-fluid.sl-value
+                                                        .span7.qualificationNameArea
+                                                            if (item.qualificationName)
+                                                                h5
+                                                                    i.icon-bookmark-empty
+                                                                    | &nbsp;&nbsp;#{item.qualificationName}
+                                                        .span5.qualifiedDateArea
+                                                            if (item.qualifiedDate)
+                                                                span.label.label-info.pull-right
+                                                                    i.icon-calendar
+                                                                    | &nbsp;&nbsp;#{item.qualifiedDateStr}
+                                                        if (item.detail)
+                                                            .detailArea
+                                                                p
+                                                                    | !{item.detailStr}
                                 if (setting.career)
                                     #career
-                                        div
-                                            .row-fluid.composite-header
-                                                .span2
-                                                    h4
-                                                        i.icon-briefcase.icon-large
-                                                        | &nbsp;&nbsp;職歴
-                                            .row-fluid
-                                                .span12.row-fluid.item-container
-                                                    each item in career
-                                                        div
-                                                            .span6.row-fluid.sl-value
-                                                                if (item.startDate || item.endDate)
-                                                                    .dateArea
-                                                                        span.label.label-info
-                                                                            i.icon-calendar
-                                                                            | &nbsp;&nbsp;#{item.startDateStr}～#{item.endDateStr}
-                                                                .companyArea
-                                                                    if (item.company)
-                                                                        h5
-                                                                            i.icon-building
-                                                                            | &nbsp;&nbsp;#{item.company}
-                                                                    if (item.address)
-                                                                        h6.sl-placeholder
-                                                                            i.icon-map-marker
-                                                                            | &nbsp;&nbsp;#{item.address}
-                                                                    if (item.position)
-                                                                        h6.sl-placeholder
-                                                                            i.icon-user
-                                                                            | &nbsp;&nbsp;#{item.position}
-                                                                if (item.detail)
-                                                                    .detailArea
-                                                                        p
-                                                                            | !{item.detailStr}
+                                        .composite-header
+                                            h4
+                                                i.icon-briefcase.icon-large
+                                                | &nbsp;&nbsp;職歴
+                                        .row-fluid.item-container
+                                            each item in career
+                                                .span6.sl-sub-editable
+                                                    .row-fluid.sl-value
+                                                        if (item.startDate || item.endDate)
+                                                            .dateArea
+                                                                span.label.label-info
+                                                                    i.icon-calendar
+                                                                    | &nbsp;&nbsp;#{item.startDateStr}～#{item.endDateStr}
+                                                        .companyArea
+                                                            if (item.company)
+                                                                h5
+                                                                    i.icon-building
+                                                                    | &nbsp;&nbsp;#{item.company}
+                                                            if (item.address)
+                                                                h6.sl-placeholder
+                                                                    i.icon-map-marker
+                                                                    | &nbsp;&nbsp;#{item.address}
+                                                            if (item.position)
+                                                                h6.sl-placeholder
+                                                                    i.icon-user
+                                                                    | &nbsp;&nbsp;#{item.position}
+                                                        if (item.detail)
+                                                            .detailArea
+                                                                p
+                                                                    | !{item.detailStr}
                                 if (setting.workExperience)
                                     #workExperience
                                         div
-                                            .row-fluid.composite-header
-                                                .span3
-                                                    h4
-                                                        i.icon-group.icon-large
-                                                        | &nbsp;&nbsp;仕事経験
-                                            .row-fluid
-                                                .span12.row-fluid.item-container
-                                                    each item in workExperience
-                                                        div
-                                                            .span6.row-fluid.sl-value
-                                                                if (item.startDate || item.endDate)
-                                                                    .dateArea
-                                                                        span.label.label-info
-                                                                            i.icon-calendar
-                                                                            | &nbsp;&nbsp;#{item.startDateStr}～#{item.endDateStr}
-                                                                .titleArea
-                                                                    if (item.title)
-                                                                        h5
-                                                                            i.icon-flag-alt
-                                                                            | &nbsp;&nbsp;#{item.title}
-                                                                    if (item.position)
-                                                                        h6.sl-placeholder
-                                                                            i.icon-wrench
-                                                                            | &nbsp;&nbsp;#{item.position}
-                                                                if (item.detail)
-                                                                    .detailArea
-                                                                        p
-                                                                            | !{item.detailStr}
+                                            .composite-header
+                                                h4
+                                                    i.icon-group.icon-large
+                                                    | &nbsp;&nbsp;仕事経験
+                                            .row-fluid.item-container
+                                                each item in workExperience
+                                                    .span6.sl-sub-editable
+                                                        .row-fluid.sl-value
+                                                            if (item.startDate || item.endDate)
+                                                                .dateArea
+                                                                    span.label.label-info
+                                                                        i.icon-calendar
+                                                                        | &nbsp;&nbsp;#{item.startDateStr}～#{item.endDateStr}
+                                                            .titleArea
+                                                                if (item.title)
+                                                                    h5
+                                                                        i.icon-flag-alt
+                                                                        | &nbsp;&nbsp;#{item.title}
+                                                                if (item.position)
+                                                                    h6.sl-placeholder
+                                                                        i.icon-wrench
+                                                                        | &nbsp;&nbsp;#{item.position}
+                                                            if (item.detail)
+                                                                .detailArea
+                                                                    p
+                                                                        | !{item.detailStr}
             #footer

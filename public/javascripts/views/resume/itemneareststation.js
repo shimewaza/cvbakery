@@ -16,6 +16,8 @@ define([
     style5Template) {
 
     var NearestStationEditor = BaseView.extend({
+        
+        className: 'row-fluid sl-editable',
 
         item: 'nearestStation',
 

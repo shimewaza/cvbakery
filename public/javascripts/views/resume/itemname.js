@@ -17,6 +17,8 @@ define([
 
     var NameEditor = BaseView.extend({
 
+        className: 'sl-editable',
+
         item: 'name',
 
         itemName: "氏名",

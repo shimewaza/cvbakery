@@ -17,6 +17,8 @@ define([
 
     var ItemCareer = BaseView.extend({
 
+        className: 'sl-sub-editable',
+
         itemName: '社歴',
 
         getTemplate: function() {
@@ -26,12 +28,18 @@ define([
                 return style1Template;
             else if (this.options.templateRef === "style2")
                 return style2Template;
-            else if (this.options.templateRef === "style3")
+            else if (this.options.templateRef === "style3") {
+                this.$el.addClass('span6');
                 return style3Template;
-            else if (this.options.templateRef === "style4")
+            }
+            else if (this.options.templateRef === "style4") {
+                this.$el.addClass('span6');
                 return style4Template;
-            else if (this.options.templateRef === "style5")
+            }
+            else if (this.options.templateRef === "style5") {
+                this.$el.addClass('span6');
                 return style5Template;
+            }
         },
 
         /*Initializer*/

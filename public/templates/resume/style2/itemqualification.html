@@ -8,7 +8,7 @@
     <div class="span5 qualifiedDateArea">
         <%
             if (obj.qualifiedDate)
-                print('<span class="label label-info"><i class="icon-calendar"></i>&nbsp;&nbsp;&nbsp;&nbsp;' + formatDate(obj.qualifiedDate) + '</span>');
+                print('<span class="label label-info pull-right"><i class="icon-calendar"></i>&nbsp;&nbsp;&nbsp;&nbsp;' + formatDate(obj.qualifiedDate) + '</span>');
         %>
     </div>
     <div class="detailArea">
@@ -28,11 +28,11 @@
             <span class="add-on"><i class="icon-credit-card"></i></span>
             <input type="text" class="input-medium" placeholder="資格名" name="qualificationName" value="<%- obj.qualificationName %>">
         </div>
-        <div class="sl-input" style="width: 100%">
-            <textarea style="width: 95%" rows="10" name="detail"><%- obj.detail %></textarea>
+        <div class="sl-input">
+            <textarea rows="10" name="detail"><%- obj.detail %></textarea>
         </div>
     </div>
     <div class="span1">
-        <button class="btn btn-small btn-danger btn-delete"><i class="icon-minus icon-white"></i></button>
+        <button class="btn btn-small btn-danger btn-delete pull-right"><i class="icon-minus icon-white"></i></button>
     </div>
 </div>

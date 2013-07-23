@@ -20,6 +20,7 @@ define([
 	'views/resume/itememail',
 	'views/resume/itemhomepage',
 	'views/resume/itemselfintroduction',
+	'views/resume/itemsharelink',
 	'views/resume/compositeeducation',
 	'views/resume/compositecareer',
 	'views/resume/compositeworkexperience',
@@ -49,6 +50,7 @@ define([
 	EMailView,
 	HomePageView,
 	SelfIntroductionView,
+	ShareLinkView,
 	EducationComposite,
 	CareerComposite,
 	WorkExperienceComposite,
@@ -127,6 +129,7 @@ define([
 			languageArea: '#language',
 			qualificationArea: '#qualification',
 			skillArea: '#skill',
+			shareLinkArea: '#shareLink',
 			contextMenuArea: '#contextMenu'
 		},
 
@@ -238,6 +241,12 @@ define([
 				templateRef: this.options.templateRef
 			});
 
+			// build share link view
+			this.shareLinkView = new ShareLinkView({
+				model: this.model,
+				templateRef: this.options.templateRef
+			});
+
 			// get education collection
 			var educations = new Backbone.Collection(this.model.get('education'));
 			// build education view
@@ -326,6 +335,9 @@ define([
 
 			// show name view
 			this.nameArea.show(this.nameView);
+
+			// show share link
+			this.shareLinkArea.show(this.shareLinkView);
 
 			if (setting.birthDay)
 				this.birthDayArea.show(this.birthDayView);

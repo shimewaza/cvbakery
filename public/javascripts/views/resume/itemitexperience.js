@@ -16,6 +16,8 @@ define([
     style5Template) {
 
     var ItExperienceEditor = BaseView.extend({
+        
+        className: 'row-fluid sl-editable',
 
         item: 'itExperience',
 

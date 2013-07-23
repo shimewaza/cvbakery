@@ -17,6 +17,8 @@ define([
 
     var NationalityEditor = BaseView.extend({
 
+        className: 'row-fluid sl-editable',
+        
         item: 'nationality',
 
         itemName: '国籍',

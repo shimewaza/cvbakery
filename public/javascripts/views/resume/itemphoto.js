@@ -17,6 +17,8 @@ define([
 
     var PhotoEditor = BaseView.extend({
 
+        className: 'sl-editable',
+        
         item: 'photo',
 
         itemName: '写真',

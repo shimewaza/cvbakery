@@ -16,6 +16,8 @@ define([
     style5Template) {
 
     var ItemLanguage = BaseView.extend({
+        
+        className: 'sl-sub-editable',
 
         itemName: '語学能力',
 
@@ -30,8 +32,10 @@ define([
                 return style3Template;
             else if (this.options.templateRef === "style4")
                 return style4Template;
-            else if (this.options.templateRef === "style5")
+            else if (this.options.templateRef === "style5") {
+                this.$el.addClass('span6');
                 return style5Template;
+            }
         },
 
         /*Initializer*/

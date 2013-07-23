@@ -1,4 +1,4 @@
-<div class="span6 row-fluid sl-value">
+<div class="row-fluid sl-value">
     <div class="span7 qualificationNameArea">
         <%
             if (obj.qualificationName)
@@ -8,7 +8,7 @@
     <div class="span5 qualifiedDateArea">
         <%
             if (obj.qualifiedDate)
-                print('<span class="label label-info"><i class="icon-calendar"></i>&nbsp;&nbsp;&nbsp;&nbsp;' + formatDate(obj.qualifiedDate) + '</span>');
+                print('<span class="label label-info pull-right"><i class="icon-calendar"></i>&nbsp;&nbsp;&nbsp;&nbsp;' + formatDate(obj.qualifiedDate) + '</span>');
         %>
     </div>
     <div class="detailArea">
@@ -33,6 +33,6 @@
         </div>
     </div>
     <div class="span1">
-        <button class="btn btn-small btn-danger btn-delete"><i class="icon-minus icon-white"></i></button>
+        <button class="btn btn-small btn-danger btn-delete pull-right"><i class="icon-minus icon-white"></i></button>
     </div>
 </div>

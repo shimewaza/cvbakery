@@ -17,6 +17,8 @@ define([
 
     var MarriedEditor = BaseView.extend({
 
+        className: 'row-fluid sl-editable',
+        
         item: 'married',
 
         itemName: '婚姻状況',

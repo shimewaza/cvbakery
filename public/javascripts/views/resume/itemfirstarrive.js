@@ -17,6 +17,8 @@ define([
 
     var FirstArriveEditor = BaseView.extend({
 
+        className: 'row-fluid sl-editable',
+        
         item: 'firstArrive',
 
         itemName: "初回来日",

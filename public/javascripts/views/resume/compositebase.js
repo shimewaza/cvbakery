@@ -101,7 +101,7 @@ define(['views/resume/compositeempty'], function(EmptyView) {
 
         // Set up a flag indicate mouse on
         setFocusIn: function() {
-            this.$el.css('cursor', 'pointer');
+            // this.$el.css('cursor', 'pointer');
             this.focus = true;
         },
 

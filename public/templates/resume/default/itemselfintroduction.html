@@ -1,26 +1,26 @@
 <hr>
 <div class="row-fluid">
-<div class="span3">
-    <h4><i class="icon-user icon-large"></i>&nbsp;&nbsp;自己紹介</h4>
-    <div class="sl-editor">
-        <button class="btn btn-small btn-warning btn-remove"><i class="icon-remove icon-white"></i></button>
-    </div>
-</div>
-<div class="span9">
-    <div class="sl-value">
-        <p>
-            <% 
-                if (obj.selfIntroduction)
-                    print(markdown.toHTML(obj.selfIntroduction));
-                else
-                    print('<i class="sl-placeholder">ここをクリックして自己紹介を入力します</i>')
-            %>
-        </p>
-    </div>
-    <div class="sl-editor">
-        <div class="sl-input" style="width: 100%">
-            <textarea style="width: 95%" rows="10" name="selfIntroduction"><%- obj.selfIntroduction %></textarea>
+    <div class="span3 sl-editable">
+        <h4><i class="icon-user icon-large"></i>&nbsp;&nbsp;自己紹介</h4>
+        <div class="sl-editor">
+            <button class="btn btn-small btn-warning btn-remove"><i class="icon-remove icon-white"></i></button>
         </div>
     </div>
-</div>
+    <div class="span9 sl-sub-editable">
+        <div class="sl-value">
+            <p>
+                <% 
+                    if (obj.selfIntroduction)
+                        print(markdown.toHTML(obj.selfIntroduction));
+                    else
+                        print('<i class="sl-placeholder">ここをクリックして自己紹介を入力します</i>')
+                %>
+            </p>
+        </div>
+        <div class="sl-editor">
+            <div class="sl-input" style="width: 100%">
+                <textarea style="width: 95%" rows="10" name="selfIntroduction"><%- obj.selfIntroduction %></textarea>
+            </div>
+        </div>
+    </div>
 </div>

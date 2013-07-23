@@ -1,4 +1,4 @@
-<div class="span6 row-fluid sl-value">
+<div class="row-fluid sl-value">
     <span class="span7 schoolArea">
         <%
             if (obj.school)
@@ -10,7 +10,7 @@
     <small class="span5 graduateArea">
         <%
             if (obj.graduate)
-                print('<span class="label label-info"><i class="icon-bell"></i>&nbsp;&nbsp;&nbsp;&nbsp;' + formatDate(obj.graduate) + '</span>');
+                print('<span class="label label-info pull-right"><i class="icon-bell"></i>&nbsp;&nbsp;&nbsp;&nbsp;' + formatDate(obj.graduate) + '</span>');
         %>
     </small>
     <div class="detailArea">
@@ -39,6 +39,6 @@
         </div>
     </div>
     <div class="span1">
-        <button class="btn btn-small btn-danger btn-delete"><i class="icon-minus icon-white"></i></button>
+        <button class="btn btn-small btn-danger btn-delete pull-right"><i class="icon-minus icon-white"></i></button>
     </div>
 </div>

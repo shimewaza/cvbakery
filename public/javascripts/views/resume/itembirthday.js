@@ -16,6 +16,8 @@ define([
     style5Template) {
 
     var BirthDayEditor = BaseView.extend({
+        
+        className: 'row-fluid sl-editable',
 
         item: 'birthDay',
 
