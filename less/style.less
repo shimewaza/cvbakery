@@ -99,6 +99,46 @@ body {
 // -------------------------
 #resumePanel {
 
+    // ANIMATIONS
+    // ----------
+    @-webkit-keyframes progress-bar-stripes {
+        from  { margin-left: 100%; }
+        to    { margin-left: auto; }
+    }
+
+    // Firefox
+    @-moz-keyframes progress-bar-stripes {
+        from  { margin-left: 100%; }
+        to    { margin-left: auto; }
+    }
+
+    // IE9
+    @-ms-keyframes progress-bar-stripes {
+        from  { margin-left: 100%; }
+        to    { margin-left: auto; }
+    }
+
+    // Opera
+    @-o-keyframes progress-bar-stripes {
+        from  { margin-left: 100%; }
+        to    { margin-left: auto; }
+    }
+
+    // Spec
+    @keyframes progress-bar-stripes {
+        from  { margin-left: 100%; }
+        to    { margin-left: auto; }
+    }
+
+    // Call animation for the active one
+    &.onshow {
+      -webkit-animation: progress-bar-stripes 0.5s ease-in-out;
+         -moz-animation: progress-bar-stripes 0.5s ease-in-out;
+          -ms-animation: progress-bar-stripes 0.5s ease-in-out;
+           -o-animation: progress-bar-stripes 0.5s ease-in-out;
+              animation: progress-bar-stripes 0.5s ease-in-out;
+    }
+
     // always in center
     .center-block;
 

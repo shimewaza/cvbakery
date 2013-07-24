@@ -100,6 +100,53 @@ body {
   margin-top: 5px;
   font-size: 11.9px;
 }
+@-webkit-keyframes progress-bar-stripes {
+  from {
+    margin-left: 100%;
+  }
+  to {
+    margin-left: auto;
+  }
+}
+@-moz-keyframes progress-bar-stripes {
+  from {
+    margin-left: 100%;
+  }
+  to {
+    margin-left: auto;
+  }
+}
+@-ms-keyframes progress-bar-stripes {
+  from {
+    margin-left: 100%;
+  }
+  to {
+    margin-left: auto;
+  }
+}
+@-o-keyframes progress-bar-stripes {
+  from {
+    margin-left: 100%;
+  }
+  to {
+    margin-left: auto;
+  }
+}
+@keyframes progress-bar-stripes {
+  from {
+    margin-left: 100%;
+  }
+  to {
+    margin-left: auto;
+  }
+}
+#resumePanel.onshow {
+  -webkit-animation: progress-bar-stripes 0.5s ease-in-out;
+  -moz-animation: progress-bar-stripes 0.5s ease-in-out;
+  -ms-animation: progress-bar-stripes 0.5s ease-in-out;
+  -o-animation: progress-bar-stripes 0.5s ease-in-out;
+  animation: progress-bar-stripes 0.5s ease-in-out;
+}
 #resumePanel #photo {
   text-align: center;
 }
