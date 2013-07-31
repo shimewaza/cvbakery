@@ -100,7 +100,7 @@ require.config({
 		vent: {
 			deps: ['backbone.wreqr']
 		},
-		selink: {
+		cvbakery: {
 			deps: [
 					'jqueryui',
 					'jqueryraf',
@@ -122,6 +122,6 @@ require.config({
 	}
 });
 
-require(['fileupload', 'jquery.cookie', 'marionette', 'deepmodel', 'vent', 'selink'], function(fileupload, cookie, marionette, deepmodel, vent, selink) {
-	selink.start();
+require(['fileupload', 'jquery.cookie', 'marionette', 'deepmodel', 'vent', 'cvbakery'], function(fileupload, cookie, marionette, deepmodel, vent, cvbakery) {
+	cvbakery.start();
 });
