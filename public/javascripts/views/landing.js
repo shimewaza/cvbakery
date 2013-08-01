@@ -68,7 +68,7 @@ define([
 
 				// login success handler
 				success: function(account) {
-					vent.trigger('login:success', account);
+					window.location = '/home';
 				},
 
 				// login error handler

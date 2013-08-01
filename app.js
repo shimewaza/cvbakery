@@ -36,8 +36,9 @@ app.configure(function() {
       next();
     } else if (/\/activate\/.*/.test(req.path) || /\/myresume\/.*/.test(req.path)) {
       next();
-    } else if (!req.session.accountId) {
-      res.status(401).send("セッション切りましたので、再度ログインしてください。");
+    } else if (!req.session.account) {
+      res.redirect('/');
+      // res.status(401).send("セッション切りましたので、再度ログインしてください。");
     } else {
       next();
     }
@@ -59,11 +60,11 @@ mongoose.connection.on('open', function() {
 });
 
 app.get('/', function(req, res) {
-  res.render('index');
+  res.render('landing');
 });
 
 app.get('/home', function(req, res) {
-  res.json(req.session.accountInfo);
+  res.render('home', req.session.account);
 });
 
 

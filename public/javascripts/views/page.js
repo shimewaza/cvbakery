@@ -1,7 +1,15 @@
 define([
 	'text!templates/page.html',
-	'views/menu'
-], function(pageTemplate, MenuView) {
+	'views/menu',
+	'views/resume/menutemplate',
+	'views/resume/menuitem',
+	'views/resume/menubackground'
+], function(
+	pageTemplate,
+	MenuView,
+	TemplateMenuView,
+	ItemMenuView,
+	BackgroundMenuView) {
 
 	// PageView is the biggest frame of the application
 	var PageView = Backbone.Marionette.Layout.extend({
@@ -13,10 +21,13 @@ define([
 
 		// Events
 		events: {
-			'click #fullScreenBtn': 'onFullScreen',
-			'click #partScreenBtn': 'onPartScreen',
+			// 'click #fullScreenBtn': 'onFullScreen',
+			// 'click #partScreenBtn': 'onPartScreen',
 			'click #logoutBtn': 'onLogout',
 			'click #helpBtn': 'onShowHelp',
+			'click #templateBtn': 'onShowTemplateMenu',
+			'click #itemBtn': 'onShowItemMenu',
+			'click #backgroundBtn': 'onShowBackgroundMenu',
 			'click': 'onClick'
 		},
 
@@ -32,9 +43,7 @@ define([
 		initialize: function() {
 
 			// create menu
-			this.menuView = new MenuView({
-				model: this.model
-			});
+			this.menuView = new MenuView();
 
 			// for slide animation effect change the default 
 			// behavior of show view on content region
@@ -86,6 +95,10 @@ define([
 
 				success: function(data) {
 					self.doLogout();
+				},
+
+				error: function() {
+					self.doLogout();
 				}
 			});
 		},
@@ -98,20 +111,9 @@ define([
 			// expand screen to hide menu panel
 			this.onFullScreen(function() {
 
-				// hide tool button with animation
-				$('#partScreenBtn').hide('drop', {
-					direction: 'right'
-				}, function() {
-
-					$('#fullScreenBtn').hide('drop', {
-						direction: 'right'
-					}, function() {
-
-						self.$el.fadeOut(function() {
-							// singnal logout success
-							vent.trigger('logout:success');
-						});
-					});
+				self.$el.fadeOut(function() {
+					// singnal logout success
+					window.location = '/';
 				});
 			});
 		},
@@ -121,20 +123,10 @@ define([
 
 			var self = this;
 
-			this.$el.find('#fullScreenBtn').show();
-			this.$el.find('#partScreenBtn').hide();
-
 			// make space for menu panel
 			$('body').animate({
 				'padding-top': '40px'
 			}, function() {
-
-				// move in tool button with animation
-				$('#logoutBtn').show('drop', function() {
-					$('#fullScreenBtn').show('drop', function() {
-						$('#helpBtn').show('drop');
-					});
-				});
 
 				// move in the menu
 				self.menuView.$el.animate({
@@ -146,9 +138,6 @@ define([
 
 		// On full-screen button click
 		onFullScreen: function(callback) {
-
-			this.$el.find('#fullScreenBtn').hide();
-			this.$el.find('#partScreenBtn').show();
 
 			// move header out of screen
 			$('#menuPanel').animate({
@@ -167,6 +156,51 @@ define([
 		onShowHelp: function() {
 			// tour.start();
 			vent.trigger('resume:showTour');
+		},
+
+		onShowTemplateMenu: function() {
+
+			var templateMenuView = new TemplateMenuView({
+				model: this.model
+			})
+			// show menu
+			this.footer.show(templateMenuView);
+
+			$('#templateMenu').animate({
+				'bottom': '0px'
+			}, function() {
+				templateMenuView.listenTo(vent, 'click:universal', templateMenuView.autoHide);
+			});
+		},
+
+		onShowItemMenu: function() {
+
+			var itemMenuView = new ItemMenuView({
+				model: this.model
+			})
+			// show menu
+			this.footer.show(itemMenuView);
+
+			$('#itemMenu').animate({
+				'bottom': '0px'
+			}, function() {
+				itemMenuView.listenTo(vent, 'click:universal', itemMenuView.autoHide);
+			});
+		},
+
+		onShowBackgroundMenu: function() {
+
+			var backgroundMenuView = new BackgroundMenuView({
+				model: this.model
+			})
+			// show menu
+			this.footer.show(backgroundMenuView);
+
+			$('#backgroundMenu').animate({
+				'bottom': '0px'
+			}, function() {
+				backgroundMenuView.listenTo(vent, 'click:universal', backgroundMenuView.autoHide);
+			});
 		},
 
 		// Emit singnal on every click, sub component will use this signal to justify their behavior

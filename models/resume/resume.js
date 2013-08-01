@@ -154,7 +154,8 @@ var Resume = new Schema({
 	// Resume Template
 	template: {
 		type: String,
-		trim: true
+		trim: true,
+		default: "default"
 	},
 	// Item open flag
 	setting: {
@@ -276,19 +277,24 @@ var Resume = new Schema({
 });
 
 Resume.virtual('birthDayStr').get(function() {
-	return moment(new Date(this.birthDay)).format('LL');
+	if (this.birthDay)
+		return moment(new Date(this.birthDay)).format('LL');
+	else
+		return "";
 });
 
 Resume.virtual('firstArriveStr').get(function() {
-	return moment(new Date(this.firstArrive)).format('LL');
+	if (this.firstArrive)
+		return moment(new Date(this.firstArrive)).format('LL');
+	else
+		return "";
 });
 
 Resume.virtual('availableDateStr').get(function() {
-	return moment(new Date(this.availableDate)).format('LL');
-});
-
-Resume.virtual('availableDateStr').get(function() {
-	return moment(new Date(this.availableDate)).format('LL');
+	if (this.availableDate)
+		return moment(new Date(this.availableDate)).format('LL');
+	else
+		return "";
 });
 
 Resume.virtual('itExperienceStr').get(function() {
@@ -306,7 +312,10 @@ Resume.virtual('addressStr').get(function() {
 });
 
 Resume.virtual('selfIntroductionStr').get(function() {
-	return markdown.toHTML(this.selfIntroduction);
+	if (this.selfIntroduction)
+		return markdown.toHTML(this.selfIntroduction);
+	else
+		return "";
 });
 
 module.exports = mongoose.model('Resume', Resume);

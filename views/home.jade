@@ -12,7 +12,7 @@ html(lang="ja")
 		link(type="text/css", rel="stylesheet", href="/stylesheets/bootstrap-tour.css")
 		link(type="text/css", rel="stylesheet", href="/stylesheets/jquery.fileupload-ui.css")
 		link(type="text/css", rel="stylesheet", href="/stylesheets/style.css")
-		script(type="text/javascript", data-main="javascripts/boot", src="/javascripts/lib/require.js")
+		script(type="text/javascript", data-main="javascripts/boot-cvbakery", src="/javascripts/lib/require.js")
 	body
 		div(style="text-align: center")
 			div(style="display: inline-block; margin-top: 200px;")
@@ -22,3 +22,4 @@ html(lang="ja")
 				p
 					strong
 						em(style="font-size: 3em; color: #bbb") Loading the awesomeness...
+			#accountInfo(data-email="#{email}", data-type="#{type}", data-resume="#{resume}")

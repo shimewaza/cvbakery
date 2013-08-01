@@ -737,8 +737,10 @@ define([
 			// do nothing if the same pattern
 			if (imageName == currentBk) return;
 
+			var path = imageName.split('.')[0];
+
 			// change back patten
-			$('body').css('background', "url('/images/resume/" + imageName + "') repeat");
+			$('body').css('background', "url('/images/pattern/" + path + "/" + imageName + "') repeat");
 		},
 
 		// Run user instruction

@@ -16,16 +16,22 @@ define([
             // hold application ref
             this.app = options.app;
             // hold user account info
-            this.account = options.account;
+            this.account = {
+                email: $('#accountInfo').data('email'),
+                type: $('#accountInfo').data('type'),
+                resume: $('#accountInfo').data('resume'),
+            };
+
             // create and hold resume model            
             this.resumeModel = new ResumeModel({
-                _id: options.account.userInfo.profileId
+                _id: this.account.resume
             });
 
             // create main page
             this.pageView = new PageView({
-                model: new Backbone.Model(this.account)
+                model: this.resumeModel
             });
+            
             // show main page
             this.app.mainRegion.show(this.pageView);
 

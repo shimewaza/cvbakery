@@ -3,8 +3,8 @@ var metadata = require('./metadata');
 var Schema = mongoose.Schema;
 
 var TempAccount = new Schema({
-    // Account (user email)
-    accountId: {
+    // Email
+    email: {
         type: String,
         trim: true,
         required: true,
@@ -18,8 +18,8 @@ var TempAccount = new Schema({
         required: true,
         match:/^.{8,}$/
     },
-    // User Type
-    userType: {
+    // Account Type
+    type: {
         type: String,
         trim: true,
         required: true,

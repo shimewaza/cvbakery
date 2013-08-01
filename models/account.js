@@ -3,27 +3,28 @@ var metadata = require('./metadata');
 var Schema = mongoose.Schema;
 
 var Account = new Schema({
-	// ユーザ名
-	accountId: {
+	// Email
+	email: {
 		type: String,
 		trim: true,
 		required: true,
 		unique: true
 	},
-	// パスワード
+	// Password
 	password: {
 		type: String,
 		trim: true,
 		required: true
 	},
-	// ユーザタイプ
-	userType: {
+	// Account Type
+	type: {
 		type: String,
 		trim: true,
 		required: true,
 		enum: metadata.userType_option
 	},
-	profileId: {
+	// Resume
+	resume: {
 		type: Schema.Types.ObjectId
 	},
 	// 最終登録日

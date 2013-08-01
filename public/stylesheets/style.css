@@ -41,29 +41,23 @@ body {
 .sl-placeholder {
   color: #999999;
 }
+.navbar-fixed-bottom {
+  bottom: -70px;
+}
+.navbar-fixed-bottom .navbar-inner {
+  min-height: 70px;
+}
+.navbar-fixed-bottom .navbar-inner .carousel {
+  margin-bottom: 0px;
+}
+.navbar-fixed-bottom .navbar-inner .carousel-control {
+  top: 45%;
+}
 #body {
   position: relative;
 }
-#navigator {
-  position: relative;
-  float: left;
-  margin-left: -100%;
-  right: 410px;
-}
 #content {
-  float: left;
-  width: 100%;
   height: 100%;
-}
-#toolArea {
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-#toolArea div {
-  display: none;
-  float: right;
-  margin: 3px;
 }
 #loginPanel {
   max-width: 260px;
@@ -90,6 +84,25 @@ body {
   margin: 3px;
   float: left;
 }
+#templateMenu .carousel-inner {
+  margin: 0 70px;
+}
+#templateMenu .carousel-inner img {
+  display: inline;
+  height: 50px;
+  width: auto;
+  margin: 5px 10px 5px 0px;
+}
+#backgroundMenu .carousel-inner {
+  margin: 0 70px;
+}
+#backgroundMenu .carousel-inner img {
+  display: inline;
+  height: 50px;
+  width: 50px;
+  overflow: hide;
+  margin: 5px 13px 5px 0px;
+}
 #resumePanel {
   display: block;
   margin-left: auto;
@@ -98,54 +111,8 @@ body {
   -moz-box-shadow: 1px 1px 3px #808080;
   box-shadow: 1px 1px 3px #808080;
   margin-top: 5px;
+  margin-bottom: 75px;
   font-size: 11.9px;
-}
-@-webkit-keyframes progress-bar-stripes {
-  from {
-    margin-left: 100%;
-  }
-  to {
-    margin-left: auto;
-  }
-}
-@-moz-keyframes progress-bar-stripes {
-  from {
-    margin-left: 100%;
-  }
-  to {
-    margin-left: auto;
-  }
-}
-@-ms-keyframes progress-bar-stripes {
-  from {
-    margin-left: 100%;
-  }
-  to {
-    margin-left: auto;
-  }
-}
-@-o-keyframes progress-bar-stripes {
-  from {
-    margin-left: 100%;
-  }
-  to {
-    margin-left: auto;
-  }
-}
-@keyframes progress-bar-stripes {
-  from {
-    margin-left: 100%;
-  }
-  to {
-    margin-left: auto;
-  }
-}
-#resumePanel.onshow {
-  -webkit-animation: progress-bar-stripes 0.5s ease-in-out;
-  -moz-animation: progress-bar-stripes 0.5s ease-in-out;
-  -ms-animation: progress-bar-stripes 0.5s ease-in-out;
-  -o-animation: progress-bar-stripes 0.5s ease-in-out;
-  animation: progress-bar-stripes 0.5s ease-in-out;
 }
 #resumePanel #photo {
   text-align: center;

@@ -3,16 +3,6 @@ var Account = require('../models/account.js');
 var Resume = require('../models/resume/resume.js');
 var TempAccount = require('../models/tempaccount.js');
 
-var personMenu = [{
-    icon: 'icon-home',
-    name: 'Home',
-    url: '/#home'
-}, {
-    icon: 'icon-user',
-    name: '私の履歴書',
-    url: '/#resume'
-}];
-
 exports.index = function(req, res) {
 
 };
@@ -32,11 +22,11 @@ exports.create = function(req, res) {
     // create temporary account for a new registered user
     var tempAccountObj = new TempAccount(req.body, false);
 
-    var accountId = req.body.accountId;
+    var email = req.body.email;
 
     // try to find a account by the user applicated account ID
     Account.findOne({
-        accountId: accountId
+        email: email
     }, function(err, account) {
 
         // handle error
@@ -59,7 +49,7 @@ exports.create = function(req, res) {
                     // send account-activate mail
                     Mailer.sendAccountActiveMail({
                         id: tempAccountObj._id,
-                        email: accountId
+                        email: email
                     });
 
                     console.log("http://localhost:3000/activate/" + tempAccountObj._id);
@@ -112,14 +102,14 @@ exports.activate = function(req, res) {
 
             // create real account object and connect it to resume
             var accountObj = new Account({
-                accountId: tempAccount.accountId,
+                email: tempAccount.email,
                 password: tempAccount.password,
-                userType: tempAccount.userType,
-                profileId: resumeObj._id
+                type: tempAccount.type,
+                resume: resumeObj._id
             }, false);
 
             // save the new account
-            accountObj.save(function(err, data) {
+            accountObj.save(function(err, account) {
 
                 // handle error
                 if (err) {
@@ -134,17 +124,10 @@ exports.activate = function(req, res) {
                     tempAccount.remove();
 
                     // setup session for new account
-                    req.session.accountId = accountObj._id;
-                    req.session.accountInfo = {
-                        userInfo: accountObj,
-                        menu: personMenu
-                    };
+                    // req.session.account = account;
 
                     // redirect to home page
                     res.redirect('/');
-                    // res.json({
-                    //     message: "ご登録ありがとうございます、ログイン画面からお入りください。"
-                    // });
                 }
             });
 

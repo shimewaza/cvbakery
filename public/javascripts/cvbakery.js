@@ -1,11 +1,7 @@
 define([
-		'routers/landing',
-		'controllers/landing',
 		'routers/main',
 		'controllers/main'
 ], function(
-	LandingRouter,
-	LandingController,
 	MainRouter,
 	MainController) {
 
@@ -17,44 +13,44 @@ define([
 		mainRegion: 'body'
 	});
 
-	// Add application initializer
-	CVBakery.addInitializer(function(options) {
+	// // Add application initializer
+	// CVBakery.addInitializer(function(options) {
 
-		// TODO: ajax default behavior (this may wrong)
-		$.ajaxSetup({
-			timeout: 3000,
-			error: function(xhr, errorType, exceptionThrown) {
-				console.log(xhr);
-				console.log(errorType);
-				console.log(exceptionThrown);
-			}
-		});
+	// 	// TODO: ajax default behavior (this may wrong)
+	// 	$.ajaxSetup({
+	// 		timeout: 3000,
+	// 		error: function(xhr, errorType, exceptionThrown) {
+	// 			console.log(xhr);
+	// 			console.log(errorType);
+	// 			console.log(exceptionThrown);
+	// 		}
+	// 	});
 
-		// Require home page from server
-		$.ajax({
+	// 	// Require home page from server
+	// 	$.ajax({
 
-			// page url
-			url: '/home',
+	// 		// page url
+	// 		url: '/home',
 
-			// method is get
-			type: 'GET',
+	// 		// method is get
+	// 		type: 'GET',
 
-			// use json format
-			dataType: 'json',
+	// 		// use json format
+	// 		dataType: 'json',
 
-			// success handler
-			success: function(data) {
-				// singnal login success
-				vent.trigger('login:success', data);
-			},
+	// 		// success handler
+	// 		success: function(data) {
+	// 			// singnal login success
+	// 			vent.trigger('login:success', data);
+	// 		},
 
-			// error handler
-			error: function(xhr, status) {
-				// singnal logout success as login faile
-				vent.trigger('logout:success');
-			}
-		});
-	});
+	// 		// error handler
+	// 		error: function(xhr, status) {
+	// 			// singnal logout success as login faile
+	// 			vent.trigger('logout:success');
+	// 		}
+	// 	});
+	// });
 
 	// Before application initialization
 	CVBakery.on('initialize:before', function(options) {
@@ -82,31 +78,10 @@ define([
 
 	// On application start
 	CVBakery.on('start', function(options) {
-		// console.log('CVBakery has started.');
-	});
-
-	// Listening logout success singnal
-	CVBakery.listenTo(vent, 'logout:success', function() {
-
-		// make controller for landing page
-		var landingController = new LandingController({
-			app: this
-		});
-		// setup router for landing page
-		var landingRouter = new LandingRouter({
-			controller: landingController
-		});
-		// move to login page
-		landingController.toLogin();
-	});
-
-	// Listening login success singnal
-	CVBakery.listenTo(vent, 'login:success', function(data) {
-
 		// make controller for main page
 		var mainController = new MainController({
-			app: this,
-			account: data
+			app: this
+			// account: data
 		});
 		// setup router for main page
 		var mainRouter = new MainRouter({
@@ -123,6 +98,45 @@ define([
 			layout: 'bottomRight'
 		})
 	});
+
+	// // Listening logout success singnal
+	// CVBakery.listenTo(vent, 'logout:success', function() {
+
+	// 	// make controller for landing page
+	// 	var landingController = new LandingController({
+	// 		app: this
+	// 	});
+	// 	// setup router for landing page
+	// 	var landingRouter = new LandingRouter({
+	// 		controller: landingController
+	// 	});
+	// 	// move to login page
+	// 	landingController.toLogin();
+	// });
+
+	// // Listening login success singnal
+	// CVBakery.listenTo(vent, 'login:success', function(data) {
+
+	// 	// make controller for main page
+	// 	var mainController = new MainController({
+	// 		app: this,
+	// 		account: data
+	// 	});
+	// 	// setup router for main page
+	// 	var mainRouter = new MainRouter({
+	// 		controller: mainController
+	// 	});
+	// 	// move to resume page
+	// 	mainController.toResume();
+
+	// 	// say hello to user
+	// 	noty({
+	// 		type: 'information',
+	// 		timeout: 5000,
+	// 		text: "こんにちは、CV Bakeryへようこそ！",
+	// 		layout: 'bottomRight'
+	// 	})
+	// });
 
 	return CVBakery;
 });

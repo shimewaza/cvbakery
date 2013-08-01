@@ -74,8 +74,6 @@ define([], function() {
             Set up a flag indicate mouse on
         */
         setFocusIn: function() {
-            // this.$el.css('cursor', 'pointer');
-            // this.$el.find('.sl-value').css('border', '1px solid #e3e3e3') /*.addClass('sl-panel')*/ ;
             this.focus = true;
         },
 
@@ -83,8 +81,6 @@ define([], function() {
             Clear the flag when mouse out
         */
         setFocusOut: function() {
-            // this.$el.css('cursor', 'pointer');
-            // this.$el.find('.sl-value').css('border', '1px none #e3e3e3') /*.removeClass('sl-panel')*/ ;
             this.focus = false;
         },
 
