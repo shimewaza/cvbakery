@@ -26,7 +26,7 @@ define([
 			    var val = "/images/resume/sample/" + templateName + ".png";
 			    $(this).popover({
 			        title: 'フォーマットを変更',
-			        content: '<img src="' + val + '" class="img-polaroid" style="display:block; height: 200px; width: auto;">',
+			        content: '<img src="' + val + '" class="img-polaroid" style="display:block; height: 200px; width: 200px;">',
 			        placement: 'top',
 			        trigger: 'hover',
 			        html: true,

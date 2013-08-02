@@ -41,18 +41,6 @@ body {
 .sl-placeholder {
   color: #999999;
 }
-.navbar-fixed-bottom {
-  bottom: -70px;
-}
-.navbar-fixed-bottom .navbar-inner {
-  min-height: 70px;
-}
-.navbar-fixed-bottom .navbar-inner .carousel {
-  margin-bottom: 0px;
-}
-.navbar-fixed-bottom .navbar-inner .carousel-control {
-  top: 45%;
-}
 #body {
   position: relative;
 }
@@ -65,24 +53,18 @@ body {
 #registerPanel {
   max-width: 260px;
 }
-#resumeContextMenu {
-  max-width: 240px;
-  min-width: 240px;
-  -webkit-box-shadow: 1px 1px 3px #808080;
-  -moz-box-shadow: 1px 1px 3px #808080;
-  box-shadow: 1px 1px 3px #808080;
+.navbar-fixed-bottom {
+  bottom: -70px;
+  z-index: 0;
 }
-#resumeContextMenu button {
-  margin: 3px;
+.navbar-fixed-bottom .navbar-inner {
+  min-height: 70px;
 }
-#resumeContextMenu .btn {
-  min-width: 41px;
+.navbar-fixed-bottom .navbar-inner .carousel {
+  margin-bottom: 0px;
 }
-#resumeContextMenu .bk-sample {
-  height: 20px;
-  width: 20px;
-  margin: 3px;
-  float: left;
+.navbar-fixed-bottom .navbar-inner .carousel-control {
+  top: 45%;
 }
 #templateMenu .carousel-inner {
   margin: 0 70px;
@@ -93,15 +75,31 @@ body {
   width: auto;
   margin: 5px 10px 5px 0px;
 }
+#templateMenu .carousel-inner img:hover {
+  cursor: pointer;
+}
+#itemMenu .itemMenu-inner {
+  margin: 0 40px;
+  line-height: 70px;
+}
+#itemMenu .itemMenu-inner button {
+  display: inline;
+  margin: 5px 10px 5px 0px;
+}
+#itemMenu .itemMenu-inner button:hover {
+  cursor: pointer;
+}
 #backgroundMenu .carousel-inner {
   margin: 0 70px;
 }
-#backgroundMenu .carousel-inner img {
-  display: inline;
+#backgroundMenu .carousel-inner .bk-sample {
+  display: inline-block;
   height: 50px;
   width: 50px;
-  overflow: hide;
   margin: 5px 13px 5px 0px;
+}
+#backgroundMenu .carousel-inner .bk-sample:hover {
+  cursor: pointer;
 }
 #resumePanel {
   display: block;
@@ -118,9 +116,9 @@ body {
   text-align: center;
 }
 #resumePanel #skill .input-append,
-#resumePanel #language .input-append,
+#resumePanel #languageBackground .input-append,
 #resumePanel #skill .input-prepend,
-#resumePanel #language .input-prepend {
+#resumePanel #languageBackground .input-prepend {
   margin-bottom: 0px;
 }
 #resumePanel .sl-editable {

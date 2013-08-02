@@ -89,23 +89,9 @@ define([], function() {
             Remove item 
             SubClass should override this method to define how to remove item.
         */
-        removeItem: function(option) {
+        removeItem: function() {
 
             var self = this;
-
-            if (option && option.silence) {
-                
-                vent.trigger('resume:itemRemoved', {
-                    item: self.item,
-                    itemName: self.itemName,
-                    itemIcon: self.itemIcon
-                });
-
-                // dispose the view
-                self.close();
-
-                return;
-            }
 
             var data = this.model.get('setting');
             data[this.item] = false;

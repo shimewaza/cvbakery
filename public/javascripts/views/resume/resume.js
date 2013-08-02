@@ -26,8 +26,7 @@ define([
 	'views/resume/compositeworkexperience',
 	'views/resume/compositelanguage',
 	'views/resume/compositequalification',
-	'views/resume/compositeskill',
-	'views/resume/contextmenupanel'
+	'views/resume/compositeskill'
 ], function(
 	defaultTemplate,
 	style1Template,
@@ -56,8 +55,7 @@ define([
 	WorkExperienceComposite,
 	LanguageComposite,
 	QualificationComposite,
-	SkillComposite,
-	ContextMenuPanelView) {
+	SkillComposite) {
 
 	// Resume View
 	var ResumeView = Backbone.Marionette.Layout.extend({
@@ -126,11 +124,10 @@ define([
 			educationArea: '#education',
 			careerArea: '#career',
 			workExperienceArea: '#workExperience',
-			languageArea: '#language',
+			languageArea: '#languageBackground',
 			qualificationArea: '#qualification',
 			skillArea: '#skill',
-			shareLinkArea: '#shareLink',
-			contextMenuArea: '#contextMenu'
+			shareLinkArea: '#shareLink'
 		},
 
 		// Initializer
@@ -143,12 +140,6 @@ define([
 					this.$el.html(view.el);
 					this.$el.show('drop');
 				};
-			});
-
-			// build context menu
-			this.contextMenuPanelView = new ContextMenuPanelView({
-				model: this.model,
-				templateRef: this.options.templateRef
 			});
 
 			// build photo view
@@ -304,9 +295,9 @@ define([
 			// setup user instruction
 			this._setupTour();
 
-			// listen to context menu event: add item 
+			// listen to bottom menu event: add item 
 			this.listenTo(vent, 'resume:itemAdded', this.onItemAdded);
-			// listen to context menu event: change back pattern
+			// listen to bottom menu event: change back pattern
 			this.listenTo(vent, 'resume:changePattern', this.onChangePatter);
 			// listen to main page event: show user instruction
 			this.listenTo(vent, 'resume:showTour', this.onShowTour);
@@ -323,13 +314,6 @@ define([
 			// change back pattern to user setting
 			this._changeBackground(this.model.get('backgroundImg'));
 
-			// show(add) context menu
-			this.contextMenuArea.show(this.contextMenuPanelView);
-			// activate context menu
-			$('#content').contextmenu({
-				target: '#contextMenu'
-			});
-
 			// show photo view
 			this.photoArea.show(this.photoView);
 
@@ -341,137 +325,61 @@ define([
 
 			if (setting.birthDay)
 				this.birthDayArea.show(this.birthDayView);
-			else
-				this.birthDayView.removeItem({
-					silence: true
-				});
-
+			
 			if (setting.gender)
 				this.genderArea.show(this.genderView);
-			else
-				this.genderView.removeItem({
-					silence: true
-				});
-
+			
 			if (setting.nationality)
 				this.nationalityArea.show(this.nationalityView);
-			else
-				this.nationalityView.removeItem({
-					silence: true
-				});
-
+			
 			if (setting.married)
 				this.marriedArea.show(this.marriedView);
-			else
-				this.marriedView.removeItem({
-					silence: true
-				});
-
+			
 			if (setting.firstArrive)
 				this.firstArriveArea.show(this.firstArriveView);
-			else
-				this.firstArriveView.removeItem({
-					silence: true
-				});
-
+			
 			if (setting.itExperience)
 				this.itExperienceArea.show(this.itExperienceView);
-			else
-				this.itExperienceView.removeItem({
-					silence: true
-				});
-
+			
 			if (setting.availableDate)
 				this.availableDateArea.show(this.availableDateView);
-			else
-				this.availableDateView.removeItem({
-					silence: true
-				});
-
+			
 			if (setting.address)
 				this.addressArea.show(this.addressView);
-			else
-				this.addressView.removeItem({
-					silence: true
-				});
-
+			
 			if (setting.nearestStation)
 				this.nearestStationArea.show(this.nearestStationView);
-			else
-				this.nearestStationView.removeItem({
-					silence: true
-				});
-
+			
 			if (setting.telNo)
 				this.telNoArea.show(this.telNoView);
-			else
-				this.telNoView.removeItem({
-					silence: true
-				});
-
+			
 			if (setting.email)
 				this.emailArea.show(this.emailView);
-			else
-				this.emailView.removeItem({
-					silence: true
-				});
-
+			
 			if (setting.homePage)
 				this.homePageArea.show(this.homePageView);
-			else
-				this.homePageView.removeItem({
-					silence: true
-				});
-
+			
 			if (setting.selfIntroduction)
 				this.selfIntroductionArea.show(this.selfIntroductionView);
-			else
-				this.selfIntroductionView.removeItem({
-					silence: true
-				});
-
+			
 			if (setting.education)
 				this.educationArea.show(this.educationComposite);
-			else
-				this.educationComposite.removeItem({
-					silence: true
-				});
-
+			
 			if (setting.career)
 				this.careerArea.show(this.careerComposite);
-			else
-				this.careerComposite.removeItem({
-					silence: true
-				});
-
+			
 			if (setting.workExperience)
 				this.workExperienceArea.show(this.workExperienceComposite);
-			else
-				this.workExperienceComposite.removeItem({
-					silence: true
-				});
-
+			
 			if (setting.languageBackground)
 				this.languageArea.show(this.languageComposite);
-			else
-				this.languageComposite.removeItem({
-					silence: true
-				});
-
+			
 			if (setting.qualification)
 				this.qualificationArea.show(this.qualificationComposite);
-			else
-				this.qualificationComposite.removeItem({
-					silence: true
-				});
-
+			
 			if (setting.skill)
 				this.skillArea.show(this.skillComposite);
-			else
-				this.skillComposite.removeItem({
-					silence: true
-				});
-
+			
 			// if this is the fisrt time of user access
 			if (setting.isFirstVisit) {
 				// show user instruction modal, delay for 1s
@@ -482,6 +390,10 @@ define([
 		},
 
 		onItemAdded: function(data) {
+
+			$.scrollTo('#'+data.item, 800, {
+				offset: {top: -40}
+			});
 
 			if (data.item == "birthDay") {
 				this.birthDayView = new BirthDayView({
@@ -737,10 +649,8 @@ define([
 			// do nothing if the same pattern
 			if (imageName == currentBk) return;
 
-			var path = imageName.split('.')[0];
-
 			// change back patten
-			$('body').css('background', "url('/images/pattern/" + path + "/" + imageName + "') repeat");
+			$('body').css('background', "url('/images/pattern/" + imageName + "') repeat");
 		},
 
 		// Run user instruction
@@ -865,43 +775,7 @@ define([
 				element: "#education .item-container .sl-editor",
 				title: "他の項目も同じです",
 				content: '項目により編集できる内容が違うですが、使い方は一緒です。',
-				placement: "left",
-				onHide: function() {
-					self.educationComposite.switchToValue();
-					$('#resumeContextMenu').css({
-						display: 'block',
-						top: '300px',
-						left: '300px'
-					});
-				}
-			}, {
-				element: "#resumeContextMenu",
-				title: "これはメニューです",
-				content: '履歴書上に右クリックしたら、メニューが表示します。'
-			}, {
-				element: "#resumeContextMenu .template",
-				title: "フォーマット変更",
-				content: 'CV Bakeryは色んな履歴書フォーマットを提供します、変更するにはお好きなフォーマットボタン押すだけ。'
-			}, {
-				element: "#resumeContextMenu .item",
-				title: "項目の追加、復旧",
-				content: '各<button class="btn btn-small btn-warning btn-remove"><i class="icon-remove icon-white"></i></button>\
-						で隠された項目は、メニューのここに格納されています。ボタン押すと、該当項目は履歴書に載せられます。'
-			}, {
-				element: "#resumeContextMenu .background",
-				title: "背景の文様を変わる",
-				content: 'これらのボタンをクリックすると、履歴書の背景を変わることができます。'
-			}, {
-				element: "#resumeContextMenu .output",
-				title: "履歴書を出力",
-				content: '履歴書の出力、印刷などできます。',
-				onHide: function() {
-					$('#resumeContextMenu').css({
-						display: '',
-						top: '0',
-						left: '0'
-					});
-				}
+				placement: "left"
 			}, ]);
 		}
 	});
