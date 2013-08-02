@@ -13,14 +13,6 @@ define(['views/landing'], function(LandingView) {
             // show landing page
             this.app.mainRegion.show(this.landingView);
         }
-
-        // toLogin: function() {
-        //     this.app.mainRegion.show(new LoginView());
-        // },
-
-        // toRegister: function() {
-        //     this.app.mainRegion.show(new RegisterView());
-        // }
     });
 
     return Controller;

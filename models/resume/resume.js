@@ -26,26 +26,6 @@ var Resume = new Schema({
 		type: String,
 		trim: true
 	},
-	// First Name in English
-	firstNameEn: {
-		type: String,
-		trim: true
-	},
-	// Last Name in English
-	lastNameEn: {
-		type: String,
-		trim: true
-	},
-	// First Name in Japanese
-	firstNameKana: {
-		type: String,
-		trim: true
-	},
-	// Last Name in Japanese
-	lastNameKana: {
-		type: String,
-		trim: true
-	},
 	// Photo
 	photo: {
 		type: String,
@@ -72,21 +52,6 @@ var Resume = new Schema({
 		type: String,
 		trim: true,
 		enum: metadata.married_option
-	},
-	// First time arrive this country
-	firstArrive: {
-		type: Date
-	},
-	// IT Experience (In Year)
-	itExperience: {
-		type: Number,
-		min: 0,
-		max: 99
-	},
-	// Nearest Station
-	nearestStation: {
-		type: String,
-		trim: true
 	},
 	// Availability
 	availableDate: {
@@ -118,16 +83,6 @@ var Resume = new Schema({
 	address: {
 		type: String,
 		trim: true
-	},
-	// 希望給与下限
-	salaryTop: {
-		type: Number,
-		min: 0
-	},
-	// 希望給与上限
-	salaryBottom: {
-		type: Number,
-		min: 0
 	},
 	// Self Introduction
 	selfIntroduction: {
@@ -182,18 +137,6 @@ var Resume = new Schema({
 		married: {
 			type: Boolean,
 			default: false
-		},
-		firstArrive: {
-			type: Boolean,
-			default: false
-		},
-		itExperience: {
-			type: Boolean,
-			default: false
-		},
-		nearestStation: {
-			type: Boolean,
-			default: true
 		},
 		availableDate: {
 			type: Boolean,
@@ -283,23 +226,9 @@ Resume.virtual('birthDayStr').get(function() {
 		return "";
 });
 
-Resume.virtual('firstArriveStr').get(function() {
-	if (this.firstArrive)
-		return moment(new Date(this.firstArrive)).format('LL');
-	else
-		return "";
-});
-
 Resume.virtual('availableDateStr').get(function() {
 	if (this.availableDate)
 		return moment(new Date(this.availableDate)).format('LL');
-	else
-		return "";
-});
-
-Resume.virtual('itExperienceStr').get(function() {
-	if (this.itExperience)
-		return this.itExperience + '年';
 	else
 		return "";
 });

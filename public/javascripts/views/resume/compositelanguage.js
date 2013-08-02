@@ -21,7 +21,7 @@ define([
 
         item: 'languageBackground',
 
-        itemName: '語学能力',
+        itemName: 'Lanugage Skills',
 
         itemIcon: 'icon-comments-alt',
 

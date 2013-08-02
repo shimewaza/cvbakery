@@ -54,7 +54,7 @@ app.configure('development', function() {
 mongoose.set('debug', true);
 
 // データベース接続初期化
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://localhost/cvbakery');
 mongoose.connection.on('open', function() {
   console.log("db connected.");
 });

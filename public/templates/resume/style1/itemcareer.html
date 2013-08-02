@@ -1,66 +1,53 @@
-<%
-    var startDate = obj.startDate;
-    var endDate = obj.endDate;
-    var resultDate = '';
-
-    if(startDate && endDate) 
-        resultDate = formatDate(startDate) + '～' + formatDate(endDate);
-    else if (startDate && !endDate)
-        resultDate = formatDate(startDate) + '～';
-    else if (!startDate && endDate)
-        resultDate = '～' + formatDate(endDate);
-%>
-<div class="row-fluid sl-value">
-    <div class="span6 companyArea">
-        <%
-            if (obj.company)
-                print('<h5><i class="icon-building"></i>&nbsp;&nbsp;' + obj.company + '</h5>');
-            if (obj.address)
-                print('<h6 class="sl-placeholder"><i class="icon-map-marker"></i>&nbsp;&nbsp;' + obj.address + '</h6>');
-            if (obj.position)
-                print('<h6 class="sl-placeholder"><i class="icon-user"></i>&nbsp;&nbsp;' + obj.position + '</h6>');
-        %>
-    </div>
-    <div class="span6 dateArea">
-        <%
-            if (resultDate)
-                print('<span class="label label-info pull-right"><i class="icon-calendar"></i>&nbsp;&nbsp;&nbsp;&nbsp;' + resultDate + '</span>');
-        %>
-    </div>
-    <div class="detailArea">
-        <% 
-            if (obj.detail)
-                print(markdown.toHTML(obj.detail)); 
-        %>
-    </div>
-</div>
-<div class="row-fluid sl-editor">
-    <div class="span11">
-        <div class="input-prepend sl-input">
-            <span class="add-on"><i class="icon-calendar"></i></span>
-            <input type="text" class="input-small" placeholder="開始日" name="startDate" value="<%- simpleFormatDate(obj.startDate) %>">
+<% var startDate=o bj.startDate; var endDate=o bj.endDate; var resultDate='' ; if(startDate && endDate) resultDate=f ormatDate(startDate) + '～' + formatDate(endDate); else if (startDate && !endDate) resultDate=f ormatDate(startDate) + '～'; else if (!startDate && endDate) resultDate='～' + formatDate(endDate); %>
+    <div class="row-fluid sl-value">
+        <div class="span6 companyArea">
+            <% if (obj.company) print( '<h5><i class="icon-building"></i>&nbsp;&nbsp;' + obj.company + '</h5>'); if (obj.address) print( '<h6 class="sl-placeholder"><i class="icon-map-marker"></i>&nbsp;&nbsp;' + obj.address + '</h6>'); if (obj.position) print( '<h6 class="sl-placeholder"><i class="icon-user"></i>&nbsp;&nbsp;' + obj.position + '</h6>'); %>
         </div>
-        <div class="input-prepend sl-input">
-            <span class="add-on"><i class="icon-calendar"></i></span>
-            <input type="text" class="input-small" placeholder="終了日" name="endDate" value="<%- simpleFormatDate(obj.endDate) %>">
-        </div><br>
-        <div class="input-prepend sl-input">
-            <span class="add-on"><i class="icon-building"></i></span>
-            <input type="text" class="input-xlarge" placeholder="会社名" name="company" value="<%- obj.company %>">
-        </div><br>
-        <div class="input-prepend sl-input">
-            <span class="add-on"><i class="icon-map-marker"></i></span>
-            <input type="text" class="input-xlarge" placeholder="所在地" name="address" value="<%- obj.address %>">
-        </div><br>
-        <div class="input-prepend sl-input">
-            <span class="add-on"><i class="icon-group"></i></span>
-            <input type="text" class="input-xlarge" placeholder="職務" name="position" value="<%- obj.position %>">
+        <div class="span6 dateArea">
+            <% if (resultDate) print( '<span class="label label-info pull-right"><i class="icon-calendar"></i>&nbsp;&nbsp;&nbsp;&nbsp;' + resultDate + '</span>'); %>
         </div>
-        <div class="sl-input" style="width: 100%">
-            <textarea style="width: 95%" rows="10" name="detail"><%- obj.detail %></textarea>
+        <div class="detailArea">
+            <% if (obj.detail) print(markdown.toHTML(obj.detail)); %>
         </div>
     </div>
-    <div class="span1">
-        <button class="btn btn-small btn-danger btn-delete"><i class="icon-minus icon-white"></i></button>
+    <div class="row-fluid sl-editor">
+        <div class="span11">
+            <div class="input-prepend sl-input">
+                <span class="add-on"><i class="icon-calendar"></i>
+                </span>
+                <input type="text" class="input-small" placeholder="Start Date" name="startDate" value="<%- simpleFormatDate(obj.startDate) %>">
+            </div>
+            <div class="input-prepend sl-input">
+                <span class="add-on"><i class="icon-calendar"></i>
+                </span>
+                <input type="text" class="input-small" placeholder="End Date" name="endDate" value="<%- simpleFormatDate(obj.endDate) %>">
+            </div>
+            <br>
+            <div class="input-prepend sl-input">
+                <span class="add-on"><i class="icon-building"></i>
+                </span>
+                <input type="text" class="input-xlarge" placeholder="Company" name="company" value="<%- obj.company %>">
+            </div>
+            <br>
+            <div class="input-prepend sl-input">
+                <span class="add-on"><i class="icon-map-marker"></i>
+                </span>
+                <input type="text" class="input-xlarge" placeholder="Location" name="address" value="<%- obj.address %>">
+            </div>
+            <br>
+            <div class="input-prepend sl-input">
+                <span class="add-on"><i class="icon-group"></i>
+                </span>
+                <input type="text" class="input-xlarge" placeholder="Position" name="position" value="<%- obj.position %>">
+            </div>
+            <div class="sl-input" style="width: 100%">
+                <textarea style="width: 95%" rows="10" name="detail">
+                    <%- obj.detail %>
+                </textarea>
+            </div>
+        </div>
+        <div class="span1">
+            <button class="btn btn-small btn-danger btn-delete"><i class="icon-minus icon-white"></i>
+            </button>
+        </div>
     </div>
-</div>

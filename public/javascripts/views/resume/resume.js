@@ -11,11 +11,8 @@ define([
 	'views/resume/itemgender',
 	'views/resume/itemnationality',
 	'views/resume/itemmarried',
-	'views/resume/itemfirstarrive',
-	'views/resume/itemitexperience',
 	'views/resume/itemavailabledate',
 	'views/resume/itemaddress',
-	'views/resume/itemneareststation',
 	'views/resume/itemtelno',
 	'views/resume/itememail',
 	'views/resume/itemhomepage',
@@ -40,11 +37,8 @@ define([
 	GenderView,
 	NationalityView,
 	MarriedView,
-	FirstArriveView,
-	ItExperienceView,
 	AvailableDateView,
 	AddressView,
-	NearestStationView,
 	TelNoView,
 	EMailView,
 	HomePageView,
@@ -113,9 +107,6 @@ define([
 			nationalityArea: '#nationality',
 			marriedArea: '#married',
 			addressArea: '#address',
-			firstArriveArea: '#firstArrive',
-			itExperienceArea: '#itExperience',
-			nearestStationArea: '#nearestStation',
 			availableDateArea: '#availableDate',
 			telNoArea: '#telNo',
 			emailArea: '#email',
@@ -178,18 +169,6 @@ define([
 				templateRef: this.options.templateRef
 			});
 
-			// build first arrive view
-			this.firstArriveView = new FirstArriveView({
-				model: this.model,
-				templateRef: this.options.templateRef
-			});
-
-			// build IT experience view
-			this.itExperienceView = new ItExperienceView({
-				model: this.model,
-				templateRef: this.options.templateRef
-			});
-
 			// build availabilty view
 			this.availableDateView = new AvailableDateView({
 				model: this.model,
@@ -198,12 +177,6 @@ define([
 
 			// build address view
 			this.addressView = new AddressView({
-				model: this.model,
-				templateRef: this.options.templateRef
-			});
-
-			// build nearest station view
-			this.nearestStationView = new NearestStationView({
 				model: this.model,
 				templateRef: this.options.templateRef
 			});
@@ -335,20 +308,11 @@ define([
 			if (setting.married)
 				this.marriedArea.show(this.marriedView);
 			
-			if (setting.firstArrive)
-				this.firstArriveArea.show(this.firstArriveView);
-			
-			if (setting.itExperience)
-				this.itExperienceArea.show(this.itExperienceView);
-			
 			if (setting.availableDate)
 				this.availableDateArea.show(this.availableDateView);
 			
 			if (setting.address)
 				this.addressArea.show(this.addressView);
-			
-			if (setting.nearestStation)
-				this.nearestStationArea.show(this.nearestStationView);
 			
 			if (setting.telNo)
 				this.telNoArea.show(this.telNoView);
@@ -431,24 +395,6 @@ define([
 				return;
 			}
 
-			if (data.item == "firstArrive") {
-				this.firstArriveView = new FirstArriveView({
-					model: this.model,
-					templateRef: this.options.templateRef
-				});
-				this.firstArriveArea.show(this.firstArriveView);
-				return;
-			}
-
-			if (data.item == "itExperience") {
-				this.itExperienceView = new ItExperienceView({
-					model: this.model,
-					templateRef: this.options.templateRef
-				});
-				this.itExperienceArea.show(this.itExperienceView);
-				return;
-			}
-
 			if (data.item == "availableDate") {
 				this.availableDateView = new AvailableDateView({
 					model: this.model,
@@ -464,15 +410,6 @@ define([
 					templateRef: this.options.templateRef
 				});
 				this.addressArea.show(this.addressView);
-				return;
-			}
-
-			if (data.item == "nearestStation") {
-				this.nearestStationView = new NearestStationView({
-					model: this.model,
-					templateRef: this.options.templateRef
-				});
-				this.nearestStationArea.show(this.nearestStationView);
 				return;
 			}
 

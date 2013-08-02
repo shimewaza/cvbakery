@@ -26,7 +26,6 @@
   box-sizing: border-box;
 }
 body {
-  font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
   background: url('../images/page-bg.png') repeat center top;
 }
 .error span {

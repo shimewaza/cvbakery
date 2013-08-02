@@ -1,7 +1,7 @@
 define([], function() {
 
     var EmptyView = Backbone.Marionette.ItemView.extend({
-        template: '<i class="sl-placeholder">クリックして編集.</i>'
+        template: '<i class="sl-placeholder">Click to edit</i>'
     });
 
     return EmptyView;

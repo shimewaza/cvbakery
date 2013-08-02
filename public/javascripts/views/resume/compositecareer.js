@@ -21,7 +21,7 @@ define([
 
         item: 'career',
 
-        itemName: '社歴',
+        itemName: 'Employment',
 
         itemIcon: 'icon-briefcase',
 

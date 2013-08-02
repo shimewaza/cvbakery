@@ -21,7 +21,7 @@ define([
 
         item: 'education',
 
-        itemName: '学歴',
+        itemName: 'Education',
 
         itemIcon: 'icon-pencil',
 

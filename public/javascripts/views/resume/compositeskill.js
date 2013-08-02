@@ -21,7 +21,7 @@ define([
 
         item: 'skill',
 
-        itemName: 'スキル',
+        itemName: 'Professional Skills',
 
         itemIcon: 'icon-gear',
 

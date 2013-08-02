@@ -21,7 +21,7 @@ define([
 
         item: 'workExperience',
 
-        itemName: '仕事経験',
+        itemName: 'Work Experience',
 
         itemIcon: 'icon-group',
 

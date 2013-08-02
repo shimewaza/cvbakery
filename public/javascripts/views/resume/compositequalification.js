@@ -21,7 +21,7 @@ define([
 
         item: 'qualification',
 
-        itemName: '資格',
+        itemName: 'Qualification',
 
         itemIcon: 'icon-credit-card',
 

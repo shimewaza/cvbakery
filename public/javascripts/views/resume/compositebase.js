@@ -238,16 +238,16 @@ define(['views/resume/compositeempty'], function(EmptyView) {
         // Append popover on add button
         _appendInfoOnAddBtn: function() {
             this._appendInfoOn(this.ui.addBtn, {
-                title: "「" + this.itemName + "」を追加します",
-                content: "「" + this.itemName + '」を1件追加します。<br/><p class="text-info">' + this.itemNumber + '件まで追加できます。</p>'
+                title: 'Add one "' + this.itemName + '" to my resume',
+                content: 'Add one more item of "' + this.itemName + '" to resume.<br/><p class="text-info"> You can have at most ' + this.itemNumber + ' items.</p>'
             });
         },
 
         // Append popover on remove button
         _appendInfoOnRemoveBtn: function() {
             this._appendInfoOn(this.ui.removeBtn, {
-                title: "「" + this.itemName + "」を非表示にします",
-                content: "「" + this.itemName + "」を履歴書から取り除きます。"
+                title: 'Hide "' + this.itemName + '" from my resume',
+                content: '"' + this.itemName + '" will not be shown on resume.'
             });
         }
     });

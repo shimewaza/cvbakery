@@ -21,7 +21,7 @@ define([
 
         item: 'availableDate',
 
-        itemName: "稼働可能日",
+        itemName: "Availability",
 
         itemIcon: 'icon-ok',
 
