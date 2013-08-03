@@ -1,3 +1,5 @@
 node r.js -o build.js
 node ../../r.js -o cssIn=build.css out=style-built.css
 lessc style.less > ../public/stylesheets/style.css
+
+hello
